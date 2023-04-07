@@ -135,6 +135,7 @@ MonoBehaviour:
   _maximumVertical: 100
   _sensitivity: 70
   _invertY: 0
+  _fieldOfViewtransitionTime: 0.2
 --- !u!1 &2104300716291786947
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,6 +150,7 @@ GameObject:
   - component: {fileID: 2104300716291786946}
   - component: {fileID: 2104300716291786974}
   - component: {fileID: 2104300716291786973}
+  - component: {fileID: 4764879117495048196}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -296,4 +298,32 @@ MonoBehaviour:
     acclerationTime: 0.2
     jumpHeight: 5
     jumpCountMax: 2
-    gravityAcceleration: 35
+    gravityAcceleration: 55
+  OnMoveStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnMoveStop:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSprintStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSprintStop:
+    m_PersistentCalls:
+      m_Calls: []
+  OnJump:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &4764879117495048196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104300716291786947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a76ac0947f97f24bbcf1de621232839, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _movement: {fileID: 2104300716291786973}
