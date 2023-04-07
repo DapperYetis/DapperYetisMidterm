@@ -8,7 +8,7 @@ public struct PlayerStats
     [Header("---Movement---")]
     
     public float walkSpeed;
-    public float runSpeed;
+    public float sprintMultiplier;
     public AnimationCurve accelerationRate;
     [Range(0, 5)]
     public float acclerationTime;

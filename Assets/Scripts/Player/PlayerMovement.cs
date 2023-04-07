@@ -42,10 +42,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void PlanarMovement()
     {
+        if (Input.GetButtonDown("Sprint"))
+        {
+            _isRunning = !_isRunning;
+            Debug.Log(_isRunning);
+        }
+
+        float speed = _stats.walkSpeed;
+        if (_isRunning)
+            speed *= _stats.sprintMultiplier;
+
         _playerVelocity.x = 0;
         _playerVelocity.z = 0;
-        _playerVelocity += transform.forward * (Input.GetAxis("Vertical") * _stats.runSpeed);
-        _playerVelocity += transform.right * (Input.GetAxis("Horizontal") * _stats.runSpeed);
+        _playerVelocity += transform.forward * (Input.GetAxis("Vertical") * speed);
+        _playerVelocity += transform.right * (Input.GetAxis("Horizontal") * speed);
     }
 
     private void VerticalMovement()
