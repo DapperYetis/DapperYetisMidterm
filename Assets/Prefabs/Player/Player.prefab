@@ -252,7 +252,7 @@ CharacterController:
   m_Height: 2
   m_Radius: 0.5
   m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_StepOffset: 0.4
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
@@ -296,7 +296,10 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     acclerationTime: 0.2
-    jumpHeight: 5
+    jumpHeightMin: 1
+    jumpHeightMax: 3
+    jumpVelocityInitial: 0
+    jumpInputTime: 0.1
     jumpCountMax: 2
     gravityAcceleration: 55
   OnMoveStart:

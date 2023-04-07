@@ -21,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 _playerVelocity;
     public Vector3 playerVelocity => _playerVelocity;
     private int _jumpCountCurrent;
+    private bool _isJumping;
+    public bool isJumping => _isJumping;
     public int jumpCountCurrent => _jumpCountCurrent;
 
     // Events
@@ -95,11 +97,34 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        if (Input.GetButtonDown("Jump") && _jumpCountCurrent < _stats.jumpCountMax)
+        if (Input.GetButtonDown("Jump") && !_isJumping && _jumpCountCurrent < _stats.jumpCountMax)
         {
-            ++_jumpCountCurrent;
-            _playerVelocity.y = Mathf.Sqrt(2 * _stats.jumpHeight * _stats.gravityAcceleration);
-            OnJump.Invoke();
+            StartCoroutine(DoJump());
         }
+    }
+
+    private IEnumerator DoJump()
+    {
+        _isJumping = true;
+        ++_jumpCountCurrent;
+
+        float startTime = Time.time;
+        float minInitialVelocity = Mathf.Sqrt(2 * _stats.jumpHeightMin * _stats.gravityAcceleration);
+        float maxInitialVelocity = Mathf.Sqrt(2 * _stats.jumpHeightMax * _stats.gravityAcceleration);
+        float totalVelocityIncrement = maxInitialVelocity - minInitialVelocity;
+        WaitForEndOfFrame wait = new();
+
+        _playerVelocity.y = minInitialVelocity;
+        OnJump.Invoke();
+
+
+        while(Time.time < startTime + _stats.jumpInputTime)
+        {
+            if(Input.GetButton("Jump"))
+                _playerVelocity.y = minInitialVelocity + totalVelocityIncrement * (Time.time - startTime) / _stats.jumpInputTime;
+            yield return wait;
+        }
+
+        _isJumping = false;
     }
 }

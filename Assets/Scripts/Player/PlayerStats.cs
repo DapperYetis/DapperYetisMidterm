@@ -16,7 +16,11 @@ public struct PlayerStats
 
     [Space(20), Header("---Jumping---")]
 
-    public float jumpHeight;
+    public float jumpHeightMin;
+    public float jumpHeightMax;
+    [HideInInspector]
+    public float jumpVelocityInitial;
+    public float jumpInputTime;
     public int jumpCountMax;
     public float gravityAcceleration;
 }
