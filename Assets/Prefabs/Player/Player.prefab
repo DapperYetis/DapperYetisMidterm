@@ -325,7 +325,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     acclerationTime: 0.2
     jumpHeightMin: 1
-    jumpHeightMax: 3
+    jumpHeightMax: 2.5
     jumpVelocityInitial: 0
     jumpInputTime: 0.1
     jumpCountMax: 2
