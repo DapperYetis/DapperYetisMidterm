@@ -29,5 +29,7 @@ public class GameManager : MonoBehaviour
             Debug.LogError("Missing Player reference in GameManager!");
             gameObject.SetActive(false);
         }
+
+        DontDestroyOnLoad(transform.parent.gameObject);
     }
 }
