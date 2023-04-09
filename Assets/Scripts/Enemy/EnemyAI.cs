@@ -103,7 +103,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
         _isShooting = false;
     }
 
-    IEnumerator flashColor(Color clr)
+    IEnumerator FlashColor(Color clr)
     {
         Color mainColor = _model.material.color;
         _model.material.color = clr;
@@ -119,8 +119,8 @@ public class EnemyAI : MonoBehaviour, IDamageable
 
     public void Damage(float amount)
     {
-        _HPCurrent -= amount;        
-        StartCoroutine(flashColor(Color.red));
+        _HPCurrent -= amount;
+        StartCoroutine(FlashColor(Color.red));
 
         if (_HPCurrent <= 0)
         {
@@ -131,7 +131,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
     public void Heal(float health)
     {
         _HPCurrent += health;
-        StartCoroutine(flashColor(Color.green));
+        StartCoroutine(FlashColor(Color.green));
 
         if (_HPCurrent >= _HPMax)
             _HPCurrent = _HPMax;
@@ -145,5 +145,10 @@ public class EnemyAI : MonoBehaviour, IDamageable
     public float GetHealthCurrent()
     {
         return _HPCurrent;
+    }
+
+    private void OnDestroy()
+    {
+        // remove enemy from the list
     }
 }
