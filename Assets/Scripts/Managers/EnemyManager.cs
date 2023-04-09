@@ -7,10 +7,9 @@ public class EnemyManager : MonoBehaviour
     private static EnemyManager _instance;
     public static EnemyManager instance => _instance;
 
-    [SerializeField] List<GameObject> _enemyList;
+    [SerializeField] List<EnemyAI> _enemyList;
 
-    [SerializeField] GameObject _enemyA;
-    [SerializeField] float _timerA;
+    [SerializeField] List<EnemySpawnStats> _spawnStats;
 
     void Awake()
     {
@@ -21,33 +20,27 @@ public class EnemyManager : MonoBehaviour
         }
 
         _instance = this;
-        _enemyList = new List<GameObject>();
+        _enemyList = new();
 
-        StartCoroutine(Spawner(_timerA, _enemyA));
-    }
-
-    void Update()
-    {
-        
+        StartCoroutine(Spawner(_spawnStats[0].spawnInterval, _spawnStats[0].prefab));
     }
 
     private IEnumerator Spawner(float timer, GameObject enemy)
     {
-        if (_enemyList.Count <= 10)
+        yield return new WaitForSeconds(timer);
+        if (_enemyList.Count < 10)
         {
-            yield return new WaitForSeconds(timer);
             GameObject spawned = Instantiate(enemy, new Vector3(Random.Range(-10f, 10f), Random.Range(0f, 4.5f), Random.Range(-10f, 10f)), Quaternion.identity);
-            StartCoroutine(Spawner(timer, enemy));
-            AddEnemyToList(enemy);
         }
+        StartCoroutine(Spawner(timer, enemy));
     }
 
-    public void AddEnemyToList(GameObject enemy)
+    public void AddEnemyToList(EnemyAI enemy)
     {
         _enemyList.Add(enemy);
     }
 
-    public void RemoveEnemyFromList(GameObject enemy)
+    public void RemoveEnemyFromList(EnemyAI enemy)
     {
         _enemyList.Remove(enemy);
     }

@@ -36,6 +36,8 @@ public class EnemyAI : MonoBehaviour, IDamageable
     {
         _HPCurrent = _HPMax;
         _stoppingDistOG = _agent.stoppingDistance;
+
+        EnemyManager.instance.AddEnemyToList(this);
     }
 
     void Update()
@@ -149,6 +151,6 @@ public class EnemyAI : MonoBehaviour, IDamageable
 
     private void OnDestroy()
     {
-        // remove enemy from the list
+        EnemyManager.instance.RemoveEnemyFromList(this);
     }
 }
