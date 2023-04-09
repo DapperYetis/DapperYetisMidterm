@@ -14,17 +14,17 @@ public class EnemyAI : MonoBehaviour, IDamageable
     [SerializeField] Transform _shootPos;
 
     [Header("--- Enemy Stats ---")]
-    [Range(1, 100)][SerializeField] int _HPMax;
+    [Range(1, 100)][SerializeField] float _HPMax;
     [SerializeField] int _facePlayerSpeed;
     [SerializeField] int _visionAngle;
-    int _HPCurrent;
+    float _HPCurrent;
 
     [Header("--- Gun Stats ---")]
-    [Range(1, 10)][SerializeField] int _shotDamage;
+    [Range(1, 10)][SerializeField] float _shotDamage;
     [Range(0.1f, 5)][SerializeField] float _fireRate;
     [Range(1, 100)][SerializeField] int _shootDist;
     [SerializeField] GameObject _bullet;
-    [SerializeField] int _bulletSpeed;
+    [SerializeField] float _bulletSpeed;
 
     Vector3 _playerDir;
     bool _isPlayerInRange;
@@ -117,7 +117,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * _facePlayerSpeed);
     }
 
-    public void Damage(int amount)
+    public void Damage(float amount)
     {
         _HPCurrent -= amount;        
         StartCoroutine(flashColor(Color.red));
@@ -128,7 +128,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
         }
     }
 
-    public void Heal(int health)
+    public void Heal(float health)
     {
         _HPCurrent += health;
         StartCoroutine(flashColor(Color.green));
