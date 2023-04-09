@@ -23,4 +23,7 @@ public struct PlayerStats
     public float jumpInputTime;
     public int jumpCountMax;
     public float gravityAcceleration;
+
+    [Space(20), Header("---Combat---")]
+    public float healthMax;
 }

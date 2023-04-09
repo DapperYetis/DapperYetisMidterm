@@ -7,7 +7,6 @@ using UnityEngine.Events;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField]
     private PlayerStats _stats;
     public PlayerStats stats => _stats;
 
@@ -126,5 +125,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
         _isJumping = false;
+    }
+
+    public void SetStats(PlayerStats newStats)
+    {
+        _stats = newStats;
     }
 }
