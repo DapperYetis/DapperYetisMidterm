@@ -23,7 +23,11 @@ public class EnemyManager : MonoBehaviour
         _instance = this;
         _enemyList = new();
 
-        StartCoroutine(Spawner(_spawnPointList[Random.Range(0, _spawnPointCount)]));
+        for (int i = 0; i < _spawnPointList.Count; i++)
+        {
+            StartCoroutine(Spawner(_spawnPointList[i]));
+        }
+        //StartCoroutine(Spawner(_spawnPointList[Random.Range(0, _spawnPointCount)]));
         //StartCoroutine(Spawner(_spawnPointList[_spawnPointCount]));
     }
 
