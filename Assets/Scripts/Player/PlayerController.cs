@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour, IDamageable
 {
@@ -17,6 +18,9 @@ public class PlayerController : MonoBehaviour, IDamageable
     [SerializeField]
     private Inventory _inventory;
     public Inventory inventory => _inventory;
+
+    // Events
+    public UnityEvent OnHealthChange;
 
     // Instance variables
     private float _healthCurrent;
@@ -36,6 +40,8 @@ public class PlayerController : MonoBehaviour, IDamageable
         {
             // Lose condition
         }
+
+        OnHealthChange?.Invoke();
     }
 
     public void Heal(float health)
@@ -46,6 +52,8 @@ public class PlayerController : MonoBehaviour, IDamageable
         {
             _healthCurrent = _stats.healthMax;
         }
+
+        OnHealthChange?.Invoke();
     }
 
     public float GetHealthMax() => _stats.healthMax;

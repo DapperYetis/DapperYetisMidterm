@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1834849308222919585}
   - component: {fileID: 4997235848939186725}
-  - component: {fileID: -2486514746104160742}
   m_Layer: 5
   m_Name: UIManager
   m_TagString: Untagged
@@ -50,24 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c2d05a0bac39347a274ee316160712, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  _SoundSlider: {fileID: 0}
-  _MasterMixer: {fileID: 24100000, guid: 7507eae28a1122c4ba5057e6e3d7ba58, type: 2}
-  _ActiveMenu: {fileID: 0}
-  _PauseMenu: {fileID: 0}
-  _WinMenu: {fileID: 0}
-  _LoseMenu: {fileID: 0}
-  _SettingsMenu: {fileID: 0}
-  _HPbar: {fileID: 0}
---- !u!114 &-2486514746104160742
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7970088244964449780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c386bef26cea9c541a0640a42f2e4a88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _soundSlider: {fileID: 0}
+  _masterMixer: {fileID: 24100000, guid: 7507eae28a1122c4ba5057e6e3d7ba58, type: 2}
+  _references: {fileID: 0}
+  _inGame: 0

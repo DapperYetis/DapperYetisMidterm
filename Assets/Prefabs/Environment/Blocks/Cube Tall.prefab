@@ -19,7 +19,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &4637479757060894096
 Transform:
@@ -28,7 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4637479757060894102}
-  m_LocalRotation: {x: 1.110223e-17, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -15, y: 0, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -163,55 +163,55 @@ MonoBehaviour:
   - m_Vertices: 0b0000000e00000012000000
   m_SharedTextures: []
   m_Positions:
-  - {x: -5, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: -5, y: 4.5, z: 0}
-  - {x: 0, y: 4.5, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: -5}
-  - {x: 0, y: 4.5, z: 0}
-  - {x: 0, y: 4.5, z: -5}
-  - {x: 0, y: 0, z: -5}
-  - {x: -5, y: 0, z: -5}
-  - {x: 0, y: 4.5, z: -5}
-  - {x: -5, y: 4.5, z: -5}
-  - {x: -5, y: 0, z: -5}
-  - {x: -5, y: 0, z: 0}
-  - {x: -5, y: 4.5, z: -5}
-  - {x: -5, y: 4.5, z: 0}
-  - {x: -5, y: 4.5, z: 0}
-  - {x: 0, y: 4.5, z: 0}
-  - {x: -5, y: 4.5, z: -5}
-  - {x: 0, y: 4.5, z: -5}
-  - {x: -5, y: 0, z: -5}
-  - {x: 0, y: 0, z: -5}
-  - {x: -5, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
+  - {x: -2.5, y: -2.25, z: 2.5}
+  - {x: 2.5, y: -2.25, z: 2.5}
+  - {x: -2.5, y: 3, z: 2.5}
+  - {x: 2.5, y: 3, z: 2.5}
+  - {x: 2.5, y: -2.25, z: 2.5}
+  - {x: 2.5, y: -2.25, z: -2.5}
+  - {x: 2.5, y: 3, z: 2.5}
+  - {x: 2.5, y: 3, z: -2.5}
+  - {x: 2.5, y: -2.25, z: -2.5}
+  - {x: -2.5, y: -2.25, z: -2.5}
+  - {x: 2.5, y: 3, z: -2.5}
+  - {x: -2.5, y: 3, z: -2.5}
+  - {x: -2.5, y: -2.25, z: -2.5}
+  - {x: -2.5, y: -2.25, z: 2.5}
+  - {x: -2.5, y: 3, z: -2.5}
+  - {x: -2.5, y: 3, z: 2.5}
+  - {x: -2.5, y: 3, z: 2.5}
+  - {x: 2.5, y: 3, z: 2.5}
+  - {x: -2.5, y: 3, z: -2.5}
+  - {x: 2.5, y: 3, z: -2.5}
+  - {x: -2.5, y: -2.25, z: -2.5}
+  - {x: 2.5, y: -2.25, z: -2.5}
+  - {x: -2.5, y: -2.25, z: 2.5}
+  - {x: 2.5, y: -2.25, z: 2.5}
   m_Textures0:
-  - {x: 5, y: 0}
-  - {x: 0, y: 0}
-  - {x: 5, y: 4.5}
-  - {x: 0, y: 4.5}
-  - {x: 0, y: 0}
-  - {x: -5, y: 0}
-  - {x: 0, y: 4.5}
-  - {x: -5, y: 4.5}
-  - {x: 0, y: 0}
-  - {x: -5, y: 0}
-  - {x: 0, y: 4.5}
-  - {x: -5, y: 4.5}
-  - {x: 5, y: 0}
-  - {x: 0, y: 0}
-  - {x: 5, y: 4.5}
-  - {x: 0, y: 4.5}
-  - {x: -5, y: 0}
-  - {x: 0, y: 0}
-  - {x: -5, y: -5}
-  - {x: 0, y: -5}
-  - {x: 5, y: -5}
-  - {x: 0, y: -5}
-  - {x: 5, y: 0}
-  - {x: 0, y: 0}
+  - {x: 2.5, y: -2.25}
+  - {x: -2.5, y: -2.25}
+  - {x: 2.5, y: 3}
+  - {x: -2.5, y: 3}
+  - {x: 2.5, y: -2.25}
+  - {x: -2.5, y: -2.25}
+  - {x: 2.5, y: 3}
+  - {x: -2.5, y: 3}
+  - {x: 2.5, y: -2.25}
+  - {x: -2.5, y: -2.25}
+  - {x: 2.5, y: 3}
+  - {x: -2.5, y: 3}
+  - {x: 2.5, y: -2.25}
+  - {x: -2.5, y: -2.25}
+  - {x: 2.5, y: 3}
+  - {x: -2.5, y: 3}
+  - {x: -2.5, y: 2.5}
+  - {x: 2.5, y: 2.5}
+  - {x: -2.5, y: -2.5}
+  - {x: 2.5, y: -2.5}
+  - {x: 2.5, y: -2.5}
+  - {x: -2.5, y: -2.5}
+  - {x: 2.5, y: 2.5}
+  - {x: -2.5, y: 2.5}
   m_Textures2: []
   m_Textures3: []
   m_Tangents:
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1668
+  m_VersionIndex: 2953
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -313,7 +313,7 @@ MeshRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
+  m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
