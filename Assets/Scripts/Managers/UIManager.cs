@@ -47,6 +47,7 @@ public class UIManager : MonoBehaviour
         
         _instance = this;
         _playerController = GameManager.instance.player;
+        _playerController.OnHealthChange.AddListener(UpdateHealth);
         _menuStack = new Stack<GameObject>();
 
         if(!_inGame)
@@ -150,4 +151,14 @@ public class UIManager : MonoBehaviour
     {
 
     }
+
+    public void UpdateHealth()
+    {
+
+        float currHealth = (float)_playerController.GetHealthCurrent() / (float)_playerController.GetHealthMax();
+        _references.image.fillAmount = currHealth;
+
+    }
+
+
 }
