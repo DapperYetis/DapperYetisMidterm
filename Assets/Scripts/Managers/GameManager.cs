@@ -7,8 +7,6 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     public static GameManager instance => _instance;
 
-    [Header("-----References-----")]
-    [SerializeField]
     private PlayerController _player;
     public PlayerController player => _player;
     public PlayerMovement playerMovement => _player.movement;
@@ -23,12 +21,7 @@ public class GameManager : MonoBehaviour
 
         _instance = this;
 
-        // Checking for missing references
-        if(!_player)
-        {
-            Debug.LogError("Missing Player reference in GameManager!");
-            gameObject.SetActive(false);
-        }
+        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 
         DontDestroyOnLoad(transform.parent.gameObject);
     }
