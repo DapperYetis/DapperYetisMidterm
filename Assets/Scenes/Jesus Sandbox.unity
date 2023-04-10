@@ -707,6 +707,11 @@ PrefabInstance:
       propertyPath: _soundSlider
       value: 
       objectReference: {fileID: 2049047460}
+    - target: {fileID: 7300342205331037249, guid: 61d081160cf84b748abb9316d5cf4d82,
+        type: 3}
+      propertyPath: _enemyCount
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61d081160cf84b748abb9316d5cf4d82, type: 3}
 --- !u!43 &1588703583
