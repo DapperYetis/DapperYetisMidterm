@@ -91,6 +91,27 @@ public class EnemyAI : MonoBehaviour, IDamageable
         if (other.CompareTag("Player"))
         {
             _isPlayerInRange = false;
+            
+            
+
+        }
+    }
+
+    void IsDisturbed()
+    {
+        if (!_isPlayerInRange)
+        {
+            _agent.SetDestination(GameManager.instance.player.transform.position);
+            _agent.stoppingDistance = 0;
+
+            //float dist = agent.remainingDistance; 
+            //if (dist != Mathf.infinite && agent.pathStatus == NavMeshPathStatus.completed && agent.remainingDistance == 0) //Arrived.
+            //{ }
+            //
+            //if (_agent.po)
+            //{
+            //
+            //}
         }
     }
 
