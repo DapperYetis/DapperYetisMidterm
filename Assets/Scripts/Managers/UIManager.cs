@@ -23,6 +23,7 @@ public class UIManager : MonoBehaviour
 
     float _origTimeScale;
     PlayerController _playerController;
+    EnemyManager _enemyManager;
     Stack<GameObject> _menuStack;
 
     GameObject _activeMenu
@@ -49,17 +50,41 @@ public class UIManager : MonoBehaviour
         _instance = this;
         _playerController = GameManager.instance.player;
         _playerController.OnHealthChange.AddListener(UpdateHealth);
+        _enemyManager = EnemyManager.instance;
+        _enemyManager.OnEnemyCountChange.AddListener(WinCondition);
         _menuStack = new Stack<GameObject>();
 
         if(!_inGame)
         {
-            NextMenu(_references.mainMenu);
-
             _origTimeScale = Time.timeScale;
             PauseState();
+            ToFirstMenu(_references.mainMenu);
+
         }
     }
 
+    void Update()
+    {
+        if (Input.GetButtonDown("Cancel"))
+        {
+            if (GameObject.ReferenceEquals(_activeMenu, _references.hud))
+            {
+                PauseState();
+                NextMenu(_references.pauseMenu);
+            }
+            else
+            {
+                if (GameObject.ReferenceEquals(_activeMenu, _references.pauseMenu))
+                {
+                    PrevMenu();
+                    ResumeState();
+                }
+
+            }
+        }
+    }
+
+    #region SliderFuncts
     public void SetVolume(float volume)
     {
         if (volume < 1)
@@ -72,6 +97,7 @@ public class UIManager : MonoBehaviour
         _masterMixer.SetFloat("MasterVolume", Mathf.Log10(volume / 100) * 20f);
     }
 
+    
     public void SetVolumeFromSlider()
     {
         SetVolume(_soundSlider.value);
@@ -80,7 +106,8 @@ public class UIManager : MonoBehaviour
     public void RefreshSlider(float volume)
     {
         _soundSlider.value = volume;
-    }
+    } 
+    #endregion
 
     public void TransitionToLoadout()
     {
@@ -89,7 +116,7 @@ public class UIManager : MonoBehaviour
 
     public void TransitionToGame()
     {
-        NextMenu(_references.hud);
+        ToFirstMenu(_references.hud);
     }
 
     public void ToSettings()
@@ -100,9 +127,11 @@ public class UIManager : MonoBehaviour
 
     public void PrevMenu()
     {
+        PopStack();
         _activeMenu.SetActive(true);
     }
 
+    #region Pauses
     public void PauseState()
     {
         Time.timeScale = 0;
@@ -115,13 +144,13 @@ public class UIManager : MonoBehaviour
         Time.timeScale = _origTimeScale;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-    }
+    } 
+    #endregion
 
     public void TransitionToMainMenu()
     {
-        _activeMenu.SetActive(false);
         _menuStack.Clear();
-        NextMenu(_references.mainMenu);
+        ToFirstMenu(_references.mainMenu);
     }
 
     public void PopStack()
@@ -130,32 +159,23 @@ public class UIManager : MonoBehaviour
         _menuStack.Pop();
     }
 
-   
-
-    public void AddToStack()
-    {
-
-    }
-
-    public void ToMainMenu()
-    {
-        NextMenu(_references.mainMenu);
-    }
-
     public void NextMenu(GameObject newMenu)
+    {
+        _activeMenu.SetActive(false);
+        _menuStack.Push(newMenu);
+        _activeMenu.SetActive(true);
+    }
+
+    public void ToFirstMenu(GameObject newMenu)
     {
         _menuStack.Push(newMenu);
         _activeMenu.SetActive(true);
     }
 
-    public void AddToStack(GameObject prevMenu)
-    {
-
-    }
-
+    #region GameLoop
     public void UpdateHealth()
     {
-        if(_playerController.GetHealthCurrent() > 0)
+        if (_playerController.GetHealthCurrent() > 0)
         {
             float currHealth = (float)_playerController.GetHealthCurrent() / (float)_playerController.GetHealthMax();
             _references.image.fillAmount = currHealth;
@@ -163,7 +183,6 @@ public class UIManager : MonoBehaviour
 
         else
         {
-            PopStack();
             NextMenu(_references.loseMenu);
             PauseState();
         }
@@ -171,11 +190,14 @@ public class UIManager : MonoBehaviour
 
     public void WinCondition()
     {
-        //if(EnemyManager.instance. <= 0)
-        //{
-        //    PopStack();
-        //    NextMenu(_references.winMenu);
-        //    PauseState();
-        //}
-    }
+
+        _references.enemyCount.text = _enemyManager.GetEnemyListSize().ToString("F0");
+
+        if (EnemyManager.instance.GetEnemyListSize() <= 0)
+        {
+            NextMenu(_references.winMenu);
+            PauseState();
+        }
+    } 
+    #endregion
 }

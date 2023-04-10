@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIReferences : MonoBehaviour
 {
@@ -37,6 +38,8 @@ public class UIReferences : MonoBehaviour
 
     public Image image => _hpBar;
 
+    [SerializeField] TextMeshProUGUI _enemyCount;
 
+    public TextMeshProUGUI enemyCount => _enemyCount;
 
 }
