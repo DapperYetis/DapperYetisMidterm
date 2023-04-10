@@ -355,11 +355,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eebfeb84e96187341a86548d5e93e76e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensHor: 400
-  sensVert: 400
-  lockVerMin: -90
-  lockVertMax: 90
-  invertY: 0
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
