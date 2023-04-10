@@ -530,7 +530,7 @@ MonoBehaviour:
       - m_Target: {fileID: 4724916751031679165, guid: f384ea6a4ca51744082bbf126f4a381d,
           type: 3}
         m_TargetAssemblyTypeName: ButtonFunctions, Assembly-CSharp
-        m_MethodName: ToLoadout
+        m_MethodName: PlayGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.ProBuilder.MeshOperations;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -47,6 +48,7 @@ public class UIManager : MonoBehaviour
         
         _instance = this;
         _playerController = GameManager.instance.player;
+        _playerController.OnHealthChange.AddListener(UpdateHealth);
         _menuStack = new Stack<GameObject>();
 
         if(!_inGame)
@@ -149,5 +151,31 @@ public class UIManager : MonoBehaviour
     public void AddToStack(GameObject prevMenu)
     {
 
+    }
+
+    public void UpdateHealth()
+    {
+        if(_playerController.GetHealthCurrent() > 0)
+        {
+            float currHealth = (float)_playerController.GetHealthCurrent() / (float)_playerController.GetHealthMax();
+            _references.image.fillAmount = currHealth;
+        }
+
+        else
+        {
+            PopStack();
+            NextMenu(_references.loseMenu);
+            PauseState();
+        }
+    }
+
+    public void WinCondition()
+    {
+        //if(EnemyManager.instance. <= 0)
+        //{
+        //    PopStack();
+        //    NextMenu(_references.winMenu);
+        //    PauseState();
+        //}
     }
 }
