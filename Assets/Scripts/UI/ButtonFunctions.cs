@@ -34,8 +34,8 @@ public class ButtonFunctions : MonoBehaviour
 
     public void ToMainMenu()
     {
-        
-
+        UIManager._instance.PopStack();
+        UIManager._instance.ToMainMenu();
 
     }
 
