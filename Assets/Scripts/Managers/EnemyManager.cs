@@ -7,8 +7,9 @@ public class EnemyManager : MonoBehaviour
     private static EnemyManager _instance;
     public static EnemyManager instance => _instance;
 
-    [Range(1, 30)][SerializeField] int _enemyCount;
+    [Range(1, 30)][SerializeField] int _maxEnemyCount;
     [SerializeField] List<EnemyAI> _enemyList;
+    //[SerializeField] List<GameObject> _allEnemyTypes;
     [SerializeField] List<EnemySpawnStats> _spawnPointList; // A list of spawn points
     int _spawnPointCount;
 
@@ -23,18 +24,18 @@ public class EnemyManager : MonoBehaviour
         _instance = this;
         _enemyList = new();
 
+
+
         for (int i = 0; i < _spawnPointList.Count; i++)
         {
             StartCoroutine(Spawner(_spawnPointList[i]));
         }
-        //StartCoroutine(Spawner(_spawnPointList[Random.Range(0, _spawnPointCount)]));
-        //StartCoroutine(Spawner(_spawnPointList[_spawnPointCount]));
     }
 
     private IEnumerator Spawner(EnemySpawnStats spawnPoint)
     {
         yield return new WaitForSeconds(spawnPoint.spawnInterval);
-        if (_enemyList.Count < _enemyCount)
+        if (_enemyList.Count < _maxEnemyCount)
         {
             GameObject spawned = Instantiate(spawnPoint.spawnPointPrefab, spawnPoint.spawnPosition.position + new Vector3(Random.Range(-3f, 3f), Random.Range(0f, 5f), Random.Range(-3f, 3f)), Quaternion.identity);
         }
@@ -49,5 +50,10 @@ public class EnemyManager : MonoBehaviour
     public void RemoveEnemyFromList(EnemyAI enemy)
     {
         _enemyList.Remove(enemy);
+    }
+
+    public int GetEnemyListSize()
+    {
+        return _enemyList.Count;
     }
 }
