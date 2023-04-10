@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -73,30 +74,9 @@ public class UIManager : MonoBehaviour
         SetVolume(_soundSlider.value);
     }
 
-
     public void RefreshSlider(float volume)
     {
         _soundSlider.value = volume;
-    }
-
-    public void TransitionToLoadout()
-    {
-        NextMenu(_references.loadoutMenu);
-
-    }
-
-    public void TransitionToGame()
-    {
-
-        NextMenu(_references.hud);
-
-    }
-
-    public void ToSettings()
-    {
-        _activeMenu.SetActive(false);
-        NextMenu(_references.settingsMenu);
-
     }
 
     public void PrevMenu()
@@ -136,6 +116,37 @@ public class UIManager : MonoBehaviour
         _menuStack.Pop();
     }
 
+   
+
+    public void AddToStack()
+    {
+
+    }
+
+    public void ToSettings()
+    {
+        _activeMenu.SetActive(false);
+        NextMenu(_references.settingsMenu);
+
+    }
+
+    public void TransitionToLoadout()
+    {
+        NextMenu(_references.loadoutMenu);
+    }
+
+    public void TransitionToGame()
+    {
+
+        NextMenu(_references.hud);
+
+    }
+
+    public void ToMainMenu()
+    {
+        NextMenu(_references.mainMenu);
+    }
+
     public void NextMenu(GameObject newMenu)
     {
         _menuStack.Push(newMenu);
@@ -149,9 +160,5 @@ public class UIManager : MonoBehaviour
 
     }
 
-    public void AddToStack()
-    {
-
-    }
 
 }

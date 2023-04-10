@@ -256,7 +256,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6661825897148728240}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4724916751031679165, guid: f384ea6a4ca51744082bbf126f4a381d,
+          type: 3}
+        m_TargetAssemblyTypeName: ButtonFunctions, Assembly-CSharp
+        m_MethodName: ToLoadout
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6661825897438296054
 GameObject:
   m_ObjectHideFlags: 0
@@ -649,7 +662,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4724916751031679165, guid: f384ea6a4ca51744082bbf126f4a381d,
+          type: 3}
         m_TargetAssemblyTypeName: ButtonFunctions, Assembly-CSharp
         m_MethodName: Quit
         m_Mode: 1
@@ -1134,7 +1148,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6661825899005943780}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4724916751031679165, guid: f384ea6a4ca51744082bbf126f4a381d,
+          type: 3}
+        m_TargetAssemblyTypeName: ButtonFunctions, Assembly-CSharp
+        m_MethodName: ToMainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6661825899015389750
 GameObject:
   m_ObjectHideFlags: 0
