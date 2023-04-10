@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class EnemyManager : MonoBehaviour
     //[SerializeField] List<GameObject> _allEnemyTypes;
     [SerializeField] List<EnemySpawnStats> _spawnPointList; // A list of spawn points
     int _spawnPointCount;
+
+    public UnityEvent OnEnemyCountChange;
 
     void Awake()
     {
@@ -45,11 +48,13 @@ public class EnemyManager : MonoBehaviour
     public void AddEnemyToList(EnemyAI enemy)
     {
         _enemyList.Add(enemy);
+        OnEnemyCountChange?.Invoke();
     }
 
     public void RemoveEnemyFromList(EnemyAI enemy)
     {
         _enemyList.Remove(enemy);
+        OnEnemyCountChange?.Invoke();
     }
 
     public int GetEnemyListSize()
