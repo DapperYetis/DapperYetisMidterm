@@ -22,9 +22,7 @@ public class ButtonFunctions : MonoBehaviour
 
     public void ToSettings()
     {
-
         UIManager._instance.ToSettings();
-
     }
 
     public void Quit()
@@ -35,15 +33,21 @@ public class ButtonFunctions : MonoBehaviour
     public void ToMainMenu()
     {
         UIManager._instance.PopStack();
-        UIManager._instance.ToMainMenu();
-
+        UIManager._instance.TransitionToMainMenu();
     }
 
     public void BackButton()
     {
 
-        UIManager._instance.PopStack();
         UIManager._instance.PrevMenu();
+
+    }
+
+    public void resumeButton()
+    {
+
+        UIManager._instance.PrevMenu();
+        UIManager._instance.ResumeState();
 
     }
 }

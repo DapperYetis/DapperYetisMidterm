@@ -52,4 +52,4 @@ MonoBehaviour:
   _soundSlider: {fileID: 0}
   _masterMixer: {fileID: 24100000, guid: 7507eae28a1122c4ba5057e6e3d7ba58, type: 2}
   _references: {fileID: 0}
-  _inGame: 1
+  _inGame: 0
