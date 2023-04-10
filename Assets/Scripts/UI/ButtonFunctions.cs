@@ -5,19 +5,25 @@ using UnityEngine.SceneManagement;
 
 public class ButtonFunctions : MonoBehaviour
 {
-    public void StartGame()
+    public void PlayGame()
     {
+        UIManager._instance.PopStack();
+        UIManager._instance.TransitionToGame();
+        UIManager._instance.ResumeState();
 
     }
 
-    public void ToLoadouts()
-    { 
-
+    public void ToLoadout()
+    {
+        UIManager._instance.PopStack();
+        UIManager._instance.TransitionToLoadout();
 
     }
 
-    public void SettingSwitch()
+    public void ToSettings()
     {
+
+        UIManager._instance.ToSettings();
 
     }
 
@@ -26,8 +32,18 @@ public class ButtonFunctions : MonoBehaviour
         Application.Quit();
     }
 
-    public void MainMenu()
+    public void ToMainMenu()
     {
         
+
+
+    }
+
+    public void BackButton()
+    {
+
+        UIManager._instance.PopStack();
+        UIManager._instance.PrevMenu();
+
     }
 }
