@@ -54,7 +54,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
         _angleToPlayer = Vector3.Angle(new Vector3(_playerDir.x, 0, _playerDir.z), transform.forward);
 
         Debug.DrawRay(_headPos.position, _playerDir, Color.yellow);
-        Debug.Log(_angleToPlayer);
+        //Debug.Log(_angleToPlayer);
 
         RaycastHit hit;
 
@@ -91,9 +91,6 @@ public class EnemyAI : MonoBehaviour, IDamageable
         if (other.CompareTag("Player"))
         {
             _isPlayerInRange = false;
-
-
-
         }
     }
 

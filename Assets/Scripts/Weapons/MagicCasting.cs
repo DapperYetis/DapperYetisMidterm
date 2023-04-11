@@ -23,9 +23,11 @@ public class MagicCasting : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.isTrigger) return;
+
         IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
 
-        if(damageable != null)
+        if (damageable != null)
         {
             damageable.Damage(_damage);
         }

@@ -101,6 +101,56 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7894976698504282549, guid: 557dfa86dd03170438d2421f6890364d,
+        type: 3}
+      propertyPath: _maxEnemyCount
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7894976698504282549, guid: 557dfa86dd03170438d2421f6890364d,
+        type: 3}
+      propertyPath: _spawnPointList.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7894976698504282549, guid: 557dfa86dd03170438d2421f6890364d,
+        type: 3}
+      propertyPath: _spawnPointList.Array.data[0].spawnInterval
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7894976698504282549, guid: 557dfa86dd03170438d2421f6890364d,
+        type: 3}
+      propertyPath: _spawnPointList.Array.data[1].spawnInterval
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7894976698504282549, guid: 557dfa86dd03170438d2421f6890364d,
+        type: 3}
+      propertyPath: _spawnPointList.Array.data[0].spawnPointPrefab
+      value: 
+      objectReference: {fileID: 4441294297975381645, guid: b1e273605673f1446ba469254c4afa64,
+        type: 3}
+    - target: {fileID: 7894976698504282549, guid: 557dfa86dd03170438d2421f6890364d,
+        type: 3}
+      propertyPath: _spawnPointList.Array.data[1].spawnPointPrefab
+      value: 
+      objectReference: {fileID: 4441294297975381645, guid: efc28e7f5e64a7f4b8a5003c67814afd,
+        type: 3}
+    - target: {fileID: 7894976698504282549, guid: 557dfa86dd03170438d2421f6890364d,
+        type: 3}
+      propertyPath: _spawnPointList.Array.data[2].spawnPointPrefab
+      value: 
+      objectReference: {fileID: 4441294297975381645, guid: efc28e7f5e64a7f4b8a5003c67814afd,
+        type: 3}
+    - target: {fileID: 7894976698504282549, guid: 557dfa86dd03170438d2421f6890364d,
+        type: 3}
+      propertyPath: _spawnPointList.Array.data[3].spawnPointPrefab
+      value: 
+      objectReference: {fileID: 4441294297975381645, guid: b1e273605673f1446ba469254c4afa64,
+        type: 3}
+    - target: {fileID: 7894976698504282549, guid: 557dfa86dd03170438d2421f6890364d,
+        type: 3}
+      propertyPath: _spawnPointList.Array.data[4].spawnPointPrefab
+      value: 
+      objectReference: {fileID: 4441294297975381645, guid: 6b027f9e7ca52d64eba5d29e3f651545,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 557dfa86dd03170438d2421f6890364d, type: 3}
 --- !u!4 &500099470056436558 stripped
