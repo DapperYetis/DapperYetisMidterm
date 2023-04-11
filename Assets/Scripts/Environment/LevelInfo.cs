@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,6 @@ public class LevelInfo : MonoBehaviour
 {
     [SerializeField]
     private Transform _playerSpawn;
-    [SerializeField]
     private List<Transform> _wavePoints;
     [SerializeField]
     private List<SOWave> _waveConfigurations;
@@ -17,8 +17,14 @@ public class LevelInfo : MonoBehaviour
     private void Start()
     {
         GameManager.instance.level = this;
+        FindSpawnPoints();
         EnemyManager.instance.SetWaves(new(_waveCount, _wavePoints, (from spawnPoint in _waveConfigurations select spawnPoint.stats).ToList()));
         ResetMap();
+    }
+
+    private void FindSpawnPoints()
+    {
+        _wavePoints = (from go in GameObject.FindGameObjectsWithTag("EnemySpawnPoint") select go.transform).ToList();
     }
 
     public void ResetMap()
