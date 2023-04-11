@@ -18,6 +18,10 @@ public class UIReferences : MonoBehaviour
 
     public GameObject settingsMenu => _settingsMenu;
     
+    [SerializeField] Slider _soundSlider;
+
+    public Slider soundSlider => _soundSlider;
+
     [SerializeField] GameObject _pauseMenu;
 
     public GameObject pauseMenu => _pauseMenu;

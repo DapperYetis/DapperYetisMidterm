@@ -7,4 +7,5 @@ public struct EnemySpawnStats
     public GameObject spawnPointPrefab;
     public float spawnInterval;
     public Transform spawnPosition;
+    public int maxEnemyCount;
 }

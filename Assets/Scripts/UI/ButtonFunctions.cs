@@ -7,22 +7,22 @@ public class ButtonFunctions : MonoBehaviour
 {
     public void PlayGame()
     {
-        UIManager._instance.PopStack();
-        UIManager._instance.TransitionToGame();
-        UIManager._instance.ResumeState();
+        UIManager.instance.PopStack();
+        UIManager.instance.TransitionToGame();
+        UIManager.instance.ResumeState();
 
     }
 
     public void ToLoadout()
     {
-        UIManager._instance.PopStack();
-        UIManager._instance.TransitionToLoadout();
+        UIManager.instance.PopStack();
+        UIManager.instance.TransitionToLoadout();
 
     }
 
     public void ToSettings()
     {
-        UIManager._instance.ToSettings();
+        UIManager.instance.ToSettings();
     }
 
     public void Quit()
@@ -32,22 +32,23 @@ public class ButtonFunctions : MonoBehaviour
 
     public void ToMainMenu()
     {
-        UIManager._instance.PopStack();
-        UIManager._instance.TransitionToMainMenu();
+        //UIManager.instance.PopStack();
+        GameManager.instance.ResetMap();
+        //UIManager.instance.ResumeState();
     }
 
     public void BackButton()
     {
 
-        UIManager._instance.PrevMenu();
+        UIManager.instance.PrevMenu();
 
     }
 
     public void resumeButton()
     {
 
-        UIManager._instance.PrevMenu();
-        UIManager._instance.ResumeState();
+        UIManager.instance.PrevMenu();
+        UIManager.instance.ResumeState();
 
     }
 }

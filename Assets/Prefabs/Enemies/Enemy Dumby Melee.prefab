@@ -60,7 +60,7 @@ MonoBehaviour:
   _shotDamage: 1
   _fireRate: 5
   _shootDist: 2
-  _bullet: {fileID: 0}
+  _bullet: {fileID: 424343093267893311, guid: 912a43b0040ffe643b0c56e5be18da99, type: 3}
   _bulletSpeed: 50
 --- !u!33 &7919594634767875681
 MeshFilter:

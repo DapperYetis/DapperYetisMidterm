@@ -32,21 +32,27 @@ public class EnemyAI : MonoBehaviour, IDamageable
     float _angleToPlayer;
     bool _isShooting;
     float _stoppingDistOG;
-
-    void Start()
-    {
-        _HPCurrent = _HPMax;
-        _stoppingDistOG = _agent.stoppingDistance;
-
-        EnemyManager.instance.AddEnemyToList(this);
-    }
+    EnemySpawnStats _spawnPoint;
+    private bool _isSetUp;
 
     void Update()
     {
+        if (!_isSetUp) return;
+
         if (_isPlayerInRange)
         {
             CanSeePlayer();
         }
+    }
+
+    public void SetUp(EnemySpawnStats spawnPoint)
+    {
+        _HPCurrent = _HPMax;
+        _stoppingDistOG = _agent.stoppingDistance;
+        _spawnPoint = spawnPoint;
+
+        EnemyManager.instance.AddEnemyToList(this, _spawnPoint);
+        _isSetUp = true;
     }
 
     bool CanSeePlayer()
@@ -55,7 +61,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
         _angleToPlayer = Vector3.Angle(new Vector3(_playerDir.x, 0, _playerDir.z), transform.forward);
 
         Debug.DrawRay(_headPos.position, _playerDir, Color.yellow);
-        Debug.Log(_angleToPlayer);
+        //Debug.Log(_angleToPlayer);
 
         RaycastHit hit;
 
@@ -92,9 +98,6 @@ public class EnemyAI : MonoBehaviour, IDamageable
         if (other.CompareTag("Player"))
         {
             _isPlayerInRange = false;
-
-
-
         }
     }
 
@@ -122,7 +125,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
     {
         _isShooting = true;
 
-        GameObject bulletClone = Instantiate(_bullet, _shootPos.position, _bullet.transform.rotation);
+        GameObject bulletClone = Instantiate(_bullet, _shootPos.position, Quaternion.LookRotation(_playerDir));
         bulletClone.GetComponent<Rigidbody>().velocity = transform.forward * _bulletSpeed;
 
         yield return new WaitForSeconds(_fireRate);
@@ -175,6 +178,6 @@ public class EnemyAI : MonoBehaviour, IDamageable
 
     private void OnDestroy()
     {
-        EnemyManager.instance.RemoveEnemyFromList(this);
+        EnemyManager.instance.RemoveEnemyFromList(this, _spawnPoint);
     }
 }

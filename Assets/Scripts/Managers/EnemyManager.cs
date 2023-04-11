@@ -8,12 +8,12 @@ public class EnemyManager : MonoBehaviour
     private static EnemyManager _instance;
     public static EnemyManager instance => _instance;
 
-    [Range(1, 30)][SerializeField] int _maxEnemyCount;
-    [SerializeField] List<EnemyAI> _enemyList;
-    //[SerializeField] List<GameObject> _allEnemyTypes;
-    [SerializeField] List<EnemySpawnStats> _spawnPointList; // A list of spawn points
-    int _spawnPointCount;
+    List<EnemyAI> _enemyList;
 
+    List<EnemySpawnStats> _spawnPointList;
+    Dictionary<EnemySpawnStats, List<EnemyAI>> _enemiesBySpawn;
+
+    [HideInInspector]
     public UnityEvent OnEnemyCountChange;
 
     void Awake()
@@ -25,40 +25,61 @@ public class EnemyManager : MonoBehaviour
         }
 
         _instance = this;
+    }
+
+    public void SetSpawnPoints(List<EnemySpawnStats> points)
+    {
+        _spawnPointList = points;
         _enemyList = new();
-
-
+        _enemiesBySpawn = new();
 
         for (int i = 0; i < _spawnPointList.Count; i++)
         {
-            StartCoroutine(Spawner(_spawnPointList[i]));
+            _enemiesBySpawn[_spawnPointList[i]] = new();
+            StartCoroutine(Spawner(_spawnPointList[i], 0));
         }
     }
 
-    private IEnumerator Spawner(EnemySpawnStats spawnPoint)
+    private IEnumerator Spawner(EnemySpawnStats spawnPoint, int spawnedCount)
     {
         yield return new WaitForSeconds(spawnPoint.spawnInterval);
-        if (_enemyList.Count < _maxEnemyCount)
+        if (spawnedCount++ < spawnPoint.maxEnemyCount)
         {
-            GameObject spawned = Instantiate(spawnPoint.spawnPointPrefab, spawnPoint.spawnPosition.position + new Vector3(Random.Range(-3f, 3f), Random.Range(0f, 5f), Random.Range(-3f, 3f)), Quaternion.identity);
+            EnemyAI enemy = Instantiate(spawnPoint.spawnPointPrefab, spawnPoint.spawnPosition.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity).GetComponent<EnemyAI>();
+            enemy.SetUp(spawnPoint);
+            StartCoroutine(Spawner(spawnPoint, spawnedCount));
         }
-        StartCoroutine(Spawner(spawnPoint));
     }
 
-    public void AddEnemyToList(EnemyAI enemy)
+    public void AddEnemyToList(EnemyAI enemy, EnemySpawnStats spawnPoint)
     {
         _enemyList.Add(enemy);
+        if (_enemiesBySpawn.ContainsKey(spawnPoint))
+            _enemiesBySpawn[spawnPoint].Add(enemy);
         OnEnemyCountChange?.Invoke();
     }
 
-    public void RemoveEnemyFromList(EnemyAI enemy)
+    public void RemoveEnemyFromList(EnemyAI enemy, EnemySpawnStats spawnPoint)
     {
         _enemyList.Remove(enemy);
+        if(_enemiesBySpawn.ContainsKey(spawnPoint))
+            _enemiesBySpawn[spawnPoint].Remove(enemy);
         OnEnemyCountChange?.Invoke();
     }
 
     public int GetEnemyListSize()
     {
         return _enemyList.Count;
+    }
+
+    public void ResetMap()
+    {
+        //foreach(EnemyAI enemy in _enemyList)
+        //{
+        //    Destroy(enemy.gameObject);
+        //}
+
+        _enemyList.Clear();
+        _enemiesBySpawn.Clear();
     }
 }
