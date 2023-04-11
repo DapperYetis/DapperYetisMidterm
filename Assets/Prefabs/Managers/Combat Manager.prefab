@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b3a3dbcc79b192458189cec2d945d6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attackTime: 0.5
-  _attackBudgetMax: 5
+  _attackTime: 1
+  _attackBudgetMax: 7

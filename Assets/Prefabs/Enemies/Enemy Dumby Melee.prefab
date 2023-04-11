@@ -59,9 +59,11 @@ MonoBehaviour:
   _visionAngle: 90
   _shotDamage: 1
   _fireRate: 1.5
-  _shootDist: 2
+  _shootDist: 1
   _bullet: {fileID: 424343093267893311, guid: f7b16309293f2e949b61f60c035662d9, type: 3}
   _bulletSpeed: 50
+  _radiusMod: 0.5
+  _speedMod: 4
 --- !u!33 &7919594634767875681
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -140,7 +142,7 @@ NavMeshAgent:
   m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 600
-  m_StoppingDistance: 2
+  m_StoppingDistance: 0.25
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1

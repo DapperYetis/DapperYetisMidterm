@@ -54,7 +54,7 @@ MonoBehaviour:
   _agent: {fileID: 2230898508323638552}
   _headPos: {fileID: 2230898508323638559}
   _shootPos: {fileID: 2230898508323638559}
-  _HPMax: 10
+  _HPMax: 6
   _facePlayerSpeed: 600
   _visionAngle: 90
   _shotDamage: 1
@@ -62,6 +62,8 @@ MonoBehaviour:
   _shootDist: 20
   _bullet: {fileID: 424343093267893311, guid: 1bcc9b7c1094fd547910ca2344bca383, type: 3}
   _bulletSpeed: 50
+  _radiusMod: 8
+  _speedMod: 1.5
 --- !u!33 &2230898508323638557
 MeshFilter:
   m_ObjectHideFlags: 0

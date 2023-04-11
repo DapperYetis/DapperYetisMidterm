@@ -26,6 +26,12 @@ public class EnemyAI : MonoBehaviour, IDamageable
     [SerializeField] GameObject _bullet;
     [SerializeField] float _bulletSpeed;
 
+    [Header("--- NavMesh Mods ---")]
+    [SerializeField]
+    private float _radiusMod;
+    [SerializeField]
+    private float _speedMod;
+
     Vector3 _playerDir;
     bool _isPlayerInRange;
     float _angleToPlayer;
@@ -36,8 +42,8 @@ public class EnemyAI : MonoBehaviour, IDamageable
 
     private void Start()
     {
-        _agent.radius = Random.Range(_agent.radius, _agent.radius + 2f);
-        _agent.speed = Random.Range(_agent.speed, _agent.speed + 0.5f);
+        _agent.radius = Random.Range(_agent.radius, _agent.radius + _radiusMod);
+        _agent.speed = Random.Range(_agent.speed, _agent.speed + _speedMod);
     }
 
     void Update()
