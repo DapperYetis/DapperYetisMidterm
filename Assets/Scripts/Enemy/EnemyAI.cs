@@ -91,6 +91,36 @@ public class EnemyAI : MonoBehaviour, IDamageable
         if (other.CompareTag("Player"))
         {
             _isPlayerInRange = false;
+
+
+
+        }
+    }
+
+    void IsDisturbed()
+    {
+        // Means the enemy was shot from outside it's range, so it runs to the location of the origin of the shot
+        if (!_isPlayerInRange)
+        {
+            _agent.SetDestination(GameManager.instance.player.transform.position);
+            _agent.stoppingDistance = 0;
+
+            //float dist = agent.remainingDistance; 
+            //if (dist != Mathf.infinite && agent.pathStatus == NavMeshPathStatus.completed && agent.remainingDistance == 0) //Arrived.
+            //{ }
+            //
+            //if (_agent.po)
+            //{
+            //
+            //}
+        }
+    }
+
+    void Wander()
+    {
+        if (!CanSeePlayer())
+        {
+
         }
     }
 
