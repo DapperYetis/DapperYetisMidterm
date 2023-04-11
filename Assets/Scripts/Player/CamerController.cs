@@ -36,9 +36,6 @@ public class CamerController : MonoBehaviour
         _playerMove = GameManager.instance.playerMovement;
         _playerMove.OnSprintStart.AddListener(HandleSprintStart);
         _playerMove.OnSprintStop.AddListener(HandleSprintStop);
-        
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()

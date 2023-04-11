@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public PlayerController player => _player;
     public PlayerMovement playerMovement => _player.movement;
 
+    public bool isPaused => UIManager.instance.isPaused;
+
     private void Awake()
     {
         if (_instance)
