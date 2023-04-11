@@ -18,6 +18,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
     [SerializeField] int _facePlayerSpeed;
     [SerializeField] int _visionAngle;
     float _HPCurrent;
+    [SerializeField] bool _isWandering;
 
     [Header("--- Gun Stats ---")]
     [Range(1, 10)][SerializeField] float _shotDamage;
