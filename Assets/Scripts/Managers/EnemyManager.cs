@@ -74,12 +74,12 @@ public class EnemyManager : MonoBehaviour
 
     public void ResetMap()
     {
-        //foreach(EnemyAI enemy in _enemyList)
-        //{
-        //    Destroy(enemy.gameObject);
-        //}
-
+        foreach (EnemyAI enemy in _enemyList)
+        {
+            Destroy(enemy.gameObject);
+        }
         _enemyList.Clear();
         _enemiesBySpawn.Clear();
+        OnEnemyCountChange.RemoveAllListeners();
     }
 }

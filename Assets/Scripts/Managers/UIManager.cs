@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,6 +22,7 @@ public class UIManager : MonoBehaviour
 
 
     float _origTimeScale;
+    public float origTimeScale => _origTimeScale;
     PlayerController _playerController;
     EnemyManager _enemyManager;
     Stack<GameObject> _menuStack;
@@ -65,7 +67,7 @@ public class UIManager : MonoBehaviour
                 PrevMenu();
                 ResumeState();
             }
-            else if(!ReferenceEquals(_activeMenu, _references.mainMenu))
+            else if(_activeMenu == null)
             {
                 PauseState();
                 NextMenu(_references.pauseMenu);
@@ -75,27 +77,30 @@ public class UIManager : MonoBehaviour
 
     private void SetUp()
     {
-        StartCoroutine(RefindReferences());
-
-        _playerController = GameManager.instance.player;
-        _playerController.OnHealthChange.AddListener(UpdateHealth);
-        _enemyManager = EnemyManager.instance;
-        _enemyManager.OnEnemyCountChange.AddListener(WinCondition);
-
-        if (!_inGame)
+        StartCoroutine(RefindReferences(() =>
         {
-            PauseState();
-            ToFirstMenu(_references.mainMenu);
-        }
-        else
-        {
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-            TransitionToGame();
-        }
+            _playerController = GameManager.instance.player;
+            _playerController.OnHealthChange.AddListener(UpdateHealth);
+            _enemyManager = EnemyManager.instance;
+            _enemyManager.OnEnemyCountChange.AddListener(WinCondition);
+
+            if (!_inGame)
+            {
+                PauseState();
+                ToFirstMenu(_references.mainMenu);
+            }
+            else
+            {
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+                TransitionToGame();
+            }
+
+            return true;
+        }));
     }
 
-    private IEnumerator RefindReferences()
+    private IEnumerator RefindReferences(Func<bool> callback)
     {
         _references = null;
         while(true)
@@ -105,7 +110,8 @@ public class UIManager : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         Debug.Log("UI References found");
-        yield return null;
+
+        callback();
     }
 
     #region SliderFuncts
@@ -175,11 +181,7 @@ public class UIManager : MonoBehaviour
     public void TransitionToMainMenu()
     {
         Time.timeScale = _origTimeScale;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        StartCoroutine(RefindReferences());
         SetUp();
-        _menuStack.Clear();
-        ToFirstMenu(_references.mainMenu);
     }
 
     public void PopStack()
@@ -206,6 +208,7 @@ public class UIManager : MonoBehaviour
     #region GameLoop
     public void UpdateHealth()
     {
+        if (_activeMenu != null) return;
 
         if (_playerController.GetHealthCurrent() > 0)
         {
@@ -222,7 +225,7 @@ public class UIManager : MonoBehaviour
 
     public void WinCondition()
     {
-        if (_playerController.GetHealthCurrent() < 0) return;
+        if (_activeMenu != null) return;
 
         _references.enemyCount.text = _enemyManager.GetEnemyListSize().ToString("F0");
 

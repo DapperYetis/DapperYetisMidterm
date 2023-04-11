@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -37,11 +38,11 @@ public class GameManager : MonoBehaviour
 
     public void ResetMap()
     {
-        //player.Heal(player.GetHealthMax());
-        //_level?.ResetMap();
-        EnemyManager.instance.ResetMap();
-        UIManager.instance.TransitionToMainMenu();
-        StartCoroutine(RefindPlayer());
+        Time.timeScale = UIManager.instance.origTimeScale;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //EnemyManager.instance.ResetMap();
+        //UIManager.instance.TransitionToMainMenu();
+        //StartCoroutine(RefindPlayer());
     }
 
     private IEnumerator RefindPlayer()
