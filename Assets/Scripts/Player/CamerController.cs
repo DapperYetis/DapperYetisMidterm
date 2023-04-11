@@ -40,6 +40,8 @@ public class CamerController : MonoBehaviour
 
     private void Update()
     {
+        if (Cursor.lockState != CursorLockMode.Locked) return;
+
         float mouseY = (_invertY ? 1 : -1) * Input.GetAxis("Mouse Y") * Time.deltaTime * _sensitivity;
         float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime * _sensitivity;
 
