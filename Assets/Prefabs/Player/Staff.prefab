@@ -47,8 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29169025bb305724e9ef4b64190b829d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _camera: {fileID: 0}
   _shootDamage: 1
-  _shootRate: 0.5
+  _shootRate: 0.25
   _shootDist: 20
   _shootPos: {fileID: 9085020107364849679}
   _magicType: {fileID: 424343093267893311, guid: e5a376697b30e834299356fb430fe3c9,

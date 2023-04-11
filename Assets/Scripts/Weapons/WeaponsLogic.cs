@@ -26,7 +26,7 @@ public class WeaponsLogic : MonoBehaviour
         _isShooting = true;
 
         Quaternion rot = _camera.transform.rotation;
-        if(Physics.Raycast(_camera.transform.position, _camera.transform.forward, out RaycastHit hit, _shootDist) && hit.transform.gameObject.layer == 7)
+        if(Physics.Raycast(_camera.ViewportPointToRay(new(0.5f, 0.5f)), out RaycastHit hit, _shootDist) && hit.transform.gameObject.layer == 7)
         {
             rot = Quaternion.LookRotation(hit.point - _shootPos.position);
         }
