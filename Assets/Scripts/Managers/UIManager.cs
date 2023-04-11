@@ -1,7 +1,10 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class UIManager : MonoBehaviour
 {
@@ -10,7 +13,7 @@ public class UIManager : MonoBehaviour
 
     [Header("----- Settings -----")]
     [SerializeField] AudioMixer _masterMixer;
-    [SerializeField] UIReferences _references;
+    UIReferences _references;
     [Header("----- Temporary -----")]
     [SerializeField]
     private bool _inGame;
@@ -46,24 +49,11 @@ public class UIManager : MonoBehaviour
         }
         
         instance = this;
-        _playerController = GameManager.instance.player;
-        _playerController.OnHealthChange.AddListener(UpdateHealth);
-        _enemyManager = EnemyManager.instance;
-        _enemyManager.OnEnemyCountChange.AddListener(WinCondition);
-        _menuStack = new Stack<GameObject>();
 
+        
         _origTimeScale = Time.timeScale;
-        if (!_inGame)
-        {
-            PauseState();
-            ToFirstMenu(_references.mainMenu);
-        }
-        else
-        {
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-            TransitionToGame();
-        }
+        _menuStack = new Stack<GameObject>();
+        SetUp();
     }
 
     void Update()
@@ -81,6 +71,41 @@ public class UIManager : MonoBehaviour
                 NextMenu(_references.pauseMenu);
             }
         }
+    }
+
+    private void SetUp()
+    {
+        StartCoroutine(RefindReferences());
+
+        _playerController = GameManager.instance.player;
+        _playerController.OnHealthChange.AddListener(UpdateHealth);
+        _enemyManager = EnemyManager.instance;
+        _enemyManager.OnEnemyCountChange.AddListener(WinCondition);
+
+        if (!_inGame)
+        {
+            PauseState();
+            ToFirstMenu(_references.mainMenu);
+        }
+        else
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            TransitionToGame();
+        }
+    }
+
+    private IEnumerator RefindReferences()
+    {
+        _references = null;
+        while(true)
+        {
+            _references = GameObject.FindGameObjectWithTag("UIReferences")?.GetComponent<UIReferences>();
+            if (_references != null) break;
+            yield return new WaitForEndOfFrame();
+        }
+        Debug.Log("UI References found");
+        yield return null;
     }
 
     #region SliderFuncts
@@ -149,6 +174,10 @@ public class UIManager : MonoBehaviour
 
     public void TransitionToMainMenu()
     {
+        Time.timeScale = _origTimeScale;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        StartCoroutine(RefindReferences());
+        SetUp();
         _menuStack.Clear();
         ToFirstMenu(_references.mainMenu);
     }
@@ -173,17 +202,19 @@ public class UIManager : MonoBehaviour
         _activeMenu.SetActive(true);
     }
 
+    // TODO: Move to GameManager
     #region GameLoop
     public void UpdateHealth()
     {
+
         if (_playerController.GetHealthCurrent() > 0)
         {
             float currHealth = (float)_playerController.GetHealthCurrent() / (float)_playerController.GetHealthMax();
             _references.image.fillAmount = currHealth;
         }
-
         else
         {
+            if (EnemyManager.instance.GetEnemyListSize() <= 0) return;
             NextMenu(_references.loseMenu);
             PauseState();
         }
@@ -191,6 +222,7 @@ public class UIManager : MonoBehaviour
 
     public void WinCondition()
     {
+        if (_playerController.GetHealthCurrent() < 0) return;
 
         _references.enemyCount.text = _enemyManager.GetEnemyListSize().ToString("F0");
 

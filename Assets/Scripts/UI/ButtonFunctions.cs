@@ -32,8 +32,9 @@ public class ButtonFunctions : MonoBehaviour
 
     public void ToMainMenu()
     {
-        UIManager.instance.PopStack();
-        UIManager.instance.TransitionToMainMenu();
+        //UIManager.instance.PopStack();
+        GameManager.instance.ResetMap();
+        //UIManager.instance.ResumeState();
     }
 
     public void BackButton()

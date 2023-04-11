@@ -84,7 +84,7 @@ GameObject:
   - component: {fileID: 966606480844972636}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: UIReferences
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -205,7 +205,7 @@ MonoBehaviour:
   _mainMenu: {fileID: 4724916751434194212}
   _loadoutMenu: {fileID: 4724916750964597566}
   _settingsMenu: {fileID: 4724916749527001632}
-  _soundSlider: {fileID: 0}
+  _soundSlider: {fileID: 5855648859911718199}
   _pauseMenu: {fileID: 4724916749582874030}
   _hud: {fileID: 4724916751528571869}
   _winMenu: {fileID: 4724916750366701530}
@@ -1146,6 +1146,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 5855648861419503251}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5855648859911718199 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2049047460, guid: b50c6a7c3281273458636f50dd0ebc92,
+    type: 3}
+  m_PrefabInstance: {fileID: 5855648861419503251}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6239135977724437651
 PrefabInstance:
   m_ObjectHideFlags: 0

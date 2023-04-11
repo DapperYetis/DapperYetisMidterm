@@ -104,7 +104,7 @@ PrefabInstance:
     - target: {fileID: 7894976698504282549, guid: 557dfa86dd03170438d2421f6890364d,
         type: 3}
       propertyPath: _maxEnemyCount
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7894976698504282549, guid: 557dfa86dd03170438d2421f6890364d,
         type: 3}
@@ -349,7 +349,7 @@ PrefabInstance:
     - target: {fileID: 4997235848939186725, guid: 5fd82ceb6bcf48f489e72e926b2c5c1f,
         type: 3}
       propertyPath: _inGame
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7970088244964449780, guid: 5fd82ceb6bcf48f489e72e926b2c5c1f,
         type: 3}
