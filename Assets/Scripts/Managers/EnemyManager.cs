@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using System.Linq;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -49,7 +50,8 @@ public class EnemyManager : MonoBehaviour
 
     private Transform GetSpawnPoint()
     {
-        return _wavesInfo.spawnPoints[Random.Range(0, _wavesInfo.spawnPoints.Count)];
+        List<Transform> sortedPoints = (_wavesInfo.spawnPoints.OrderBy((trans) => (GameManager.instance.player.transform.position - trans.position).sqrMagnitude)).ToList();
+        return sortedPoints[Random.Range(0, (int)(_wavesInfo.spawnPoints.Count * 0.1f))];
     }
 
     private IEnumerator Spawner(WaveStats wave, Transform spawnPoint, int spawnedCount)
