@@ -34,9 +34,17 @@ public class EnemyAI : MonoBehaviour, IDamageable
     WaveStats _spawnPoint;
     private bool _isSetUp;
 
+    private void Start()
+    {
+        _agent.radius = Random.Range(_agent.radius, _agent.radius + 2f);
+        _agent.speed = Random.Range(_agent.speed, _agent.speed + 0.5f);
+    }
+
     void Update()
     {
         if (!_isSetUp) return;
+
+        _agent.SetDestination(GameManager.instance.player.transform.position);
 
         if (_isPlayerInRange)
         {
@@ -60,22 +68,23 @@ public class EnemyAI : MonoBehaviour, IDamageable
         _angleToPlayer = Vector3.Angle(new Vector3(_playerDir.x, 0, _playerDir.z), transform.forward);
 
         Debug.DrawRay(_headPos.position, _playerDir, Color.yellow);
-        //Debug.Log(_angleToPlayer);
 
         RaycastHit hit;
-
         if (Physics.Raycast(_headPos.position, _playerDir, out hit))
         {
             if (hit.collider.CompareTag("Player") && _angleToPlayer <= _visionAngle)
             {
                 _agent.stoppingDistance = _stoppingDistOG;
-                _agent.SetDestination(GameManager.instance.player.transform.position);
+                
 
                 if (_agent.remainingDistance < _agent.stoppingDistance)
                     FacePlayer();
 
                 if (!_isShooting)
-                    StartCoroutine(FireShot());
+                {
+                    _isShooting = true;
+                    CombatManager.instance.QueueAttack(Shoot);
+                }
 
                 return true;
             }
@@ -100,37 +109,15 @@ public class EnemyAI : MonoBehaviour, IDamageable
         }
     }
 
-    void IsDisturbed()
+    private void Shoot()
     {
-        // Means the enemy was shot from outside it's range, so it runs to the location of the origin of the shot
-        if (!_isPlayerInRange)
-        {
-            _agent.SetDestination(GameManager.instance.player.transform.position);
-            _agent.stoppingDistance = 0;
+        if (this == null) return;
 
-            //float dist = agent.remainingDistance; 
-            //if (dist != Mathf.infinite && agent.pathStatus == NavMeshPathStatus.completed && agent.remainingDistance == 0) //Arrived.
-            //{ }
-            //
-            //if (_agent.po)
-            //{
-            //
-            //}
-        }
-    }
-
-    void Wander()
-    {
-        if (!CanSeePlayer())
-        {
-
-        }
+        StartCoroutine(FireShot());
     }
 
     IEnumerator FireShot()
     {
-        _isShooting = true;
-
         GameObject bulletClone = Instantiate(_bullet, _shootPos.position, Quaternion.LookRotation(_playerDir));
         bulletClone.GetComponent<Rigidbody>().velocity = transform.forward * _bulletSpeed;
 
