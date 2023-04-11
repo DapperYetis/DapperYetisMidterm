@@ -31,7 +31,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
     float _angleToPlayer;
     bool _isShooting;
     float _stoppingDistOG;
-    EnemySpawnStats _spawnPoint;
+    WaveStats _spawnPoint;
     private bool _isSetUp;
 
     void Update()
@@ -44,7 +44,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
         }
     }
 
-    public void SetUp(EnemySpawnStats spawnPoint)
+    public void SetUp(WaveStats spawnPoint)
     {
         _HPCurrent = _HPMax;
         _stoppingDistOG = _agent.stoppingDistance;

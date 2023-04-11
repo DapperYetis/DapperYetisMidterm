@@ -31,6 +31,8 @@ public class MagicCasting : MonoBehaviour
         {
             damageable.Damage(_damage);
         }
+        else if (other.transform.gameObject.layer == 8 || other.transform.gameObject.layer == 9)
+            Destroy(other);
 
         Destroy(gameObject);
     }

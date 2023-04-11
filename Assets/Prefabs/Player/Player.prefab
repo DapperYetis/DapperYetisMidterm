@@ -298,7 +298,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stats:
-    walkSpeed: 5
+    walkSpeed: 6.5
     sprintMultiplier: 2
     accelerationRate:
       serializedVersion: 2
@@ -325,10 +325,10 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     acclerationTime: 0.2
-    jumpHeightMin: 1
+    jumpHeightMin: 0.5
     jumpHeightMax: 2.5
     jumpVelocityInitial: 0
-    jumpInputTime: 0.1
+    jumpInputTime: 0.15
     jumpCountMax: 2
     gravityAcceleration: 55
     healthMax: 20

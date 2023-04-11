@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     public Inventory inventory => _inventory;
 
     // Events
+    [HideInInspector]
     public UnityEvent OnHealthChange;
 
     // Instance variables
