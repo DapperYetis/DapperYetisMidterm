@@ -18,6 +18,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
     [SerializeField] int _facePlayerSpeed;
     [SerializeField] int _visionAngle;
     float _HPCurrent;
+    [SerializeField] bool _isWandering;
 
     [Header("--- Gun Stats ---")]
     [Range(1, 10)][SerializeField] float _shotDamage;
@@ -102,17 +103,10 @@ public class EnemyAI : MonoBehaviour, IDamageable
         // Means the enemy was shot from outside it's range, so it runs to the location of the origin of the shot
         if (!_isPlayerInRange)
         {
-            _agent.SetDestination(GameManager.instance.player.transform.position);
-            _agent.stoppingDistance = 0;
+            Vector3 playerLoc = GameManager.instance.player.transform.position;
 
-            //float dist = agent.remainingDistance; 
-            //if (dist != Mathf.infinite && agent.pathStatus == NavMeshPathStatus.completed && agent.remainingDistance == 0) //Arrived.
-            //{ }
-            //
-            //if (_agent.po)
-            //{
-            //
-            //}
+            _agent.SetDestination(playerLoc);
+            _agent.stoppingDistance = 0;
         }
     }
 
@@ -120,7 +114,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
     {
         if (!CanSeePlayer())
         {
-
+            _isWandering = true;
         }
     }
 
