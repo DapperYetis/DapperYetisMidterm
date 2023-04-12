@@ -135,9 +135,10 @@ public class UIManager : MonoBehaviour
     public void RefreshSlider(float volume)
     {
         _references.soundSlider.value = volume;
-    } 
+    }
     #endregion
 
+    #region Menu Buttons
     public void TransitionToLoadout()
     {
         NextMenu(_references.loadoutMenu);
@@ -154,12 +155,12 @@ public class UIManager : MonoBehaviour
         NextMenu(_references.settingsMenu);
     }
 
-    public void PrevMenu()
+    public void TransitionToMainMenu()
     {
-        PopStack();
-        if(_activeMenu != null)
-            _activeMenu.SetActive(true);
+        Time.timeScale = _origTimeScale;
+        SetUp();
     }
+    #endregion
 
     #region Pauses
     public void PauseState()
@@ -174,13 +175,15 @@ public class UIManager : MonoBehaviour
         Time.timeScale = _origTimeScale;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-    } 
+    }
     #endregion
 
-    public void TransitionToMainMenu()
+    #region Button Logic
+    public void PrevMenu()
     {
-        Time.timeScale = _origTimeScale;
-        SetUp();
+        PopStack();
+        if (_activeMenu != null)
+            _activeMenu.SetActive(true);
     }
 
     public void PopStack()
@@ -191,7 +194,7 @@ public class UIManager : MonoBehaviour
 
     public void NextMenu(GameObject newMenu)
     {
-        if(_activeMenu != null)
+        if (_activeMenu != null)
             _activeMenu.SetActive(false);
         _menuStack.Push(newMenu);
         _activeMenu.SetActive(true);
@@ -201,7 +204,8 @@ public class UIManager : MonoBehaviour
     {
         _menuStack.Push(newMenu);
         _activeMenu.SetActive(true);
-    }
+    } 
+    #endregion
 
     // TODO: Move to GameManager
     #region GameLoop
@@ -233,6 +237,21 @@ public class UIManager : MonoBehaviour
             NextMenu(_references.winMenu);
             PauseState();
         }
-    } 
+    }
     #endregion
+
+
+    #region HUD Functionality
+    public void UpdateScore()
+    {
+
+    }
+
+    public void TrackCurrency()
+    {
+
+    } 
+
+    #endregion
+
 }

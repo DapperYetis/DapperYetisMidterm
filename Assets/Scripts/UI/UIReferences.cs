@@ -46,4 +46,28 @@ public class UIReferences : MonoBehaviour
 
     public TextMeshProUGUI enemyCount => _enemyCount;
 
+    [SerializeField] TextMeshProUGUI _currency;
+
+    public TextMeshProUGUI currency => _currency;
+
+    [SerializeField] TextMeshProUGUI _stageCount;
+
+    public TextMeshProUGUI stageCount => _stageCount;
+
+    [SerializeField] TextMeshProUGUI _score;
+
+    public TextMeshProUGUI score => _score;
+
+    [SerializeField] TextMeshProUGUI _maxHealth;
+
+    public TextMeshProUGUI maxHealth => _maxHealth;
+
+    [SerializeField] TextMeshProUGUI _remainingHealth;
+
+    public TextMeshProUGUI remainingHealth => _remainingHealth;
+
+    [SerializeField] TextMeshProUGUI _playerLevel;
+
+    public TextMeshProUGUI playerLevel => _playerLevel;
+
 }
