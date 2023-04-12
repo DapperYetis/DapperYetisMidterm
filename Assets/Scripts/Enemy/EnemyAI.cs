@@ -24,6 +24,8 @@ public class EnemyAI : MonoBehaviour, IDamageable
     [Range(1, 10)][SerializeField] float _shotDamage;
     [Range(0.1f, 5)][SerializeField] float _fireRate;
     [Range(1, 100)][SerializeField] int _shootDist;
+    [SerializeField]
+    private float _shootSpread;
     [SerializeField] GameObject _bullet;
     [SerializeField] float _bulletSpeed;
 
@@ -33,7 +35,27 @@ public class EnemyAI : MonoBehaviour, IDamageable
     [SerializeField]
     private float _speedMod;
 
-    Vector3 _playerDir;
+    Vector3 _playerDir => GameManager.instance.player.transform.position - _headPos.position;
+    Vector3 _playerDirProjected
+    {
+        get
+        {
+            float a = Vector3.Dot(GameManager.instance.player.movement.playerVelocity, GameManager.instance.player.movement.playerVelocity) - (_bulletSpeed * _bulletSpeed);
+            float b = 2 * Vector3.Dot(GameManager.instance.player.movement.playerVelocity, _playerDir);
+            float c = Vector3.Dot(_playerDir, _playerDir);
+
+            float p = -b / (2 * a);
+            float q = Mathf.Sqrt((b * b) - 4 * a * c) / (2 * a);
+
+            float time1 = p - q;
+            float time2 = p + q;
+            float timeActual;
+
+            timeActual = time1 > time2 && time2 > 0 ? time2 : time1;
+
+            return _playerDir + GameManager.instance.player.movement.playerVelocity * timeActual;
+        }
+    }
     bool _isPlayerInRange;
     float _angleToPlayer;
     bool _isShooting;
@@ -71,7 +93,6 @@ public class EnemyAI : MonoBehaviour, IDamageable
 
     bool CanSeePlayer()
     {
-        _playerDir = (GameManager.instance.player.transform.position - _headPos.position);
         _angleToPlayer = Vector3.Angle(new Vector3(_playerDir.x, 0, _playerDir.z), transform.forward);
 
         Debug.DrawRay(_headPos.position, _playerDir, Color.yellow);
@@ -125,8 +146,11 @@ public class EnemyAI : MonoBehaviour, IDamageable
 
     IEnumerator FireShot()
     {
-        GameObject bulletClone = Instantiate(_bullet, _shootPos.position, Quaternion.LookRotation(_playerDir));
-        bulletClone.GetComponent<Rigidbody>().velocity = transform.forward * _bulletSpeed;
+        Quaternion rot = Quaternion.LookRotation(_playerDirProjected * 0.5f);
+        if (Mathf.Abs(Quaternion.Angle(rot, Quaternion.LookRotation(_playerDir))) >= 60)
+            rot = Quaternion.LookRotation(_playerDir);
+        rot = Quaternion.RotateTowards(rot, Random.rotation, _shootSpread * GameManager.instance.player.movement.speedRatio);
+        Instantiate(_bullet, _shootPos.position, rot).GetComponent<Rigidbody>().velocity = transform.forward * _bulletSpeed;
 
         yield return new WaitForSeconds(_fireRate);
         _isShooting = false;

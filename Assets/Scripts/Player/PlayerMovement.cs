@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isRunning => _isRunning;
     private Vector3 _playerVelocity;
     public Vector3 playerVelocity => _playerVelocity;
+    public float speedRatio => _playerVelocity.magnitude / _stats.walkSpeed * (_isRunning ? _stats.sprintMultiplier : 1f);
     private int _jumpCountCurrent;
     private bool _isJumping;
     public bool isJumping => _isJumping;
@@ -65,6 +66,11 @@ public class PlayerMovement : MonoBehaviour
                 OnSprintStart.Invoke();
             else
                 OnSprintStop.Invoke();
+        }
+        else if(_isRunning && Input.GetAxis("Vertical") < 0.001f)
+        {
+            _isRunning = false;
+            OnSprintStop.Invoke();
         }
 
         float speed = _stats.walkSpeed;

@@ -57,11 +57,12 @@ MonoBehaviour:
   _HPMax: 3
   _facePlayerSpeed: 600
   _visionAngle: 90
+  _isWandering: 0
   _shotDamage: 1
   _fireRate: 1.5
   _shootDist: 1
   _bullet: {fileID: 424343093267893311, guid: f7b16309293f2e949b61f60c035662d9, type: 3}
-  _bulletSpeed: 50
+  _bulletSpeed: 2
   _radiusMod: 0.5
   _speedMod: 4
 --- !u!33 &7919594634767875681

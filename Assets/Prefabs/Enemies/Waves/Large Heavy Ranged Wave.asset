@@ -16,4 +16,4 @@ MonoBehaviour:
     spawnPointPrefab: {fileID: 2230898508323638553, guid: 2a4b61952883c9348ab3b48b76ffd87e,
       type: 3}
     spawnInterval: 0.5
-    maxEnemyCount: 10
+    maxEnemyCount: 5
