@@ -217,6 +217,7 @@ public class UIManager : MonoBehaviour
 
         if (_playerController.GetHealthCurrent() > 0)
         {
+            StartCoroutine(Damaged());
             float currHealth = (float)_playerController.GetHealthCurrent() / (float)_playerController.GetHealthMax();
             _references.image.fillAmount = currHealth;
         }
@@ -237,6 +238,14 @@ public class UIManager : MonoBehaviour
     {
 
     }
+
+    IEnumerator Damaged()
+    {
+        _references.damageIndicator.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        _references.damageIndicator.SetActive(false);
+    }
+
     #endregion
 
 }
