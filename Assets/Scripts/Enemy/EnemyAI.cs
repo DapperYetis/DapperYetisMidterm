@@ -111,7 +111,7 @@ public class EnemyAI : MonoBehaviour, IDamageable
                 if (!_isShooting)
                 {
                     _isShooting = true;
-                    CombatManager.instance.QueueAttack(Shoot);
+                    EnemyManager.instance.QueueAttack(Shoot);
                 }
 
                 return true;

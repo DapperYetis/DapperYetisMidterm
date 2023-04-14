@@ -10,10 +10,19 @@ public class EnemyManager : MonoBehaviour
     public static EnemyManager instance => _instance;
 
     List<EnemyAI> _enemies;
-    private Dictionary<SOWave, List<EnemyAI>> _enemiesByWave;
+    // Waves management
     [SerializeField]
     private List<SOWave> _waves;
     private List<Transform> _wavePoints;
+
+    // Combat management
+    [SerializeField]
+    private float _attackTime;
+    [SerializeField]
+    private int _attackBudgetMax;
+    private int _attackBudget;
+    private bool _isRunning;
+    private Queue<System.Action> _attacks;
 
     [HideInInspector]
     public UnityEvent OnEnemyCountChange;
@@ -28,13 +37,16 @@ public class EnemyManager : MonoBehaviour
 
         _instance = this;
         OnEnemyCountChange.AddListener(GameManager.instance.EndConditions);
+
+        _attackBudget = _attackBudgetMax;
+        _attacks = new();
+
         SetWaves();
     }
 
     public void SetWaves()
     {
         _enemies = new();
-        _enemiesByWave = new();
 
         _wavePoints = (from go in GameObject.FindGameObjectsWithTag("EnemySpawnPoint") select go.transform).ToList();
         StartCoroutine(RunWaves());
@@ -50,7 +62,6 @@ public class EnemyManager : MonoBehaviour
 
     private float RunWave(int index)
     {
-        _enemiesByWave[_waves[index]] = new();
         StartCoroutine(Spawner(_waves[index], GetSpawnPoint(), 0));
 
         return _waves[index].maxEnemyCount * _waves[index].spawnInterval;
@@ -78,16 +89,12 @@ public class EnemyManager : MonoBehaviour
     public void AddEnemyToList(EnemyAI enemy, SOWave spawnPoint)
     {
         _enemies.Add(enemy);
-        if (_enemiesByWave.ContainsKey(spawnPoint))
-            _enemiesByWave[spawnPoint].Add(enemy);
         OnEnemyCountChange?.Invoke();
     }
 
     public void RemoveEnemyFromList(EnemyAI enemy, SOWave spawnPoint)
     {
         _enemies.Remove(enemy);
-        if(_enemiesByWave.ContainsKey(spawnPoint))
-            _enemiesByWave[spawnPoint].Remove(enemy);
         OnEnemyCountChange?.Invoke();
     }
 
@@ -105,7 +112,32 @@ public class EnemyManager : MonoBehaviour
             Destroy(enemy.gameObject);
         }
         _enemies.Clear();
-        _enemiesByWave.Clear();
         SetWaves();
+    }
+
+    public void QueueAttack(System.Action attack)
+    {
+        _attacks.Enqueue(attack);
+        if (!_isRunning)
+            StartCoroutine(RunDequeue());
+    }
+
+    private IEnumerator RunDequeue()
+    {
+        _isRunning = true;
+        if (_attacks.Count > 0 && _attackBudget > 0)
+        {
+            --_attackBudget;
+            (_attacks.Dequeue()).Invoke();
+
+            StartCoroutine(RunDequeue());
+            yield return new WaitForSeconds(_attackTime);
+            ++_attackBudget;
+        }
+        else
+        {
+            _isRunning = false;
+            yield return null;
+        }
     }
 }
