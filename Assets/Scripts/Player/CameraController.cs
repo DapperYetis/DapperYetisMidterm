@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Camera))]
-public class CamerController : MonoBehaviour
+public class CameraController : MonoBehaviour
 {
     [Header("------Constraints------")]
     

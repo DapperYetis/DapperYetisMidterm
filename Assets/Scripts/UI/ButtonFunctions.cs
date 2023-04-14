@@ -42,7 +42,7 @@ public class ButtonFunctions : MonoBehaviour
 
     }
 
-    public void resumeButton()
+    public void ResumeButton()
     {
 
         UIManager.instance.PrevMenu();

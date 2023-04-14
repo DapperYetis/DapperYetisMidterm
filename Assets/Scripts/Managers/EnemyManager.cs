@@ -10,8 +10,10 @@ public class EnemyManager : MonoBehaviour
     public static EnemyManager instance => _instance;
 
     List<EnemyAI> _enemies;
-    private Dictionary<WaveStats, List<EnemyAI>> _enemiesByWave;
-    private LevelWaveInfo _wavesInfo;
+    private Dictionary<SOWave, List<EnemyAI>> _enemiesByWave;
+    [SerializeField]
+    private List<SOWave> _waves;
+    private List<Transform> _wavePoints;
 
     [HideInInspector]
     public UnityEvent OnEnemyCountChange;
@@ -25,47 +27,55 @@ public class EnemyManager : MonoBehaviour
         }
 
         _instance = this;
+        OnEnemyCountChange.AddListener(GameManager.instance.EndConditions);
+        SetWaves();
     }
 
-    public void SetWaves(LevelWaveInfo levelWaveInfo)
+    public void SetWaves()
     {
-        _wavesInfo = levelWaveInfo;
         _enemies = new();
         _enemiesByWave = new();
 
+        _wavePoints = (from go in GameObject.FindGameObjectsWithTag("EnemySpawnPoint") select go.transform).ToList();
         StartCoroutine(RunWaves());
     }
 
     private IEnumerator RunWaves()
     {
-        for (int i = 0; i < _wavesInfo.waveCount; i++)
+        for(int i = 0; i < _waves.Count; ++i)
         {
-            Debug.Log("Wave " + (i + 1));
-            int index = Random.Range(0, _wavesInfo.waves.Count);
-            _enemiesByWave[_wavesInfo.waves[index]] = new();
-            StartCoroutine(Spawner(_wavesInfo.waves[index], GetSpawnPoint(), 0));
-            yield return new WaitForSeconds(_wavesInfo.waves[index].maxEnemyCount * _wavesInfo.waves[index].spawnInterval);
+            yield return new WaitForSeconds(RunWave(i));
         }
+    }
+
+    private float RunWave(int index)
+    {
+        _enemiesByWave[_waves[index]] = new();
+        StartCoroutine(Spawner(_waves[index], GetSpawnPoint(), 0));
+
+        return _waves[index].maxEnemyCount * _waves[index].spawnInterval;
     }
 
     private Transform GetSpawnPoint()
     {
-        List<Transform> sortedPoints = (_wavesInfo.spawnPoints.OrderBy((trans) => (GameManager.instance.player.transform.position - trans.position).sqrMagnitude)).ToList();
-        return sortedPoints[Random.Range(0, (int)(_wavesInfo.spawnPoints.Count * 0.1f))];
+        if (GameManager.instance.player == null) return _wavePoints[0];
+
+        List<Transform> sortedPoints = (_wavePoints.OrderBy((trans) => (GameManager.instance.player.transform.position - trans.position).sqrMagnitude)).ToList();
+        return sortedPoints[Random.Range(0, (int)(_wavePoints.Count * 0.1f))];
     }
 
-    private IEnumerator Spawner(WaveStats wave, Transform spawnPoint, int spawnedCount)
+    private IEnumerator Spawner(SOWave wave, Transform spawnPoint, int spawnedCount)
     {
-        yield return new WaitForSeconds(wave.spawnInterval);
-        if (spawnedCount++ < wave.maxEnemyCount)
+        if (spawnedCount++ < wave.maxEnemyCount && spawnPoint != null)
         {
             EnemyAI enemy = Instantiate(wave.spawnPointPrefab, spawnPoint.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity).GetComponent<EnemyAI>();
             enemy.SetUp(wave);
+            yield return new WaitForSeconds(wave.spawnInterval);
             StartCoroutine(Spawner(wave, spawnPoint, spawnedCount));
         }
     }
 
-    public void AddEnemyToList(EnemyAI enemy, WaveStats spawnPoint)
+    public void AddEnemyToList(EnemyAI enemy, SOWave spawnPoint)
     {
         _enemies.Add(enemy);
         if (_enemiesByWave.ContainsKey(spawnPoint))
@@ -73,7 +83,7 @@ public class EnemyManager : MonoBehaviour
         OnEnemyCountChange?.Invoke();
     }
 
-    public void RemoveEnemyFromList(EnemyAI enemy, WaveStats spawnPoint)
+    public void RemoveEnemyFromList(EnemyAI enemy, SOWave spawnPoint)
     {
         _enemies.Remove(enemy);
         if(_enemiesByWave.ContainsKey(spawnPoint))
@@ -89,11 +99,13 @@ public class EnemyManager : MonoBehaviour
     public void ResetMap()
     {
         OnEnemyCountChange.RemoveAllListeners();
+
         foreach (EnemyAI enemy in _enemies)
         {
             Destroy(enemy.gameObject);
         }
         _enemies.Clear();
         _enemiesByWave.Clear();
+        SetWaves();
     }
 }

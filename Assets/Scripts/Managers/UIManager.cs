@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class UIManager : MonoBehaviour
 {
@@ -12,21 +13,22 @@ public class UIManager : MonoBehaviour
 
 
     [Header("----- Settings -----")]
-    [SerializeField] AudioMixer _masterMixer;
-    UIReferences _references;
+    [SerializeField] 
+    private AudioMixer _masterMixer;
+    private UIReferences _references;
+    public UIReferences references => _references;
     [Header("----- Temporary -----")]
     [SerializeField]
     private bool _inGame;
 
 
 
-    float _origTimeScale;
+    private float _origTimeScale;
     public float origTimeScale => _origTimeScale;
-    PlayerController _playerController;
-    EnemyManager _enemyManager;
-    Stack<GameObject> _menuStack;
+    private PlayerController _playerController;
+    private Stack<GameObject> _menuStack;
 
-    GameObject _activeMenu
+    private GameObject _activeMenu
     {
         get
         {
@@ -37,6 +39,7 @@ public class UIManager : MonoBehaviour
             else { return null; }
         }
     }
+    public GameObject activeMenu => _activeMenu;
 
     public bool isPaused => _activeMenu != null;
 
@@ -53,7 +56,6 @@ public class UIManager : MonoBehaviour
 
         
         _origTimeScale = Time.timeScale;
-        _menuStack = new Stack<GameObject>();
         SetUp();
     }
 
@@ -76,12 +78,12 @@ public class UIManager : MonoBehaviour
 
     private void SetUp()
     {
+        _menuStack = new Stack<GameObject>();
         StartCoroutine(RefindReferences(() =>
         {
             _playerController = GameManager.instance.player;
             _playerController.OnHealthChange.AddListener(UpdateHealth);
-            _enemyManager = EnemyManager.instance;
-            _enemyManager.OnEnemyCountChange.AddListener(WinCondition);
+            EnemyManager.instance.OnEnemyCountChange.AddListener(UpdateEnemyCount);
 
             if (!_inGame)
             {
@@ -167,7 +169,7 @@ public class UIManager : MonoBehaviour
     {
         Time.timeScale = 0;
         Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void ResumeState()
@@ -194,54 +196,38 @@ public class UIManager : MonoBehaviour
 
     public void NextMenu(GameObject newMenu)
     {
-        if (_activeMenu != null)
+        if(_activeMenu != null)
             _activeMenu.SetActive(false);
         _menuStack.Push(newMenu);
-        _activeMenu.SetActive(true);
+        if(_activeMenu != null)
+            _activeMenu.SetActive(true);
     }
 
     public void ToFirstMenu(GameObject newMenu)
     {
         _menuStack.Push(newMenu);
         _activeMenu.SetActive(true);
-    } 
+    }
     #endregion
 
-    // TODO: Move to GameManager
-    #region GameLoop
+    #region HUD Functionality
     public void UpdateHealth()
     {
-        if (_activeMenu != null) return;
+        if (UIManager.instance.activeMenu != null) return;
 
         if (_playerController.GetHealthCurrent() > 0)
         {
             float currHealth = (float)_playerController.GetHealthCurrent() / (float)_playerController.GetHealthMax();
             _references.image.fillAmount = currHealth;
         }
-        else
-        {
-            if (EnemyManager.instance.GetEnemyListSize() <= 0) return;
-            NextMenu(_references.loseMenu);
-            PauseState();
-        }
     }
 
-    public void WinCondition()
+    public void UpdateEnemyCount()
     {
         if (_activeMenu != null) return;
 
-        _references.enemyCount.text = _enemyManager.GetEnemyListSize().ToString("F0");
-
-        if (EnemyManager.instance.GetEnemyListSize() <= 0)
-        {
-            NextMenu(_references.winMenu);
-            PauseState();
-        }
+        references.enemyCount.text = EnemyManager.instance.GetEnemyListSize().ToString("F0");
     }
-    #endregion
-
-
-    #region HUD Functionality
     public void UpdateScore()
     {
 
@@ -250,8 +236,7 @@ public class UIManager : MonoBehaviour
     public void TrackCurrency()
     {
 
-    } 
-
+    }
     #endregion
 
 }

@@ -44,6 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f9a59a3374ad054bb7ccfe0d82dcb8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _waves:
+  - {fileID: 11400000, guid: b5352115f212d8c4b80e2057c0ff237d, type: 2}
+  - {fileID: 11400000, guid: 9f338045f9598f74f98773863fb0ba9d, type: 2}
+  - {fileID: 11400000, guid: 807f93dfdd782c2478c3308992d1e781, type: 2}
+  - {fileID: 11400000, guid: 32427e9f57ceefa4db2119d5894b7342, type: 2}
   OnEnemyCountChange:
     m_PersistentCalls:
       m_Calls: []

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
@@ -41,6 +42,10 @@ public class PlayerMovement : MonoBehaviour
     {
         _controller = GetComponent<CharacterController>();
         _playerVelocity = new();
+
+        _controller.enabled = false;
+        transform.position = GameManager.instance.playerSpawnPos.position;
+        _controller.enabled = true;
     }
 
     private void Update()

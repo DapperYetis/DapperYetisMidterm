@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a01e0102239aeaa4e9d291efd03705ea, type: 3}
   m_Name: Small Wave
   m_EditorClassIdentifier: 
-  _stats:
-    spawnPointPrefab: {fileID: 7919594634767875685, guid: 1a7e84ac98e92134a836f3d4161e0d60,
-      type: 3}
-    spawnInterval: 0.1
-    maxEnemyCount: 3
+  _spawnPointPrefab: {fileID: 7919594634767875685, guid: 1a7e84ac98e92134a836f3d4161e0d60,
+    type: 3}
+  _spawnInterval: 1
+  _maxEnemyCount: 4

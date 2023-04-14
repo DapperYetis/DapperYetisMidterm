@@ -6,8 +6,14 @@ using UnityEngine;
 public class SOWave : ScriptableObject
 {
     [SerializeField]
-    private WaveStats _stats;
-    public WaveStats stats => _stats;
+    private GameObject _spawnPointPrefab;
+    public GameObject spawnPointPrefab => _spawnPointPrefab;
+    [SerializeField]
+    private float _spawnInterval;
+    public float spawnInterval => _spawnInterval;
+    [SerializeField]
+    private int _maxEnemyCount;
+    public int maxEnemyCount => _maxEnemyCount;
 
-    public float WaveTime() => _stats.maxEnemyCount * _stats.spawnInterval;
+    public float WaveTime() => _maxEnemyCount * _spawnInterval;
 }
