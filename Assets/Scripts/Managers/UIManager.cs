@@ -237,6 +237,15 @@ public class UIManager : MonoBehaviour
     {
 
     }
+
+    IEnumerator Damaged()
+    {
+        _references.damageIndicator.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        _references.damageIndicator.SetActive(false);
+
+    }
+
     #endregion
 
 }

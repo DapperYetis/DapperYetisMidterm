@@ -70,4 +70,8 @@ public class UIReferences : MonoBehaviour
 
     public TextMeshProUGUI playerLevel => _playerLevel;
 
+    [SerializeField] GameObject _damageIndicator;
+
+    public GameObject damageIndicator => _damageIndicator;
+
 }
