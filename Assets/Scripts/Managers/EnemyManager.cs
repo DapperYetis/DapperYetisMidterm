@@ -54,6 +54,7 @@ public class EnemyManager : MonoBehaviour
 
     private IEnumerator RunWaves()
     {
+        yield return new WaitForSeconds(5);
         for(int i = 0; i < _waves.Count; ++i)
         {
             yield return new WaitForSeconds(RunWave(i));
