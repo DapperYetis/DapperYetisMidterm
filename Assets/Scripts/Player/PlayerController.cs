@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         _movement.SetStats(_stats);
 
-        _healthCurrent = _stats.healthMax;
+        Heal(_stats.healthMax);
     }
 
     public void Damage(float damage)
