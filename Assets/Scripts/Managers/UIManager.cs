@@ -149,6 +149,7 @@ public class UIManager : MonoBehaviour
     public void TransitionToGame()
     {
         _references.hud.SetActive(true);
+        GameManager.instance.StartGame();
     }
 
     public void ToSettings()
