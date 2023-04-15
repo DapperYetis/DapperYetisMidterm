@@ -50,7 +50,11 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
     [SerializeField]
     protected float _radiusMod;
     [SerializeField]
+    protected float _radiusMult;
+    [SerializeField]
     protected float _speedMod;
+    [SerializeField]
+    protected float _speedMult;
 
     protected Vector3 _playerDir => GameManager.instance.player.transform.position - _headPos.position;
     protected Vector3 _playerDirProjected
@@ -238,5 +242,17 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
     protected virtual void OnDestroy()
     {
         EnemyManager.instance.RemoveEnemyFromList(this, _spawnPoint);
+    }
+
+    protected virtual float ChangeMoveSpeed()
+    {
+        float origSpeed = _agent.speed;
+        return origSpeed * _speedMult;
+    }
+
+    protected virtual float ChangeStopDistance()
+    {
+        float origRadius = _agent.stoppingDistance;
+        return origRadius * _radiusMult;
     }
 }
