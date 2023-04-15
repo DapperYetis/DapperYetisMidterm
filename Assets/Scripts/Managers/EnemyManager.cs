@@ -9,8 +9,11 @@ public class EnemyManager : MonoBehaviour
     private static EnemyManager _instance;
     public static EnemyManager instance => _instance;
 
-    List<EnemyAI> _enemies;
     // Waves management
+    [SerializeField]
+    private AnimationCurve _timeBetweenWaves;
+    public AnimationCurve timeBetweenWaves => _timeBetweenWaves;
+    private List<EnemyAI> _enemies;
     [SerializeField]
     private List<SOWave> _waves;
     private List<Transform> _wavePoints;
@@ -55,9 +58,9 @@ public class EnemyManager : MonoBehaviour
     private IEnumerator RunWaves()
     {
         yield return new WaitForSeconds(5);
-        for(int i = 0; i < _waves.Count; ++i)
+        while(GameManager.instance.inGame)
         {
-            yield return new WaitForSeconds(RunWave(i));
+            yield return new WaitForSeconds(RunWave(Random.Range(0, _waves.Count)));
         }
     }
 
@@ -65,7 +68,7 @@ public class EnemyManager : MonoBehaviour
     {
         StartCoroutine(Spawner(_waves[index], GetSpawnPoint(), 0));
 
-        return _waves[index].maxEnemyCount * _waves[index].spawnInterval;
+        return _waves[index].maxEnemyCount * _waves[index].spawnInterval + _timeBetweenWaves.Evaluate(GameManager.instance.runtTimeMinutes);
     }
 
     private Transform GetSpawnPoint()

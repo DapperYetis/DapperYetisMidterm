@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public bool isPaused => UIManager.instance.isPaused;
 
     private bool _inGame;
+    public bool inGame => _inGame;
     private float _startTime;
     public float runTime => Time.time - _startTime;
     public float runtTimeMinutes => runTime * 0.0166f;
@@ -76,11 +77,11 @@ public class GameManager : MonoBehaviour
             UIManager.instance.NextMenu(UIManager.instance.references.loseMenu);
             UIManager.instance.PauseState();
         }
-        else if (EnemyManager.instance.GetEnemyListSize() <= 0)
-        {
-            UIManager.instance.NextMenu(UIManager.instance.references.winMenu);
-            UIManager.instance.PauseState();
-        }
+        //else if (EnemyManager.instance.GetEnemyListSize() <= 0)
+        //{
+        //    UIManager.instance.NextMenu(UIManager.instance.references.winMenu);
+        //    UIManager.instance.PauseState();
+        //}
     }
 
     public void ResetMap()
