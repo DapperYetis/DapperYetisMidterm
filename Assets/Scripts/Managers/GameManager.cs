@@ -56,6 +56,8 @@ public class GameManager : MonoBehaviour
     #region Game Loop
     public void EndConditions()
     {
+        if (UIManager.instance.activeMenu != null) return;
+
         if (_player.GetHealthCurrent() <= 0)
         {
             if (EnemyManager.instance.GetEnemyListSize() <= 0) return;
