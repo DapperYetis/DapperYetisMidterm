@@ -64,24 +64,33 @@ MonoBehaviour:
   _shootSpread: 4
   _bullet: {fileID: 424343093267893311, guid: 1bcc9b7c1094fd547910ca2344bca383, type: 3}
   _bulletSpeed: 12
+  _changeTime: 2
+  _changeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   _radiusMod: 8
   _speedMod: 1.5
-  _model: {fileID: 0}
-  _agent: {fileID: 2230898508323638552}
-  _headPos: {fileID: 2230898508323638559}
-  _shootPos: {fileID: 2230898508323638559}
-  _HPMax: 6
-  _facePlayerSpeed: 600
-  _visionAngle: 90
-  _isWandering: 0
-  _shotDamage: 1
-  _fireRate: 1
-  _shootDist: 20
-  _shootSpread: 4
-  _bullet: {fileID: 424343093267893311, guid: 1bcc9b7c1094fd547910ca2344bca383, type: 3}
-  _bulletSpeed: 12
-  _radiusMod: 8
-  _speedMod: 0
 --- !u!33 &2230898508323638557
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -156,7 +165,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 5
   m_Acceleration: 10
   avoidancePriority: 50
   m_AngularSpeed: 600

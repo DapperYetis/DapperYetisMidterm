@@ -44,6 +44,10 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
 
     [Header("--- NavMesh Mods ---")]
     [SerializeField]
+    protected float _changeTime;
+    [SerializeField]
+    protected AnimationCurve _changeCurve;
+    [SerializeField]
     protected float _radiusMod;
     [SerializeField]
     protected float _speedMod;
@@ -76,13 +80,31 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
     protected SOWave _spawnPoint;
     protected bool _isSetUp;
 
-    public virtual void Start()
+    protected virtual void Start()
     {
-        _agent.radius = Random.Range(_agent.radius, _agent.radius + _radiusMod);
-        _agent.speed = Random.Range(_agent.speed, _agent.speed + _speedMod);
+        StartCoroutine(SizeChange());
     }
 
-    public virtual void Update()
+    protected virtual IEnumerator SizeChange()
+    {
+        float startingRadius = _agent.radius;
+        float startingSpeed = _agent.speed;
+        float radius = Random.Range(_agent.radius, _agent.radius + _radiusMod);
+        float speed = Random.Range(_agent.speed, _agent.speed + _speedMod);
+        float startTime = Time.time;
+
+        WaitForEndOfFrame wait = new WaitForEndOfFrame();
+        while (Time.time < startTime + _changeTime)
+        {
+            _agent.radius = Mathf.Lerp(startingRadius, radius, _changeCurve.Evaluate((Time.time - startTime) / _changeTime));
+            _agent.speed = Mathf.Lerp(startingSpeed, speed, _changeCurve.Evaluate((Time.time - startTime) / _changeTime));
+            yield return wait;
+        }
+        _agent.radius = radius;
+        _agent.speed = speed;
+    }
+
+    protected virtual void Update()
     {
         if (!_isSetUp) return;
 
@@ -104,7 +126,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
         _isSetUp = true;
     }
 
-    public virtual bool CanSeePlayer()
+    protected virtual bool CanSeePlayer()
     {
         _angleToPlayer = Vector3.Angle(new Vector3(_playerDir.x, 0, _playerDir.z), transform.forward);
 
@@ -134,7 +156,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
         return false;
     }
 
-    public virtual void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
@@ -142,7 +164,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
         }
     }
 
-    public virtual void OnTriggerExit(Collider other)
+    protected virtual void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
@@ -150,14 +172,14 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
         }
     }
 
-    public virtual void Shoot()
+    protected virtual void Shoot()
     {
         if (this == null) return;
 
         StartCoroutine(FireShot());
     }
 
-    public virtual IEnumerator FireShot()
+    protected virtual IEnumerator FireShot()
     {
         Quaternion rot = Quaternion.LookRotation(_playerDirProjected * 0.5f);
         if (Mathf.Abs(Quaternion.Angle(rot, Quaternion.LookRotation(_playerDir))) >= 60)
@@ -169,7 +191,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
         _isShooting = false;
     }
 
-    public virtual IEnumerator FlashColor(Color clr)
+    protected virtual IEnumerator FlashColor(Color clr)
     {
         Color mainColor = _model.material.color;
         _model.material.color = clr;
@@ -177,7 +199,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
         _model.material.color = mainColor;
     }
 
-    public virtual void FacePlayer()
+    protected virtual void FacePlayer()
     {
         Quaternion rot = Quaternion.LookRotation(new Vector3(_playerDir.x, 0, _playerDir.z));
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * _facePlayerSpeed);
@@ -213,7 +235,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
         return _HPCurrent;
     }
 
-    public virtual void OnDestroy()
+    protected virtual void OnDestroy()
     {
         EnemyManager.instance.RemoveEnemyFromList(this, _spawnPoint);
     }
