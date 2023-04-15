@@ -74,4 +74,7 @@ public class UIReferences : MonoBehaviour
 
     public GameObject damageIndicator => _damageIndicator;
 
+    [SerializeField] GameObject _tabMenu;
+    public GameObject tabMenu => _tabMenu;
+
 }
