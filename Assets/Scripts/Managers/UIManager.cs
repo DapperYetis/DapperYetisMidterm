@@ -54,7 +54,6 @@ public class UIManager : MonoBehaviour
         
         instance = this;
 
-        
         _origTimeScale = Time.timeScale;
         SetUp();
     }
@@ -74,6 +73,29 @@ public class UIManager : MonoBehaviour
                 NextMenu(_references.pauseMenu);
             }
         }
+
+        if (Input.GetKeyDown("tab"))
+        {
+
+            _references.tabMenu.SetActive(true);
+            Cursor.lockState = CursorLockMode.Confined;
+
+        }
+
+        if (Input.GetKeyUp("tab"))
+        {
+
+            _references.tabMenu.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+
+        }
+
+    }
+
+    private void SetHealth()
+    {
+        _references.maxHealth.SetText(_playerController.GetHealthMax().ToString());
+        _references.remainingHealth.SetText(_playerController.GetHealthCurrent().ToString());
     }
 
     private void SetUp()
@@ -83,6 +105,7 @@ public class UIManager : MonoBehaviour
         {
             _playerController = GameManager.instance.player;
             _playerController.OnHealthChange.AddListener(UpdateHealth);
+            SetHealth();
             EnemyManager.instance.OnEnemyCountChange.AddListener(UpdateEnemyCount);
 
             if (!_inGame)
@@ -149,6 +172,7 @@ public class UIManager : MonoBehaviour
     public void TransitionToGame()
     {
         _references.hud.SetActive(true);
+        GameManager.instance.StartGame();
     }
 
     public void ToSettings()
@@ -218,6 +242,7 @@ public class UIManager : MonoBehaviour
         if (_playerController.GetHealthCurrent() > 0)
         {
             StartCoroutine(Damaged());
+            SetHealth();
             float currHealth = (float)_playerController.GetHealthCurrent() / (float)_playerController.GetHealthMax();
             _references.image.fillAmount = currHealth;
         }
@@ -245,6 +270,12 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         _references.damageIndicator.SetActive(false);
     }
+
+    public void MaxHealthUpdate()
+    {
+        
+    }
+
 
     #endregion
 

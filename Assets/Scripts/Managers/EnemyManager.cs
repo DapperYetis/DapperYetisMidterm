@@ -87,13 +87,13 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    public void AddEnemyToList(EnemyAI enemy, SOWave spawnPoint)
+    public void AddEnemyToList(EnemyAI enemy)
     {
         _enemies.Add(enemy);
         OnEnemyCountChange?.Invoke();
     }
 
-    public void RemoveEnemyFromList(EnemyAI enemy, SOWave spawnPoint)
+    public void RemoveEnemyFromList(EnemyAI enemy)
     {
         _enemies.Remove(enemy);
         OnEnemyCountChange?.Invoke();
