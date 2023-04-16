@@ -74,22 +74,24 @@ public class UIManager : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown("tab"))
+        if (_activeMenu == null)
         {
+            if (Input.GetKeyDown("tab"))
+            {
 
-            _references.tabMenu.SetActive(true);
-            Cursor.lockState = CursorLockMode.Confined;
+                _references.tabMenu.SetActive(true);
+                Cursor.lockState = CursorLockMode.Confined;
 
+            }
+
+            if (Input.GetKeyUp("tab"))
+            {
+
+                _references.tabMenu.SetActive(false);
+                Cursor.lockState = CursorLockMode.Locked;
+
+            }
         }
-
-        if (Input.GetKeyUp("tab"))
-        {
-
-            _references.tabMenu.SetActive(false);
-            Cursor.lockState = CursorLockMode.Locked;
-
-        }
-
     }
 
     
@@ -251,7 +253,6 @@ public class UIManager : MonoBehaviour
 
     public void ToSettings()
     {
-        _activeMenu.SetActive(false);
         NextMenu(_references.settingsMenu);
     }
 
