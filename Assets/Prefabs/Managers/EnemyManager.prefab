@@ -86,6 +86,41 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _minSpawnDistanceFromPlayer: 10
+  _waveDistance:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1.6666666
+      outSlope: 1.6666666
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.12831223
+    - serializedVersion: 3
+      time: 0.49628356
+      value: 0.27974153
+      inSlope: 0.11571704
+      outSlope: 0.11571704
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.12971188
+      outWeight: 0.21910201
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _scaleRate: 1.2
   _waves:
   - {fileID: 11400000, guid: b5352115f212d8c4b80e2057c0ff237d, type: 2}
   - {fileID: 11400000, guid: 9f338045f9598f74f98773863fb0ba9d, type: 2}

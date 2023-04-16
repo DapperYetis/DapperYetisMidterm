@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a01e0102239aeaa4e9d291efd03705ea, type: 3}
   m_Name: Large Ranged Wave
   m_EditorClassIdentifier: 
-  _spawnPointPrefab: {fileID: 1974871610329495847, guid: 8b4a865a9d5772047a05df20dd686469,
+  _enemyType: {fileID: 1974871610329495847, guid: 8b4a865a9d5772047a05df20dd686469,
     type: 3}
   _spawnInterval: 0.1
   _maxEnemyCount: 5

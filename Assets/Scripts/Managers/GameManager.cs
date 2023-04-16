@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     public bool inGame => _inGame;
     private float _startTime;
     public float runTime => Time.time - _startTime;
-    public float runtTimeMinutes => runTime * 0.0166f;
+    public float runTimeMinutes => runTime * 0.0166f;
 
     private void Awake()
     {
