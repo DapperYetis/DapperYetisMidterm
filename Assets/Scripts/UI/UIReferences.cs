@@ -75,6 +75,23 @@ public class UIReferences : MonoBehaviour
     public GameObject damageIndicator => _damageIndicator;
 
     [SerializeField] GameObject _tabMenu;
+
     public GameObject tabMenu => _tabMenu;
+
+    [SerializeField] Slider _mouseSensitivity;
+
+    public Slider mouseSensitivity => _mouseSensitivity;
+
+    [SerializeField] Toggle _camInvert;
+
+    public Toggle camInvert => _camInvert;
+
+    [SerializeField] Toggle _ctrlRun;
+
+    public Toggle ctrlRun => _ctrlRun;
+
+    [SerializeField] Toggle _toggleSprint;
+
+    public Toggle toggleSprint => _toggleSprint;
 
 }

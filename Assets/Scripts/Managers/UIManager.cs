@@ -92,11 +92,8 @@ public class UIManager : MonoBehaviour
 
     }
 
-    private void SetHealth()
-    {
-        _references.maxHealth.SetText(_playerController.GetHealthMax().ToString());
-        _references.remainingHealth.SetText(_playerController.GetHealthCurrent().ToString());
-    }
+    
+    #region StartupFunctionality
 
     private void SetUp()
     {
@@ -127,7 +124,7 @@ public class UIManager : MonoBehaviour
     private IEnumerator RefindReferences(Func<bool> callback)
     {
         _references = null;
-        while(true)
+        while (true)
         {
             _references = GameObject.FindGameObjectWithTag("UIReferences")?.GetComponent<UIReferences>();
             if (_references != null) break;
@@ -138,7 +135,10 @@ public class UIManager : MonoBehaviour
         callback();
     }
 
-    #region SliderFuncts
+    #endregion
+
+
+    #region Settings
     public void SetVolume(float volume)
     {
         if (volume < 1)
@@ -161,6 +161,80 @@ public class UIManager : MonoBehaviour
     {
         _references.soundSlider.value = volume;
     }
+
+    public void SetSensitivity(float sensitivity)
+    {
+        if (sensitivity < 1)
+        {
+            sensitivity = .001f;
+        }
+
+        RefreshSlider(sensitivity);
+        PlayerPrefs.SetFloat("SavedSensitivity", sensitivity);
+    }
+
+
+    public void SetSensitivityFromSlider()
+    {
+        SetSensitivity(_references.mouseSensitivity.value);
+    }
+
+    public void RefreshSensitivity(float sensitivity)
+    {
+        _references.mouseSensitivity.value = sensitivity;
+    }
+
+    public void SetSprintHold()
+    {
+        if(_references.toggleSprint)
+            PlayerPrefs.SetInt("HoldSprint", 1);
+
+        else if (!_references.toggleSprint)
+            PlayerPrefs.SetInt("HoldSprint", 0);
+    }
+
+    public bool GetSprintToggle()
+    {
+        if (PlayerPrefs.GetInt("HoldSprint") == 1)
+            return true;
+        else 
+            return false;
+    }
+
+    public void SetCtrlSprint()
+    {
+        if (_references.ctrlRun)
+            PlayerPrefs.SetInt("CrtlRun", 1);
+
+        else if (!_references.ctrlRun)
+            PlayerPrefs.SetInt("CtrlRun", 0);
+    }
+
+    public bool GetSprintKey()
+    {
+        if (PlayerPrefs.GetInt("CtrlRun") == 1)
+            return true;
+        else
+            return false;
+    }
+
+    public void SetInvertCam()
+    {
+        if (_references.camInvert)
+            PlayerPrefs.SetInt("CamCtrl", 1);
+
+        else if (!_references.camInvert)
+            PlayerPrefs.SetInt("CamCtrl", 0);
+    }
+
+    public bool GetInvertChoice()
+    {
+        if (PlayerPrefs.GetInt("CamCtrl") == 1)
+            return true;
+        else
+            return false;
+    }
+
     #endregion
 
     #region Menu Buttons
@@ -268,6 +342,12 @@ public class UIManager : MonoBehaviour
         _references.damageIndicator.SetActive(true);
         yield return new WaitForSeconds(0.5f);
         _references.damageIndicator.SetActive(false);
+    }
+
+    private void SetHealth()
+    {
+        _references.maxHealth.SetText(_playerController.GetHealthMax().ToString());
+        _references.remainingHealth.SetText(_playerController.GetHealthCurrent().ToString());
     }
 
     public void MaxHealthUpdate()
