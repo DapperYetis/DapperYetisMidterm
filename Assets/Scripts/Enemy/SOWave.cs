@@ -6,8 +6,8 @@ using UnityEngine;
 public class SOWave : ScriptableObject
 {
     [SerializeField]
-    private GameObject _spawnPointPrefab;
-    public GameObject spawnPointPrefab => _spawnPointPrefab;
+    private GameObject _enemyType;
+    public GameObject enemyType => _enemyType;
     [SerializeField]
     private float _spawnInterval;
     public float spawnInterval => _spawnInterval;

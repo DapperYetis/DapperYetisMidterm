@@ -9,8 +9,22 @@ public class EnemyManager : MonoBehaviour
     private static EnemyManager _instance;
     public static EnemyManager instance => _instance;
 
-    List<EnemyAI> _enemies;
     // Waves management
+    [SerializeField]
+    private AnimationCurve _timeBetweenWaves;
+    public AnimationCurve timeBetweenWaves => _timeBetweenWaves;
+    [SerializeField]
+    private float _minSpawnDistanceFromPlayer;
+    [SerializeField]
+    private AnimationCurve _waveDistance;
+    [SerializeField]
+    private float _scaleRate;
+    public float scaleRate => _scaleRate;
+    private float _scaleRateInverse;
+    public float scaleRateInverse => _scaleRateInverse;
+    public float scaleFactor => Mathf.Log(_scaleRate * (GameManager.instance.runTimeMinutes + _scaleRateInverse)) + 1;
+    public int scaleFactorInt => Mathf.FloorToInt(scaleFactor);
+    private List<EnemyAI> _enemies;
     [SerializeField]
     private List<SOWave> _waves;
     private List<Transform> _wavePoints;
@@ -38,6 +52,7 @@ public class EnemyManager : MonoBehaviour
         _instance = this;
         OnEnemyCountChange.AddListener(GameManager.instance.EndConditions);
 
+        _scaleRateInverse = 1 / _scaleRate;
         _attackBudget = _attackBudgetMax;
         _attacks = new();
 
@@ -55,9 +70,15 @@ public class EnemyManager : MonoBehaviour
     private IEnumerator RunWaves()
     {
         yield return new WaitForSeconds(5);
-        for(int i = 0; i < _waves.Count; ++i)
+        float waitTime = 0;
+        while(GameManager.instance.inGame)
         {
-            yield return new WaitForSeconds(RunWave(i));
+            for(int i = 0; i < scaleFactorInt; ++i)
+            {
+                waitTime = RunWave(Random.Range(0, _waves.Count));
+            }
+            Debug.Log($"Time: {GameManager.instance.runTimeMinutes} min.\tSpawning: {scaleFactorInt} waves.");
+            yield return new WaitForSeconds(waitTime);
         }
     }
 
@@ -65,35 +86,35 @@ public class EnemyManager : MonoBehaviour
     {
         StartCoroutine(Spawner(_waves[index], GetSpawnPoint(), 0));
 
-        return _waves[index].maxEnemyCount * _waves[index].spawnInterval;
+        return _waves[index].maxEnemyCount * _waves[index].spawnInterval + _timeBetweenWaves.Evaluate(GameManager.instance.runTimeMinutes);
     }
 
     private Transform GetSpawnPoint()
     {
         if (GameManager.instance.player == null) return _wavePoints[0];
 
-        List<Transform> sortedPoints = (_wavePoints.OrderBy((trans) => (GameManager.instance.player.transform.position - trans.position).sqrMagnitude)).ToList();
-        return sortedPoints[Random.Range(0, (int)(_wavePoints.Count * 0.1f))];
+        List<Transform> sortedPoints = _wavePoints.OrderBy((trans) => (GameManager.instance.player.transform.position - trans.position).sqrMagnitude).Where((trans) => (GameManager.instance.player.transform.position - trans.position).magnitude > _minSpawnDistanceFromPlayer).ToList();
+        return sortedPoints[Mathf.FloorToInt(_waveDistance.Evaluate(Random.Range(0f,1f)))];
     }
 
     private IEnumerator Spawner(SOWave wave, Transform spawnPoint, int spawnedCount)
     {
         if (spawnedCount++ < wave.maxEnemyCount && spawnPoint != null)
         {
-            EnemyAI enemy = Instantiate(wave.spawnPointPrefab, spawnPoint.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity).GetComponent<EnemyAI>();
+            EnemyAI enemy = Instantiate(wave.enemyType, spawnPoint.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity).GetComponent<EnemyAI>();
             enemy.SetUp(wave);
             yield return new WaitForSeconds(wave.spawnInterval);
             StartCoroutine(Spawner(wave, spawnPoint, spawnedCount));
         }
     }
 
-    public void AddEnemyToList(EnemyAI enemy, SOWave spawnPoint)
+    public void AddEnemyToList(EnemyAI enemy)
     {
         _enemies.Add(enemy);
         OnEnemyCountChange?.Invoke();
     }
 
-    public void RemoveEnemyFromList(EnemyAI enemy, SOWave spawnPoint)
+    public void RemoveEnemyFromList(EnemyAI enemy)
     {
         _enemies.Remove(enemy);
         OnEnemyCountChange?.Invoke();

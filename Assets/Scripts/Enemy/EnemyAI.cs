@@ -122,7 +122,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
         _stoppingDistOG = _agent.stoppingDistance;
         _spawnPoint = spawnPoint;
 
-        EnemyManager.instance.AddEnemyToList(this, _spawnPoint);
+        EnemyManager.instance.AddEnemyToList(this);
         _isSetUp = true;
     }
 
@@ -237,6 +237,6 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
 
     protected virtual void OnDestroy()
     {
-        EnemyManager.instance.RemoveEnemyFromList(this, _spawnPoint);
+        EnemyManager.instance.RemoveEnemyFromList(this);
     }
 }

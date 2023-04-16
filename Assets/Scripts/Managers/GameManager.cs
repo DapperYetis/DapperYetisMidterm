@@ -17,6 +17,12 @@ public class GameManager : MonoBehaviour
 
     public bool isPaused => UIManager.instance.isPaused;
 
+    private bool _inGame;
+    public bool inGame => _inGame;
+    private float _startTime;
+    public float runTime => Time.time - _startTime;
+    public float runTimeMinutes => runTime * 0.0166f;
+
     private void Awake()
     {
         if (_instance)
@@ -54,9 +60,16 @@ public class GameManager : MonoBehaviour
 
 
     #region Game Loop
+
+    public void StartGame()
+    {
+        _inGame = true;
+        _startTime = Time.time;
+    }
+
     public void EndConditions()
     {
-        if (UIManager.instance.activeMenu != null) return;
+        if (!_inGame || UIManager.instance.activeMenu != null) return;
 
         if (_player.GetHealthCurrent() <= 0)
         {
@@ -64,15 +77,16 @@ public class GameManager : MonoBehaviour
             UIManager.instance.NextMenu(UIManager.instance.references.loseMenu);
             UIManager.instance.PauseState();
         }
-        else if (EnemyManager.instance.GetEnemyListSize() <= 0)
-        {
-            UIManager.instance.NextMenu(UIManager.instance.references.winMenu);
-            UIManager.instance.PauseState();
-        }
+        //else if (EnemyManager.instance.GetEnemyListSize() <= 0)
+        //{
+        //    UIManager.instance.NextMenu(UIManager.instance.references.winMenu);
+        //    UIManager.instance.PauseState();
+        //}
     }
 
     public void ResetMap()
     {
+        _inGame = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

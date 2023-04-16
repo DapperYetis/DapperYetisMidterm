@@ -7,6 +7,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2230898508323638552, guid: 2a4b61952883c9348ab3b48b76ffd87e,
+        type: 3}
+      propertyPath: m_Speed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2230898508323638552, guid: 2a4b61952883c9348ab3b48b76ffd87e,
+        type: 3}
+      propertyPath: m_Acceleration
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2230898508323638552, guid: 2a4b61952883c9348ab3b48b76ffd87e,
+        type: 3}
+      propertyPath: m_StoppingDistance
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 2230898508323638553, guid: 2a4b61952883c9348ab3b48b76ffd87e,
         type: 3}
       propertyPath: m_Name
@@ -42,6 +57,16 @@ PrefabInstance:
         type: 3}
       propertyPath: _radiusMod
       value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2230898508323638556, guid: 2a4b61952883c9348ab3b48b76ffd87e,
+        type: 3}
+      propertyPath: _speedMult
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2230898508323638556, guid: 2a4b61952883c9348ab3b48b76ffd87e,
+        type: 3}
+      propertyPath: _radiusMult
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2230898508323638556, guid: 2a4b61952883c9348ab3b48b76ffd87e,
         type: 3}
