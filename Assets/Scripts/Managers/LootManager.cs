@@ -27,7 +27,8 @@ public class LootManager : MonoBehaviour
         Gizmos.color = Color.black;
         foreach(Transform trans in _lootLocations)
         {
-            Gizmos.DrawSphere(trans.position, 1);
+            if(trans != null)
+                Gizmos.DrawSphere(trans.position, 1);
         }
     }
 #endif
@@ -40,13 +41,19 @@ public class LootManager : MonoBehaviour
     private void GenerateLootLocations()
     {
         _lootLocations = new(_lootCount);
-        Vector2 location = new();
+        Vector3 location = new();
         for(int i = 0; i < _lootCount; ++i)
         {
             location.x = Random.Range(_spawningBounds.min.x, _spawningBounds.max.x);
-            location.y = Random.Range(_spawningBounds.min.z, _spawningBounds.max.z);
+            location.y = _spawningBounds.center.y;
+            location.z = Random.Range(_spawningBounds.min.z, _spawningBounds.max.z);
 
-            _lootLocations.Add(Instantiate(_lootPrefab, new Vector3(location.x, 1, location.y), Quaternion.identity).transform);
+            if(Physics.Raycast(location, Vector3.down, out RaycastHit hitInfo))
+            {
+                location.y = hitInfo.point.y;
+            }
+
+            _lootLocations.Add(Instantiate(_lootPrefab, location, Quaternion.identity).transform);
             _lootLocations[^1].name = $"Loot item ({i + 1})";
         }
     }
