@@ -7,6 +7,7 @@ public class Inventory : MonoBehaviour
 {
     [SerializeField]
     private Dictionary<SOItem, int> _items;
+    public Dictionary<SOItem, int> items => _items;
 
     private int _currentLevel;
     public int currentLevel => _currentLevel;
