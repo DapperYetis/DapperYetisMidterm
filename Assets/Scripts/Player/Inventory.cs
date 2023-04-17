@@ -1,9 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Inventory : MonoBehaviour
 {
     [SerializeField]
     private Dictionary<SOItem, int> _items;
+
+    private int _currentLevel;
+    public int currentLevel => _currentLevel;
+    private int _currentXP;
+    public int currentXP => _currentXP;
+    private int _currency;
+    public int currency => _currency;
+
+    [HideInInspector]
+    public UnityEvent<int> OnLevelChange;
+    [HideInInspector]
+    public UnityEvent<int> OnXPChange;
+    [HideInInspector]
+    public UnityEvent<int> OnCurrencyChange;
+
+    public void AddXP(int amount)
+    {
+        if (amount <= 0) return;
+
+        _currentXP += amount;
+        // Level change
+        OnXPChange.Invoke(amount);
+    }
+
+    private void LevelUp(int levelCount)
+    {
+        if (levelCount <= 0) return;
+
+        _currentLevel += levelCount;
+        OnLevelChange.Invoke(levelCount);
+    }    
+
+    public void AddCurrency(int amount)
+    {
+        if (amount <= 0) return;
+
+        _currency += amount;
+        OnCurrencyChange.Invoke(amount);
+    }
 }

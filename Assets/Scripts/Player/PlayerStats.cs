@@ -26,11 +26,4 @@ public struct PlayerStats
 
     [Space(20), Header("---Combat---")]
     public float healthMax;
-
-    [HideInInspector]
-    public int currentLevel;
-    [HideInInspector]
-    public int currentXP;
-    [HideInInspector]
-    public int currency;
 }
