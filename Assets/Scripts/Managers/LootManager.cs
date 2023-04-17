@@ -5,6 +5,8 @@ using UnityEngine;
 public class LootManager : MonoBehaviour
 {
     [SerializeField]
+    private GameObject _lootPrefab;
+    [SerializeField]
     private int _lootCount;
     [SerializeField]
     private Bounds _spawningBounds;
@@ -43,9 +45,9 @@ public class LootManager : MonoBehaviour
         {
             location.x = Random.Range(_spawningBounds.min.x, _spawningBounds.max.x);
             location.y = Random.Range(_spawningBounds.min.z, _spawningBounds.max.z);
-            _lootLocations.Add(new GameObject().transform);
+
+            _lootLocations.Add(Instantiate(_lootPrefab, new Vector3(location.x, 1, location.y), Quaternion.identity).transform);
             _lootLocations[^1].name = $"Loot item ({i + 1})";
-            _lootLocations[^1].position = new Vector3(location.x, 1, location.y);
         }
     }
 }

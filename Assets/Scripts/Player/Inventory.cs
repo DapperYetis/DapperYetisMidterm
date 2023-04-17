@@ -21,6 +21,13 @@ public class Inventory : MonoBehaviour
     public UnityEvent<int> OnXPChange;
     [HideInInspector]
     public UnityEvent<int> OnCurrencyChange;
+    [HideInInspector]
+    public UnityEvent<SOItem> OnItemsChange;
+
+    private void Start()
+    {
+        _items = new();
+    }
 
     public void AddXP(int amount)
     {
@@ -45,5 +52,16 @@ public class Inventory : MonoBehaviour
 
         _currency += amount;
         OnCurrencyChange.Invoke(amount);
+    }
+
+    public void AddItem(SOItem item)
+    {
+        if (_items.ContainsKey(item))
+            ++_items[item];
+        else
+            _items.Add(item, 1);
+
+        Debug.Log($"Item: {item.name}\tCount: {_items[item]}");
+        OnItemsChange.Invoke(item);
     }
 }
