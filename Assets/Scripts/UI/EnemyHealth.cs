@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class EnemyHealth : MonoBehaviour
 {
 
-    [SerializeField] Camera _playerCam;
+    Camera _playerCam;
     [SerializeField] Image _enemyhealthBar;
-    [SerializeField] EnemyAI _enemyHealth;
+    [SerializeField] EnemyAI _enemyAI;
 
     Vector3 _direction;
     float _remainingHealth;
@@ -17,7 +17,8 @@ public class EnemyHealth : MonoBehaviour
     private void Start()
     {
         _playerCam = Camera.main;
-        
+
+        _enemyAI.OnHealthChange.AddListener(UpdateEnemyHealth);
     }
 
     void Update()
@@ -37,7 +38,7 @@ public class EnemyHealth : MonoBehaviour
 
     void UpdateEnemyHealth()
     {
-        _remainingHealth = 0;
+        _remainingHealth = _enemyAI.GetHealthCurrent() / _enemyAI.GetHealthMax();
 
         _enemyhealthBar.fillAmount = _remainingHealth;
 
