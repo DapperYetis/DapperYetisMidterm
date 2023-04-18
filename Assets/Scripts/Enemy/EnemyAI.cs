@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UIElements;
+using UnityEngine.Events;
 
 public abstract class EnemyAI : MonoBehaviour, IDamageable
 {
@@ -51,6 +50,10 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
     protected float _radiusMod;
     [SerializeField]
     protected float _speedMod;
+
+    // Events
+    [HideInInspector]
+    public UnityEvent OnHealthChange;
 
     protected Vector3 _playerDir => GameManager.instance.player.transform.position - _headPos.position;
     protected Vector3 _playerDirProjected
@@ -214,6 +217,8 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
         {
             Destroy(gameObject);
         }
+
+        OnHealthChange.Invoke();
     }
 
     public virtual void Heal(float health)
@@ -223,6 +228,8 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
 
         if (_HPCurrent >= _HPMax)
             _HPCurrent = _HPMax;
+
+        OnHealthChange.Invoke();
     }
 
     public virtual float GetHealthMax()

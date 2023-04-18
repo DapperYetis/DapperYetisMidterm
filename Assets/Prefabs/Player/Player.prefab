@@ -324,14 +324,14 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    acclerationTime: 0.2
+    accelerationTime: 0
     jumpHeightMin: 0.5
     jumpHeightMax: 2.5
-    jumpVelocityInitial: 0
     jumpInputTime: 0.15
     jumpCountMax: 2
     gravityAcceleration: 55
     healthMax: 20
+  _interactDistance: 10
   _movement: {fileID: 2104300716291786973}
   _inventory: {fileID: 622012240569451596}
   OnHealthChange:
@@ -381,6 +381,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9bf0b1057ce9ec4cbfa5dece55f07f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnLevelChange:
+    m_PersistentCalls:
+      m_Calls: []
+  OnXPChange:
+    m_PersistentCalls:
+      m_Calls: []
+  OnCurrencyChange:
+    m_PersistentCalls:
+      m_Calls: []
+  OnItemsChange:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &6565174761178748410
 PrefabInstance:
   m_ObjectHideFlags: 0
