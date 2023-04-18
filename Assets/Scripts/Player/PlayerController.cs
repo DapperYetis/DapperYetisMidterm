@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     // Instance variables
     private float _healthCurrent;
+    private bool _canInteract;
+    private IInteractable _interactable;
 
     private void Start()
     {
@@ -41,14 +43,26 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void FixedUpdate()
     {
-        if(Physics.Raycast(_camera.transform.position, _camera.transform.forward, out RaycastHit hit, _interactDistance, 1 << 10))
-        {
-            if(Input.GetButtonDown("Interact"))
-            {
-                IInteractable interactable = hit.transform.GetComponent<IInteractable>();
+        _interactable = null;
+        UIManager.instance.references.interactPrompt.SetActive(false);
+        _canInteract = false;
 
-                interactable?.Interact();
+        if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out RaycastHit hit, _interactDistance, 1 << 10))
+        {
+            _interactable = hit.transform.GetComponent<IInteractable>();
+            if (_interactable != null)
+            {
+                UIManager.instance.references.interactPrompt.SetActive(true);
+                _canInteract = true;
             }
+        }
+    }
+
+    private void Update()
+    {
+        if(_canInteract && Input.GetButtonDown("Interact"))
+        {
+            _interactable?.Interact();
         }
     }
 
