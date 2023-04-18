@@ -7,17 +7,16 @@ using UnityEngine.Events;
 public abstract class EnemyAI : MonoBehaviour, IDamageable
 {
     [Header("--- Components ---")]
-    [SerializeField] 
+    [SerializeField]
     protected Renderer _model;
     [SerializeField]
     protected NavMeshAgent _agent;
     [SerializeField]
-    protected Transform _headPos;
-    [SerializeField]
     protected Transform _shootPos;
 
     [Header("--- Enemy Stats ---")]
-    [Range(1, 100)][SerializeField]
+    [Range(1, 100)]
+    [SerializeField]
     protected float _HPMax;
     [SerializeField]
     protected int _facePlayerSpeed;
@@ -28,11 +27,14 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
     protected bool _isWandering;
 
     [Header("--- Gun Stats ---")]
-    [Range(1, 10)][SerializeField]
+    [Range(1, 10)]
+    [SerializeField]
     protected float _shotDamage;
-    [Range(0.1f, 5)][SerializeField]
+    [Range(0.1f, 5)]
+    [SerializeField]
     protected float _fireRate;
-    [Range(1, 100)][SerializeField]
+    [Range(1, 100)]
+    [SerializeField]
     protected int _shootDist;
     [SerializeField]
     protected float _shootSpread;
@@ -55,7 +57,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
     [HideInInspector]
     public UnityEvent OnHealthChange;
 
-    protected Vector3 _playerDir => GameManager.instance.player.transform.position - _headPos.position;
+    protected Vector3 _playerDir => GameManager.instance.player.transform.position - transform.position;
     protected Vector3 _playerDirProjected
     {
         get
@@ -115,7 +117,14 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
 
         if (_isPlayerInRange)
         {
-            CanSeePlayer();
+            if (_agent.remainingDistance < _agent.stoppingDistance)
+                FacePlayer();
+
+            if (!_isShooting)
+            {
+                _isShooting = true;
+                EnemyManager.instance.QueueAttack(Shoot);
+            }
         }
     }
 
@@ -127,36 +136,6 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
 
         EnemyManager.instance.AddEnemyToList(this);
         _isSetUp = true;
-    }
-
-    protected virtual bool CanSeePlayer()
-    {
-        _angleToPlayer = Vector3.Angle(new Vector3(_playerDir.x, 0, _playerDir.z), transform.forward);
-
-        Debug.DrawRay(_headPos.position, _playerDir, Color.yellow);
-
-        RaycastHit hit;
-        if (Physics.Raycast(_headPos.position, _playerDir, out hit))
-        {
-            if (hit.collider.CompareTag("Player") && _angleToPlayer <= _visionAngle)
-            {
-                _agent.stoppingDistance = _stoppingDistOG;
-
-
-                if (_agent.remainingDistance < _agent.stoppingDistance)
-                    FacePlayer();
-
-                if (!_isShooting)
-                {
-                    _isShooting = true;
-                    EnemyManager.instance.QueueAttack(Shoot);
-                }
-
-                return true;
-            }
-        }
-
-        return false;
     }
 
     protected virtual void OnTriggerEnter(Collider other)
