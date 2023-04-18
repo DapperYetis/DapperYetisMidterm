@@ -396,9 +396,115 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8725426224570388889, guid: fb22446bf80871c4db7933a44452ea95,
         type: 3}
+      propertyPath: _HPMax
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8725426224570388889, guid: fb22446bf80871c4db7933a44452ea95,
+        type: 3}
       propertyPath: _model
       value: 
       objectReference: {fileID: 261959788}
+    - target: {fileID: -8725426224570388889, guid: fb22446bf80871c4db7933a44452ea95,
+        type: 3}
+      propertyPath: _bullet
+      value: 
+      objectReference: {fileID: 4446431687888057331, guid: 5a7dc231a2320214986c1f0f1db1f0a3,
+        type: 3}
+    - target: {fileID: -8725426224570388889, guid: fb22446bf80871c4db7933a44452ea95,
+        type: 3}
+      propertyPath: _fireRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8725426224570388889, guid: fb22446bf80871c4db7933a44452ea95,
+        type: 3}
+      propertyPath: _shootPos
+      value: 
+      objectReference: {fileID: 261959790}
+    - target: {fileID: -8725426224570388889, guid: fb22446bf80871c4db7933a44452ea95,
+        type: 3}
+      propertyPath: _speedMod
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8725426224570388889, guid: fb22446bf80871c4db7933a44452ea95,
+        type: 3}
+      propertyPath: _radiusMod
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8725426224570388889, guid: fb22446bf80871c4db7933a44452ea95,
+        type: 3}
+      propertyPath: _shootDist
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: -8725426224570388889, guid: fb22446bf80871c4db7933a44452ea95,
+        type: 3}
+      propertyPath: _shootPosB
+      value: 
+      objectReference: {fileID: 261959789}
+    - target: {fileID: -8725426224570388889, guid: fb22446bf80871c4db7933a44452ea95,
+        type: 3}
+      propertyPath: _changeTime
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8725426224570388889, guid: fb22446bf80871c4db7933a44452ea95,
+        type: 3}
+      propertyPath: _shotDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8725426224570388889, guid: fb22446bf80871c4db7933a44452ea95,
+        type: 3}
+      propertyPath: _bulletSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: -8725426224570388889, guid: fb22446bf80871c4db7933a44452ea95,
+        type: 3}
+      propertyPath: _shootSpread
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: -8725426224570388889, guid: fb22446bf80871c4db7933a44452ea95,
+        type: 3}
+      propertyPath: _visionAngle
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: -8725426224570388889, guid: fb22446bf80871c4db7933a44452ea95,
+        type: 3}
+      propertyPath: _facePlayerSpeed
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: -8725426224570388889, guid: fb22446bf80871c4db7933a44452ea95,
+        type: 3}
+      propertyPath: _changeCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8725426224570388889, guid: fb22446bf80871c4db7933a44452ea95,
+        type: 3}
+      propertyPath: _changeCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8725426224570388889, guid: fb22446bf80871c4db7933a44452ea95,
+        type: 3}
+      propertyPath: _changeCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8725426224570388889, guid: fb22446bf80871c4db7933a44452ea95,
+        type: 3}
+      propertyPath: _changeCurve.m_Curve.Array.data[1].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8725426224570388889, guid: fb22446bf80871c4db7933a44452ea95,
+        type: 3}
+      propertyPath: _changeCurve.m_Curve.Array.data[1].outSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -564942941452632455, guid: fb22446bf80871c4db7933a44452ea95,
+        type: 3}
+      propertyPath: m_Height
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: -564942941452632455, guid: fb22446bf80871c4db7933a44452ea95,
+        type: 3}
+      propertyPath: m_AutoBraking
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6826903240270539524, guid: fb22446bf80871c4db7933a44452ea95,
         type: 3}
       propertyPath: m_Name
@@ -412,7 +518,7 @@ PrefabInstance:
     - target: {fileID: 6826903240270837540, guid: fb22446bf80871c4db7933a44452ea95,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 6826903240270837540, guid: fb22446bf80871c4db7933a44452ea95,
         type: 3}
@@ -422,7 +528,7 @@ PrefabInstance:
     - target: {fileID: 6826903240270837540, guid: fb22446bf80871c4db7933a44452ea95,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -40
       objectReference: {fileID: 0}
     - target: {fileID: 6826903240270837540, guid: fb22446bf80871c4db7933a44452ea95,
         type: 3}
@@ -464,6 +570,18 @@ PrefabInstance:
 --- !u!137 &261959788 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 6826903240275748356, guid: fb22446bf80871c4db7933a44452ea95,
+    type: 3}
+  m_PrefabInstance: {fileID: 261959787}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &261959789 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6826903240270837534, guid: fb22446bf80871c4db7933a44452ea95,
+    type: 3}
+  m_PrefabInstance: {fileID: 261959787}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &261959790 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6826903240270837576, guid: fb22446bf80871c4db7933a44452ea95,
     type: 3}
   m_PrefabInstance: {fileID: 261959787}
   m_PrefabAsset: {fileID: 0}
