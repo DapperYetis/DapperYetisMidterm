@@ -6,6 +6,14 @@ public class LootItem : MonoBehaviour
 {
     [SerializeField]
     private SOItem _item;
+    public SOItem item
+    {
+        get => _item;
+        set
+        {
+            _item = item;
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {

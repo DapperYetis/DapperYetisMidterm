@@ -12,3 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5772fd7538930743a9528f463fb1867, type: 3}
   m_Name: Substitute Common Item
   m_EditorClassIdentifier: 
+  description: Please don't actually use me...
+  prefab: {fileID: 5599611686792540281, guid: 1b9930d2b1e1a6f43ae4e91452f4db25, type: 3}
+  rarity: 0
+  statsModification:
+    walkSpeed: 5
+    sprintMultiplier: 0
+    accelerationRate:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    accelerationTime: 0
+    jumpHeightMin: 0
+    jumpHeightMax: 0
+    jumpInputTime: 0
+    jumpCountMax: 0
+    gravityAcceleration: 0
+    healthMax: 0

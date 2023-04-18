@@ -44,9 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afb7d4ac09f749f4bab466a52b45e31f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lootPrefab: {fileID: 5599611686792540281, guid: 1b9930d2b1e1a6f43ae4e91452f4db25,
+  _lootPrefab: {fileID: 2589429095351886765, guid: f30c0b3139383084bb1c92fbada29182,
     type: 3}
   _lootCount: 20
   _spawningBounds:
     m_Center: {x: 0, y: 84, z: 0}
     m_Extent: {x: 125, y: 1, z: 125}
+  _items:
+  - {fileID: 11400000, guid: 943ef6c05a1954e4ca3244110e5df3e9, type: 2}
