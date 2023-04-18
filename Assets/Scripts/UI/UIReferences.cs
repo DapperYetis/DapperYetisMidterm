@@ -94,4 +94,7 @@ public class UIReferences : MonoBehaviour
 
     public Toggle toggleSprint => _toggleSprint;
 
+    [SerializeField] GameObject _interactPrompt;
+
+    public GameObject interactPrompt => _interactPrompt;
 }

@@ -356,6 +356,15 @@ public class UIManager : MonoBehaviour
 
     }
 
+    public void PromptOn()
+    {
+        _references.interactPrompt.SetActive(true);
+    }
+
+    public void PromptOff()
+    {
+        _references.interactPrompt.SetActive(false);
+    }
 
     #endregion
 
