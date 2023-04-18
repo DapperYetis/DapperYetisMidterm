@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
         if (_instance)
         {
             gameObject.SetActive(false);
+            Destroy(transform.parent.gameObject);
             return;
         }
 

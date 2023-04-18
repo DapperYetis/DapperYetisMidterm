@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class LootManager : MonoBehaviour
 {
+    private static LootManager _instance;
+    public static LootManager instance => _instance;
+
     [SerializeField]
     private GameObject _lootPrefab;
     [SerializeField]
@@ -14,6 +17,12 @@ public class LootManager : MonoBehaviour
     
     private void Start()
     {
+        if (_instance)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+
         SetUpStage();
     }
 
