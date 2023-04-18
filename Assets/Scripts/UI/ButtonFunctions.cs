@@ -7,7 +7,10 @@ public class ButtonFunctions : MonoBehaviour
 {
     public void PlayGame()
     {
-        UIManager.instance.PopStack();
+        while (UIManager.instance.activeMenu != null)
+        {
+            UIManager.instance.PopStack();
+        }
         UIManager.instance.TransitionToGame();
         UIManager.instance.ResumeState();
 
@@ -15,9 +18,7 @@ public class ButtonFunctions : MonoBehaviour
 
     public void ToLoadout()
     {
-        UIManager.instance.PopStack();
         UIManager.instance.TransitionToLoadout();
-
     }
 
     public void ToSettings()
@@ -49,4 +50,30 @@ public class ButtonFunctions : MonoBehaviour
         UIManager.instance.ResumeState();
 
     }
+
+    public void SetVolume()
+    {
+        UIManager.instance.SetVolumeFromSlider();
+    }
+
+    public void SetSensitivity()
+    {
+        UIManager.instance.SetSensitivityFromSlider();
+    }
+
+    public void SetSprintButton()
+    {
+        UIManager.instance.SetCtrlSprint();
+    }
+    
+    public void SetInvertedControls()
+    {
+        UIManager.instance.SetInvertCam();
+    }
+
+    public void SetToggleSprint()
+    {
+        UIManager.instance.SetSprintHold();
+    }
+
 }

@@ -13,7 +13,7 @@ public class UIManager : MonoBehaviour
 
 
     [Header("----- Settings -----")]
-    [SerializeField] 
+    [SerializeField]
     private AudioMixer _masterMixer;
     private UIReferences _references;
     public UIReferences references => _references;
@@ -51,7 +51,7 @@ public class UIManager : MonoBehaviour
             gameObject.SetActive(false);
             return;
         }
-        
+
         instance = this;
 
         _origTimeScale = Time.timeScale;
@@ -67,7 +67,7 @@ public class UIManager : MonoBehaviour
                 PrevMenu();
                 ResumeState();
             }
-            else if(_activeMenu == null)
+            else if (_activeMenu == null)
             {
                 PauseState();
                 NextMenu(_references.pauseMenu);
@@ -94,7 +94,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    
+
     #region StartupFunctionality
 
     private void SetUp()
@@ -139,7 +139,6 @@ public class UIManager : MonoBehaviour
 
     #endregion
 
-
     #region Settings
     public void SetVolume(float volume)
     {
@@ -153,7 +152,7 @@ public class UIManager : MonoBehaviour
         _masterMixer.SetFloat("MasterVolume", Mathf.Log10(volume / 100) * 20f);
     }
 
-    
+
     public void SetVolumeFromSlider()
     {
         SetVolume(_references.soundSlider.value);
@@ -168,11 +167,11 @@ public class UIManager : MonoBehaviour
     {
         if (sensitivity < 1)
         {
-            sensitivity = .001f;
+            sensitivity = 1.5f;
         }
 
-        RefreshSlider(sensitivity);
-        PlayerPrefs.SetFloat("SavedSensitivity", sensitivity);
+        RefreshSensitivity(sensitivity);
+        PlayerPrefs.SetFloat("Sensitivity", sensitivity);
     }
 
 
@@ -188,10 +187,10 @@ public class UIManager : MonoBehaviour
 
     public void SetSprintHold()
     {
-        if(_references.toggleSprint)
+        if (_references.toggleSprint.isOn)
             PlayerPrefs.SetInt("HoldSprint", 1);
 
-        else if (!_references.toggleSprint)
+        else
             PlayerPrefs.SetInt("HoldSprint", 0);
     }
 
@@ -199,7 +198,7 @@ public class UIManager : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("HoldSprint") == 1)
             return true;
-        else 
+        else
             return false;
     }
 
@@ -242,7 +241,7 @@ public class UIManager : MonoBehaviour
     #region Menu Buttons
     public void TransitionToLoadout()
     {
-        NextMenu(_references.loadoutMenu);
+       NextMenu(_references.loadoutMenu);
     }
 
     public void TransitionToGame()
@@ -295,10 +294,10 @@ public class UIManager : MonoBehaviour
 
     public void NextMenu(GameObject newMenu)
     {
-        if(_activeMenu != null)
+        if (_activeMenu != null)
             _activeMenu.SetActive(false);
         _menuStack.Push(newMenu);
-        if(_activeMenu != null)
+        if (_activeMenu != null)
             _activeMenu.SetActive(true);
     }
 
@@ -354,7 +353,7 @@ public class UIManager : MonoBehaviour
 
     public void MaxHealthUpdate()
     {
-        
+
     }
 
 
