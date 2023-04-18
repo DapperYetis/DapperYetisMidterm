@@ -14,6 +14,10 @@ public class LootManager : MonoBehaviour
     [SerializeField]
     private Bounds _spawningBounds;
     private List<Transform> _lootLocations;
+
+    [Header("---Items---")]
+    [SerializeField]
+    private List<SOItem> _items;
     
     private void Start()
     {
@@ -22,6 +26,8 @@ public class LootManager : MonoBehaviour
             gameObject.SetActive(false);
             return;
         }
+
+        _instance = this;
 
         SetUpStage();
     }
@@ -65,5 +71,10 @@ public class LootManager : MonoBehaviour
             _lootLocations.Add(Instantiate(_lootPrefab, location, Quaternion.identity).transform);
             _lootLocations[^1].name = $"Loot item ({i + 1})";
         }
+    }
+
+    public SOItem GetItem()
+    {
+        return _items[Random.Range(0, _items.Count)];
     }
 }

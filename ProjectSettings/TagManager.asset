@@ -11,14 +11,14 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Ground
+  - Terrain
   - Water
   - UI
   - Player
   - Enemy
   - PlayerFX
   - EnemyFX
-  - 
+  - Interactable
   - 
   - 
   - 
