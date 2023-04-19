@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
@@ -16,6 +17,10 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private AudioMixer _masterMixer;
     private UIReferences _references;
+    [SerializeField]
+    Inventory _playerInv;
+    [SerializeField] Animator _transition;
+
     public UIReferences references => _references;
     [Header("----- Temporary -----")]
     [SerializeField]
@@ -104,6 +109,9 @@ public class UIManager : MonoBehaviour
         {
             _playerController = GameManager.instance.player;
             _playerController.OnHealthChange.AddListener(UpdateHealth);
+            _playerInv = _playerController.inventory;
+            _transition = _references.animator;
+            
             SetHealth();
             EnemyManager.instance.OnEnemyCountChange.AddListener(UpdateEnemyCount);
 
@@ -306,6 +314,12 @@ public class UIManager : MonoBehaviour
         _menuStack.Push(newMenu);
         _activeMenu.SetActive(true);
     }
+
+    public void TriggerTransition()
+    {
+        _references.transitionScreen.SetActive(true);
+        _transition.SetTrigger("Button");
+    }
     #endregion
 
     #region HUD Functionality
@@ -318,7 +332,7 @@ public class UIManager : MonoBehaviour
             StartCoroutine(Damaged());
             SetHealth();
             float currHealth = (float)_playerController.GetHealthCurrent() / (float)_playerController.GetHealthMax();
-            _references.image.fillAmount = currHealth;
+            _references.hpBar.fillAmount = currHealth;
         }
     }
 
@@ -330,13 +344,25 @@ public class UIManager : MonoBehaviour
     }
     public void UpdateScore()
     {
-
+        
     }
 
     public void TrackCurrency()
     {
-
+        _references.currency.SetText(_playerInv.currency.ToString());
     }
+
+    public void LevelUp()
+    {
+        _references.playerLevel.SetText(_playerInv.currentLevel.ToString());
+    }
+
+    public void IncreaseXP()
+    {
+        //_references.
+    }
+
+    
 
     IEnumerator Damaged()
     {

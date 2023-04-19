@@ -40,7 +40,11 @@ public class UIReferences : MonoBehaviour
     
     [SerializeField] Image _hpBar;
 
-    public Image image => _hpBar;
+    public Image hpBar => _hpBar;
+
+    [SerializeField] Image _xpBar;
+
+    public Image xpbar => _xpBar;
 
     [SerializeField] TextMeshProUGUI _enemyCount;
 
@@ -97,4 +101,12 @@ public class UIReferences : MonoBehaviour
     [SerializeField] GameObject _interactPrompt;
 
     public GameObject interactPrompt => _interactPrompt;
+
+    [SerializeField] GameObject _transitionScreen;
+    public GameObject transitionScreen => _transitionScreen;
+
+    [SerializeField] Animator _animator;
+
+    public Animator animator => _animator;
+
 }
