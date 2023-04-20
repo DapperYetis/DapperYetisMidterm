@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,6 +13,7 @@ public class ButtonFunctions : MonoBehaviour
         {
             UIManager.instance.PopStack();
         }
+        UIManager.instance.TriggerTransition();
         UIManager.instance.TransitionToGame();
         UIManager.instance.ResumeState();
 
