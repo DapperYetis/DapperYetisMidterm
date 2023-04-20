@@ -640,8 +640,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5924819110659384265}
   - component: {fileID: -6254153963186168960}
+  - component: {fileID: 6924806091130698917}
   - component: {fileID: 5924819110668700713}
   - component: {fileID: -8973036127914387936}
+  - component: {fileID: -1593023976566139328}
+  - component: {fileID: 4904734748086412106}
   m_Layer: 0
   m_Name: Bud
   m_TagString: Untagged
@@ -658,8 +661,8 @@ Transform:
   m_GameObject: {fileID: 5924819110659358697}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5924819110659384267}
   - {fileID: 5924819110659384269}
@@ -693,29 +696,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b57400d0641ef14c94789297be0b056, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _model: {fileID: 0}
-  _agent: {fileID: 0}
-  _headPos: {fileID: 0}
-  _shootPos: {fileID: 0}
-  _HPMax: 0
-  _facePlayerSpeed: 0
-  _visionAngle: 0
+  _model: {fileID: 5924819110664565481}
+  _agent: {fileID: -8973036127914387936}
+  _shootPos: {fileID: 5924819110659384275}
+  _HPMax: 2
+  _facePlayerSpeed: 600
+  _visionAngle: 90
   _isWandering: 0
-  _shotDamage: 0
-  _fireRate: 0
-  _shootDist: 0
-  _shootSpread: 0
-  _bullet: {fileID: 0}
+  _shotDamage: 1
+  _fireRate: 1
+  _shootDist: 15
+  _shootSpread: 5
+  _bullet: {fileID: 6374708375792766595, guid: faa41594a23192d4ea0b106c983819ac, type: 3}
   _bulletSpeed: 0
-  _changeTime: 0
+  _changeTime: 2
   _changeCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _radiusMod: 0
-  _speedMod: 0
+  _radiusMod: 0.25
+  _speedMod: 1.5
+  OnHealthChange:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &6924806091130698917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5924819110659358697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe97b6b5b6459ae499223e07f54ab112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _xp: 5
+  _currency: 2
 --- !u!95 &5924819110668700713
 Animator:
   serializedVersion: 5
@@ -746,19 +783,46 @@ NavMeshAgent:
   m_GameObject: {fileID: 5924819110659358697}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.4
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_AngularSpeed: 600
+  m_StoppingDistance: 3
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 0.7
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!136 &-1593023976566139328
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5924819110659358697}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.4
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.2, z: 0}
+--- !u!135 &4904734748086412106
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5924819110659358697}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 15
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5924819110659358699
 GameObject:
   m_ObjectHideFlags: 0
