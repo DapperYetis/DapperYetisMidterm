@@ -334,8 +334,7 @@ MonoBehaviour:
   _HPMax: 20
   _facePlayerSpeed: 600
   _visionAngle: 90
-  _isWandering: 0
-  _shotDamage: 3
+  _shotDamage: 4
   _fireRate: 2
   _shootDist: 4
   _shootSpread: 1
@@ -416,7 +415,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 1
-  m_Speed: 7
+  m_Speed: 6
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 600

@@ -99,9 +99,9 @@ MonoBehaviour:
   _HPMax: 6
   _facePlayerSpeed: 600
   _visionAngle: 90
-  _shotDamage: 3
+  _shotDamage: 2
   _fireRate: 2
-  _shootDist: 2
+  _shootDist: 3
   _shootSpread: 1
   _bullet: {fileID: 0}
   _bulletSpeed: 20
