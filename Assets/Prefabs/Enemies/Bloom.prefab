@@ -989,7 +989,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _model: {fileID: 0}
-  _agent: {fileID: 0}
+  _agent: {fileID: -564942941452632455}
   _headPos: {fileID: 0}
   _shootPos: {fileID: 0}
   _HPMax: 0
@@ -1011,6 +1011,9 @@ MonoBehaviour:
     m_RotationOrder: 4
   _radiusMod: 0
   _speedMod: 0
+  OnHealthChange:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!95 &6826903240279890116
 Animator:
   serializedVersion: 5
