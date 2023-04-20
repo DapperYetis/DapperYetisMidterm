@@ -1278,8 +1278,11 @@ GameObject:
   m_Component:
   - component: {fileID: 3752533165805194354}
   - component: {fileID: -2144606513326574128}
+  - component: {fileID: -5859926899071614681}
   - component: {fileID: 3752533165796107160}
   - component: {fileID: -8300420723099910886}
+  - component: {fileID: -6767532546295120893}
+  - component: {fileID: 6016059873401008225}
   m_Layer: 0
   m_Name: Werewolf
   m_TagString: Untagged
@@ -1336,12 +1339,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _model: {fileID: 0}
   _agent: {fileID: 0}
-  _headPos: {fileID: 0}
   _shootPos: {fileID: 0}
   _HPMax: 0
   _facePlayerSpeed: 0
   _visionAngle: 0
-  _isWandering: 0
   _shotDamage: 0
   _fireRate: 0
   _shootDist: 0
@@ -1357,6 +1358,23 @@ MonoBehaviour:
     m_RotationOrder: 4
   _radiusMod: 0
   _speedMod: 0
+  OnHealthChange:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &-5859926899071614681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3752533165805621330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe97b6b5b6459ae499223e07f54ab112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _xp: 0
+  _currency: 0
 --- !u!95 &3752533165796107160
 Animator:
   serializedVersion: 5
@@ -1400,6 +1418,33 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!136 &-6767532546295120893
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3752533165805621330}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &6016059873401008225
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3752533165805621330}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3752533165805621332
 GameObject:
   m_ObjectHideFlags: 0

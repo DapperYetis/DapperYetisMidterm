@@ -23,8 +23,6 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
     [SerializeField]
     protected int _visionAngle;
     protected float _HPCurrent;
-    [SerializeField]
-    protected bool _isWandering;
 
     [Header("--- Gun Stats ---")]
     [Range(1, 10)]

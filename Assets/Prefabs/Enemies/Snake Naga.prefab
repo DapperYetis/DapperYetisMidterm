@@ -296,8 +296,11 @@ GameObject:
   m_Component:
   - component: {fileID: 7075855458551975990}
   - component: {fileID: -5684284074935576437}
+  - component: {fileID: 7353427685030719017}
   - component: {fileID: 7075855458542108636}
   - component: {fileID: -1956189428985556130}
+  - component: {fileID: 1413299189605927935}
+  - component: {fileID: 5112210415975740181}
   m_Layer: 0
   m_Name: Snake Naga
   m_TagString: Untagged
@@ -374,12 +377,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _model: {fileID: 0}
   _agent: {fileID: 0}
-  _headPos: {fileID: 0}
   _shootPos: {fileID: 0}
   _HPMax: 0
   _facePlayerSpeed: 0
   _visionAngle: 0
-  _isWandering: 0
   _shotDamage: 0
   _fireRate: 0
   _shootDist: 0
@@ -395,6 +396,23 @@ MonoBehaviour:
     m_RotationOrder: 4
   _radiusMod: 0
   _speedMod: 0
+  OnHealthChange:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &7353427685030719017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7075855458551483414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe97b6b5b6459ae499223e07f54ab112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _xp: 0
+  _currency: 0
 --- !u!95 &7075855458542108636
 Animator:
   serializedVersion: 5
@@ -438,6 +456,33 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!136 &1413299189605927935
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7075855458551483414}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &5112210415975740181
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7075855458551483414}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7075855458551483456
 GameObject:
   m_ObjectHideFlags: 0

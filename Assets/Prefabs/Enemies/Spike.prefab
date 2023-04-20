@@ -112,8 +112,11 @@ GameObject:
   m_Component:
   - component: {fileID: 8926234298307210886}
   - component: {fileID: 3907181330529829688}
+  - component: {fileID: 7100518971335190995}
   - component: {fileID: 8926234298300006758}
   - component: {fileID: 2493943817979106396}
+  - component: {fileID: -6689699275809595721}
+  - component: {fileID: 3827938318170807485}
   m_Layer: 0
   m_Name: Spike
   m_TagString: Untagged
@@ -159,12 +162,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _model: {fileID: 0}
   _agent: {fileID: 0}
-  _headPos: {fileID: 0}
   _shootPos: {fileID: 0}
   _HPMax: 0
   _facePlayerSpeed: 0
   _visionAngle: 0
-  _isWandering: 0
   _shotDamage: 0
   _fireRate: 0
   _shootDist: 0
@@ -180,6 +181,23 @@ MonoBehaviour:
     m_RotationOrder: 4
   _radiusMod: 0
   _speedMod: 0
+  OnHealthChange:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &7100518971335190995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8926234298307441318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe97b6b5b6459ae499223e07f54ab112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _xp: 0
+  _currency: 0
 --- !u!95 &8926234298300006758
 Animator:
   serializedVersion: 5
@@ -223,6 +241,33 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!136 &-6689699275809595721
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8926234298307441318}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &3827938318170807485
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8926234298307441318}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8926234298307441320
 GameObject:
   m_ObjectHideFlags: 0

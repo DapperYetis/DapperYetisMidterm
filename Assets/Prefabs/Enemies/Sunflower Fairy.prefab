@@ -1334,8 +1334,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5630662578996820271}
   - component: {fileID: -576026949194059469}
+  - component: {fileID: -6204055198912182656}
   - component: {fileID: 5630662579004528335}
   - component: {fileID: -2935621150721786784}
+  - component: {fileID: 8333303989335867050}
+  - component: {fileID: -3977656441912440672}
   m_Layer: 0
   m_Name: Sunflower Fairy
   m_TagString: Untagged
@@ -1396,12 +1399,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _model: {fileID: 0}
   _agent: {fileID: 0}
-  _headPos: {fileID: 0}
   _shootPos: {fileID: 0}
   _HPMax: 0
   _facePlayerSpeed: 0
   _visionAngle: 0
-  _isWandering: 0
   _shotDamage: 0
   _fireRate: 0
   _shootDist: 0
@@ -1417,6 +1418,23 @@ MonoBehaviour:
     m_RotationOrder: 4
   _radiusMod: 0
   _speedMod: 0
+  OnHealthChange:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &-6204055198912182656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5630662578997241103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe97b6b5b6459ae499223e07f54ab112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _xp: 0
+  _currency: 0
 --- !u!95 &5630662579004528335
 Animator:
   serializedVersion: 5
@@ -1460,6 +1478,33 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!136 &8333303989335867050
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5630662578997241103}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &-3977656441912440672
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5630662578997241103}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5630662578997241153
 GameObject:
   m_ObjectHideFlags: 0

@@ -1340,8 +1340,11 @@ GameObject:
   m_Component:
   - component: {fileID: 7355849157076192469}
   - component: {fileID: 5067136821472415653}
+  - component: {fileID: -3947793967169715839}
   - component: {fileID: 7355849157069038389}
   - component: {fileID: 5988892425251434761}
+  - component: {fileID: 2741660182144818385}
+  - component: {fileID: -1344576275995717260}
   m_Layer: 0
   m_Name: Snake
   m_TagString: Untagged
@@ -1400,12 +1403,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _model: {fileID: 0}
   _agent: {fileID: 0}
-  _headPos: {fileID: 0}
   _shootPos: {fileID: 0}
   _HPMax: 0
   _facePlayerSpeed: 0
   _visionAngle: 0
-  _isWandering: 0
   _shotDamage: 0
   _fireRate: 0
   _shootDist: 0
@@ -1421,6 +1422,23 @@ MonoBehaviour:
     m_RotationOrder: 4
   _radiusMod: 0
   _speedMod: 0
+  OnHealthChange:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &-3947793967169715839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7355849157076422901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe97b6b5b6459ae499223e07f54ab112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _xp: 0
+  _currency: 0
 --- !u!95 &7355849157069038389
 Animator:
   serializedVersion: 5
@@ -1464,6 +1482,33 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!136 &2741660182144818385
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7355849157076422901}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &-1344576275995717260
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7355849157076422901}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7355849157076422903
 GameObject:
   m_ObjectHideFlags: 0

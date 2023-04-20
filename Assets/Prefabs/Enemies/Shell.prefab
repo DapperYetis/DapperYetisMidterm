@@ -99,7 +99,6 @@ MonoBehaviour:
   _HPMax: 6
   _facePlayerSpeed: 600
   _visionAngle: 90
-  _isWandering: 0
   _shotDamage: 3
   _fireRate: 2
   _shootDist: 2

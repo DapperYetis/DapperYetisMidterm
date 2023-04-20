@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a01e0102239aeaa4e9d291efd03705ea, type: 3}
+  m_Name: Bloom Wave
+  m_EditorClassIdentifier: 
+  _enemyType: {fileID: 7160668322234071085, guid: a87f651b28f3d234db143fa6b87bea0c,
+    type: 3}
+  _spawnInterval: 0.2
+  _maxEnemyCount: 5
