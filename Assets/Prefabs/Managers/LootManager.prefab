@@ -52,3 +52,16 @@ MonoBehaviour:
     m_Extent: {x: 125, y: 1, z: 125}
   _items:
   - {fileID: 11400000, guid: 943ef6c05a1954e4ca3244110e5df3e9, type: 2}
+  - {fileID: 11400000, guid: 7aefbd76851d4a04289a62924ce68aca, type: 2}
+  - {fileID: 11400000, guid: cefc0b11277648b469b14a58fb0408c0, type: 2}
+  - {fileID: 11400000, guid: 19df14ec3d852ba43a28960872e03e0a, type: 2}
+  _rarityChances:
+    _chanceItems:
+    - _weight: 59
+      _item: 0
+    - _weight: 25
+      _item: 1
+    - _weight: 15
+      _item: 2
+    - _weight: 1
+      _item: 3

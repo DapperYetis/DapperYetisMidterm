@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using ChanceSystem;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class LootManager : MonoBehaviour
@@ -18,6 +20,10 @@ public class LootManager : MonoBehaviour
     [Header("---Items---")]
     [SerializeField]
     private List<SOItem> _items;
+    private Dictionary<Rarity, List<SOItem>> _itemsByRarity;
+
+    [SerializeField]
+    private RandomItem<Rarity> _rarityChances;
     
     private void Start()
     {
@@ -28,8 +34,22 @@ public class LootManager : MonoBehaviour
         }
 
         _instance = this;
+        SortItems();
 
         SetUpStage();
+    }
+
+    private void SortItems()
+    {
+        _itemsByRarity = new(System.Enum.GetNames(typeof(Rarity)).Length)
+        {
+            [Rarity.Common] = (from item in _items where item.rarity == Rarity.Common select item).ToList(),
+            [Rarity.Uncommon] = (from item in _items where item.rarity == Rarity.Uncommon select item).ToList(),
+            [Rarity.Rare] = (from item in _items where item.rarity == Rarity.Rare select item).ToList(),
+            [Rarity.Legendary] = (from item in _items where item.rarity == Rarity.Legendary select item).ToList(),
+            [Rarity.Unique] = (from item in _items where item.rarity == Rarity.Unique select item).ToList()
+        };
+        _rarityChances.CalcWeight();
     }
 
 #if UNITY_EDITOR
@@ -75,6 +95,8 @@ public class LootManager : MonoBehaviour
 
     public SOItem GetItem()
     {
-        return _items[Random.Range(0, _items.Count)];
+        Rarity rarity = _rarityChances.GetItem();
+        Debug.Log("RARITY: " + rarity);
+        return _itemsByRarity[rarity][Random.Range(0, _itemsByRarity[rarity].Count)];
     }
 }
