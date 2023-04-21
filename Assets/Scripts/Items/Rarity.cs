@@ -2,7 +2,7 @@
 {
     Common,
     Uncommon,
-    Rarity,
+    Rare,
     Legendary,
     Unique
 }

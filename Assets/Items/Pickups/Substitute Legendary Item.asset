@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5772fd7538930743a9528f463fb1867, type: 3}
+  m_Name: Substitute Legendary Item
+  m_EditorClassIdentifier: 
+  description: Please don't actually use me...
+  prefab: {fileID: 5599611686792540281, guid: c1bdcc29de51e654bb29afd4b66da526, type: 3}
+  rarity: 3
+  statsModification:
+    walkSpeed: 50
+    sprintMultiplier: 0
+    accelerationRate:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    accelerationTime: 0
+    jumpHeightMin: 0
+    jumpHeightMax: 0
+    jumpInputTime: 0
+    jumpCountMax: 0
+    gravityAcceleration: 0
+    healthMax: 0
