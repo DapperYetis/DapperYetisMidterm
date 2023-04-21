@@ -4,5 +4,11 @@ using UnityEngine;
 
 public class Werewolf : EnemyAI
 {
-    
+    [Header("--- Components ---")]
+    [SerializeField]
+    protected Transform _shootPosB;
+    [SerializeField]
+    protected Transform _shootPosC;
+
+
 }
