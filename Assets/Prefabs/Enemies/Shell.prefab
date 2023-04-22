@@ -95,13 +95,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _model: {fileID: 8658647790751366179}
   _agent: {fileID: 7532805711137955789}
-  _shootPos: {fileID: 8658647790737665345}
+  _shootPos:
+  - {fileID: 8658647790737665345}
   _HPMax: 6
   _facePlayerSpeed: 600
-  _visionAngle: 90
-  _shotDamage: 2
-  _fireRate: 2
-  _shootDist: 3
+  _attackDamage: 0
+  _attackRange: 0
+  _attackRate: 0
+  _attackDist: 0
   _shootSpread: 1
   _bullet: {fileID: 0}
   _bulletSpeed: 20
@@ -158,8 +159,8 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8658647790737699107}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 600f58dca42f8f44f8fc2458a0fb193b, type: 3}
-  m_Controller: {fileID: 9100000, guid: bd1d4b0798e4ca14d9e64f80effaf151, type: 2}
+  m_Avatar: {fileID: 9000000, guid: a04df152b8be68546a3ea43b6d290ec0, type: 3}
+  m_Controller: {fileID: 9100000, guid: 93c84982f4a119c41bb4fa5364a04626, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -188,7 +189,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 0.8
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4

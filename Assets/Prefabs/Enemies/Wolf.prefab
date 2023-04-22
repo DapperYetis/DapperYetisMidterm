@@ -221,7 +221,7 @@ Transform:
   m_GameObject: {fileID: 1394923249618666509}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1394923249618638895}
@@ -248,13 +248,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _model: {fileID: 1394923249621846285}
   _agent: {fileID: -8553164506359077236}
-  _shootPos: {fileID: 1394923249618638891}
+  _shootPos:
+  - {fileID: 1394923249618638891}
   _HPMax: 3
   _facePlayerSpeed: 600
-  _visionAngle: 90
-  _shotDamage: 2
-  _fireRate: 0.2
-  _shootDist: 3
+  _attackDamage: 0
+  _attackRange: 0
+  _attackRate: 0
+  _attackDist: 0
   _shootSpread: 0.1
   _bullet: {fileID: 0}
   _bulletSpeed: 20
@@ -311,8 +312,8 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1394923249618666509}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 8eadd92c0e25f804390fe2903af26fa2, type: 3}
-  m_Controller: {fileID: 9100000, guid: ba4e68dfb5bccd449a643cd1d9be8617, type: 2}
+  m_Avatar: {fileID: 9000000, guid: 29f5047a14224324ca407aca6f891f23, type: 3}
+  m_Controller: {fileID: 9100000, guid: ce2a7435a07fed648a608829392d84c6, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

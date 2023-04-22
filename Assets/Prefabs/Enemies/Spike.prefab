@@ -162,13 +162,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _model: {fileID: 8926234298304266150}
   _agent: {fileID: 2493943817979106396}
-  _shootPos: {fileID: 8926234298307210914}
+  _shootPos:
+  - {fileID: 8926234298307210948}
   _HPMax: 0
   _facePlayerSpeed: 600
-  _visionAngle: 90
-  _shotDamage: 3
-  _fireRate: 2
-  _shootDist: 4
+  _attackDamage: 0
+  _attackRange: 0
+  _attackRate: 0
+  _attackDist: 0
   _shootSpread: 1
   _bullet: {fileID: 0}
   _bulletSpeed: 20
@@ -202,7 +203,6 @@ MonoBehaviour:
   OnHealthChange:
     m_PersistentCalls:
       m_Calls: []
-  _shootPosB: {fileID: 8926234298307210894}
 --- !u!114 &7100518971335190995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,8 +226,8 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8926234298307441318}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 57d6acb7c5e135d4e838f00790b786ff, type: 3}
-  m_Controller: {fileID: 9100000, guid: 6c5d5659db9c4be43aea14cdf3b9c9fd, type: 2}
+  m_Avatar: {fileID: 9000000, guid: e66c50a41c7f8314fa2b0265265af2fa, type: 3}
+  m_Controller: {fileID: 9100000, guid: c2706260598a0f8478c5a0ee8d5bc644, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

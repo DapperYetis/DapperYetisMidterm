@@ -12,7 +12,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
     [SerializeField]
     protected NavMeshAgent _agent;
     [SerializeField]
-    protected Transform _shootPos;
+    protected List<Transform> _shootPos;
 
     [Header("--- Enemy Stats ---")]
     [Range(1, 100)]
@@ -20,20 +20,20 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
     protected float _HPMax;
     [SerializeField]
     protected int _facePlayerSpeed;
-    [SerializeField]
-    protected int _visionAngle;
     protected float _HPCurrent;
 
-    [Header("--- Gun Stats ---")]
+    [Header("--- Attack Stats ---")]
     [Range(1, 10)]
     [SerializeField]
-    protected float _shotDamage;
+    protected float _attackDamage;
+    [SerializeField]
+    protected float _attackRange;
     [Range(0.1f, 5)]
     [SerializeField]
-    protected float _fireRate;
+    protected float _attackRate;
     [Range(1, 100)]
     [SerializeField]
-    protected int _shootDist;
+    protected int _attackDist;
     [SerializeField]
     protected float _shootSpread;
     [SerializeField]
@@ -76,7 +76,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
             return _playerDir + GameManager.instance.player.movement.playerVelocity * timeActual;
         }
     }
-    protected bool _isPlayerInRange;
+
     protected float _angleToPlayer;
     protected bool _isShooting;
     protected float _stoppingDistOG;
@@ -113,7 +113,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
 
         _agent.SetDestination(GameManager.instance.player.transform.position);
 
-        if (_isPlayerInRange)
+        if (_playerDir.magnitude <= _attackRange)
         {
             if (_agent.remainingDistance < _agent.stoppingDistance)
                 FacePlayer();
@@ -136,22 +136,6 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
         _isSetUp = true;
     }
 
-    protected virtual void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            _isPlayerInRange = true;
-        }
-    }
-
-    protected virtual void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            _isPlayerInRange = false;
-        }
-    }
-
     protected virtual void Shoot()
     {
         if (this == null) return;
@@ -165,9 +149,10 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
         if (Mathf.Abs(Quaternion.Angle(rot, Quaternion.LookRotation(_playerDir))) >= 60)
             rot = Quaternion.LookRotation(_playerDir);
         rot = Quaternion.RotateTowards(rot, Random.rotation, _shootSpread * GameManager.instance.player.movement.speedRatio);
-        Instantiate(_bullet, _shootPos.position, rot).GetComponent<Rigidbody>().velocity = transform.forward * _bulletSpeed;
+        for (int i = 0; i < _shootPos.Count; i++)
+            Instantiate(_bullet, _shootPos[i].position, rot).GetComponent<Rigidbody>().velocity = transform.forward * _bulletSpeed;
 
-        yield return new WaitForSeconds(_fireRate);
+        yield return new WaitForSeconds(_attackRate);
         _isShooting = false;
     }
 

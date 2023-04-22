@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shell : EnemyAI
+public class Shell : MeleeEnemy
 {
     
 }

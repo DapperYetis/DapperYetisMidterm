@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Snake : EnemyAI
+public class Snake : MeleeEnemy
 {
     
 }
