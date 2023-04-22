@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Support", menuName = "Stats/Support Item")]
 public class SOSupport : ScriptableObject
 {
-
-    public string supportName;
+    [SerializeField]
+    private string _supportName;
+    public string supportName => _supportName;
 }

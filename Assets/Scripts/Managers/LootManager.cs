@@ -24,6 +24,9 @@ public class LootManager : MonoBehaviour
 
     [SerializeField]
     private RandomItem<Rarity> _rarityChances;
+    [SerializeField]
+    private List<GameObject> _itemPrefabs;
+    private Dictionary<Rarity, GameObject> _prefabByRarity;
     
     private void Start()
     {
@@ -34,9 +37,19 @@ public class LootManager : MonoBehaviour
         }
 
         _instance = this;
+        SortPrefabs();
         SortItems();
 
         SetUpStage();
+    }
+
+    private void SortPrefabs()
+    {
+        _prefabByRarity = new(_itemPrefabs.Count);
+        foreach(var prefab in _itemPrefabs)
+        {
+            _prefabByRarity[prefab.GetComponent<LootItem>().item.rarity] = prefab;
+        }
     }
 
     private void SortItems()
@@ -98,5 +111,14 @@ public class LootManager : MonoBehaviour
         Rarity rarity = _rarityChances.GetItem();
         Debug.Log("RARITY: " + rarity);
         return _itemsByRarity[rarity][Random.Range(0, _itemsByRarity[rarity].Count)];
+    }
+
+    public GameObject GetPrefab(Rarity rarity)
+    {
+        if (_prefabByRarity.ContainsKey(rarity))
+            return _prefabByRarity[rarity];
+
+        Debug.LogError($"No loot prefab found for {rarity} rarity.");
+        return null;
     }
 }

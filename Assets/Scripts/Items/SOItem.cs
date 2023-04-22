@@ -5,8 +5,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Item", menuName = "Item")]
 public class SOItem : ScriptableObject
 {
-    public string description;
-    public GameObject prefab;
-    public Rarity rarity;
-    public PlayerStats statsModification;
+    [SerializeField]
+    private string _description;
+    public string description => _description;
+    [SerializeField]
+    private Rarity _rarity;
+    public Rarity rarity => _rarity;
+    [SerializeField]
+    private PlayerStats _statsModifications;
+    public PlayerStats statsModification => _statsModifications;
 }

@@ -16,7 +16,7 @@ public class LoadoutScript : MonoBehaviour
     [SerializeField] GameObject _supportGroup;
     [SerializeField] GameObject _companionGroup;
     [SerializeField] List<SOWeapon> _weapons;
-    [SerializeField] List<SOSupport> _support;
+    [SerializeField] List<SOSupport> _supports;
     [SerializeField] List<SOCompanion> _companions;
 
     private Dictionary<SOWeapon, Button> _weaponButtons = new();
@@ -33,21 +33,30 @@ public class LoadoutScript : MonoBehaviour
         if (!PlayerPrefs.HasKey("CompanionChoice"))
             PlayerPrefs.SetInt("CompanionChoice", 0);
 
-        // TODO: add failsafe for out of bound indexes
+        if (PlayerPrefs.GetInt("WeaponChoice") >= _weapons.Count)
+            PlayerPrefs.SetInt("WeaponChoice", 0);
+        if (PlayerPrefs.GetInt("SupportChoice") >= _supports.Count)
+            PlayerPrefs.SetInt("SupportChoice", 0);
+        if (PlayerPrefs.GetInt("CompanionChoice") >= _supports.Count)
+            PlayerPrefs.SetInt("CompanionChoice", 0);
+
         foreach(var weapon in _weapons)
         {
             AddWeapon(weapon);
         }
+        _weaponButtons[GetWeapon()].interactable = false;
 
-        foreach(var support in _support)
+        foreach(var support in _supports)
         {
             AddSupport(support);
         }
+        _supportButtons[GetSupport()].interactable = false;
 
-        foreach(var companion in _companions)
+        foreach (var companion in _companions)
         {
             AddCompanion(companion);
         }
+        _companionButtons[GetCompainion()].interactable = false;
     }
 
     #region Setters
@@ -102,7 +111,7 @@ public class LoadoutScript : MonoBehaviour
 
     private void SetSupport(Button button)
     {
-        PlayerPrefs.SetInt("SupportChoice", _support.IndexOf((from support in _support where _supportButtons[support] == button select support).First()));
+        PlayerPrefs.SetInt("SupportChoice", _supports.IndexOf((from support in _supports where _supportButtons[support] == button select support).First()));
         Debug.Log(GetSupport());
     }
 
@@ -151,7 +160,7 @@ public class LoadoutScript : MonoBehaviour
     #region Getters
     public SOWeapon GetWeapon() => _weapons[PlayerPrefs.GetInt("WeaponChoice")];
 
-    public SOSupport GetSupport() => _support[PlayerPrefs.GetInt("SupportChoice")];
+    public SOSupport GetSupport() => _supports[PlayerPrefs.GetInt("SupportChoice")];
 
     public SOCompanion GetCompainion() => _companions[PlayerPrefs.GetInt("CompanionChoice")];
 
