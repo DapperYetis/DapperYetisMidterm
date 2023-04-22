@@ -400,6 +400,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2104300716291786975}
     m_Modifications:
+    - target: {fileID: 236324149631615543, guid: 670667c5ad9809448adf0c215cb7425b,
+        type: 3}
+      propertyPath: _camera
+      value: 
+      objectReference: {fileID: 2104300715586407398}
     - target: {fileID: 9085020107229255451, guid: 670667c5ad9809448adf0c215cb7425b,
         type: 3}
       propertyPath: _camera

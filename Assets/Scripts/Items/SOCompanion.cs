@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Companion", menuName = "Stats/Companion")]
 public class SOCompanion : ScriptableObject
 {
-
-    public string companionName;
+    [SerializeField]
+    private string _companionName;
+    public string companionName => _companionName;
 }

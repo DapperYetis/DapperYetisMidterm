@@ -13,7 +13,7 @@ public class Chest : MonoBehaviour, IInteractable
     public bool Interact()
     {
         SOItem item = LootManager.instance.GetItem();
-        LootItem loot = Instantiate(item.prefab, transform.position, transform.rotation).GetComponent<LootItem>();
+        LootItem loot = Instantiate(LootManager.instance.GetPrefab(item.rarity), transform.position, transform.rotation).GetComponent<LootItem>();
         loot.item = item;
 
         Destroy(gameObject);

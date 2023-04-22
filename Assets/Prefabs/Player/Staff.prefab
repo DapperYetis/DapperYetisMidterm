@@ -9,10 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9085020107229255447}
-  - component: {fileID: 9085020107229255451}
   - component: {fileID: 9085020107229255448}
   - component: {fileID: 9085020107229255449}
-  - component: {fileID: 9085020107229255446}
   m_Layer: 0
   m_Name: Staff
   m_TagString: Untagged
@@ -35,25 +33,6 @@ Transform:
   m_Father: {fileID: 9085020107758063838}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -81.927, y: -62.511, z: 52.801}
---- !u!114 &9085020107229255451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9085020107229255444}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29169025bb305724e9ef4b64190b829d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _camera: {fileID: 0}
-  _shootDamage: 1
-  _shootRate: 0.25
-  _shootDist: 20
-  _shootPos: {fileID: 9085020107364849679}
-  _magicType: {fileID: 424343093267893311, guid: e5a376697b30e834299356fb430fe3c9,
-    type: 3}
 --- !u!33 &9085020107229255448
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -104,19 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &9085020107229255446
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9085020107229255444}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &9085020107364849676
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,7 +94,6 @@ GameObject:
   - component: {fileID: 9085020107364849679}
   - component: {fileID: 9085020107364849680}
   - component: {fileID: 9085020107364849681}
-  - component: {fileID: 9085020107364849678}
   m_Layer: 0
   m_Name: MagicCore
   m_TagString: Untagged
@@ -201,19 +166,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &9085020107364849678
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9085020107364849676}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &9085020107758063839
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,6 +175,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9085020107758063838}
+  - component: {fileID: 236324149631615543}
   m_Layer: 0
   m_Name: Staff
   m_TagString: Untagged
@@ -247,3 +200,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &236324149631615543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9085020107758063839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29169025bb305724e9ef4b64190b829d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 0}
+  _stats: {fileID: 11400000, guid: 076e20b409de1c648a9ed0faa8f2b967, type: 2}
+  _shootPos: {fileID: 9085020107364849679}

@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5772fd7538930743a9528f463fb1867, type: 3}
   m_Name: Substitute Unique Item
   m_EditorClassIdentifier: 
-  description: Please don't actually use me...
-  prefab: {fileID: 5599611686792540281, guid: e882630470f797d429eee594447ee2e3, type: 3}
-  rarity: 4
-  statsModification:
+  _description: Please don't use me
+  _rarity: 4
+  _statsModifications:
     walkSpeed: 100
     sprintMultiplier: 0
     accelerationRate:
