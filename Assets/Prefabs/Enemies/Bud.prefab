@@ -702,10 +702,10 @@ MonoBehaviour:
   - {fileID: 5924819110659384275}
   _HPMax: 2
   _facePlayerSpeed: 600
-  _attackDamage: 0
-  _attackRange: 0
-  _attackRate: 0
-  _attackDist: 0
+  _attackDamage: 1
+  _attackRange: 20
+  _attackRate: 0.5
+  _attackDist: 20
   _shootSpread: 3
   _bullet: {fileID: 6374708375792766595, guid: faa41594a23192d4ea0b106c983819ac, type: 3}
   _bulletSpeed: 12
@@ -818,7 +818,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5924819110659358697}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 15
