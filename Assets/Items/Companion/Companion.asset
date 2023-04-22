@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11fc9920b2e31154f8f3aad9d168adff, type: 3}
   m_Name: Companion
   m_EditorClassIdentifier: 
+  companionName: bnuy

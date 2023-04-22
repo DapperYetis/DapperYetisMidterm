@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b22c460506a7ac4b88bbd9ae5b2e3ec, type: 3}
   m_Name: Weapon
   m_EditorClassIdentifier: 
+  weaponName: Sward

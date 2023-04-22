@@ -1083,7 +1083,27 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  referencedClips: []
+  referencedClips:
+  - 24e60204065020c4cb11f3f6a86ff214
+  - 25719fa24ed77fe4b8d13b3d3e5f8919
+  - 92a6a1c0c7b33884d9fc5368ba373ee6
+  - 47b93cf915cd50c48b0cefb91b864a47
+  - 8c3b595d05da16f46a18459223a2b11f
+  - ca7f56207236a714c97bb39a86b8b90e
+  - ad669894093ab254097048d0fcac8313
+  - 0c3afc1d1aadcf14bb23c2dfe796dbc3
+  - c6230fe725f240c42acb934a045a8465
+  - fa91a0d3ca8939b468a92d71e9cd99df
+  - e0d42fed8226bb44aa4c17463b2113d0
+  - 5515541c09c226f438d7a0bb011bb3e1
+  - ee9956cc516c0a44e9eaf9500e69696a
+  - 5fc7bac2aefd07c419ea77f9a1ad0184
+  - 45d9bd72a83f6bc48b10bdd658c8a227
+  - 9965e3eda8c62b0408569c9bbcd5f525
+  - 5782b753f5f62014b884085a08605d4a
+  - c66c3fe9a0e1a1546a30f1174b3717f9
+  - e2243f0575655e149a663cdad6cae52d
+  - 2eef13963c8b43f44a236b5fe959b081
   importAnimation: 1
   humanDescription:
     serializedVersion: 3
