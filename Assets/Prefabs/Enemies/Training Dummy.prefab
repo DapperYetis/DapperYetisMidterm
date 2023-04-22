@@ -1023,8 +1023,8 @@ Transform:
   m_GameObject: {fileID: 8358811162569023826}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8358811162568604998}
   - {fileID: 8358811162568604994}
@@ -1051,30 +1051,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ad3572e80f7859458b5b6d7f9e8a290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _model: {fileID: 0}
-  _agent: {fileID: 0}
-  _shootPos: {fileID: 0}
-  _HPMax: 0
-  _facePlayerSpeed: 0
-  _visionAngle: 0
-  _shotDamage: 0
-  _fireRate: 0
-  _shootDist: 0
-  _shootSpread: 0
+  _model: {fileID: 8358811162572205124}
+  _agent: {fileID: -7305714788344087051}
+  _shootPos: {fileID: 8358811162568604962}
+  _HPMax: 2
+  _facePlayerSpeed: 600
+  _visionAngle: 90
+  _shotDamage: 1
+  _fireRate: 0.5
+  _shootDist: 4
+  _shootSpread: 1
   _bullet: {fileID: 0}
-  _bulletSpeed: 0
-  _changeTime: 0
+  _bulletSpeed: 20
+  _changeTime: 2
   _changeCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _radiusMod: 0
-  _speedMod: 0
+  _radiusMod: 0.25
+  _speedMod: 1.5
   OnHealthChange:
     m_PersistentCalls:
       m_Calls: []
+  _shootPosB: {fileID: 8358811162568605012}
 --- !u!114 &1326477016242297744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1087,8 +1106,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe97b6b5b6459ae499223e07f54ab112, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _xp: 0
-  _currency: 0
+  _xp: 3
+  _currency: 1
 --- !u!95 &8358811162576310916
 Animator:
   serializedVersion: 5
@@ -1120,15 +1139,15 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
+  m_Speed: 10
+  m_Acceleration: 15
   avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_AngularSpeed: 600
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 2.3
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -1143,9 +1162,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 1
+  m_Height: 2.6
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1, z: 0.16}
 --- !u!135 &4890003077375534802
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1157,5 +1176,5 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 20
   m_Center: {x: 0, y: 0, z: 0}

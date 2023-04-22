@@ -168,7 +168,7 @@ MonoBehaviour:
   _visionAngle: 90
   _shotDamage: 3
   _fireRate: 2
-  _shootDist: 3
+  _shootDist: 4
   _shootSpread: 1
   _bullet: {fileID: 0}
   _bulletSpeed: 20

@@ -4,5 +4,9 @@ using UnityEngine;
 
 public class TrainingDummy : EnemyAI
 {
-    
+    [Header("--- Components ---")]
+    [SerializeField]
+    protected Transform _shootPosB;
+
+
 }
