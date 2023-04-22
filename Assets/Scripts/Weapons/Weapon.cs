@@ -29,12 +29,12 @@ public abstract class Weapon : MonoBehaviour
         _canUsePrimary = false;
 
         Quaternion rot = _camera.transform.rotation;
-        if(Physics.Raycast(_camera.ViewportPointToRay(new(0.5f, 0.5f)), out RaycastHit hit, _stats.primaryAbility.shootDist) && hit.transform.gameObject.layer == 7)
+        if(Physics.Raycast(_camera.ViewportPointToRay(new(0.5f, 0.5f)), out RaycastHit hit, _stats.primaryAbility.distance) && hit.transform.gameObject.layer == 7)
         {
             rot = Quaternion.LookRotation(hit.point - _shootPos.position);
         }
         Instantiate(_stats.primaryAbility.prefab, _shootPos.position, rot);
-        yield return new WaitForSeconds(_stats.primaryAbility.shootRate);
+        yield return new WaitForSeconds(_stats.primaryAbility.cooldown);
 
         _canUsePrimary = true;
     }
@@ -44,12 +44,12 @@ public abstract class Weapon : MonoBehaviour
         _canUseSecondary = false;
 
         Quaternion rot = _camera.transform.rotation;
-        if(Physics.Raycast(_camera.ViewportPointToRay(new(0.5f, 0.5f)), out RaycastHit hit, _stats.primaryAbility.shootDist) && hit.transform.gameObject.layer == 7)
+        if(Physics.Raycast(_camera.ViewportPointToRay(new(0.5f, 0.5f)), out RaycastHit hit, _stats.primaryAbility.distance) && hit.transform.gameObject.layer == 7)
         {
             rot = Quaternion.LookRotation(hit.point - _shootPos.position);
         }
         Instantiate(_stats.secondaryAbility.prefab, _shootPos.position, rot);
-        yield return new WaitForSeconds(_stats.primaryAbility.shootRate);
+        yield return new WaitForSeconds(_stats.primaryAbility.cooldown);
 
         _canUseSecondary = true;
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 public struct AbilityStats
 {
     public GameObject prefab;
-    public int shootDamage;
-    public float shootRate;
-    public int shootDist;
+    public int damage;
+    public float cooldown;
+    public int distance;
 }
