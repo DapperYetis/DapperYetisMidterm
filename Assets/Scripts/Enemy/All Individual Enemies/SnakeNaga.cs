@@ -2,13 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SnakeNaga : EnemyAI
+public class SnakeNaga : MeleeEnemy
 {
-    [Header("--- Components ---")]
-    [SerializeField]
-    protected Transform _shootPosB;
-    [SerializeField]
-    protected Transform _shootPosC;
-
 
 }

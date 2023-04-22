@@ -1,0 +1,137 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Bloom Upper Body Only
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Bloom
+    m_Weight: 0
+  - m_Path: Rig
+    m_Weight: 0
+  - m_Path: RigHeadRGizmo
+    m_Weight: 1
+  - m_Path: RigLHeadGizmo
+    m_Weight: 1
+  - m_Path: RigLLegPlatform
+    m_Weight: 0
+  - m_Path: RigLMouth01Gizmo
+    m_Weight: 1
+  - m_Path: RigLMouth02Gizmo
+    m_Weight: 1
+  - m_Path: RigLNeck1Gizmo
+    m_Weight: 1
+  - m_Path: RigLNeck2Gizmo
+    m_Weight: 1
+  - m_Path: RigLNeck3Gizmo
+    m_Weight: 1
+  - m_Path: RigLNeck4Gizmo
+    m_Weight: 1
+  - m_Path: RigLNeck5Gizmo
+    m_Weight: 1
+  - m_Path: RigPelvis
+    m_Weight: 1
+  - m_Path: RigPelvis/RigLLeg1
+    m_Weight: 0
+  - m_Path: RigPelvis/RigLLeg1/RigLLeg2
+    m_Weight: 1
+  - m_Path: RigPelvis/RigLLeg1/RigLLeg2/RigLLegAnkle
+    m_Weight: 1
+  - m_Path: RigPelvis/RigLLeg1/RigLLeg2/RigLLegAnkle/RigLLegToes1
+    m_Weight: 1
+  - m_Path: RigPelvis/RigLLeg1/RigLLeg2/RigLLegAnkle/RigLLegToes1/RigLLegToes2
+    m_Weight: 1
+  - m_Path: RigPelvis/RigRLeg1
+    m_Weight: 0
+  - m_Path: RigPelvis/RigRLeg1/RigRLeg2
+    m_Weight: 1
+  - m_Path: RigPelvis/RigRLeg1/RigRLeg2/RigRLegAnkle
+    m_Weight: 1
+  - m_Path: RigPelvis/RigRLeg1/RigRLeg2/RigRLegAnkle/RigRLegToes1
+    m_Weight: 1
+  - m_Path: RigPelvis/RigRLeg1/RigRLeg2/RigRLegAnkle/RigRLegToes1/RigRLegToes2
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigLNeck1
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigLNeck1/RigLNeck2
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigLNeck1/RigLNeck2/RigLNeck3
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigLNeck1/RigLNeck2/RigLNeck3/RigLNeck4
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigLNeck1/RigLNeck2/RigLNeck3/RigLNeck4/RigLNeck5
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigLNeck1/RigLNeck2/RigLNeck3/RigLNeck4/RigLNeck5/RigLHead
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigLNeck1/RigLNeck2/RigLNeck3/RigLNeck4/RigLNeck5/RigLHead/RigLMouth01
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigLNeck1/RigLNeck2/RigLNeck3/RigLNeck4/RigLNeck5/RigLHead/RigLMouth01/RigLMouth02
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigRNeck1
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigRNeck1/RigRNeck2
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigRNeck1/RigRNeck2/RigRNeck3
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigRNeck1/RigRNeck2/RigRNeck3/RigRNeck4
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigRNeck1/RigRNeck2/RigRNeck3/RigRNeck4/RigRNeck5
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigRNeck1/RigRNeck2/RigRNeck3/RigRNeck4/RigRNeck5/RigRHead
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigRNeck1/RigRNeck2/RigRNeck3/RigRNeck4/RigRNeck5/RigRHead/RigRMouth01
+    m_Weight: 1
+  - m_Path: RigPelvis/RigSpine1/RigSpine2/RigRibcage/RigRNeck1/RigRNeck2/RigRNeck3/RigRNeck4/RigRNeck5/RigRHead/RigRMouth01/RigRMouth02
+    m_Weight: 1
+  - m_Path: RigPelvis/RigTail1
+    m_Weight: 0
+  - m_Path: RigPelvis/RigTail1/RigTail2
+    m_Weight: 1
+  - m_Path: RigPelvis/RigTail1/RigTail2/RigTail3
+    m_Weight: 1
+  - m_Path: RigPelvis/RigTail1/RigTail2/RigTail3/RigTail4
+    m_Weight: 1
+  - m_Path: RigPelvis/RigTail1/RigTail2/RigTail3/RigTail4/RigTail5
+    m_Weight: 1
+  - m_Path: RigPelvisGizmo
+    m_Weight: 0
+  - m_Path: RigRibcageGizmo
+    m_Weight: 0
+  - m_Path: RigRLegPlatform
+    m_Weight: 0
+  - m_Path: RigRMouth01Gizmo
+    m_Weight: 1
+  - m_Path: RigRMouth02Gizmo
+    m_Weight: 1
+  - m_Path: RigRNeck1Gizmo
+    m_Weight: 1
+  - m_Path: RigRNeck2Gizmo
+    m_Weight: 1
+  - m_Path: RigRNeck3Gizmo
+    m_Weight: 1
+  - m_Path: RigRNeck4Gizmo
+    m_Weight: 1
+  - m_Path: RigRNeck5Gizmo
+    m_Weight: 1
+  - m_Path: RigTail1Gizmo
+    m_Weight: 0
+  - m_Path: RigTail2Gizmo
+    m_Weight: 0
+  - m_Path: RigTail3Gizmo
+    m_Weight: 0
+  - m_Path: RigTail4Gizmo
+    m_Weight: 0
+  - m_Path: RigTail5Gizmo
+    m_Weight: 0

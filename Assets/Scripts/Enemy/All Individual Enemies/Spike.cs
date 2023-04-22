@@ -2,11 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spike : EnemyAI
+public class Spike : MeleeEnemy
 {
-    [Header("--- Components ---")]
-    [SerializeField]
-    protected Transform _shootPosB;
-
-
+    
 }
