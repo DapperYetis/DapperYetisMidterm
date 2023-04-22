@@ -109,4 +109,7 @@ public class UIReferences : MonoBehaviour
 
     public Animator animator => _animator;
 
+    [SerializeField] LoadoutScript _loadoutScript;
+    
+    public LoadoutScript loadoutScript => _loadoutScript;
 }

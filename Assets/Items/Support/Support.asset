@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1697e0980f27697438adb78ba0b01f1c, type: 3}
   m_Name: Support
   m_EditorClassIdentifier: 
+  supportName: vagene
