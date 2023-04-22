@@ -38,16 +38,19 @@ public class LoadoutScript : MonoBehaviour
         {
             AddWeapon(weapon);
         }
+        _weaponButtons[GetWeapon()].interactable = false;
 
         foreach(var support in _support)
         {
             AddSupport(support);
         }
+        _supportButtons[GetSupport()].interactable = false;
 
-        foreach(var companion in _companions)
+        foreach (var companion in _companions)
         {
             AddCompanion(companion);
         }
+        _companionButtons[GetCompainion()].interactable = false;
     }
 
     #region Setters
