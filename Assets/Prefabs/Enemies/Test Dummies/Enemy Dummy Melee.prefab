@@ -32,77 +32,6 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: ed90fe792c68ba944ba29eb773a5a7fc, type: 2}
-    - target: {fileID: 2230898508323638556, guid: 2a4b61952883c9348ab3b48b76ffd87e,
-        type: 3}
-      propertyPath: _HPMax
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2230898508323638556, guid: 2a4b61952883c9348ab3b48b76ffd87e,
-        type: 3}
-      propertyPath: _bullet
-      value: 
-      objectReference: {fileID: 424343093267893311, guid: f7b16309293f2e949b61f60c035662d9,
-        type: 3}
-    - target: {fileID: 2230898508323638556, guid: 2a4b61952883c9348ab3b48b76ffd87e,
-        type: 3}
-      propertyPath: _fireRate
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2230898508323638556, guid: 2a4b61952883c9348ab3b48b76ffd87e,
-        type: 3}
-      propertyPath: _speedMod
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2230898508323638556, guid: 2a4b61952883c9348ab3b48b76ffd87e,
-        type: 3}
-      propertyPath: _radiusMod
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2230898508323638556, guid: 2a4b61952883c9348ab3b48b76ffd87e,
-        type: 3}
-      propertyPath: _shootDist
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2230898508323638556, guid: 2a4b61952883c9348ab3b48b76ffd87e,
-        type: 3}
-      propertyPath: _speedMult
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2230898508323638556, guid: 2a4b61952883c9348ab3b48b76ffd87e,
-        type: 3}
-      propertyPath: _attackDist
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2230898508323638556, guid: 2a4b61952883c9348ab3b48b76ffd87e,
-        type: 3}
-      propertyPath: _attackRate
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2230898508323638556, guid: 2a4b61952883c9348ab3b48b76ffd87e,
-        type: 3}
-      propertyPath: _radiusMult
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2230898508323638556, guid: 2a4b61952883c9348ab3b48b76ffd87e,
-        type: 3}
-      propertyPath: _attackRange
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2230898508323638556, guid: 2a4b61952883c9348ab3b48b76ffd87e,
-        type: 3}
-      propertyPath: _bulletSpeed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2230898508323638556, guid: 2a4b61952883c9348ab3b48b76ffd87e,
-        type: 3}
-      propertyPath: _shootSpread
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2230898508323638556, guid: 2a4b61952883c9348ab3b48b76ffd87e,
-        type: 3}
-      propertyPath: _attackDamage
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 2230898508323638559, guid: 2a4b61952883c9348ab3b48b76ffd87e,
         type: 3}
       propertyPath: m_RootOrder
@@ -158,5 +87,108 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 2869091939643775970, guid: 2a4b61952883c9348ab3b48b76ffd87e,
+        type: 3}
+      propertyPath: _enemyAI
+      value: 
+      objectReference: {fileID: 5784272985993333885}
+    m_RemovedComponents:
+    - {fileID: 2230898508323638556, guid: 2a4b61952883c9348ab3b48b76ffd87e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2a4b61952883c9348ab3b48b76ffd87e, type: 3}
+--- !u!4 &2832554253355864775 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6827421909638397519, guid: 2a4b61952883c9348ab3b48b76ffd87e,
+    type: 3}
+  m_PrefabInstance: {fileID: 8786699998692338824}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &4158577223601345356 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4631559604901429188, guid: 2a4b61952883c9348ab3b48b76ffd87e,
+    type: 3}
+  m_PrefabInstance: {fileID: 8786699998692338824}
+  m_PrefabAsset: {fileID: 0}
+--- !u!195 &7423373954207654288 stripped
+NavMeshAgent:
+  m_CorrespondingSourceObject: {fileID: 2230898508323638552, guid: 2a4b61952883c9348ab3b48b76ffd87e,
+    type: 3}
+  m_PrefabInstance: {fileID: 8786699998692338824}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7423373954207654289 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2230898508323638553, guid: 2a4b61952883c9348ab3b48b76ffd87e,
+    type: 3}
+  m_PrefabInstance: {fileID: 8786699998692338824}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &-4900414686180028116
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7423373954207654289}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5784272985993333885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7423373954207654289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 058586a9b01c12d4ca0b130f3c60a7a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _model: {fileID: 7423373954207654290}
+  _agent: {fileID: 7423373954207654288}
+  _anim: {fileID: 4158577223601345356}
+  _HPMax: 3
+  _facePlayerSpeed: 600
+  _changeTime: 2
+  _changeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _radiusMod: 0.25
+  _speedMod: 1.5
+  OnHealthChange:
+    m_PersistentCalls:
+      m_Calls: []
+  _meleePos:
+  - {fileID: 2832554253355864775}
+  _attackDamage: 3
+  _attackRange: 3
+  _attackRate: 1
+  _clawOrFang: {fileID: 424343093267893311, guid: f7b16309293f2e949b61f60c035662d9,
+    type: 3}
+--- !u!23 &7423373954207654290 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2230898508323638554, guid: 2a4b61952883c9348ab3b48b76ffd87e,
+    type: 3}
+  m_PrefabInstance: {fileID: 8786699998692338824}
+  m_PrefabAsset: {fileID: 0}

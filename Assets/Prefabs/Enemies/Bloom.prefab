@@ -928,7 +928,6 @@ GameObject:
   - component: {fileID: 6826903240279890116}
   - component: {fileID: -564942941452632455}
   - component: {fileID: 6215277626263852326}
-  - component: {fileID: 7242316789417529043}
   m_Layer: 0
   m_Name: Bloom
   m_TagString: Untagged
@@ -993,15 +992,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _model: {fileID: 6826903240275748356}
   _agent: {fileID: -564942941452632455}
+  _anim: {fileID: 6826903240279890116}
+  _meleePos: []
   _shootPos:
   - {fileID: 6826903240270837576}
   - {fileID: 6826903240270837534}
   _HPMax: 5
   _facePlayerSpeed: 600
-  _attackDamage: 1
-  _attackRange: 20
-  _attackRate: 0.5
-  _attackDist: 20
+  _attackDamage: 0
+  _attackRange: 0
+  _attackRate: 0
+  _clawOrFang: {fileID: 424343093267893311, guid: f7b16309293f2e949b61f60c035662d9,
+    type: 3}
+  _shootDamage: 1
+  _shootRate: 0.5
+  _shootDist: 20
   _shootSpread: 2
   _bullet: {fileID: 4446431687888057331, guid: 5a7dc231a2320214986c1f0f1db1f0a3, type: 3}
   _bulletSpeed: 12
@@ -1106,19 +1111,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0.6, z: 0}
---- !u!135 &7242316789417529043
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6826903240270539524}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 20
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6826903240270539546
 GameObject:
   m_ObjectHideFlags: 0

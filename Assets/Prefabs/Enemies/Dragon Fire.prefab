@@ -414,16 +414,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _model: {fileID: 8377023706069775151}
   _agent: {fileID: -4496470024350007113}
+  _anim: {fileID: 8377023706065620463}
+  _meleePos:
+  - {fileID: 8377023706073375283}
   _shootPos:
   - {fileID: 8377023706073375283}
   _HPMax: 5
   _facePlayerSpeed: 600
-  _attackDamage: 1
-  _attackRange: 20
+  _attackDamage: 2
+  _attackRange: 5
   _attackRate: 0.5
-  _attackDist: 20
+  _clawOrFang: {fileID: 424343093267893311, guid: f7b16309293f2e949b61f60c035662d9,
+    type: 3}
+  _shootDamage: 1
+  _shootRate: 1
+  _shootDist: 30
   _shootSpread: 0.4
-  _bullet: {fileID: 0}
+  _bullet: {fileID: 424343093267893311, guid: 1bcc9b7c1094fd547910ca2344bca383, type: 3}
   _bulletSpeed: 20
   _changeTime: 2
   _changeCurve:
@@ -537,7 +544,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 50
+  m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8377023706072890929
 GameObject:

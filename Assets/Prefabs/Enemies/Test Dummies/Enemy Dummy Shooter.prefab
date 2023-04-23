@@ -60,6 +60,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2230898508323638556, guid: 2a4b61952883c9348ab3b48b76ffd87e,
         type: 3}
+      propertyPath: _shootDist
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2230898508323638556, guid: 2a4b61952883c9348ab3b48b76ffd87e,
+        type: 3}
+      propertyPath: _shootRate
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 2230898508323638556, guid: 2a4b61952883c9348ab3b48b76ffd87e,
+        type: 3}
       propertyPath: _speedMult
       value: 3
       objectReference: {fileID: 0}
@@ -71,7 +81,7 @@ PrefabInstance:
     - target: {fileID: 2230898508323638556, guid: 2a4b61952883c9348ab3b48b76ffd87e,
         type: 3}
       propertyPath: _attackRate
-      value: 0.75
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2230898508323638556, guid: 2a4b61952883c9348ab3b48b76ffd87e,
         type: 3}
@@ -81,7 +91,7 @@ PrefabInstance:
     - target: {fileID: 2230898508323638556, guid: 2a4b61952883c9348ab3b48b76ffd87e,
         type: 3}
       propertyPath: _attackRange
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2230898508323638556, guid: 2a4b61952883c9348ab3b48b76ffd87e,
         type: 3}

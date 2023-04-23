@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2230898508323638554}
   - component: {fileID: 2230898508323638555}
   - component: {fileID: 2230898508323638552}
-  - component: {fileID: 1963088134587261724}
+  - component: {fileID: 4631559604901429188}
   m_Layer: 7
   m_Name: Enemy Dummy Gunner
   m_TagString: Untagged
@@ -49,22 +49,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2230898508323638553}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60ad6e51523755043acaa375662a8029, type: 3}
+  m_Script: {fileID: 11500000, guid: 849613303578a7e4381652a40bbc13e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _model: {fileID: 2230898508323638554}
   _agent: {fileID: 2230898508323638552}
-  _shootPos:
-  - {fileID: 6827421909638397519}
+  _anim: {fileID: 4631559604901429188}
   _HPMax: 6
   _facePlayerSpeed: 600
-  _attackDamage: 1
-  _attackRange: 10
-  _attackRate: 2
-  _attackDist: 20
-  _shootSpread: 4
-  _bullet: {fileID: 424343093267893311, guid: 1bcc9b7c1094fd547910ca2344bca383, type: 3}
-  _bulletSpeed: 12
   _changeTime: 2
   _changeCurve:
     serializedVersion: 2
@@ -95,6 +87,14 @@ MonoBehaviour:
   OnHealthChange:
     m_PersistentCalls:
       m_Calls: []
+  _shootPos:
+  - {fileID: 6827421909638397519}
+  _shootDamage: 1
+  _shootRate: 1
+  _shootDist: 20
+  _shootSpread: 2
+  _bullet: {fileID: 424343093267893311, guid: 1bcc9b7c1094fd547910ca2344bca383, type: 3}
+  _bulletSpeed: 12
 --- !u!114 &9055092232274270732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,19 +195,27 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!135 &1963088134587261724
-SphereCollider:
+--- !u!95 &4631559604901429188
+Animator:
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2230898508323638553}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 20
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Avatar: {fileID: 9000000, guid: ddaa212da794b904e85bb43bba3a3592, type: 3}
+  m_Controller: {fileID: 9100000, guid: f7174aa908973bb438feab2ea0293b5d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &4300566787482725419
 PrefabInstance:
   m_ObjectHideFlags: 0

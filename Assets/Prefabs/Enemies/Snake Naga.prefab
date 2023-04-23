@@ -377,6 +377,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _model: {fileID: 7075855458537881884}
   _agent: {fileID: -1956189428985556130}
+  _anim: {fileID: 7075855458542108636}
+  _meleePos:
+  - {fileID: 7075855458551976390}
+  - {fileID: 7075855458551976398}
   _shootPos:
   - {fileID: 7075855458551976400}
   - {fileID: 7075855458551976406}
@@ -384,11 +388,15 @@ MonoBehaviour:
   _HPMax: 10
   _facePlayerSpeed: 600
   _attackDamage: 1
-  _attackRange: 20
+  _attackRange: 4
   _attackRate: 0.5
-  _attackDist: 20
+  _clawOrFang: {fileID: 424343093267893311, guid: f7b16309293f2e949b61f60c035662d9,
+    type: 3}
+  _shootDamage: 1
+  _shootRate: 1
+  _shootDist: 20
   _shootSpread: 0.1
-  _bullet: {fileID: 0}
+  _bullet: {fileID: 424343093267893311, guid: 912a43b0040ffe643b0c56e5be18da99, type: 3}
   _bulletSpeed: 20
   _changeTime: 2
   _changeCurve:

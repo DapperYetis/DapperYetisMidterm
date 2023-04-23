@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
+using static UnityEngine.Rendering.DebugUI.Table;
 
 public abstract class EnemyAI : MonoBehaviour, IDamageable
 {
@@ -12,7 +13,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
     [SerializeField]
     protected NavMeshAgent _agent;
     [SerializeField]
-    protected List<Transform> _shootPos;
+    protected Animator _anim;
 
     [Header("--- Enemy Stats ---")]
     [Range(1, 100)]
@@ -21,25 +22,11 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
     [SerializeField]
     protected int _facePlayerSpeed;
     protected float _HPCurrent;
-
-    [Header("--- Attack Stats ---")]
-    [Range(1, 10)]
-    [SerializeField]
-    protected float _attackDamage;
-    [SerializeField]
-    protected float _attackRange;
-    [Range(0.1f, 5)]
-    [SerializeField]
-    protected float _attackRate;
-    [Range(1, 100)]
-    [SerializeField]
-    protected int _attackDist;
-    [SerializeField]
-    protected float _shootSpread;
-    [SerializeField]
-    protected GameObject _bullet;
-    [SerializeField]
-    protected float _bulletSpeed;
+    protected float _angleToPlayer;
+    protected float _stoppingDistOG;
+    protected SOWave _spawnPoint;
+    protected bool _isSetUp;
+    protected bool _isAttacking;
 
     [Header("--- NavMesh Mods ---")]
     [SerializeField]
@@ -56,38 +43,13 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
     public UnityEvent OnHealthChange;
 
     protected Vector3 _playerDir => GameManager.instance.player.transform.position - transform.position;
-    protected Vector3 _playerDirProjected
-    {
-        get
-        {
-            float a = Vector3.Dot(GameManager.instance.player.movement.playerVelocity, GameManager.instance.player.movement.playerVelocity) - (_bulletSpeed * _bulletSpeed);
-            float b = 2 * Vector3.Dot(GameManager.instance.player.movement.playerVelocity, _playerDir);
-            float c = Vector3.Dot(_playerDir, _playerDir);
-
-            float p = -b / (2 * a);
-            float q = Mathf.Sqrt((b * b) - 4 * a * c) / (2 * a);
-
-            float time1 = p - q;
-            float time2 = p + q;
-            float timeActual;
-
-            timeActual = time1 > time2 && time2 > 0 ? time2 : time1;
-
-            return _playerDir + GameManager.instance.player.movement.playerVelocity * timeActual;
-        }
-    }
-
-    protected float _angleToPlayer;
-    protected bool _isShooting;
-    protected float _stoppingDistOG;
-    protected SOWave _spawnPoint;
-    protected bool _isSetUp;
 
     protected virtual void Start()
     {
         StartCoroutine(SizeChange());
     }
 
+    // Creates the enemy avoidance system
     protected virtual IEnumerator SizeChange()
     {
         float startingRadius = _agent.radius;
@@ -111,19 +73,10 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
     {
         if (!_isSetUp) return;
 
-        _agent.SetDestination(GameManager.instance.player.transform.position);
-
-        if (_playerDir.magnitude <= _attackRange)
-        {
-            if (_agent.remainingDistance < _agent.stoppingDistance)
-                FacePlayer();
-
-            if (!_isShooting)
-            {
-                _isShooting = true;
-                EnemyManager.instance.QueueAttack(Shoot);
-            }
-        }
+        if (_agent.isActiveAndEnabled)
+            _agent.SetDestination(GameManager.instance.player.transform.position);
+        
+        FacePlayer();
     }
 
     public virtual void SetUp(SOWave spawnPoint)
@@ -134,26 +87,6 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
 
         EnemyManager.instance.AddEnemyToList(this);
         _isSetUp = true;
-    }
-
-    protected virtual void Shoot()
-    {
-        if (this == null) return;
-
-        StartCoroutine(FireShot());
-    }
-
-    protected virtual IEnumerator FireShot()
-    {
-        Quaternion rot = Quaternion.LookRotation(_playerDirProjected * 0.5f);
-        if (Mathf.Abs(Quaternion.Angle(rot, Quaternion.LookRotation(_playerDir))) >= 60)
-            rot = Quaternion.LookRotation(_playerDir);
-        rot = Quaternion.RotateTowards(rot, Random.rotation, _shootSpread * GameManager.instance.player.movement.speedRatio);
-        for (int i = 0; i < _shootPos.Count; i++)
-            Instantiate(_bullet, _shootPos[i].position, rot).GetComponent<Rigidbody>().velocity = transform.forward * _bulletSpeed;
-
-        yield return new WaitForSeconds(_attackRate);
-        _isShooting = false;
     }
 
     protected virtual IEnumerator FlashColor(Color clr)
@@ -173,11 +106,20 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
     public virtual void Damage(float amount)
     {
         _HPCurrent -= amount;
-        StartCoroutine(FlashColor(Color.red));
 
         if (_HPCurrent <= 0)
         {
-            Destroy(gameObject);
+            StopAllCoroutines();
+            _anim.SetBool("Dead", true);
+            GetComponent<CapsuleCollider>().enabled = false;
+            _agent.enabled = false;
+            enabled = false;
+            Destroy(gameObject, Time.deltaTime + 3);
+        }
+        else
+        {
+            _anim.SetTrigger("Damage");
+            StartCoroutine(FlashColor(Color.red));
         }
 
         OnHealthChange.Invoke();
