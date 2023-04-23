@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,6 +24,20 @@ public class PlayerController : MonoBehaviour, IDamageable
     private Inventory _inventory;
     public Inventory inventory => _inventory;
 
+
+    // ------Loadout------
+    private SOWeapon _weaponAsset;
+    private Weapon _weapon;
+    public Weapon weapon => _weapon;
+    
+    //private SOSupport _supportAsset;
+    //private Support _support;
+    //public Support support => _support;
+    
+    //private SOCompanion _companionAsset;
+    //private Companion _companion;
+    //public Companion companion => _companion;
+
     // Events
     [HideInInspector]
     public UnityEvent OnHealthChange;
@@ -32,17 +47,23 @@ public class PlayerController : MonoBehaviour, IDamageable
     private bool _canInteract;
     private IInteractable _interactable;
 
-    private void Start()
+    public void StartGame()
     {
+        // Movement
         _camera = Camera.main;
         _movement.SetStats(_stats);
-        _inventory.OnItemsChange.AddListener(HandleNewItem);
 
+        // Combat
+        GetLoadout();
+        _weapon.SetCamera(_camera);
+        _inventory.OnItemsChange.AddListener(HandleNewItem);
         Heal(_stats.healthMax);
     }
 
     private void FixedUpdate()
     {
+        if (!GameManager.instance.inGame) return;
+
         _interactable = null;
         UIManager.instance.references.interactPrompt.SetActive(false);
         _canInteract = false;
@@ -60,10 +81,21 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void Update()
     {
-        if(_canInteract && Input.GetButtonDown("Interact"))
+        if (!GameManager.instance.inGame) return;
+
+        if (_canInteract && Input.GetButtonDown("Interact"))
         {
             _interactable?.Interact();
         }
+    }
+
+    private void GetLoadout()
+    {
+        _weaponAsset = UIManager.instance.references.loadoutScript.GetWeapon();
+        _weapon = Instantiate(_weaponAsset.prefab, transform).GetComponent<Weapon>();
+        _weapon.SetStats(_weaponAsset.stats);
+
+        // TODO: Add support and weapon setting once they are implemented
     }
 
     public void Damage(float damage)
@@ -97,6 +129,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     private void HandleNewItem(SOItem item)
     {
         _stats += item.statsModification;
+        _weapon.SetStats(_weapon.stats + item.attackStats);
         _movement.SetStats(_stats);
     }
 }
