@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 424343093267893311}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -49,12 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e10161401e628024d973d435d1aa071a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stats:
-    prefab: {fileID: 0}
-    damage: 0
-    cooldown: 0
-    lifetime: 0
-    speed: 0
+  _piercing: 1
 --- !u!33 &424343093267893250
 MeshFilter:
   m_ObjectHideFlags: 0

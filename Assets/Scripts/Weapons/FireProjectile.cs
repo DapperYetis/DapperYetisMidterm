@@ -7,7 +7,7 @@ public class FireProjectile : Projectile
     [SerializeField]
     private bool _isAOE;
     private bool _exploding;
-    private List<IDamageable> _hitEnemies = new();
+    private List<IDamageable> _previouslyHit = new();
 
     protected override void Start()
     {
@@ -27,9 +27,9 @@ public class FireProjectile : Projectile
             }
             StartCoroutine(DoExplode());
         }
-        else if(other.gameObject.TryGetComponent<IDamageable>(out var damageable) && !_hitEnemies.Contains(damageable))
+        else if(other.gameObject.TryGetComponent<IDamageable>(out var damageable) && !_previouslyHit.Contains(damageable))
         {
-            _hitEnemies.Add(damageable);
+            _previouslyHit.Add(damageable);
             damageable.Damage(_stats.damage);
         }
 
