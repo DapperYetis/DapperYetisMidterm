@@ -15,9 +15,9 @@ public class HybridEnemy : EnemyAI
     [SerializeField]
     protected float _attackDamage;
     [SerializeField]
-    protected float _attackRange;
-    [SerializeField]
     protected float _attackRate;
+    [SerializeField]
+    protected float _attackRange;
     [SerializeField]
     protected GameObject _clawOrFang;
     protected bool _inAttackRange;

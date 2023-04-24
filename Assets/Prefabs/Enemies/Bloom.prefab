@@ -1020,8 +1020,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _radiusMod: 0.25
-  _speedMod: 1.5
+  _radiusMod: 8
+  _speedMod: 3
   OnHealthChange:
     m_PersistentCalls:
       m_Calls: []
@@ -1029,7 +1029,7 @@ MonoBehaviour:
   - {fileID: 6826903240270837576}
   - {fileID: 6826903240270837534}
   _shootDamage: 1
-  _shootRate: 6
+  _shootRate: 2
   _shootDist: 20
   _shootSpread: 3
   _bullet: {fileID: 424343093267893311, guid: 912a43b0040ffe643b0c56e5be18da99, type: 3}
@@ -1079,8 +1079,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 4
-  m_Acceleration: 8
+  m_Speed: 8
+  m_Acceleration: 10
   avoidancePriority: 50
   m_AngularSpeed: 600
   m_StoppingDistance: 10
