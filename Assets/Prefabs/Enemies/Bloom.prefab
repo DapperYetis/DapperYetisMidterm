@@ -993,23 +993,8 @@ MonoBehaviour:
   _model: {fileID: 6826903240275748356}
   _agent: {fileID: -564942941452632455}
   _anim: {fileID: 6826903240279890116}
-  _meleePos: []
-  _shootPos:
-  - {fileID: 6826903240270837576}
-  - {fileID: 6826903240270837534}
   _HPMax: 5
   _facePlayerSpeed: 600
-  _attackDamage: 0
-  _attackRange: 0
-  _attackRate: 0
-  _clawOrFang: {fileID: 424343093267893311, guid: f7b16309293f2e949b61f60c035662d9,
-    type: 3}
-  _shootDamage: 1
-  _shootRate: 0.5
-  _shootDist: 20
-  _shootSpread: 2
-  _bullet: {fileID: 4446431687888057331, guid: 5a7dc231a2320214986c1f0f1db1f0a3, type: 3}
-  _bulletSpeed: 12
   _changeTime: 2
   _changeCurve:
     serializedVersion: 2
@@ -1040,6 +1025,15 @@ MonoBehaviour:
   OnHealthChange:
     m_PersistentCalls:
       m_Calls: []
+  _shootPos:
+  - {fileID: 6826903240270837576}
+  - {fileID: 6826903240270837534}
+  _shootDamage: 1
+  _shootRate: 6
+  _shootDist: 20
+  _shootSpread: 3
+  _bullet: {fileID: 424343093267893311, guid: 912a43b0040ffe643b0c56e5be18da99, type: 3}
+  _bulletSpeed: 12
 --- !u!114 &3617471448665440551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1085,7 +1079,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 2
+  m_Speed: 4
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 600

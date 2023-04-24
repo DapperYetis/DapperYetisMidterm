@@ -331,22 +331,8 @@ MonoBehaviour:
   _model: {fileID: 6230942851763231121}
   _agent: {fileID: 2887638426317599639}
   _anim: {fileID: 6230942851767379793}
-  _meleePos:
-  - {fileID: 6230942851774826725}
-  _shootPos: []
   _HPMax: 20
   _facePlayerSpeed: 600
-  _attackDamage: 1
-  _attackRange: 20
-  _attackRate: 0.5
-  _clawOrFang: {fileID: 424343093267893311, guid: f7b16309293f2e949b61f60c035662d9,
-    type: 3}
-  _shootDamage: 0
-  _shootRate: 0
-  _shootDist: 0
-  _shootSpread: 0
-  _bullet: {fileID: 424343093267893311, guid: 912a43b0040ffe643b0c56e5be18da99, type: 3}
-  _bulletSpeed: 0
   _changeTime: 2
   _changeCurve:
     serializedVersion: 2
@@ -377,6 +363,21 @@ MonoBehaviour:
   OnHealthChange:
     m_PersistentCalls:
       m_Calls: []
+  _meleePos:
+  - {fileID: 6230942851774826725}
+  _shootPos:
+  - {fileID: 6230942851774826687}
+  _attackDamage: 3
+  _attackRange: 5
+  _attackRate: 10
+  _clawOrFang: {fileID: 424343093267893311, guid: f7b16309293f2e949b61f60c035662d9,
+    type: 3}
+  _shootDamage: 3
+  _shootRate: 3
+  _shootDist: 20
+  _shootSpread: 3
+  _bullet: {fileID: 424343093267893311, guid: 912a43b0040ffe643b0c56e5be18da99, type: 3}
+  _bulletSpeed: 15
 --- !u!114 &73426344941847313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,7 +429,7 @@ NavMeshAgent:
   m_AngularSpeed: 600
   m_StoppingDistance: 3
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 1.85
   m_BaseOffset: 0

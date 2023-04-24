@@ -249,22 +249,8 @@ MonoBehaviour:
   _model: {fileID: 1394923249621846285}
   _agent: {fileID: -8553164506359077236}
   _anim: {fileID: 1394923249626068941}
-  _meleePos: []
-  _shootPos:
-  - {fileID: 1394923249618638891}
   _HPMax: 3
   _facePlayerSpeed: 600
-  _attackDamage: 1
-  _attackRange: 20
-  _attackRate: 0.5
-  _clawOrFang: {fileID: 424343093267893311, guid: f7b16309293f2e949b61f60c035662d9,
-    type: 3}
-  _shootDamage: 0
-  _shootRate: 0
-  _shootDist: 0
-  _shootSpread: 0
-  _bullet: {fileID: 424343093267893311, guid: 912a43b0040ffe643b0c56e5be18da99, type: 3}
-  _bulletSpeed: 0
   _changeTime: 2
   _changeCurve:
     serializedVersion: 2
@@ -295,6 +281,13 @@ MonoBehaviour:
   OnHealthChange:
     m_PersistentCalls:
       m_Calls: []
+  _meleePos:
+  - {fileID: 1394923249618638891}
+  _attackDamage: 2
+  _attackRange: 3
+  _attackRate: 10
+  _clawOrFang: {fileID: 424343093267893311, guid: f7b16309293f2e949b61f60c035662d9,
+    type: 3}
 --- !u!114 &-1971623083720848777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,7 +334,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 8
-  m_Acceleration: 8
+  m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 600
   m_StoppingDistance: 1
