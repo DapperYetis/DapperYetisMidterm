@@ -46,13 +46,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 424343093267893311}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78236d561199df84c8805017f75d0b3d, type: 3}
+  m_Script: {fileID: 11500000, guid: 7b0b181adb8313547b88e54dc65c916c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 2
-  _timer: 1
-  _magicSpell: {fileID: 424343093267893311}
-  _damage: 2
+  _stats:
+    _prefab: {fileID: 0}
+    _damage: 5
+    _cooldown: 1.5
+    _lifetime: 1
+    _speed: 2
 --- !u!33 &424343093267893250
 MeshFilter:
   m_ObjectHideFlags: 0

@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour
     {
         _inGame = true;
         _startTime = Time.time;
+        _player.StartGame();
     }
 
     public void EndConditions()
