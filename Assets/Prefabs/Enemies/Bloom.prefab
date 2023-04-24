@@ -928,7 +928,7 @@ GameObject:
   - component: {fileID: 6826903240279890116}
   - component: {fileID: -564942941452632455}
   - component: {fileID: 6215277626263852326}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bloom
   m_TagString: Untagged
   m_Icon: {fileID: 0}

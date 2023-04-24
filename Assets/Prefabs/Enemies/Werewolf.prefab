@@ -1283,7 +1283,7 @@ GameObject:
   - component: {fileID: -8300420723099910886}
   - component: {fileID: -6767532546295120893}
   - component: {fileID: 6016059873401008225}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Werewolf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1340,23 +1340,8 @@ MonoBehaviour:
   _model: {fileID: 3752533165800414552}
   _agent: {fileID: -8300420723099910886}
   _anim: {fileID: 3752533165796107160}
-  _meleePos:
-  - {fileID: 3752533165805194284}
-  - {fileID: 3752533165805194322}
-  _shootPos: []
   _HPMax: 10
   _facePlayerSpeed: 600
-  _attackDamage: 1
-  _attackRange: 20
-  _attackRate: 0.5
-  _clawOrFang: {fileID: 424343093267893311, guid: f7b16309293f2e949b61f60c035662d9,
-    type: 3}
-  _shootDamage: 0
-  _shootRate: 0
-  _shootDist: 0
-  _shootSpread: 0
-  _bullet: {fileID: 424343093267893311, guid: 912a43b0040ffe643b0c56e5be18da99, type: 3}
-  _bulletSpeed: 0
   _changeTime: 2
   _changeCurve:
     serializedVersion: 2
@@ -1387,6 +1372,14 @@ MonoBehaviour:
   OnHealthChange:
     m_PersistentCalls:
       m_Calls: []
+  _meleePos:
+  - {fileID: 3752533165805194284}
+  - {fileID: 3752533165805194322}
+  _attackDamage: 1
+  _attackRate: 0.5
+  _attackRange: 20
+  _clawOrFang: {fileID: 424343093267893311, guid: f7b16309293f2e949b61f60c035662d9,
+    type: 3}
 --- !u!114 &-5859926899071614681
 MonoBehaviour:
   m_ObjectHideFlags: 0

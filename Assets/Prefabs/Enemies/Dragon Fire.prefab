@@ -349,7 +349,7 @@ GameObject:
   - component: {fileID: -4496470024350007113}
   - component: {fileID: 6841228695077934807}
   - component: {fileID: 1314125125794323478}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Dragon Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}

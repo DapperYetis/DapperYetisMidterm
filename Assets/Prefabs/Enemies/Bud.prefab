@@ -645,7 +645,7 @@ GameObject:
   - component: {fileID: -8973036127914387936}
   - component: {fileID: -1593023976566139328}
   - component: {fileID: 4904734748086412106}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bud
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -699,22 +699,8 @@ MonoBehaviour:
   _model: {fileID: 5924819110664565481}
   _agent: {fileID: -8973036127914387936}
   _anim: {fileID: 5924819110668700713}
-  _meleePos: []
-  _shootPos:
-  - {fileID: 5924819110659384275}
   _HPMax: 2
   _facePlayerSpeed: 600
-  _attackDamage: 0
-  _attackRange: 0
-  _attackRate: 0
-  _clawOrFang: {fileID: 424343093267893311, guid: f7b16309293f2e949b61f60c035662d9,
-    type: 3}
-  _shootDamage: 1
-  _shootRate: 1
-  _shootDist: 20
-  _shootSpread: 3
-  _bullet: {fileID: 6374708375792766595, guid: faa41594a23192d4ea0b106c983819ac, type: 3}
-  _bulletSpeed: 12
   _changeTime: 2
   _changeCurve:
     serializedVersion: 2
@@ -745,6 +731,14 @@ MonoBehaviour:
   OnHealthChange:
     m_PersistentCalls:
       m_Calls: []
+  _shootPos:
+  - {fileID: 5924819110659384275}
+  _shootDamage: 1
+  _shootRate: 1
+  _shootDist: 20
+  _shootSpread: 3
+  _bullet: {fileID: 6374708375792766595, guid: faa41594a23192d4ea0b106c983819ac, type: 3}
+  _bulletSpeed: 12
 --- !u!114 &6924806091130698917
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -268,7 +268,7 @@ GameObject:
   - component: {fileID: 2887638426317599639}
   - component: {fileID: 7485134682016057368}
   - component: {fileID: 9134379571616293777}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hermit King
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -368,8 +368,8 @@ MonoBehaviour:
   _shootPos:
   - {fileID: 6230942851774826687}
   _attackDamage: 3
-  _attackRange: 3
   _attackRate: 10
+  _attackRange: 3
   _clawOrFang: {fileID: 424343093267893311, guid: f7b16309293f2e949b61f60c035662d9,
     type: 3}
   _shootDamage: 3

@@ -1345,7 +1345,7 @@ GameObject:
   - component: {fileID: 5988892425251434761}
   - component: {fileID: 2741660182144818385}
   - component: {fileID: -1344576275995717260}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Snake
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1404,22 +1404,8 @@ MonoBehaviour:
   _model: {fileID: 7355849157064859125}
   _agent: {fileID: 5988892425251434761}
   _anim: {fileID: 7355849157069038389}
-  _meleePos:
-  - {fileID: 7355849157076192453}
-  _shootPos: []
   _HPMax: 3
   _facePlayerSpeed: 600
-  _attackDamage: 1
-  _attackRange: 20
-  _attackRate: 0.5
-  _clawOrFang: {fileID: 424343093267893311, guid: f7b16309293f2e949b61f60c035662d9,
-    type: 3}
-  _shootDamage: 0
-  _shootRate: 0
-  _shootDist: 0
-  _shootSpread: 0
-  _bullet: {fileID: 424343093267893311, guid: 912a43b0040ffe643b0c56e5be18da99, type: 3}
-  _bulletSpeed: 0
   _changeTime: 2
   _changeCurve:
     serializedVersion: 2
@@ -1450,6 +1436,20 @@ MonoBehaviour:
   OnHealthChange:
     m_PersistentCalls:
       m_Calls: []
+  _meleePos:
+  - {fileID: 7355849157076192453}
+  _shootPos: []
+  _attackDamage: 1
+  _attackRate: 0.5
+  _attackRange: 20
+  _clawOrFang: {fileID: 424343093267893311, guid: f7b16309293f2e949b61f60c035662d9,
+    type: 3}
+  _shootDamage: 0
+  _shootRate: 0
+  _shootDist: 0
+  _shootSpread: 0
+  _bullet: {fileID: 424343093267893311, guid: 912a43b0040ffe643b0c56e5be18da99, type: 3}
+  _bulletSpeed: 0
 --- !u!114 &-3947793967169715839
 MonoBehaviour:
   m_ObjectHideFlags: 0
