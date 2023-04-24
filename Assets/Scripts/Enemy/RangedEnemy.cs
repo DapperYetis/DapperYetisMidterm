@@ -57,7 +57,7 @@ public class RangedEnemy : EnemyAI
 
     protected virtual void Shoot()
     {
-        if (this == null) return;
+        if (this == null || !isActiveAndEnabled) return;
 
         StartCoroutine(FireShot());
     }

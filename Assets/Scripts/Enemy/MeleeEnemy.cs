@@ -33,7 +33,7 @@ public class MeleeEnemy : EnemyAI
 
     protected virtual void Melee()
     {
-        if (this == null) return;
+        if (this == null || !isActiveAndEnabled) return;
 
         StartCoroutine(TakeSwing());
     }

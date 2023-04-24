@@ -43,6 +43,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
     public UnityEvent OnHealthChange;
 
     protected Vector3 _playerDir => GameManager.instance.player.transform.position - transform.position;
+    protected bool _indicatingHit;
 
     protected virtual void Start()
     {
@@ -91,10 +92,17 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
 
     protected virtual IEnumerator FlashColor(Color clr)
     {
-        Color mainColor = _model.material.color;
-        _model.material.color = clr;
-        yield return new WaitForSeconds(0.1f);
-        _model.material.color = mainColor;
+        if(!_indicatingHit)
+        {
+            _indicatingHit = true;
+            Color mainColor = _model.material.color;
+            _model.material.color = clr;
+
+            yield return new WaitForSeconds(0.1f);
+
+            _model.material.color = mainColor;
+            _indicatingHit = false;
+        }
     }
 
     protected virtual void FacePlayer()
@@ -109,7 +117,6 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
 
         if (_HPCurrent <= 0)
         {
-            StopAllCoroutines();
             _anim.SetBool("Dead", true);
             GetComponent<CapsuleCollider>().enabled = false;
             _agent.enabled = false;
