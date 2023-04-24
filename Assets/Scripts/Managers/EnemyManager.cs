@@ -22,8 +22,10 @@ public class EnemyManager : MonoBehaviour
     public float scaleRate => _scaleRate;
     private float _scaleRateInverse;
     public float scaleRateInverse => _scaleRateInverse;
-    public float scaleFactor => Mathf.Log(_scaleRate * (GameManager.instance.runTimeMinutes + _scaleRateInverse)) + 1;
+    public float scaleFactor => Mathf.Log(_scaleRate * ((GameManager.instance.runTimeMinutes + _startingMinutes) + _scaleRateInverse)) + 1;
     public int scaleFactorInt => Mathf.FloorToInt(scaleFactor);
+    [SerializeField]
+    private float _startingMinutes = 10;
     private List<EnemyAI> _enemies;
     [SerializeField]
     private List<SOWave> _waves;
@@ -129,11 +131,6 @@ public class EnemyManager : MonoBehaviour
     {
         OnEnemyCountChange.RemoveAllListeners();
 
-        foreach (EnemyAI enemy in _enemies)
-        {
-            if(enemy.gameObject != null)
-                Destroy(enemy.gameObject);
-        }
         _enemies.Clear();
         SetWaves();
     }

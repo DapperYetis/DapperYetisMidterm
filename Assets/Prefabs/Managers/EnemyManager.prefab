@@ -121,6 +121,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _scaleRate: 1.2
+  _startingMinutes: 0
   _waves:
   - {fileID: 11400000, guid: b5352115f212d8c4b80e2057c0ff237d, type: 2}
   - {fileID: 11400000, guid: 9f338045f9598f74f98773863fb0ba9d, type: 2}

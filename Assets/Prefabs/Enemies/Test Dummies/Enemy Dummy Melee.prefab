@@ -92,6 +92,11 @@ PrefabInstance:
       propertyPath: _enemyAI
       value: 
       objectReference: {fileID: 5784272985993333885}
+    - target: {fileID: 9055092232274270732, guid: 2a4b61952883c9348ab3b48b76ffd87e,
+        type: 3}
+      propertyPath: _score
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2230898508323638556, guid: 2a4b61952883c9348ab3b48b76ffd87e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2a4b61952883c9348ab3b48b76ffd87e, type: 3}
@@ -181,7 +186,7 @@ MonoBehaviour:
     HPMax: 3
     facePlayerSpeed: 500
   _statsScaling:
-    HPMax: 0
+    HPMax: 1
     facePlayerSpeed: 0
   _primaryAttackStats:
     positions:

@@ -106,6 +106,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
 
     public virtual void SetUp(SOWave spawnPoint)
     {
+        ScaleEnemy();
         _HPCurrent = _stats.HPMax;
         _stoppingDistOG = _agent.stoppingDistance;
         _spawnPoint = spawnPoint;
