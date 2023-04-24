@@ -19,13 +19,19 @@ MonoBehaviour:
       prefab: {fileID: 424343093267893311, guid: 6829f420ff30b004da8146daccd5cacf,
         type: 3}
       damage: 0.5
+      directDamage: 0
       cooldown: 0.15
       lifetime: 1.5
+      secondaryLifetime: 0
       speed: 30
+      fxIntesity: 0
     secondaryAbility:
       prefab: {fileID: 424343093267893311, guid: 8be84b71d6cae8943903b776e3ef8b8d,
         type: 3}
-      damage: 20
+      damage: 10
+      directDamage: 7.5
       cooldown: 5
       lifetime: 3.5
-      speed: 15
+      secondaryLifetime: 0.75
+      speed: 25
+      fxIntesity: 0.5
