@@ -154,7 +154,8 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
             GetComponent<CapsuleCollider>().enabled = false;
             _agent.enabled = false;
             enabled = false;
-            Destroy(gameObject, Time.deltaTime + 3);
+            EnemyManager.instance.RemoveEnemyFromList(this);
+            Destroy(gameObject, 3);
         }
         else
         {
@@ -184,10 +185,5 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
     public virtual float GetHealthCurrent()
     {
         return _HPCurrent;
-    }
-
-    protected virtual void OnDestroy()
-    {
-        EnemyManager.instance.RemoveEnemyFromList(this);
     }
 }
