@@ -78,7 +78,7 @@ public class HybridEnemy : EnemyAI
 
     protected virtual void Melee()
     {
-        if (this == null) return;
+        if (this == null || !isActiveAndEnabled) return;
 
         StartCoroutine(TakeSwing());
     }
@@ -99,7 +99,7 @@ public class HybridEnemy : EnemyAI
 
     protected virtual void Shoot()
     {
-        if (this == null) return;
+        if (this == null || !isActiveAndEnabled) return;
 
         StartCoroutine(FireShot());
     }

@@ -12,11 +12,6 @@ public abstract class Projectile : MonoBehaviour
     void Start()
     {
         Destroy(gameObject, _stats.lifetime);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
         GetComponent<Rigidbody>().velocity = transform.forward * _stats.speed;
     }
 
