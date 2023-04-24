@@ -358,7 +358,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _radiusMod: 0.25
+  _radiusMod: 15
   _speedMod: 1.5
   OnHealthChange:
     m_PersistentCalls:
@@ -368,7 +368,7 @@ MonoBehaviour:
   _shootPos:
   - {fileID: 6230942851774826687}
   _attackDamage: 3
-  _attackRange: 5
+  _attackRange: 3
   _attackRate: 10
   _clawOrFang: {fileID: 424343093267893311, guid: f7b16309293f2e949b61f60c035662d9,
     type: 3}
