@@ -131,7 +131,8 @@ public class EnemyManager : MonoBehaviour
 
         foreach (EnemyAI enemy in _enemies)
         {
-            Destroy(enemy.gameObject);
+            if(enemy.gameObject != null)
+                Destroy(enemy.gameObject);
         }
         _enemies.Clear();
         SetWaves();
