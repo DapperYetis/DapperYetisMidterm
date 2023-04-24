@@ -5,19 +5,6 @@ using UnityEngine.AI;
 
 public class MeleeEnemy : EnemyAI
 {
-    [Header("--- Components ---")]
-    [SerializeField]
-    protected List<Transform> _meleePos;
-
-    [Header("--- Melee Stats ---")]
-    [SerializeField]
-    protected float _attackDamage;
-    [SerializeField]
-    protected float _attackRate;
-    [SerializeField]
-    protected float _attackRange;
-    [SerializeField]
-    protected GameObject _clawOrFang;
     protected bool _inAttackRange;
 
     protected override void Update()
@@ -43,12 +30,12 @@ public class MeleeEnemy : EnemyAI
         _anim.SetTrigger("Attack");
 
         Quaternion rot = Quaternion.LookRotation(_playerDir * 0.5f);
-        for (int i = 0; i < _meleePos.Count; i++)
+        for (int i = 0; i < _primaryAttackStats.positions.Length; i++)
         {
-            Instantiate(_clawOrFang, _meleePos[i].position, rot).GetComponent<Rigidbody>().velocity = transform.forward;
+            Instantiate(_primaryAttackStats.prefab, _primaryAttackStats.positions[i].position, rot).GetComponent<Projectile>().SetStats(_primaryAttackStats);
         }
 
-        yield return new WaitForSeconds(_attackRate);
+        yield return new WaitForSeconds(_primaryAttackStats.rate);
         _isAttacking = false;
     }
 

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 424343093267893248}
   - component: {fileID: 5968124790364654295}
   m_Layer: 8
-  m_Name: Ice Shot
+  m_Name: Fire Secondary Shot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,8 +31,8 @@ Transform:
   m_GameObject: {fileID: 424343093267893311}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -83,7 +83,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 393c3628d2251ad4f9a97e5fd2ee1826, type: 2}
+  - {fileID: 2100000, guid: a0a551077d983054bbfe9023c437db69, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -206,8 +206,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.2971698, g: 0.9482266, b: 1, a: 1}
-      key1: {r: 0.2971698, g: 0.9482266, b: 1, a: 1}
+      key0: {r: 1, g: 0.72768104, b: 0, a: 1}
+      key1: {r: 1, g: 0.39039767, b: 0.2783019, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}

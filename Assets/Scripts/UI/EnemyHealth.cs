@@ -7,8 +7,9 @@ public class EnemyHealth : MonoBehaviour
 {
 
     Camera _playerCam;
-    [SerializeField] Image _enemyhealthBar;
-    [SerializeField] EnemyAI _enemyAI;
+    [SerializeField] 
+    Image _enemyhealthBar;
+    EnemyAI _enemyAI;
 
     Vector3 _direction;
     float _remainingHealth;
@@ -17,6 +18,7 @@ public class EnemyHealth : MonoBehaviour
     private void Start()
     {
         _playerCam = Camera.main;
+        _enemyAI = transform.parent.GetComponent<EnemyAI>();
 
         _enemyAI.OnHealthChange.AddListener(UpdateEnemyHealth);
     }

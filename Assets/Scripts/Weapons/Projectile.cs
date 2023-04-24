@@ -4,12 +4,10 @@ using UnityEngine;
 
 public abstract class Projectile : MonoBehaviour
 {
-    [SerializeField]
-    private AbilityStats _stats;
+    protected AbilityStats _stats;
     public AbilityStats stats => _stats;
 
-    // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         Destroy(gameObject, _stats.lifetime);
         GetComponent<Rigidbody>().velocity = transform.forward * _stats.speed;
@@ -20,7 +18,7 @@ public abstract class Projectile : MonoBehaviour
         _stats = stats;
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         if (other.isTrigger) return;
 

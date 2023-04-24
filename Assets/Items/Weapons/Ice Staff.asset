@@ -15,17 +15,17 @@ MonoBehaviour:
   _weaponName: Ice Staff
   _prefab: {fileID: 2045518251835205895, guid: fa36685f5c02af04e9e6fb66da1cbeff, type: 3}
   _stats:
-    _primaryAbility:
-      _prefab: {fileID: 424343093267893311, guid: 1201d3b5c2d5553479a27bb7ae733e7c,
+    primaryAbility:
+      prefab: {fileID: 424343093267893311, guid: 1201d3b5c2d5553479a27bb7ae733e7c,
         type: 3}
-      _damage: 2
-      _cooldown: 1
-      _lifetime: 2
-      _speed: 20
-    _secondaryAbility:
-      _prefab: {fileID: 424343093267893311, guid: 1201d3b5c2d5553479a27bb7ae733e7c,
+      damage: 2
+      cooldown: 0.75
+      lifetime: 2
+      speed: 25
+    secondaryAbility:
+      prefab: {fileID: 424343093267893311, guid: 2e206467b2e3dbd4b9dda39cd8e0996d,
         type: 3}
-      _damage: 8
-      _cooldown: 2
-      _lifetime: 5
-      _speed: 16
+      damage: 10
+      cooldown: 4
+      lifetime: 2
+      speed: 15

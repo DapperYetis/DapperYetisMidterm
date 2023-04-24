@@ -3,12 +3,8 @@
 [System.Serializable]
 public struct WeaponStats
 {
-    [SerializeField]
-    private AbilityStats _primaryAbility;
-    public AbilityStats primaryAbility => _primaryAbility;
-    [SerializeField]
-    private AbilityStats _secondaryAbility;
-    public AbilityStats secondaryAbility => _secondaryAbility;
+    public AbilityStats primaryAbility;
+    public AbilityStats secondaryAbility;
 
 
 
@@ -16,8 +12,8 @@ public struct WeaponStats
     {
         WeaponStats stats = new();
 
-        stats._primaryAbility = s1._primaryAbility + s2._primaryAbility;
-        stats._secondaryAbility = s1._secondaryAbility + s2._secondaryAbility;
+        stats.primaryAbility = s1.primaryAbility + s2.primaryAbility;
+        stats.secondaryAbility = s1.secondaryAbility + s2.secondaryAbility;
 
         return stats;
     }

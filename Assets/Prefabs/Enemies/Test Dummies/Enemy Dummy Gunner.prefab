@@ -55,8 +55,6 @@ MonoBehaviour:
   _model: {fileID: 2230898508323638554}
   _agent: {fileID: 2230898508323638552}
   _anim: {fileID: 4631559604901429188}
-  _HPMax: 6
-  _facePlayerSpeed: 600
   _changeTime: 2
   _changeCurve:
     serializedVersion: 2
@@ -87,14 +85,29 @@ MonoBehaviour:
   OnHealthChange:
     m_PersistentCalls:
       m_Calls: []
-  _shootPos:
-  - {fileID: 6827421909638397519}
-  _shootDamage: 1
-  _shootRate: 5
-  _shootDist: 20
-  _shootSpread: 2
-  _bullet: {fileID: 424343093267893311, guid: 1bcc9b7c1094fd547910ca2344bca383, type: 3}
-  _bulletSpeed: 12
+  _stats:
+    HPMax: 6
+    facePlayerSpeed: 600
+  _statsScaling:
+    HPMax: 0
+    facePlayerSpeed: 0
+  _primaryAttackStats:
+    positions:
+    - {fileID: 6827421909638397519}
+    damage: 3
+    rate: 1.5
+    lifetime: 2
+    variance: 4
+    prefab: {fileID: 424343093267893311, guid: 1bcc9b7c1094fd547910ca2344bca383, type: 3}
+    speed: 18
+  _primaryAttackStatsScaling:
+    positions: []
+    damage: 0
+    rate: 0
+    lifetime: 0
+    variance: 0
+    prefab: {fileID: 0}
+    speed: 0
 --- !u!114 &9055092232274270732
 MonoBehaviour:
   m_ObjectHideFlags: 0

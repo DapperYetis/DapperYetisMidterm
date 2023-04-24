@@ -147,8 +147,6 @@ MonoBehaviour:
   _model: {fileID: 7423373954207654290}
   _agent: {fileID: 7423373954207654288}
   _anim: {fileID: 4158577223601345356}
-  _HPMax: 3
-  _facePlayerSpeed: 600
   _changeTime: 2
   _changeCurve:
     serializedVersion: 2
@@ -179,13 +177,29 @@ MonoBehaviour:
   OnHealthChange:
     m_PersistentCalls:
       m_Calls: []
-  _meleePos:
-  - {fileID: 2832554253355864775}
-  _attackDamage: 3
-  _attackRange: 3
-  _attackRate: 1
-  _clawOrFang: {fileID: 424343093267893311, guid: f7b16309293f2e949b61f60c035662d9,
-    type: 3}
+  _stats:
+    HPMax: 3
+    facePlayerSpeed: 500
+  _statsScaling:
+    HPMax: 0
+    facePlayerSpeed: 0
+  _primaryAttackStats:
+    positions:
+    - {fileID: 2832554253355864775}
+    damage: 10
+    rate: 2
+    lifetime: 1
+    variance: 0
+    prefab: {fileID: 424343093267893311, guid: f7b16309293f2e949b61f60c035662d9, type: 3}
+    speed: 5
+  _primaryAttackStatsScaling:
+    positions: []
+    damage: 0
+    rate: 0
+    lifetime: 0
+    variance: 0
+    prefab: {fileID: 0}
+    speed: 0
 --- !u!23 &7423373954207654290 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 2230898508323638554, guid: 2a4b61952883c9348ab3b48b76ffd87e,
