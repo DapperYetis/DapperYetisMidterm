@@ -174,8 +174,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _radiusMod: 0.25
-  _speedMod: 1.5
+  _radiusMod: 1
+  _speedMod: 2.5
   OnHealthChange:
     m_PersistentCalls:
       m_Calls: []

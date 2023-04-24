@@ -82,15 +82,15 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _radiusMod: 0.25
-  _speedMod: 1.5
+  _radiusMod: 5
+  _speedMod: 3
   OnHealthChange:
     m_PersistentCalls:
       m_Calls: []
   _shootPos:
   - {fileID: 6827421909638397519}
   _shootDamage: 1
-  _shootRate: 1
+  _shootRate: 5
   _shootDist: 20
   _shootSpread: 2
   _bullet: {fileID: 424343093267893311, guid: 1bcc9b7c1094fd547910ca2344bca383, type: 3}
