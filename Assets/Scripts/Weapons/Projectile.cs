@@ -26,8 +26,6 @@ public abstract class Projectile : MonoBehaviour
         {
             damageable.Damage(_stats.damage);
         }
-        else if (other.transform.gameObject.layer == 8 || other.transform.gameObject.layer == 9)
-            Destroy(other);
 
         Destroy(gameObject);
     }

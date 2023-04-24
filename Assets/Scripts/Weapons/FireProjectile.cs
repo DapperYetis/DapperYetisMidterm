@@ -17,6 +17,8 @@ public class FireProjectile : Projectile
 
     protected override void OnTriggerEnter(Collider other)
     {
+        if (other.isTrigger) return;
+
         if(!_exploding)
         {
             if (other.gameObject.TryGetComponent<IDamageable>(out var damageable))
