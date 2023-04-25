@@ -407,6 +407,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _xp: 15
   _currency: 12
+  _score: 10
 --- !u!95 &6230942851767379793
 Animator:
   serializedVersion: 5
@@ -554,7 +555,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 4300000, guid: a7ded61e45b07fe44be58a121928a9d4, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 6406de163c5c1b24e9be415f1252356a, type: 3}
   m_Bones:
   - {fileID: 6230942851774826801}
   - {fileID: 6230942851774826695}

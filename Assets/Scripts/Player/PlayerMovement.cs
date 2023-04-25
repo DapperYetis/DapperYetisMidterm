@@ -5,14 +5,16 @@ using UnityEngine;
 using UnityEngine.Events;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
-[RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
 {
     private PlayerStats _stats;
     public PlayerStats stats => _stats;
 
     [Header("-----References------")]
-    private CharacterController _controller;
+    private Rigidbody _rb;
+    [SerializeField]
+    private Transform _footPos;
 
     // Runtime variables
     private bool _wasMoving;
@@ -25,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
     private bool _isJumping;
     public bool isJumping => _isJumping;
     public int jumpCountCurrent => _jumpCountCurrent;
+    private bool _isGrounded;
+    public bool isGrounded => _isGrounded;
 
     // Events
     [HideInInspector]
@@ -40,12 +44,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        _controller = GetComponent<CharacterController>();
+        _rb = GetComponent<Rigidbody>();
         _playerVelocity = new();
 
-        _controller.enabled = false;
-        transform.position = GameManager.instance.playerSpawnPos.position;
-        _controller.enabled = true;
+        _rb.position = GameManager.instance.playerSpawnPos.position;
     }
 
     private void Update()
@@ -53,13 +55,16 @@ public class PlayerMovement : MonoBehaviour
         Movement();
     }
 
+    private void FixedUpdate()
+    {
+        _rb.velocity = _playerVelocity;
+    }
+
     private void Movement()
     {
         PlanarMovement();
 
         VerticalMovement();
-
-        _controller.Move(_playerVelocity * Time.deltaTime);
     }
 
     private void PlanarMovement()
@@ -72,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
             else
                 OnSprintStop.Invoke();
         }
-        else if(_isRunning && Input.GetAxis("Vertical") < 0.001f)
+        else if (_isRunning && Input.GetAxis("Vertical") < 0.001f)
         {
             _isRunning = false;
             OnSprintStop.Invoke();
@@ -87,11 +92,11 @@ public class PlayerMovement : MonoBehaviour
         _playerVelocity += transform.forward * (Input.GetAxis("Vertical") * speed);
         _playerVelocity += transform.right * (Input.GetAxis("Horizontal") * speed);
 
-        if(!_wasMoving && (playerVelocity - Vector3.up * playerVelocity.y).sqrMagnitude > 0.005)
+        if (!_wasMoving && (playerVelocity - Vector3.up * playerVelocity.y).sqrMagnitude > 0.005)
         {
             OnMoveStart.Invoke();
         }
-        else if(_wasMoving && (playerVelocity - Vector3.up * playerVelocity.y).sqrMagnitude <= 0.005)
+        else if (_wasMoving && (playerVelocity - Vector3.up * playerVelocity.y).sqrMagnitude <= 0.005)
         {
             OnMoveStop.Invoke();
         }
@@ -99,10 +104,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void VerticalMovement()
     {
-        _playerVelocity += Vector3.down * (_stats.gravityAcceleration * Time.deltaTime);
-        if(_controller.isGrounded && _playerVelocity.y < 0)
+        _isGrounded = Physics.Raycast(_footPos.position, Vector3.down, 0.125f, Physics.AllLayers ^ (1 << 6));
+        if (_isGrounded)
         {
-            _playerVelocity.y = 0;
             _jumpCountCurrent = 0;
         }
 
@@ -111,11 +115,16 @@ public class PlayerMovement : MonoBehaviour
         {
             StartCoroutine(DoJump());
         }
+        else if (!_isJumping)
+        {
+            _playerVelocity.y = _rb.velocity.y;
+        }
     }
 
     private IEnumerator DoJump()
     {
         _isJumping = true;
+        _rb.useGravity = false;
         ++_jumpCountCurrent;
 
         float startTime = Time.time;
@@ -128,18 +137,20 @@ public class PlayerMovement : MonoBehaviour
         OnJump.Invoke();
 
 
-        while(Time.time < startTime + _stats.jumpInputTime)
+        while (Time.time < startTime + _stats.jumpInputTime)
         {
-            if(Input.GetButton("Jump"))
+            if (Input.GetButton("Jump"))
                 _playerVelocity.y = minInitialVelocity + totalVelocityIncrement * (Time.time - startTime) / _stats.jumpInputTime;
             yield return wait;
         }
 
         _isJumping = false;
+        _rb.useGravity = true;
     }
 
     public void SetStats(PlayerStats newStats)
     {
         _stats = newStats;
+        Physics.gravity = Vector3.down * _stats.gravityAcceleration;
     }
 }

@@ -96,8 +96,6 @@ MonoBehaviour:
   _model: {fileID: 8658647790751366179}
   _agent: {fileID: 7532805711137955789}
   _anim: {fileID: 8658647790747206371}
-  _HPMax: 6
-  _facePlayerSpeed: 600
   _changeTime: 2
   _changeCurve:
     serializedVersion: 2
@@ -128,13 +126,28 @@ MonoBehaviour:
   OnHealthChange:
     m_PersistentCalls:
       m_Calls: []
-  _meleePos:
-  - {fileID: 8658647790737665345}
-  _attackDamage: 1
-  _attackRate: 0.5
-  _attackRange: 20
-  _clawOrFang: {fileID: 424343093267893311, guid: f7b16309293f2e949b61f60c035662d9,
-    type: 3}
+  _stats:
+    HPMax: 0
+    facePlayerSpeed: 0
+  _statsScaling:
+    HPMax: 0
+    facePlayerSpeed: 0
+  _primaryAttackStats:
+    positions: []
+    damage: 0
+    rate: 0
+    lifetime: 0
+    variance: 0
+    prefab: {fileID: 0}
+    speed: 0
+  _primaryAttackStatsScaling:
+    positions: []
+    damage: 0
+    rate: 0
+    lifetime: 0
+    variance: 0
+    prefab: {fileID: 0}
+    speed: 0
 --- !u!114 &6622513228859962886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,6 +162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _xp: 8
   _currency: 6
+  _score: 10
 --- !u!95 &8658647790747206371
 Animator:
   serializedVersion: 5
@@ -1309,7 +1323,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 4300000, guid: 600f58dca42f8f44f8fc2458a0fb193b, type: 3}
+  m_Mesh: {fileID: 4300000, guid: a04df152b8be68546a3ea43b6d290ec0, type: 3}
   m_Bones:
   - {fileID: 8658647790737665303}
   - {fileID: 8658647790737665287}
