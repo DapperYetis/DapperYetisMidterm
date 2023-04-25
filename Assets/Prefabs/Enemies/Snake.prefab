@@ -1404,8 +1404,6 @@ MonoBehaviour:
   _model: {fileID: 7355849157064859125}
   _agent: {fileID: 5988892425251434761}
   _anim: {fileID: 7355849157069038389}
-  _HPMax: 3
-  _facePlayerSpeed: 600
   _changeTime: 2
   _changeCurve:
     serializedVersion: 2
@@ -1436,20 +1434,36 @@ MonoBehaviour:
   OnHealthChange:
     m_PersistentCalls:
       m_Calls: []
-  _meleePos:
-  - {fileID: 7355849157076192453}
-  _shootPos: []
-  _attackDamage: 1
-  _attackRate: 0.5
-  _attackRange: 20
-  _clawOrFang: {fileID: 424343093267893311, guid: f7b16309293f2e949b61f60c035662d9,
-    type: 3}
-  _shootDamage: 0
-  _shootRate: 0
-  _shootDist: 0
-  _shootSpread: 0
-  _bullet: {fileID: 424343093267893311, guid: 912a43b0040ffe643b0c56e5be18da99, type: 3}
-  _bulletSpeed: 0
+  _stats:
+    HPMax: 0
+    facePlayerSpeed: 0
+  _statsScaling:
+    HPMax: 0
+    facePlayerSpeed: 0
+  _primaryAttackStats:
+    positions: []
+    damage: 0
+    rate: 0
+    lifetime: 0
+    variance: 0
+    prefab: {fileID: 0}
+    speed: 0
+  _primaryAttackStatsScaling:
+    positions: []
+    damage: 0
+    rate: 0
+    lifetime: 0
+    variance: 0
+    prefab: {fileID: 0}
+    speed: 0
+  _secondaryAttackStats:
+    positions: []
+    damage: 0
+    rate: 0
+    lifetime: 0
+    variance: 0
+    prefab: {fileID: 0}
+    speed: 0
 --- !u!114 &-3947793967169715839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1464,6 +1478,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _xp: 5
   _currency: 2
+  _score: 10
 --- !u!95 &7355849157069038389
 Animator:
   serializedVersion: 5
@@ -1770,7 +1785,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 4300000, guid: a62c5c5d376520340aa80f2f3643c54e, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 97586aab535fc884294edfa1abd0efea, type: 3}
   m_Bones:
   - {fileID: 7355849157076192503}
   - {fileID: 7355849157076192459}
