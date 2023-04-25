@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a01e0102239aeaa4e9d291efd03705ea, type: 3}
   m_Name: Bloom Wave
   m_EditorClassIdentifier: 
-  _enemyType: {fileID: 7160668322234071085, guid: a87f651b28f3d234db143fa6b87bea0c,
+  _enemyType: {fileID: 6826903240270539524, guid: fb22446bf80871c4db7933a44452ea95,
     type: 3}
   _spawnInterval: 0.2
   _maxEnemyCount: 5

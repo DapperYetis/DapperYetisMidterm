@@ -11,21 +11,21 @@ public class HybridEnemy : MeleeEnemy
 
     protected override void Update()
     {
-        base.Update();
+        if (!_isSetUp) return;
+
+        if (_agent.isActiveAndEnabled)
+            _agent.SetDestination(GameManager.instance.player.transform.position);
+
+        FacePlayer();
 
         if (!_isAttacking)
         {
             _isAttacking = true;
-            EnemyManager.instance.QueueAttack(Attack);
+            if (_inAttackRange == true)
+                EnemyManager.instance.QueueAttack(Melee);
+            else
+                EnemyManager.instance.QueueAttack(Shoot);            
         }
-    }
-
-    protected virtual void Attack()
-    {
-        if (_inAttackRange)
-            Melee();
-        else
-            Shoot();
     }
 
     protected virtual void Shoot()
@@ -49,21 +49,5 @@ public class HybridEnemy : MeleeEnemy
 
         yield return new WaitForSeconds(_secondaryAttackStats.rate);
         _isAttacking = false;
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            _inAttackRange = true;
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            _inAttackRange = false;
-        }
     }
 }
