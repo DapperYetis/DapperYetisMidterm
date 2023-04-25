@@ -89,7 +89,7 @@ MonoBehaviour:
     HPMax: 6
     facePlayerSpeed: 600
   _statsScaling:
-    HPMax: 0
+    HPMax: 1
     facePlayerSpeed: 0
   _primaryAttackStats:
     positions:
@@ -122,6 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _xp: 10
   _currency: 5
+  _score: 20
 --- !u!33 &2230898508323638557
 MeshFilter:
   m_ObjectHideFlags: 0

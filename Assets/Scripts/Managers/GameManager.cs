@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -22,6 +23,11 @@ public class GameManager : MonoBehaviour
     private float _startTime;
     public float runTime => Time.time - _startTime;
     public float runTimeMinutes => runTime * 0.0166f;
+
+    private int _score = 0;
+    public int score => _score;
+    [HideInInspector]
+    public UnityEvent<int> OnScoreChange;
 
     private void Awake()
     {
@@ -103,4 +109,10 @@ public class GameManager : MonoBehaviour
             UIManager.instance.TransitionToMainMenu();
     }
     #endregion
+
+    public void AddToScore(int addition)
+    {
+        _score += addition;
+        OnScoreChange.Invoke(addition);
+    }
 }
