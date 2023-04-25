@@ -415,8 +415,6 @@ MonoBehaviour:
   _model: {fileID: 8377023706069775151}
   _agent: {fileID: -4496470024350007113}
   _anim: {fileID: 8377023706065620463}
-  _HPMax: 5
-  _facePlayerSpeed: 600
   _changeTime: 2
   _changeCurve:
     serializedVersion: 2
@@ -442,26 +440,43 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _radiusMod: 10
+  _radiusMod: 5
   _speedMod: 3
   OnHealthChange:
     m_PersistentCalls:
       m_Calls: []
-  _meleePos:
-  - {fileID: 8377023706073375283}
-  _shootPos:
-  - {fileID: 8377023706073375283}
-  _attackDamage: 2
-  _attackRate: 3
-  _attackRange: 5
-  _clawOrFang: {fileID: 424343093267893311, guid: f7b16309293f2e949b61f60c035662d9,
-    type: 3}
-  _shootDamage: 1
-  _shootRate: 3
-  _shootDist: 30
-  _shootSpread: 2
-  _bullet: {fileID: 424343093267893311, guid: 1bcc9b7c1094fd547910ca2344bca383, type: 3}
-  _bulletSpeed: 20
+  _stats:
+    HPMax: 8
+    facePlayerSpeed: 600
+  _statsScaling:
+    HPMax: 0
+    facePlayerSpeed: 0
+  _primaryAttackStats:
+    positions:
+    - {fileID: 8377023706073375241}
+    damage: 5
+    rate: 2
+    lifetime: 3
+    variance: 2
+    prefab: {fileID: 424343093267893311, guid: 1bcc9b7c1094fd547910ca2344bca383, type: 3}
+    speed: 20
+  _primaryAttackStatsScaling:
+    positions: []
+    damage: 0
+    rate: 0
+    lifetime: 0
+    variance: 0
+    prefab: {fileID: 0}
+    speed: 0
+  _secondaryAttackStats:
+    positions:
+    - {fileID: 8377023706073375241}
+    damage: 10
+    rate: 3
+    lifetime: 1
+    variance: 0
+    prefab: {fileID: 424343093267893311, guid: f7b16309293f2e949b61f60c035662d9, type: 3}
+    speed: 20
 --- !u!114 &7866188734632337382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -511,7 +526,7 @@ NavMeshAgent:
   m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 600
-  m_StoppingDistance: 3
+  m_StoppingDistance: 20
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
