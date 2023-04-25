@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -22,9 +23,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] Animator _transition;
 
     public UIReferences references => _references;
-    [Header("----- Temporary -----")]
-    [SerializeField]
-    private bool _inGame;
 
 
 
@@ -66,6 +64,9 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
+        if(GameManager.instance.inGame) 
+            _references.timer.SetText($"{(int)GameManager.instance.runTimeMinutes} : {(GameManager.instance.runTime % 60).ToString("F1")}");
+
         if (Input.GetButtonDown("Cancel"))
         {
             if (_activeMenu != null && ReferenceEquals(_activeMenu, _references.pauseMenu))
@@ -109,14 +110,23 @@ public class UIManager : MonoBehaviour
         StartCoroutine(RefindReferences(() =>
         {
             _playerController = GameManager.instance.player;
-            _playerController.OnHealthChange.AddListener(UpdateHealth);
             _playerInv = _playerController.inventory;
             _transition = _references.animator;
-            
+            _playerController.OnHealthChange.AddListener(UpdateHealth);
+            _playerInv.OnLevelChange.AddListener(LevelUp);
+            _playerController.OnPlayerSetUp.AddListener(() =>
+            {
+                _playerController.inventory.OnXPChange.AddListener(IncreaseXP);
+                _playerController.weapon.OnPrimary.AddListener(AttackCD1);
+                _playerController.weapon.OnSecondary.AddListener(AttackCD2);
+                _playerController.inventory.OnCurrencyChange.AddListener(TrackCurrency);
+            });
+            GameManager.instance.OnScoreChange.AddListener(UpdateScore);
+
             SetHealth();
             EnemyManager.instance.OnEnemyCountChange.AddListener(UpdateEnemyCount);
 
-            if (!_inGame)
+            if (!GameManager.instance.inGame)
             {
                 PauseState();
                 ToFirstMenu(_references.mainMenu);
@@ -250,7 +260,7 @@ public class UIManager : MonoBehaviour
     #region Menu Buttons
     public void TransitionToLoadout()
     {
-       NextMenu(_references.loadoutMenu);
+        NextMenu(_references.loadoutMenu);
     }
 
     public void TransitionToGame()
@@ -343,27 +353,25 @@ public class UIManager : MonoBehaviour
 
         references.enemyCount.text = EnemyManager.instance.GetEnemyListSize().ToString("F0");
     }
-    public void UpdateScore()
+    public void UpdateScore(int newScore)
     {
-        
+        _references.score.SetText(GameManager.instance.score.ToString());
     }
 
-    public void TrackCurrency()
+    public void TrackCurrency(int currency)
     {
         _references.currency.SetText(_playerInv.currency.ToString());
     }
 
-    public void LevelUp()
+    public void LevelUp(int newLevel)
     {
-        _references.playerLevel.SetText(_playerInv.currentLevel.ToString());
+        _references.playerLevel.SetText(newLevel.ToString());
     }
 
-    public void IncreaseXP()
+    public void IncreaseXP(int currXP)
     {
-        //_references.
+        _references.xpbar.fillAmount = (_playerInv.currentXP % 100f) / 100f;
     }
-
-    
 
     IEnumerator Damaged()
     {
@@ -380,7 +388,7 @@ public class UIManager : MonoBehaviour
 
     public void MaxHealthUpdate()
     {
-
+        _references.maxHealth.SetText(_playerController.GetHealthMax().ToString());
     }
 
     public void PromptOn()
@@ -393,6 +401,40 @@ public class UIManager : MonoBehaviour
         _references.interactPrompt.SetActive(false);
     }
 
+    public void AttackCD1()
+    {
+        StartCoroutine(CooldownTimer(_playerController.weapon.stats.primaryAbility.cooldown , Time.time, _references.attCoolDwn1));
+    }
+
+    public void AttackCD2()
+    {
+        StartCoroutine(CooldownTimer(_playerController.weapon.stats.secondaryAbility.cooldown, Time.time, _references.attCoolDwn2));
+    }
+
+    public void SupportCD1()
+    {
+        StartCoroutine(CooldownTimer(10f, Time.time, _references.suppCoolDwn1));
+    }
+
+    public void SupportCD2()
+    {
+        StartCoroutine(CooldownTimer(10f, Time.time, _references.suppCoolDwn2));
+    }
+
+    public void CompanionCD()
+    {
+
+    }
+
+    IEnumerator CooldownTimer(float cooldown, float startTime, TextMeshProUGUI target)
+    {
+        while((cooldown - (Time.time - startTime) > 0))
+        {
+            target.SetText ((cooldown - (Time.time - startTime)).ToString("F1"));
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+        target.SetText("");
+    }
     #endregion
 
 }

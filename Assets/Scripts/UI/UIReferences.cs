@@ -112,4 +112,28 @@ public class UIReferences : MonoBehaviour
     [SerializeField] LoadoutScript _loadoutScript;
     
     public LoadoutScript loadoutScript => _loadoutScript;
+
+    [SerializeField] TextMeshProUGUI _timer;
+
+    public TextMeshProUGUI timer => _timer;
+
+    [SerializeField] TextMeshProUGUI _attCoolDwn1;
+
+    public TextMeshProUGUI attCoolDwn1 => _attCoolDwn1;
+
+    [SerializeField] TextMeshProUGUI _attCoolDwn2;
+
+    public TextMeshProUGUI attCoolDwn2 => _attCoolDwn2;
+
+    [SerializeField] TextMeshProUGUI _suppCoolDwn1;
+
+    public TextMeshProUGUI suppCoolDwn1 => _suppCoolDwn1;
+
+    [SerializeField] TextMeshProUGUI _suppCoolDwn2;
+
+    public TextMeshProUGUI suppCoolDwn2 => _suppCoolDwn2;
+
+    [SerializeField] TextMeshProUGUI _companionCD;
+
+    public TextMeshProUGUI companionCD => _companionCD;
 }

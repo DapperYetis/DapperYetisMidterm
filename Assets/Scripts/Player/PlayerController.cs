@@ -41,6 +41,8 @@ public class PlayerController : MonoBehaviour, IDamageable
     // Events
     [HideInInspector]
     public UnityEvent OnHealthChange;
+    [HideInInspector]
+    public UnityEvent OnPlayerSetUp;
 
     // Instance variables
     private float _healthCurrent;
@@ -58,6 +60,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         _weapon.SetCamera(_camera);
         _inventory.OnItemsChange.AddListener(HandleNewItem);
         Heal(_stats.healthMax);
+        OnPlayerSetUp.Invoke();
     }
 
     private void FixedUpdate()
