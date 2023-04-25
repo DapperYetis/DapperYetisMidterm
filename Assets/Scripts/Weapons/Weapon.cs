@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class Weapon : MonoBehaviour
 {
@@ -16,6 +17,11 @@ public abstract class Weapon : MonoBehaviour
 
     protected bool _canUsePrimary = true;
     protected bool _canUseSecondary = true;
+
+    [HideInInspector]
+    public UnityEvent OnPrimary;
+    [HideInInspector]
+    public UnityEvent OnSecondary;
 
     public void SetCamera(Camera camera)
     {
@@ -38,7 +44,7 @@ public abstract class Weapon : MonoBehaviour
     protected virtual IEnumerator PrimaryFire()
     {
         _canUsePrimary = false;
-
+        OnPrimary?.Invoke();
         yield return Fire(_stats.primaryAbility);
 
         _canUsePrimary = true;
@@ -47,7 +53,9 @@ public abstract class Weapon : MonoBehaviour
     protected virtual IEnumerator SecondaryFire()
     {
         _canUseSecondary = false;
+        OnSecondary?.Invoke();
         yield return Fire(_stats.secondaryAbility);
+
         _canUseSecondary = true;
     }
 
