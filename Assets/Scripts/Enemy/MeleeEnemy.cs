@@ -11,7 +11,7 @@ public class MeleeEnemy : EnemyAI
     {
         base.Update();
 
-        if (!_isAttacking)
+        if (!_isAttacking && _inAttackRange)
         {
             _isAttacking = true;
             EnemyManager.instance.QueueAttack(Melee);
