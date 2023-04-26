@@ -17,8 +17,8 @@ public class ItemHudItem : MonoBehaviour
        _count.SetText(_total.ToString());
     }
 
-    public void SetImage(Image newImage)
+    public void SetImage(Sprite sprite)
     {
-        _image = newImage;
+        _image.sprite = sprite;
     }
 }

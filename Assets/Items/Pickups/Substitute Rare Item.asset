@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5772fd7538930743a9528f463fb1867, type: 3}
   m_Name: Substitute Rare Item
   m_EditorClassIdentifier: 
+  _icon: {fileID: 21300000, guid: af43187fe78bf4124b5b3d89ceae73e6, type: 3}
   _description: Please don't use me
   _rarity: 2
-  _statsModifications:
+  _movementStats:
     walkSpeed: 10
     sprintMultiplier: 0
     accelerationRate:
@@ -30,3 +31,22 @@ MonoBehaviour:
     jumpCountMax: 0
     gravityAcceleration: 0
     healthMax: 0
+  _attackStats:
+    primaryAbility:
+      prefab: {fileID: 0}
+      damage: 0
+      directDamage: 0
+      cooldown: 0
+      lifetime: 0
+      secondaryLifetime: 0
+      speed: 0
+      fxIntesity: 0
+    secondaryAbility:
+      prefab: {fileID: 0}
+      damage: 0
+      directDamage: 0
+      cooldown: 0
+      lifetime: 0
+      secondaryLifetime: 0
+      speed: 0
+      fxIntesity: 0
