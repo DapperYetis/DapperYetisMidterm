@@ -19,9 +19,9 @@ public class PlayerMovementGrappling : MonoBehaviour
     public float airMultiplier;
     bool readyToJump;
 
-    [Header("Keybinds")]
-    public KeyCode jumpKey = KeyCode.Space;
-    public KeyCode sprintKey = KeyCode.LeftShift;
+    //[Header("Keybinds")]
+    //public KeyCode jumpKey = KeyCode.Space;
+    //public KeyCode sprintKey = KeyCode.LeftShift;
 
     [Header("Ground Check")]
     public float playerHeight;
@@ -46,6 +46,8 @@ public class PlayerMovementGrappling : MonoBehaviour
 
     Rigidbody rb;
 
+    private PlayerMovement pm;
+
     public MovementState state;
     public enum MovementState
     {
@@ -58,11 +60,12 @@ public class PlayerMovementGrappling : MonoBehaviour
     }
     public bool freeze;
     public bool activeGrapple;
-    public bool swinging;
+   public bool swinging;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        pm = GetComponent<PlayerMovement>();
         rb.freezeRotation = true;
 
         readyToJump = true;
@@ -97,11 +100,11 @@ public class PlayerMovementGrappling : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKey(jumpKey) && readyToJump && grounded)
+        if (Input.GetButtonDown("Jump") && readyToJump && grounded)
         {
             readyToJump = false;
 
-            Jump();
+            //Jump();
 
             Invoke(nameof(ResetJump), jumpCooldown);
         }
@@ -125,7 +128,7 @@ public class PlayerMovementGrappling : MonoBehaviour
             state = MovementState.swinging;
             moveSpeed = swingSpeed;
         }
-        else if (grounded && Input.GetKey(sprintKey))
+        else if (grounded && Input.GetButtonDown("Sprint"))
         {
             state = MovementState.sprinting;
             moveSpeed = sprintSpeed;
@@ -167,7 +170,7 @@ public class PlayerMovementGrappling : MonoBehaviour
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
         }
-        rb.useGravity = !OnSlope();
+        //rb.useGravity = !OnSlope();
     }
 
     private void SpeedControl()
@@ -191,14 +194,14 @@ public class PlayerMovementGrappling : MonoBehaviour
             }
         }
     }
-    private void Jump()
-    {
-        exitingSlope = true;
+    //private void Jump()
+    //{
+    //    exitingSlope = true;
 
-        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+    //    rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
-        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
-    }
+    //    rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+    //}
 
     private void ResetJump()
     {
