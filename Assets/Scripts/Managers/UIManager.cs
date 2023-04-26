@@ -5,6 +5,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static UnityEditor.Experimental.GraphView.GraphView;
@@ -120,6 +121,18 @@ public class UIManager : MonoBehaviour
                 _playerController.weapon.OnPrimary.AddListener(AttackCD1);
                 _playerController.weapon.OnSecondary.AddListener(AttackCD2);
                 _playerController.inventory.OnCurrencyChange.AddListener(TrackCurrency);
+
+                if(GetSprintKey())
+                {
+                    _references.sprintShift.SetActive(false);
+                    _references.sprintCtrl.SetActive(true);
+                }
+                else if(!GetSprintKey())
+                {
+                    _references.sprintShift.SetActive(true);
+                    _references.sprintCtrl.SetActive(false);
+                }
+
             });
             GameManager.instance.OnScoreChange.AddListener(UpdateScore);
 
@@ -182,6 +195,9 @@ public class UIManager : MonoBehaviour
         _references.soundSlider.value = volume;
     }
 
+
+
+
     public void SetSensitivity(float sensitivity)
     {
         if (sensitivity < 1)
@@ -204,6 +220,10 @@ public class UIManager : MonoBehaviour
         _references.mouseSensitivity.value = sensitivity;
     }
 
+
+
+
+
     public void SetSprintHold()
     {
         if (_references.toggleSprint.isOn)
@@ -221,13 +241,24 @@ public class UIManager : MonoBehaviour
             return false;
     }
 
+
+
+
+
     public void SetCtrlSprint()
     {
-        if (_references.ctrlRun)
-            PlayerPrefs.SetInt("CrtlRun", 1);
-
-        else if (!_references.ctrlRun)
+        if (_references.ctrlRun.isOn)
+        {
+            PlayerPrefs.SetInt("CtrlRun", 1);
+            _references.sprintShift.SetActive(false);
+            _references.sprintCtrl.SetActive(true);
+        }
+        else
+        {
             PlayerPrefs.SetInt("CtrlRun", 0);
+            _references.sprintShift.SetActive(true);
+            _references.sprintCtrl.SetActive(false);
+        }
     }
 
     public bool GetSprintKey()
@@ -238,12 +269,15 @@ public class UIManager : MonoBehaviour
             return false;
     }
 
+
+
+
     public void SetInvertCam()
     {
-        if (_references.camInvert)
+        if (_references.camInvert.isOn)
             PlayerPrefs.SetInt("CamCtrl", 1);
 
-        else if (!_references.camInvert)
+        else
             PlayerPrefs.SetInt("CamCtrl", 0);
     }
 
@@ -370,7 +404,8 @@ public class UIManager : MonoBehaviour
 
     public void IncreaseXP(int currXP)
     {
-        _references.xpbar.fillAmount = (_playerInv.currentXP % 100f) / 100f;
+        if(this != null)
+            _references.xpbar.fillAmount = (_playerInv.currentXP % 100f) / 100f;
     }
 
     IEnumerator Damaged()
@@ -423,6 +458,24 @@ public class UIManager : MonoBehaviour
 
     public void CompanionCD()
     {
+
+    }
+
+    public void LoseScreenStats(int _score)
+    {
+
+        _references.loseScore.SetText(_score.ToString());
+
+        _references.loseTime.SetText($"{(int)GameManager.instance.runTimeMinutes} : {(GameManager.instance.runTime % 60).ToString("F1")}");
+
+    }
+
+    public void WinScreenStats(int _score)
+    {
+
+        _references.winScore.SetText(_score.ToString());
+
+        _references.winTime.SetText($"{(int)GameManager.instance.runTimeMinutes} : {(GameManager.instance.runTime % 60).ToString("F1")}");
 
     }
 
