@@ -45,7 +45,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
     protected SOWave _spawnPoint;
     protected bool _isSetUp;
     protected bool _isAttacking;
-    protected Vector3 _playerDir => GameManager.instance.player.transform.position - transform.position;
+    protected Vector3 _playerDir => GameManager.instance.player.transform.position - transform.position + 2 * Vector3.down  ;
     protected bool _indicatingHit;
     protected float _speed;
 

@@ -41,7 +41,7 @@ public class HybridEnemy : MeleeEnemy
     protected virtual IEnumerator FireShot()
     {
         _anim.SetTrigger("Shoot");
-        Quaternion rot = Quaternion.LookRotation(_playerDirProjected * 0.5f);
+        Quaternion rot = Quaternion.LookRotation(_playerDir * 0.5f);
         if (Mathf.Abs(Quaternion.Angle(rot, Quaternion.LookRotation(_playerDir))) >= 60)
             rot = Quaternion.LookRotation(_playerDir);
         rot = Quaternion.RotateTowards(rot, Random.rotation, _secondaryAttackStats.variance * GameManager.instance.player.movement.speedRatio);
