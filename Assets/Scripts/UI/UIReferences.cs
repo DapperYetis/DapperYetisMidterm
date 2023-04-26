@@ -136,4 +136,28 @@ public class UIReferences : MonoBehaviour
     [SerializeField] TextMeshProUGUI _companionCD;
 
     public TextMeshProUGUI companionCD => _companionCD;
+
+    [SerializeField] TextMeshProUGUI _winTime;
+
+    public TextMeshProUGUI winTime => _winTime;
+
+    [SerializeField] TextMeshProUGUI _winScore;
+
+    public TextMeshProUGUI winScore => _winScore;
+
+    [SerializeField] TextMeshProUGUI _loseScore;
+
+    public TextMeshProUGUI loseScore => _loseScore;
+
+    [SerializeField] TextMeshProUGUI _loseTime;
+
+    public TextMeshProUGUI loseTime => _loseTime;
+
+    [SerializeField] GameObject _sprintCtrl;
+
+    public GameObject sprintCtrl => _sprintCtrl;
+
+    [SerializeField] GameObject _sprintShift;
+
+    public GameObject sprintShift => _sprintShift;
 }

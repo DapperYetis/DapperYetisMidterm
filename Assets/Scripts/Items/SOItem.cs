@@ -8,8 +8,8 @@ using UnityEngine.UI;
 public class SOItem : ScriptableObject
 {
     [SerializeField]
-    private Image _icon;
-    public Image icon => _icon;
+    private Sprite _icon;
+    public Sprite icon => _icon;
     [SerializeField]
     private string _description;
     public string description => _description;
