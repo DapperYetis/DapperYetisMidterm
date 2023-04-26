@@ -42,7 +42,6 @@ GameObject:
   - component: {fileID: 1931189915}
   - component: {fileID: 1931189919}
   - component: {fileID: 1931189918}
-  - component: {fileID: 1931189917}
   - component: {fileID: 1931189916}
   m_Layer: 0
   m_Name: Grapple
@@ -117,19 +116,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1931189917
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1931189914}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!120 &1931189916
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -596,7 +582,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2104300716291786947}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b5f5cc02906a7f94990fb478917f56a0, type: 3}
   m_Name: 
@@ -609,8 +595,6 @@ MonoBehaviour:
   jumpForce: 12
   jumpCooldown: 0.25
   airMultiplier: 0.4
-  jumpKey: 32
-  sprintKey: 304
   playerHeight: 2
   whatIsGround:
     serializedVersion: 2
@@ -630,7 +614,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2104300716291786947}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd280af4b04fbb546ae96d75ffae5ce2, type: 3}
   m_Name: 
@@ -653,7 +637,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2104300716291786947}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4415006857395a245bb007a189ebf432, type: 3}
   m_Name: 

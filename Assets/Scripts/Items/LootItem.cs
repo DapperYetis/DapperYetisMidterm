@@ -12,7 +12,7 @@ public class LootItem : MonoBehaviour
         get => _item;
         set
         {
-            _item = item;
+            _item = value;
             _itemImage.sprite = _item.icon;
         }
     }

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: f968827812fe04383ae1f660560652d0, type: 3}
   _description: 
-  _rarity: 0
+  _rarity: 2
   _movementStats:
     walkSpeed: 0
     sprintMultiplier: 0
