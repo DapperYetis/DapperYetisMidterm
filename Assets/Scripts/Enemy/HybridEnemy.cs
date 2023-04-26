@@ -13,6 +13,9 @@ public class HybridEnemy : MeleeEnemy
     {
         if (!_isSetUp) return;
 
+        _anim.SetFloat("Speed", _speed);
+        _speed = Mathf.Lerp(_speed, _agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed);
+
         if (_agent.isActiveAndEnabled)
             _agent.SetDestination(GameManager.instance.player.transform.position);
 
@@ -21,7 +24,7 @@ public class HybridEnemy : MeleeEnemy
         if (!_isAttacking)
         {
             _isAttacking = true;
-            if (_inAttackRange == true)
+            if (_inAttackRange)
                 EnemyManager.instance.QueueAttack(Melee);
             else
                 EnemyManager.instance.QueueAttack(Shoot);            
@@ -44,7 +47,7 @@ public class HybridEnemy : MeleeEnemy
         rot = Quaternion.RotateTowards(rot, Random.rotation, _secondaryAttackStats.variance * GameManager.instance.player.movement.speedRatio);
         for (int i = 0; i < _secondaryAttackStats.positions.Length; i++)
         {
-            Instantiate(_secondaryAttackStats.prefab, _secondaryAttackStats.positions[i].position, rot).GetComponent<Rigidbody>().velocity = transform.forward * _secondaryAttackStats.speed;
+            Instantiate(_secondaryAttackStats.prefab, _secondaryAttackStats.positions[i].position, rot).GetComponent<Projectile>().SetStats(_secondaryAttackStats);
         }
 
         yield return new WaitForSeconds(_secondaryAttackStats.rate);

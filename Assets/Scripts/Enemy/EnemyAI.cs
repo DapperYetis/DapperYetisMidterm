@@ -81,10 +81,10 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
 
     protected virtual void Update()
     {
+        if (!_isSetUp) return;
+
         _anim.SetFloat("Speed", _speed);
         _speed = Mathf.Lerp(_speed, _agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed);
-
-        if (!_isSetUp) return;
 
         if (_agent.isActiveAndEnabled)
             _agent.SetDestination(GameManager.instance.player.transform.position);
