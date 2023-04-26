@@ -404,7 +404,7 @@ public class UIManager : MonoBehaviour
 
     public void IncreaseXP(int currXP)
     {
-        if(this != null)
+        if(_references.xpbar && _references.xpbar.isActiveAndEnabled)
             _references.xpbar.fillAmount = (_playerInv.currentXP % 100f) / 100f;
     }
 
