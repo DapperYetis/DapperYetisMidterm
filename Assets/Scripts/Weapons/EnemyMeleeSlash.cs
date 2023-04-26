@@ -5,23 +5,14 @@ using UnityEngine;
 
 public class EnemyMeleeSlash : MonoBehaviour
 {
-    protected AbilityStats _stats;
-    public AbilityStats stats => _stats;
-    Collider slash;
+    [SerializeField] EnemyAttackStats _biteAttackStats;
+    [SerializeField] EnemyAttackStats _biteAttackStatsScaling;
+    private List<IDamageable> _previouslyHit = new();
+    protected Collider slash;
 
     private void Start()
     {
-        slash = GetComponent<BoxCollider>();
-        Destroy(gameObject, _stats.lifetime);
-        GetComponent<Rigidbody>().velocity = transform.forward;
-    }
-
-    private void Update()
-    {
-        if (true)
-        {
-            slash.enabled = true;
-        }   
+        slash = GetComponent<SphereCollider>();
     }
 
     protected virtual void OnTriggerEnter(Collider other)
@@ -30,7 +21,8 @@ public class EnemyMeleeSlash : MonoBehaviour
 
         if (other.gameObject.TryGetComponent<IDamageable>(out var damageable))
         {
-            damageable.Damage(_stats.damage);
+            _previouslyHit.Add(damageable);
+            damageable.Damage(_biteAttackStats.damage);
         }
 
         slash.enabled = false;

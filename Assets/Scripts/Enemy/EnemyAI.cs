@@ -14,6 +14,8 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
     protected NavMeshAgent _agent;
     [SerializeField]
     protected Animator _anim;
+    [SerializeField] 
+    protected Collider biteCol;
 
     [Header("--- NavMesh Mods ---")]
     [SerializeField]
@@ -24,6 +26,8 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
     protected float _radiusMod;
     [SerializeField]
     protected float _speedMod;
+    [SerializeField] 
+    protected float animTransSpeed;
 
     // Events
     [HideInInspector]
@@ -43,6 +47,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
     protected bool _isAttacking;
     protected Vector3 _playerDir => GameManager.instance.player.transform.position - transform.position;
     protected bool _indicatingHit;
+    protected float _speed;
 
     [Space(20), SerializeField]
     protected EnemyAttackStats _primaryAttackStats;
@@ -76,6 +81,9 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
 
     protected virtual void Update()
     {
+        _anim.SetFloat("Speed", _speed);
+        _speed = Mathf.Lerp(_speed, _agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed);
+
         if (!_isSetUp) return;
 
         if (_agent.isActiveAndEnabled)
