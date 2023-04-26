@@ -906,6 +906,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 178437936, guid: 71e9fa46bb1615944bb58f0e30485c11, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 178437937, guid: 71e9fa46bb1615944bb58f0e30485c11, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 178437938, guid: 71e9fa46bb1615944bb58f0e30485c11, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2104300716291786947, guid: 71e9fa46bb1615944bb58f0e30485c11,
         type: 3}
       propertyPath: m_Name
@@ -2139,7 +2151,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _waves.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: bffc73d9d9bd8c94588e3c1bde158951,
+      objectReference: {fileID: 11400000, guid: 98c6760a55c29244d8d233ee1356757e,
         type: 2}
     - target: {fileID: 7300342205331037249, guid: 61d081160cf84b748abb9316d5cf4d82,
         type: 3}

@@ -993,6 +993,7 @@ MonoBehaviour:
   _model: {fileID: 6826903240275748356}
   _agent: {fileID: -564942941452632455}
   _anim: {fileID: 6826903240279890116}
+  biteCol: {fileID: 0}
   _changeTime: 2
   _changeCurve:
     serializedVersion: 2
@@ -1020,11 +1021,12 @@ MonoBehaviour:
     m_RotationOrder: 4
   _radiusMod: 5
   _speedMod: 3
+  animTransSpeed: 0
   OnHealthChange:
     m_PersistentCalls:
       m_Calls: []
   _stats:
-    HPMax: 5
+    HPMax: 6
     facePlayerSpeed: 600
   _statsScaling:
     HPMax: 0
@@ -1034,11 +1036,11 @@ MonoBehaviour:
     - {fileID: 6826903240270837576}
     - {fileID: 6826903240270837534}
     damage: 3
-    rate: 1
+    rate: 1.4
     lifetime: 3
-    variance: 2
+    variance: 5
     prefab: {fileID: 424343093267893311, guid: 912a43b0040ffe643b0c56e5be18da99, type: 3}
-    speed: 12
+    speed: 25
   _primaryAttackStatsScaling:
     positions: []
     damage: 0
