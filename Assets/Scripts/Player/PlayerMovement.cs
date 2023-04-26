@@ -105,7 +105,7 @@ public class PlayerMovement : MonoBehaviour
     private void VerticalMovement()
     {
         _isGrounded = Physics.Raycast(_footPos.position, Vector3.down, 0.125f, Physics.AllLayers ^ (1 << 6));
-        if (_isGrounded)
+        if (_isGrounded && !Input.GetButton("Jump"))
         {
             _jumpCountCurrent = 0;
         }

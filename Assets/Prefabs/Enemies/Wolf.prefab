@@ -168,6 +168,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1394923249618638891}
+  - component: {fileID: 4679897082670559794}
+  - component: {fileID: 3368618465045421124}
   m_Layer: 0
   m_Name: RigJaw
   m_TagString: Untagged
@@ -190,6 +192,47 @@ Transform:
   m_Father: {fileID: 1394923249618638889}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4679897082670559794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394923249618666507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb5caceca14cdd448a77a10d2f93524e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _biteAttackStats:
+    positions: []
+    damage: 10
+    rate: 1
+    lifetime: 1
+    variance: 1
+    prefab: {fileID: 0}
+    speed: 1
+  _biteAttackStatsScaling:
+    positions: []
+    damage: 0
+    rate: 0
+    lifetime: 0
+    variance: 0
+    prefab: {fileID: 0}
+    speed: 0
+--- !u!135 &3368618465045421124
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394923249618666507}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.6
+  m_Center: {x: -0.35, y: -0.25, z: 0}
 --- !u!1 &1394923249618666509
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,6 +292,7 @@ MonoBehaviour:
   _model: {fileID: 1394923249621846285}
   _agent: {fileID: -8553164506359077236}
   _anim: {fileID: 1394923249626068941}
+  biteCol: {fileID: 3368618465045421124}
   _changeTime: 2
   _changeCurve:
     serializedVersion: 2
@@ -276,6 +320,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _radiusMod: 2
   _speedMod: 3
+  animTransSpeed: 1
   OnHealthChange:
     m_PersistentCalls:
       m_Calls: []
@@ -289,11 +334,11 @@ MonoBehaviour:
     positions:
     - {fileID: 1394923249618638891}
     damage: 5
-    rate: 3
+    rate: 1
     lifetime: 1
     variance: 1
     prefab: {fileID: 424343093267893311, guid: f7b16309293f2e949b61f60c035662d9, type: 3}
-    speed: 20
+    speed: 100
   _primaryAttackStatsScaling:
     positions: []
     damage: 0
@@ -316,6 +361,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _xp: 8
   _currency: 5
+  _score: 10
 --- !u!95 &1394923249626068941
 Animator:
   serializedVersion: 5
@@ -695,8 +741,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1394923249618666561}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: 0, z: 3.225772e-11}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -748,7 +794,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 4300002, guid: 8eadd92c0e25f804390fe2903af26fa2, type: 3}
+  m_Mesh: {fileID: 4300002, guid: 29f5047a14224324ca407aca6f891f23, type: 3}
   m_Bones:
   - {fileID: 1394923249618638861}
   - {fileID: 1394923249618638889}

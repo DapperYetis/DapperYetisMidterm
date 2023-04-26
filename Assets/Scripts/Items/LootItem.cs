@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LootItem : MonoBehaviour
 {
@@ -12,8 +13,11 @@ public class LootItem : MonoBehaviour
         set
         {
             _item = item;
+            _itemImage.sprite = _item.icon;
         }
     }
+    [SerializeField]
+    private Image _itemImage;
 
     private void OnTriggerEnter(Collider other)
     {

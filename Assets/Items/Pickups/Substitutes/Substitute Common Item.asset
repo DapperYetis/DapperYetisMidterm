@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5772fd7538930743a9528f463fb1867, type: 3}
+  m_Name: Substitute Common Item
+  m_EditorClassIdentifier: 
+  _icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  _description: Please don't use me
+  _rarity: 0
+  _movementStats:
+    walkSpeed: 1
+    sprintMultiplier: 0
+    accelerationRate:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    accelerationTime: 0
+    jumpHeightMin: 0
+    jumpHeightMax: 0
+    jumpInputTime: 0
+    jumpCountMax: 0
+    gravityAcceleration: 0
+    healthMax: 0
+  _attackStats:
+    primaryAbility:
+      prefab: {fileID: 0}
+      damage: 0
+      directDamage: 0
+      cooldown: 0
+      lifetime: 0
+      secondaryLifetime: 0
+      speed: 0
+      fxIntesity: 0
+    secondaryAbility:
+      prefab: {fileID: 0}
+      damage: 0
+      directDamage: 0
+      cooldown: 0
+      lifetime: 0
+      secondaryLifetime: 0
+      speed: 0
+      fxIntesity: 0

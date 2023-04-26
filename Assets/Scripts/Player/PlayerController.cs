@@ -98,7 +98,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         _weapon = Instantiate(_weaponAsset.prefab, transform).GetComponent<Weapon>();
         _weapon.SetStats(_weaponAsset.stats);
 
-        // TODO: Add support and weapon setting once they are implemented
+        // TODO: Add support and companion setting once they are implemented
     }
 
     public void Damage(float damage)

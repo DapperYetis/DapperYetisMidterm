@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class MeleeEnemy : EnemyAI
 {
+    private List<IDamageable> _previouslyHit = new();
     protected bool _inAttackRange;
 
     protected override void Update()
@@ -29,14 +30,29 @@ public class MeleeEnemy : EnemyAI
     {
         _anim.SetTrigger("Attack");
 
-        Quaternion rot = Quaternion.LookRotation(_playerDir * 0.5f);
         for (int i = 0; i < _primaryAttackStats.positions.Length; i++)
         {
-            Instantiate(_primaryAttackStats.prefab, _primaryAttackStats.positions[i].position, rot).GetComponent<Projectile>().SetStats(_primaryAttackStats);
+            AttackStart();
+            if (gameObject.CompareTag("Player") && gameObject.TryGetComponent<IDamageable>(out var damageable))
+            {
+                _previouslyHit.Add(damageable);
+                damageable.Damage(_primaryAttackStats.damage);
+            }
+            AttackEnd();
         }
 
         yield return new WaitForSeconds(_primaryAttackStats.rate);
         _isAttacking = false;
+    }
+
+    protected void AttackStart()
+    {
+        biteCol.enabled = true;
+    }
+
+    protected void AttackEnd()
+    {
+        biteCol.enabled = false;
     }
 
     void OnTriggerEnter(Collider other)
