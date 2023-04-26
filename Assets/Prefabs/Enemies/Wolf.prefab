@@ -204,22 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb5caceca14cdd448a77a10d2f93524e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _biteAttackStats:
-    positions: []
-    damage: 10
-    rate: 1
-    lifetime: 1
-    variance: 1
-    prefab: {fileID: 0}
-    speed: 1
-  _biteAttackStatsScaling:
-    positions: []
-    damage: 0
-    rate: 0
-    lifetime: 0
-    variance: 0
-    prefab: {fileID: 0}
-    speed: 0
+  _enemy: {fileID: -4379722170507673348}
 --- !u!135 &3368618465045421124
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -430,7 +415,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 8
+  m_Radius: 3
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1394923249618666511
 GameObject:

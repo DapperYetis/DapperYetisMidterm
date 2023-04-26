@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class EnemyMeleeSlash : MonoBehaviour
 {
-    [SerializeField] EnemyAttackStats _biteAttackStats;
-    [SerializeField] EnemyAttackStats _biteAttackStatsScaling;
+    [SerializeField]
+    protected MeleeEnemy _enemy;
     private List<IDamageable> _previouslyHit = new();
     protected Collider slash;
 
@@ -22,7 +22,7 @@ public class EnemyMeleeSlash : MonoBehaviour
         if (other.gameObject.TryGetComponent<IDamageable>(out var damageable))
         {
             _previouslyHit.Add(damageable);
-            damageable.Damage(_biteAttackStats.damage);
+            damageable.Damage(_enemy.primaryAttackStats.damage);
         }
 
         slash.enabled = false;
