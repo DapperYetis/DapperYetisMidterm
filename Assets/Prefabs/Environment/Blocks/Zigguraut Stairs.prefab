@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6299258252946714453}
   - component: {fileID: 1669827463216961414}
   - component: {fileID: 7875845384117858834}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Zigguraut Stairs
   m_TagString: Untagged
   m_Icon: {fileID: 0}

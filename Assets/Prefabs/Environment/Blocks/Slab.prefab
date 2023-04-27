@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1400787782590465234}
   - component: {fileID: 1400787782590465235}
   - component: {fileID: 1400787782590465232}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Slab
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4145002600372524904}
   - component: {fileID: 4145002600372524887}
   - component: {fileID: 4145002600372524886}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Spire Large
   m_TagString: Untagged
   m_Icon: {fileID: 0}

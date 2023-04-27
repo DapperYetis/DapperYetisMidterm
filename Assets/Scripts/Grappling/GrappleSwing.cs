@@ -21,9 +21,6 @@ public class GrappleSwing : MonoBehaviour
     public Transform predictionPoint;
     public float predictionSphereCastRadius;
 
-    [Header("Input")]
-    public KeyCode swingKey = KeyCode.Mouse0;
-
     [Header("OdmGear")]
     public Transform orientation;
     public Rigidbody rb;
@@ -35,15 +32,15 @@ public class GrappleSwing : MonoBehaviour
     {
         predictionPoint = Instantiate(predictionPoint.gameObject).transform;
         cam = Camera.main.transform;
+        player = GameManager.instance.player.transform;
+        pm = GameManager.instance.player.grappling;
+        pm.enabled = true;
+        orientation = GameManager.instance.player.grappling.orintation;
+        rb = GameManager.instance.player.movement.rb;
 
     }
     void Update()
     {
-        if (Input.GetKeyDown(swingKey))
-            StartSwing();
-        if (Input.GetKeyUp(swingKey))
-            StopSwing();
-
         CheckForSwingPoints();
 
         if (joint != null)
@@ -82,6 +79,7 @@ public class GrappleSwing : MonoBehaviour
         pm.swinging = false;
         lr.positionCount = 0;
         Destroy(joint);
+        joint = null;
     }
     private Vector3 currentGrapplePosition;
     void DrawRope()
@@ -102,11 +100,11 @@ public class GrappleSwing : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
             rb.AddForce(orientation.forward * forwardThrustForce * Time.deltaTime);
 
-        if(Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space))
         {
             Vector3 directionToPoint = swingPoint - transform.position;
             rb.AddForce(directionToPoint.normalized * forwardThrustForce * Time.deltaTime);
-            
+
             float distanceFromPoint = Vector3.Distance(transform.position, swingPoint);
 
             joint.maxDistance = distanceFromPoint * 0.8f;
@@ -122,8 +120,8 @@ public class GrappleSwing : MonoBehaviour
     }
     private void CheckForSwingPoints()
     {
-        if (joint != null)
-            return;
+        //if (joint != null)
+        //    return;
         RaycastHit sphereCastHit;
         Physics.SphereCast(cam.position, predictionSphereCastRadius, cam.forward, out sphereCastHit, maxSwingDistance, whatisGrappleable);
 
