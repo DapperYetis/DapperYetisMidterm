@@ -96,7 +96,7 @@ public class EnemyManager : MonoBehaviour
         if (GameManager.instance.player == null) return _wavePoints[0];
 
         List<Transform> sortedPoints = _wavePoints.OrderBy((trans) => (GameManager.instance.player.transform.position - trans.position).sqrMagnitude).Where((trans) => (GameManager.instance.player.transform.position - trans.position).magnitude > _minSpawnDistanceFromPlayer).ToList();
-        return sortedPoints[Mathf.FloorToInt(_waveDistance.Evaluate(Random.Range(0f,1f)))];
+        return sortedPoints.Count > 0 ? sortedPoints[Mathf.FloorToInt(_waveDistance.Evaluate(Random.Range(0f,1f)))] : null;
     }
 
     private IEnumerator Spawner(SOWave wave, Transform spawnPoint, int spawnedCount)

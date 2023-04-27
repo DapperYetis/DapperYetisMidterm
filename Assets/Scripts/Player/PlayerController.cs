@@ -23,6 +23,9 @@ public class PlayerController : MonoBehaviour, IDamageable
     [SerializeField]
     private Inventory _inventory;
     public Inventory inventory => _inventory;
+    [SerializeField]
+    private PlayerMovementGrappling _grappling;
+    public PlayerMovementGrappling grappling => _grappling;
 
 
     // ------Loadout------

@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("-----References------")]
     private Rigidbody _rb;
+    public Rigidbody rb => _rb;
     [SerializeField]
     private Transform _footPos;
 

@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2104300715586407399}
   - component: {fileID: 2104300715586407396}
   - component: {fileID: 2104300715586407395}
-  - component: {fileID: 8137252076400881136}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -137,21 +136,6 @@ MonoBehaviour:
   _sensitivity: 70
   _invertY: 0
   _fieldOfViewtransitionTime: 0.2
---- !u!114 &8137252076400881136
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2104300715586407400}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 750508a287bf8b449aba27508ad7d421, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  senX: -90
-  senY: 90
-  orintation: {fileID: 492933342811454869}
 --- !u!1 &2104300716291786947
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,6 +320,7 @@ MonoBehaviour:
   _interactDistance: 10
   _movement: {fileID: 2104300716291786973}
   _inventory: {fileID: 622012240569451596}
+  _grappling: {fileID: 178437936}
   OnHealthChange:
     m_PersistentCalls:
       m_Calls: []
@@ -383,7 +368,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   maxSlopeAngle: 30
-  cam: {fileID: 8137252076400881136}
+  cam: {fileID: 0}
   grappleFov: 95
   orintation: {fileID: 492933342811454869}
   state: 0

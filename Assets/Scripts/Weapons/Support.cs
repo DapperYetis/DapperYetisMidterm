@@ -11,9 +11,6 @@ public abstract class Support : MonoBehaviour
     public SupportStats stats => _stats;
     protected SupportStats _statMods;
 
-    [SerializeField] 
-    protected Transform _referencePos;
-
     protected bool _canUsePrimary = true;
     protected bool _canUseSecondary = true;
 

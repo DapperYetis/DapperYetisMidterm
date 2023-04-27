@@ -34,7 +34,7 @@ public class PlayerMovementGrappling : MonoBehaviour
     private bool exitingSlope;
 
     [Header("Camera Effects")]
-    public GrappleCamera cam;
+    //public GrappleCamera cam;
     public float grappleFov = 95f;
 
     public Transform orintation;
@@ -227,14 +227,14 @@ public class PlayerMovementGrappling : MonoBehaviour
         enableMovementOnNextTouch = true;
         rb.velocity = velocityToSet;
 
-        cam.DoFov(grappleFov);
+        //cam.DoFov(grappleFov);
     }
 
     public void ResetRestrictions()
     {
         activeGrapple = false;
 
-        cam.DoFov(85f);
+        //cam.DoFov(85f);
     }
 
     private void OnCollisionEnter(Collision collision)

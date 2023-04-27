@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4685645104416949254}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Slope
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,6 +60,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cube Tall Stairs
+      objectReference: {fileID: 0}
+    - target: {fileID: 1700803538187417794, guid: ba92bc95f4dc33b44baa0700487bf2a9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1700803538187417795, guid: ba92bc95f4dc33b44baa0700487bf2a9,
         type: 3}
@@ -176,6 +181,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cube Tall Stairs (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1700803538187417794, guid: ba92bc95f4dc33b44baa0700487bf2a9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1700803538187417795, guid: ba92bc95f4dc33b44baa0700487bf2a9,
         type: 3}
       propertyPath: m_Mesh
@@ -290,6 +300,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cube Tall Stairs (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1700803538187417794, guid: ba92bc95f4dc33b44baa0700487bf2a9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1700803538187417795, guid: ba92bc95f4dc33b44baa0700487bf2a9,
         type: 3}
@@ -406,6 +421,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cube Tall Stairs (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1700803538187417794, guid: ba92bc95f4dc33b44baa0700487bf2a9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1700803538187417795, guid: ba92bc95f4dc33b44baa0700487bf2a9,
         type: 3}
       propertyPath: m_Mesh
@@ -520,6 +540,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cube Tall Stairs (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1700803538187417794, guid: ba92bc95f4dc33b44baa0700487bf2a9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1700803538187417795, guid: ba92bc95f4dc33b44baa0700487bf2a9,
         type: 3}
@@ -636,6 +661,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cube Tall Stairs (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 1700803538187417794, guid: ba92bc95f4dc33b44baa0700487bf2a9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1700803538187417795, guid: ba92bc95f4dc33b44baa0700487bf2a9,
         type: 3}
       propertyPath: m_Mesh
@@ -751,6 +781,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cube Tall Stairs (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1700803538187417794, guid: ba92bc95f4dc33b44baa0700487bf2a9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1700803538187417795, guid: ba92bc95f4dc33b44baa0700487bf2a9,
         type: 3}
       propertyPath: m_Mesh
@@ -865,6 +900,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cube Tall Stairs (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1700803538187417794, guid: ba92bc95f4dc33b44baa0700487bf2a9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1700803538187417795, guid: ba92bc95f4dc33b44baa0700487bf2a9,
         type: 3}

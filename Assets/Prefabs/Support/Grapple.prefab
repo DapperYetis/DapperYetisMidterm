@@ -229,7 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4415006857395a245bb007a189ebf432, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lr: {fileID: 0}
+  lr: {fileID: 4378267455368745453}
   gunTip: {fileID: 4378267454421463161}
   cam: {fileID: 0}
   player: {fileID: 0}
@@ -237,6 +237,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   pm: {fileID: 0}
+  maxSwingDistance: 70
   predictionPoint: {fileID: 8773828727256481356, guid: c7ef6b1988d8d9948b154b9236f0e2e3,
     type: 3}
   predictionSphereCastRadius: 1
