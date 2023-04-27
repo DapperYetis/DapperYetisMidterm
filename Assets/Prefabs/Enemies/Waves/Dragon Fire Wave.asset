@@ -15,4 +15,4 @@ MonoBehaviour:
   _enemyType: {fileID: 8377023706072890927, guid: 6eb018fca78ce0d47aaa2313749d1071,
     type: 3}
   _spawnInterval: 0.6
-  _maxEnemyCount: 3
+  _maxEnemyCount: 1
