@@ -314,7 +314,7 @@ MonoBehaviour:
     HPMax: 3
     facePlayerSpeed: 500
   _statsScaling:
-    HPMax: 0
+    HPMax: 1
     facePlayerSpeed: 0
   _primaryAttackStats:
     positions:
@@ -327,8 +327,8 @@ MonoBehaviour:
     speed: 100
   _primaryAttackStatsScaling:
     positions: []
-    damage: 0
-    rate: 0
+    damage: 1
+    rate: -0.01
     lifetime: 0
     variance: 0
     prefab: {fileID: 0}

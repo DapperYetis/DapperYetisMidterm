@@ -8,6 +8,9 @@ public class HybridEnemy : MeleeEnemy
     [SerializeField]
     protected EnemyAttackStats _secondaryAttackStats;
     public EnemyAttackStats secondaryAttackStats => _secondaryAttackStats;
+    [SerializeField]
+    protected EnemyAttackStats _secondaryAttackStatsScaling;
+    public EnemyAttackStats secondaryAttackStatsScaling => _secondaryAttackStatsScaling;
 
     protected override void Update()
     {

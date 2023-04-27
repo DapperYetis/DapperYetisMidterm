@@ -1030,7 +1030,7 @@ MonoBehaviour:
     HPMax: 6
     facePlayerSpeed: 600
   _statsScaling:
-    HPMax: 0
+    HPMax: 1
     facePlayerSpeed: 0
   _primaryAttackStats:
     positions:
@@ -1044,12 +1044,12 @@ MonoBehaviour:
     speed: 25
   _primaryAttackStatsScaling:
     positions: []
-    damage: 0
-    rate: 0
-    lifetime: 0
-    variance: 0
+    damage: 1
+    rate: -0.01
+    lifetime: 0.1
+    variance: -0.05
     prefab: {fileID: 0}
-    speed: 0
+    speed: 0.1
 --- !u!114 &3617471448665440551
 MonoBehaviour:
   m_ObjectHideFlags: 0

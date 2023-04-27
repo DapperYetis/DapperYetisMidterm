@@ -493,12 +493,12 @@ MonoBehaviour:
     speed: 20
   _primaryAttackStatsScaling:
     positions: []
-    damage: 0
-    rate: 0
-    lifetime: 0
-    variance: 0
+    damage: 1
+    rate: -0.01
+    lifetime: 0.1
+    variance: -0.05
     prefab: {fileID: 0}
-    speed: 0
+    speed: 1
   _secondaryAttackStats:
     positions:
     - {fileID: 8377023706073375241}
@@ -508,6 +508,14 @@ MonoBehaviour:
     variance: 3
     prefab: {fileID: 424343093267893311, guid: 1bcc9b7c1094fd547910ca2344bca383, type: 3}
     speed: 25
+  _secondaryAttackStatsScaling:
+    positions: []
+    damage: 1
+    rate: -0.01
+    lifetime: 0
+    variance: 0
+    prefab: {fileID: 0}
+    speed: 0
 --- !u!114 &7866188734632337382
 MonoBehaviour:
   m_ObjectHideFlags: 0
