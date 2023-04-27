@@ -299,20 +299,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b31c4b1e277389e419db138726691108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lineRenderer: {fileID: 175560828}
-  _controller: {fileID: 0}
-  _grappleHook: {fileID: 1195885309}
-  _grapplingHookEndPoint: {fileID: 175560824}
-  _handPos: {fileID: 1195885309}
-  _playerBody: {fileID: 2104300716641838741}
-  _grappleLayer:
-    m_Bits: 8
-  _maxGrappleDistance: 30
-  _hookSpeed: 5
-  _offset: {x: 0.5599999, y: -0.4000001, z: 0.4099998}
-  isShooting: 0
-  isGrappling: 0
-  _hookPoint: {x: 0, y: 0, z: 0}
 --- !u!23 &175560826
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2254,6 +2240,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2056
   pm: {fileID: 1985615963}
+  maxSwingDistance: 70
   predictionPoint: {fileID: 774679150}
   predictionSphereCastRadius: 1
   swingKey: 323
@@ -3106,6 +3093,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 160072889, guid: 71e9fa46bb1615944bb58f0e30485c11, type: 3}
+      propertyPath: maxSwingDistance
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 2104300716291786947, guid: 71e9fa46bb1615944bb58f0e30485c11,
         type: 3}
       propertyPath: m_Name

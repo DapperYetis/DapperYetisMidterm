@@ -12,7 +12,7 @@ public class GrappleSwing : MonoBehaviour
     public PlayerMovementGrappling pm;
 
     [Header("Swinging")]
-    private float maxSwingDistance = 25f;
+    [SerializeField] private float maxSwingDistance = 70f;
     private Vector3 swingPoint;
     private SpringJoint joint;
 
