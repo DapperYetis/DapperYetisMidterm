@@ -12,7 +12,7 @@ public class RangedEnemy : EnemyAI
         if (!_isAttacking)
         {
             _isAttacking = true;
-            EnemyManager.instance.QueueAttack(Shoot);
+            EnemyManager.instance.QueueAttack(Shoot, () => Mathf.FloorToInt(_playerDir.magnitude));
         }
     }
 

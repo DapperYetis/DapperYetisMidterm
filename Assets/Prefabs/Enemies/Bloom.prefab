@@ -1030,7 +1030,7 @@ MonoBehaviour:
     HPMax: 6
     facePlayerSpeed: 600
   _statsScaling:
-    HPMax: 1
+    HPMax: 2
     facePlayerSpeed: 0
   _primaryAttackStats:
     positions:

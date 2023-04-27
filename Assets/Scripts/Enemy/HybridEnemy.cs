@@ -28,9 +28,18 @@ public class HybridEnemy : MeleeEnemy
         {
             _isAttacking = true;
             if (_inAttackRange)
-                EnemyManager.instance.QueueAttack(Melee);
+                EnemyManager.instance.QueueAttack(Melee, () => Mathf.FloorToInt(_playerDir.magnitude));
             else
-                EnemyManager.instance.QueueAttack(Shoot);            
+                EnemyManager.instance.QueueAttack(Shoot, () => Mathf.FloorToInt(_playerDir.magnitude));            
+        }
+    }
+
+    public override void ScaleEnemy()
+    {
+        base.ScaleEnemy();
+        for (int i = 0; i < EnemyManager.instance.scaleFactorInt - 1; ++i)
+        {
+            _secondaryAttackStats = _secondaryAttackStats + _secondaryAttackStatsScaling;
         }
     }
 

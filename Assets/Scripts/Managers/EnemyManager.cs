@@ -38,7 +38,7 @@ public class EnemyManager : MonoBehaviour
     private int _attackBudgetMax;
     private int _attackBudget;
     private bool _isRunning;
-    private Queue<System.Action> _attacks;
+    private List<(System.Action func, System.Func<int> priority)> _attacks;
 
     [HideInInspector]
     public UnityEvent OnEnemyCountChange;
@@ -103,11 +103,16 @@ public class EnemyManager : MonoBehaviour
     {
         if (spawnedCount++ < wave.maxEnemyCount && spawnPoint != null)
         {
-            EnemyAI enemy = Instantiate(wave.enemyType, spawnPoint.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity).GetComponent<EnemyAI>();
-            enemy.SetUp(wave);
+            SpawnWave(wave, spawnPoint);
             yield return new WaitForSeconds(wave.spawnInterval);
             StartCoroutine(Spawner(wave, spawnPoint, spawnedCount));
         }
+    }
+
+    public static void SpawnWave(SOWave wave, Transform spawnPoint)
+    {
+        EnemyAI enemy = Instantiate(wave.enemyType, spawnPoint.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity).GetComponent<EnemyAI>();
+        enemy.SetUp(wave);
     }
 
     public void AddEnemyToList(EnemyAI enemy)
@@ -135,9 +140,10 @@ public class EnemyManager : MonoBehaviour
         SetWaves();
     }
 
-    public void QueueAttack(System.Action attack)
+    public void QueueAttack(System.Action attack, System.Func<int> getPriority)
     {
-        _attacks.Enqueue(attack);
+        _attacks.Add((attack, getPriority));
+        _attacks = (from queuedAttack in _attacks orderby queuedAttack.priority.Invoke() select queuedAttack).ToList();
         if (!_isRunning)
             StartCoroutine(RunDequeue());
     }
@@ -148,7 +154,8 @@ public class EnemyManager : MonoBehaviour
         if (_attacks.Count > 0 && _attackBudget > 0)
         {
             --_attackBudget;
-            (_attacks.Dequeue()).Invoke();
+            _attacks[0].func.Invoke();
+            _attacks.RemoveAt(0);
 
             StartCoroutine(RunDequeue());
             yield return new WaitForSeconds(_attackTime);

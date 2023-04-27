@@ -1,5 +1,64 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5397679624829617982
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5167428258317147683}
+  - component: {fileID: 4979912827867029248}
+  - component: {fileID: 1879528255952130813}
+  m_Layer: 7
+  m_Name: Dash Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5167428258317147683
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5397679624829617982}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.75, z: 0.625}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6230942851774826673}
+  m_RootOrder: 27
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4979912827867029248
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5397679624829617982}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.25, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1879528255952130813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5397679624829617982}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e41c9fa8d3143704fb4853a0e48a2c9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemy: {fileID: 2064084930413077941}
 --- !u!1 &6230942851774796929
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,7 +321,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6230942851774826673}
-  - component: {fileID: 5400178145976788592}
+  - component: {fileID: 2064084930413077941}
   - component: {fileID: 73426344941847313}
   - component: {fileID: 6230942851767379793}
   - component: {fileID: 2887638426317599639}
@@ -314,10 +373,11 @@ Transform:
   - {fileID: 6230942851774826697}
   - {fileID: 6230942851774826703}
   - {fileID: 6230942851774826803}
+  - {fileID: 5167428258317147683}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5400178145976788592
+--- !u!114 &2064084930413077941
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -326,62 +386,63 @@ MonoBehaviour:
   m_GameObject: {fileID: 6230942851774796945}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42cb60b95584abb4dbff4f92d76096a0, type: 3}
+  m_Script: {fileID: 11500000, guid: 81f63e075c2ba1b49ba919bf11529804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _model: {fileID: 6230942851763231121}
   _agent: {fileID: 2887638426317599639}
   _anim: {fileID: 6230942851767379793}
   biteCol: {fileID: 2919674195485479463}
-  _changeTime: 2
+  _changeTime: 0
   _changeCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
-      tangentMode: 0
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _radiusMod: 1
-  _speedMod: 1.5
+  _radiusMod: 0
+  _speedMod: 0
   animTransSpeed: 1
   OnHealthChange:
     m_PersistentCalls:
       m_Calls: []
   _stats:
-    HPMax: 50
+    HPMax: 300
     facePlayerSpeed: 600
   _statsScaling:
-    HPMax: 0
-    facePlayerSpeed: 0
+    HPMax: 100
+    facePlayerSpeed: 25
   _primaryAttackStats:
-    positions: []
-    damage: 10
+    positions:
+    - {fileID: 6230942851774826721}
+    damage: 20
     rate: 2.5
     lifetime: 0
     variance: 0
     prefab: {fileID: 0}
-    speed: 0
+    speed: 100
   _primaryAttackStatsScaling:
     positions: []
-    damage: 0
-    rate: 0
+    damage: 7
+    rate: -0.2
     lifetime: 0
     variance: 0
     prefab: {fileID: 0}
@@ -390,19 +451,53 @@ MonoBehaviour:
     positions:
     - {fileID: 7048595572675317456}
     damage: 15
-    rate: 2
-    lifetime: 4
-    variance: 0
+    rate: 1.25
+    lifetime: 10
+    variance: 2
     prefab: {fileID: 424343093267893311, guid: f7b16309293f2e949b61f60c035662d9, type: 3}
-    speed: 30
+    speed: 35
   _secondaryAttackStatsScaling:
     positions: []
-    damage: 0
-    rate: 0
+    damage: 5
+    rate: -0.05
     lifetime: 0
-    variance: 0
+    variance: -0.2
     prefab: {fileID: 0}
-    speed: 0
+    speed: 5
+  _dashAttackStats:
+    positions: []
+    damage: 10
+    rate: 4
+    lifetime: 0.75
+    variance: 8
+    prefab: {fileID: 0}
+    speed: 75
+  _dashAttackScaling:
+    positions: []
+    damage: 3
+    rate: -0.25
+    lifetime: 0.25
+    variance: -0.5
+    prefab: {fileID: 0}
+    speed: 3
+  _dashLogic: {fileID: 1879528255952130813}
+  _sprayAttackStats:
+    positions:
+    - {fileID: 7048595572675317456}
+    damage: 5
+    rate: 5
+    lifetime: 5
+    variance: 30
+    prefab: {fileID: 424343093267893311, guid: 912a43b0040ffe643b0c56e5be18da99, type: 3}
+    speed: 40
+  _sprayAttackScaling:
+    positions: []
+    damage: 2.5
+    rate: -0.25
+    lifetime: 1
+    variance: -2.5
+    prefab: {fileID: 0}
+    speed: 2.5
 --- !u!114 &73426344941847313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -450,7 +545,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 1
   m_Speed: 6
-  m_Acceleration: 8
+  m_Acceleration: 50
   avoidancePriority: 50
   m_AngularSpeed: 600
   m_StoppingDistance: 6
@@ -486,7 +581,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 3
+  m_Radius: 1.75
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6230942851774796947
 GameObject:
@@ -816,7 +911,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb5caceca14cdd448a77a10d2f93524e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemy: {fileID: 5400178145976788592}
+  _enemy: {fileID: 2064084930413077941}
 --- !u!135 &2919674195485479463
 SphereCollider:
   m_ObjectHideFlags: 0

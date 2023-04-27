@@ -10,7 +10,11 @@ public class LootManager : MonoBehaviour
     public static LootManager instance => _instance;
 
     [SerializeField]
-    private GameObject _lootPrefab;
+    private GameObject _altarPrefab;
+    private GameObject _altar;
+    public GameObject altar => _altar;
+    [SerializeField]
+    private GameObject _chestPrefab;
     [SerializeField]
     private int _lootCount;
     [SerializeField]
@@ -37,6 +41,12 @@ public class LootManager : MonoBehaviour
         }
 
         _instance = this;
+        
+        ResetMap();
+    }
+
+    public void ResetMap()
+    {
         SortPrefabs();
         SortItems();
 
@@ -83,27 +93,43 @@ public class LootManager : MonoBehaviour
 
     private void SetUpStage()
     {
-        GenerateLootLocations();
+        GenerateLoot();
     }
 
-    private void GenerateLootLocations()
+    private void GenerateLoot()
     {
         _lootLocations = new(_lootCount);
         Vector3 location = new();
+
+        // Generate chest
         for(int i = 0; i < _lootCount; ++i)
         {
-            location.x = Random.Range(_spawningBounds.min.x, _spawningBounds.max.x);
-            location.y = _spawningBounds.center.y;
-            location.z = Random.Range(_spawningBounds.min.z, _spawningBounds.max.z);
+            GenerateLootLocation(ref location);
 
-            if(Physics.Raycast(location, Vector3.down, out RaycastHit hitInfo))
+            if (Physics.Raycast(location, Vector3.down, out RaycastHit hitInfo))
             {
                 location.y = hitInfo.point.y;
             }
 
-            _lootLocations.Add(Instantiate(_lootPrefab, location, Quaternion.identity).transform);
+            _lootLocations.Add(Instantiate(_chestPrefab, location, Quaternion.identity).transform);
             _lootLocations[^1].name = $"Loot item ({i + 1})";
         }
+
+        // Generate Altar
+        GenerateLootLocation(ref location);
+        if (Physics.Raycast(location, Vector3.down, out RaycastHit hitInfo2))
+        {
+            location.y = hitInfo2.point.y;
+        }
+
+        _altar = Instantiate(_altarPrefab, location, Quaternion.identity);
+    }
+
+    private void GenerateLootLocation(ref Vector3 location)
+    {
+        location.x = Random.Range(_spawningBounds.min.x, _spawningBounds.max.x);
+        location.y = _spawningBounds.center.y;
+        location.z = Random.Range(_spawningBounds.min.z, _spawningBounds.max.z);
     }
 
     public SOItem GetItem()

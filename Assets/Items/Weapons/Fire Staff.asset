@@ -28,8 +28,8 @@ MonoBehaviour:
     secondaryAbility:
       prefab: {fileID: 424343093267893311, guid: 8be84b71d6cae8943903b776e3ef8b8d,
         type: 3}
-      damage: 10
-      directDamage: 7.5
+      damage: 8
+      directDamage: 6
       cooldown: 5
       lifetime: 3.5
       secondaryLifetime: 0.75

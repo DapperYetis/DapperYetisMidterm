@@ -15,7 +15,7 @@ public class MeleeEnemy : EnemyAI
         if (!_isAttacking && _inAttackRange)
         {
             _isAttacking = true;
-            EnemyManager.instance.QueueAttack(Melee);
+            EnemyManager.instance.QueueAttack(Melee, () => Mathf.FloorToInt(_playerDir.magnitude));
         }
     }
 

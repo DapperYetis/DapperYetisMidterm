@@ -108,6 +108,8 @@ public class GameManager : MonoBehaviour
             EnemyManager.instance.ResetMap();
         if (UIManager.instance != null)
             UIManager.instance.TransitionToMainMenu();
+        if (LootManager.instance != null)
+            LootManager.instance.ResetMap();
     }
     #endregion
 

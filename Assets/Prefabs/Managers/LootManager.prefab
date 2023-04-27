@@ -44,7 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afb7d4ac09f749f4bab466a52b45e31f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lootPrefab: {fileID: 2589429095351886765, guid: f30c0b3139383084bb1c92fbada29182,
+  _altarPrefab: {fileID: 7632674772474913127, guid: c390d6c4a8fe2b041876d698818777bb,
+    type: 3}
+  _chestPrefab: {fileID: 2589429095351886765, guid: f30c0b3139383084bb1c92fbada29182,
     type: 3}
   _lootCount: 20
   _spawningBounds:

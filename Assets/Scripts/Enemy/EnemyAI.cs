@@ -45,7 +45,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
     protected SOWave _spawnPoint;
     protected bool _isSetUp;
     protected bool _isAttacking;
-    protected Vector3 _playerDir => GameManager.instance.player.transform.position - transform.position + 2 * Vector3.down  ;
+    protected Vector3 _playerDir => GameManager.instance.player.transform.position - transform.position + 2 * Vector3.down;
     protected bool _indicatingHit;
     protected float _speed;
 
@@ -125,7 +125,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
 
     public virtual void ScaleEnemy()
     {
-        for(int i = 0; i < EnemyManager.instance.scaleFactorInt; ++i)
+        for(int i = 0; i < EnemyManager.instance.scaleFactorInt - 1; ++i)
         {
             _stats = _stats + _statsScaling;
             _primaryAttackStats = _primaryAttackStats + _primaryAttackStatsScaling;

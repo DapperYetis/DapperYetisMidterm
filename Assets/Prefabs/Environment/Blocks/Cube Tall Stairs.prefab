@@ -25192,6 +25192,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cube Tall Stairs
       objectReference: {fileID: 0}
+    - target: {fileID: 4637479757060894102, guid: 9a60d3fde54199f4e8645b5933ca5b0e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 4637479757060894103, guid: 9a60d3fde54199f4e8645b5933ca5b0e,
         type: 3}
       propertyPath: m_Mesh
