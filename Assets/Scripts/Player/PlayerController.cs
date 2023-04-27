@@ -30,9 +30,9 @@ public class PlayerController : MonoBehaviour, IDamageable
     private Weapon _weapon;
     public Weapon weapon => _weapon;
     
-    //private SOSupport _supportAsset;
-    //private Support _support;
-    //public Support support => _support;
+    private SOSupport _supportAsset;
+    private Support _support;
+    public Support support => _support;
     
     //private SOCompanion _companionAsset;
     //private Companion _companion;
@@ -98,7 +98,11 @@ public class PlayerController : MonoBehaviour, IDamageable
         _weapon = Instantiate(_weaponAsset.prefab, transform).GetComponent<Weapon>();
         _weapon.SetStats(_weaponAsset.stats);
 
-        // TODO: Add support and companion setting once they are implemented
+        _supportAsset = UIManager.instance.references.loadoutScript.GetSupport();
+        _support = Instantiate(_supportAsset.prefab, transform).GetComponent<Support>();
+        _support.SetStats(_supportAsset.stats);
+
+        // TODO: Add companion setting once they are implemented
     }
 
     public void Damage(float damage)
