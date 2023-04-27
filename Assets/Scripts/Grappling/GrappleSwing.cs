@@ -34,7 +34,7 @@ public class GrappleSwing : MonoBehaviour
     private void Start()
     {
         predictionPoint = Instantiate(predictionPoint.gameObject).transform;
-        
+        cam = Camera.main.transform;
 
     }
     void Update()
