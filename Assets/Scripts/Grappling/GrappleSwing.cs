@@ -31,7 +31,12 @@ public class GrappleSwing : MonoBehaviour
     public float forwardThrustForce;
     public float extendCableSpeed;
 
+    private void Start()
+    {
+        predictionPoint = Instantiate(predictionPoint.gameObject).transform;
+        
 
+    }
     void Update()
     {
         if (Input.GetKeyDown(swingKey))
@@ -136,6 +141,7 @@ public class GrappleSwing : MonoBehaviour
 
         if (realHitPoint != Vector3.zero)
         {
+
             predictionPoint.gameObject.SetActive(true);
             predictionPoint.position = realHitPoint;
         }
