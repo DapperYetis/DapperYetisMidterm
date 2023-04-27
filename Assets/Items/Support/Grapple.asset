@@ -13,3 +13,13 @@ MonoBehaviour:
   m_Name: Grapple
   m_EditorClassIdentifier: 
   _supportName: Grapple
+  _prefab: {fileID: 4378267455368745451, guid: e416ee6f3a66a174593ba7db7b012aa8, type: 3}
+  _stats:
+    useRatePrimary: 0
+    useCountPrimary: 0
+    distancePrimary: 0
+    damagePrimary: 0
+    useRateSecondary: 0
+    useCountSecondary: 0
+    distanceSecondary: 0
+    damageSecondary: 0
