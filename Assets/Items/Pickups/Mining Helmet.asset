@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: 56c7efe7d01504ca19f9d615195e930b, type: 3}
   _description: 
-  _rarity: 0
+  _rarity: 2
   _movementStats:
     walkSpeed: 0
     sprintMultiplier: 0
@@ -30,7 +30,7 @@ MonoBehaviour:
     jumpInputTime: 0
     jumpCountMax: 0
     gravityAcceleration: 0
-    healthMax: 0
+    healthMax: 50
   _attackStats:
     primaryAbility:
       prefab: {fileID: 0}

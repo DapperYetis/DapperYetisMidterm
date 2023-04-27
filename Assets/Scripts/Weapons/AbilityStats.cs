@@ -21,6 +21,10 @@ public struct AbilityStats
         stats.damage = s1.damage + s2.damage;
         stats.directDamage = s1.directDamage + s2.directDamage;
         stats.cooldown = s1.cooldown + s2.cooldown;
+        if (stats.cooldown < 0.1f)
+        {
+            stats.cooldown = 0.1f;
+        }
         stats.lifetime = s1.lifetime + s2.lifetime;
         stats.secondaryLifetime = s1.secondaryLifetime + s2.secondaryLifetime;
         stats.speed = s1.speed + s2.speed;

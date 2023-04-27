@@ -16,7 +16,7 @@ MonoBehaviour:
   _description: 
   _rarity: 0
   _movementStats:
-    walkSpeed: 0
+    walkSpeed: 0.5
     sprintMultiplier: 0
     accelerationRate:
       serializedVersion: 2

@@ -141,5 +141,10 @@ public class PlayerController : MonoBehaviour, IDamageable
         _stats += item.statsModification;
         _weapon.SetStats(_weapon.stats + item.attackStats);
         _movement.SetStats(_stats);
+
+        if(item.statsModification.healthMax != 0)
+        {
+            Heal(item.statsModification.healthMax);
+        }
     }
 }

@@ -40,7 +40,7 @@ MonoBehaviour:
       lifetime: 0
       secondaryLifetime: 0
       speed: 0
-      fxIntesity: 0
+      fxIntesity: 1.5
     secondaryAbility:
       prefab: {fileID: 0}
       damage: 0
@@ -49,4 +49,4 @@ MonoBehaviour:
       lifetime: 0
       secondaryLifetime: 0
       speed: 0
-      fxIntesity: 0
+      fxIntesity: 1.5

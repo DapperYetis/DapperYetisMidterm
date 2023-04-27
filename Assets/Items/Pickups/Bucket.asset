@@ -30,7 +30,7 @@ MonoBehaviour:
     jumpInputTime: 0
     jumpCountMax: 0
     gravityAcceleration: 0
-    healthMax: 0
+    healthMax: 30
   _attackStats:
     primaryAbility:
       prefab: {fileID: 0}

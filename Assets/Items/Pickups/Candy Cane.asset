@@ -17,7 +17,7 @@ MonoBehaviour:
   _rarity: 0
   _movementStats:
     walkSpeed: 0
-    sprintMultiplier: 0
+    sprintMultiplier: 0.15
     accelerationRate:
       serializedVersion: 2
       m_Curve: []
