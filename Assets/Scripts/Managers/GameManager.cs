@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-        _player.OnHealthChange.AddListener(EndConditions);
+        _player.OnHealthChange.AddListener((amt) => EndConditions());
         _playerSpawnPos = GameObject.FindGameObjectWithTag("PlayerSpawnPoint").transform;
         Debug.Log("Player found!");
     }

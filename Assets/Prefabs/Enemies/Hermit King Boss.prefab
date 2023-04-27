@@ -425,16 +425,16 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _stats:
-    HPMax: 300
+    HPMax: 350
     facePlayerSpeed: 600
   _statsScaling:
-    HPMax: 100
+    HPMax: 125
     facePlayerSpeed: 25
   _primaryAttackStats:
     positions:
     - {fileID: 6230942851774826721}
     damage: 20
-    rate: 2.5
+    rate: 2
     lifetime: 0
     variance: 0
     prefab: {fileID: 0}
@@ -451,7 +451,7 @@ MonoBehaviour:
     positions:
     - {fileID: 7048595572675317456}
     damage: 15
-    rate: 1.25
+    rate: 0.75
     lifetime: 10
     variance: 2
     prefab: {fileID: 424343093267893311, guid: f7b16309293f2e949b61f60c035662d9, type: 3}
@@ -467,7 +467,7 @@ MonoBehaviour:
   _dashAttackStats:
     positions: []
     damage: 10
-    rate: 4
+    rate: 2
     lifetime: 0.75
     variance: 8
     prefab: {fileID: 0}
@@ -485,7 +485,7 @@ MonoBehaviour:
     positions:
     - {fileID: 7048595572675317456}
     damage: 5
-    rate: 5
+    rate: 1.5
     lifetime: 5
     variance: 30
     prefab: {fileID: 424343093267893311, guid: 912a43b0040ffe643b0c56e5be18da99, type: 3}

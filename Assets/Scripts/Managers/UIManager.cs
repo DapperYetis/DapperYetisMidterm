@@ -363,13 +363,14 @@ public class UIManager : MonoBehaviour
     #endregion
 
     #region HUD Functionality
-    public void UpdateHealth()
+    public void UpdateHealth(float healthChange)
     {
         if (UIManager.instance.activeMenu != null) return;
 
         if (_playerController.GetHealthCurrent() > 0)
         {
-            StartCoroutine(Damaged());
+            if(healthChange < 0)
+                StartCoroutine(Damaged());
             SetHealth();
             float currHealth = (float)_playerController.GetHealthCurrent() / (float)_playerController.GetHealthMax();
             _references.hpBar.fillAmount = currHealth;

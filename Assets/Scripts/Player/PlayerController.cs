@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     // Events
     [HideInInspector]
-    public UnityEvent OnHealthChange;
+    public UnityEvent<float> OnHealthChange;
     [HideInInspector]
     public UnityEvent OnPlayerSetUp;
 
@@ -117,7 +117,7 @@ public class PlayerController : MonoBehaviour, IDamageable
             // Lose condition
         }
 
-        OnHealthChange?.Invoke();
+        OnHealthChange?.Invoke(-damage);
     }
 
     public void Heal(float health)
@@ -129,7 +129,7 @@ public class PlayerController : MonoBehaviour, IDamageable
             _healthCurrent = _stats.healthMax;
         }
 
-        OnHealthChange?.Invoke();
+        OnHealthChange?.Invoke(health);
     }
 
     public float GetHealthMax() => _stats.healthMax;

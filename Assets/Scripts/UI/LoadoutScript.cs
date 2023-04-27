@@ -56,7 +56,8 @@ public class LoadoutScript : MonoBehaviour
         {
             AddCompanion(companion);
         }
-        _companionButtons[GetCompainion()].interactable = false;
+        if(GetCompainion() != null)
+            _companionButtons[GetCompainion()].interactable = false;
     }
 
     #region Setters
@@ -162,7 +163,7 @@ public class LoadoutScript : MonoBehaviour
 
     public SOSupport GetSupport() => _supports[PlayerPrefs.GetInt("SupportChoice")];
 
-    public SOCompanion GetCompainion() => _companions[PlayerPrefs.GetInt("CompanionChoice")];
+    public SOCompanion GetCompainion() => null; //_companions[PlayerPrefs.GetInt("CompanionChoice")];
 
     #endregion
 

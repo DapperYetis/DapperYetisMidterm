@@ -1307,14 +1307,10 @@ MonoBehaviour:
   _companionGroup: {fileID: 3146558923884004174}
   _weapons:
   - {fileID: 11400000, guid: 076e20b409de1c648a9ed0faa8f2b967, type: 2}
-  - {fileID: 11400000, guid: e16b0904727d4224c9212fd2377c8957, type: 2}
   - {fileID: 11400000, guid: b68926fbb5736ec4d8d214ac1d99cdd5, type: 2}
   _supports:
   - {fileID: 11400000, guid: e12b777ff4b28ab45aa29f244964cc0b, type: 2}
-  - {fileID: 11400000, guid: 91896b14eb852d2408cd756d1ab6c0f2, type: 2}
-  _companions:
-  - {fileID: 11400000, guid: 4227882a8c33b164880a4262dc5ca041, type: 2}
-  - {fileID: 11400000, guid: 9547323a296e1314ca214cfe017add7f, type: 2}
+  _companions: []
 --- !u!1 &6922840297155683809
 GameObject:
   m_ObjectHideFlags: 0
