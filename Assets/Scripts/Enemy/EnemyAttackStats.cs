@@ -14,19 +14,15 @@ public struct EnemyAttackStats
     public float speed;
 
 
-    public static EnemyAttackStats operator+(EnemyAttackStats s1, EnemyAttackStats s2)
+    public static EnemyAttackStats operator +(EnemyAttackStats s1, EnemyAttackStats s2)
     {
-        EnemyAttackStats stats = new();
+        s1.damage += s2.damage;
+        s1.rate += s2.rate;
+        s1.lifetime += s2.lifetime;
+        s1.variance += s2.variance;
+        s1.speed += s2.speed;
 
-        stats.positions = s1.positions;
-        stats.damage = s1.damage + s2.damage;
-        stats.rate = s1.rate + s2.rate;
-        stats.lifetime = s1.lifetime + s2.lifetime;
-        stats.variance = s1.variance + s2.variance;
-        stats.prefab = s1.prefab;
-        stats.speed = s1.speed + s2.speed;
-
-        return stats;
+        return s1;
     }
 
     public static implicit operator AbilityStats(EnemyAttackStats stats)
@@ -34,7 +30,7 @@ public struct EnemyAttackStats
         return new AbilityStats
         {
             prefab = stats.prefab,
-            damage = stats.damage,
+            secondaryDamage = stats.damage,
             cooldown = stats.rate,
             lifetime = stats.lifetime,
             speed = stats.speed

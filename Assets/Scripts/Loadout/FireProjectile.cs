@@ -30,7 +30,7 @@ public class FireProjectile : Projectile
         else if(other.gameObject.TryGetComponent<IDamageable>(out var damageable) && !_previouslyHit.Contains(damageable))
         {
             _previouslyHit.Add(damageable);
-            damageable.Damage(_stats.damage);
+            damageable.Damage(_stats.directDamage);
         }
 
         if (!_isAOE)

@@ -127,8 +127,8 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
     {
         for(int i = 0; i < EnemyManager.instance.scaleFactorInt - 1; ++i)
         {
-            _stats = _stats + _statsScaling;
-            _primaryAttackStats = _primaryAttackStats + _primaryAttackStatsScaling;
+            _stats += _statsScaling;
+            _primaryAttackStats += _primaryAttackStatsScaling;
         }
     }
 

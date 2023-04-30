@@ -27,23 +27,16 @@ public struct PlayerStats
 
     public static PlayerStats operator +(PlayerStats s1, PlayerStats s2)
     {
-        PlayerStats stats = s1;
+        s1.walkSpeed += s2.walkSpeed;
+        s1.sprintMultiplier += s2.sprintMultiplier;
+
+        s1.jumpHeightMin += s2.jumpHeightMin;
+        s1.jumpHeightMax += s2.jumpHeightMax;
+        s1.jumpCountMax += s2.jumpCountMax;
+
+        s1.healthMax += s2.healthMax;
 
 
-        stats.walkSpeed = s1.walkSpeed + s2.walkSpeed;
-        stats.sprintMultiplier = s1.sprintMultiplier + s2.sprintMultiplier;
-        //stats.accelerationRate = s1.accelerationRate;
-        //stats.accelerationTime = s1.accelerationTime;
-
-        stats.jumpHeightMin = s1.jumpHeightMin + s2.jumpHeightMin;
-        stats.jumpHeightMax = s1.jumpHeightMax + s2.jumpHeightMax;
-        //stats.jumpInputTime = s1.jumpInputTime;
-        stats.jumpCountMax = s1.jumpCountMax + s2.jumpCountMax;
-        //stats.gravityAcceleration = s1.gravityAcceleration;
-
-        stats.healthMax = s1.healthMax + s2.healthMax;
-
-
-        return stats;
+        return s1;
     }
 }
