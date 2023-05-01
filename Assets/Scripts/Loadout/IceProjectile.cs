@@ -15,7 +15,7 @@ public class IceProjectile : Projectile
         if (other.gameObject.TryGetComponent<IDamageable>(out var damageable) && !_previouslyHit.Contains(damageable))
         {
             _previouslyHit.Add(damageable);
-            damageable.Damage(_stats.secondaryDamage);
+            damageable.Damage(_stats.directDamage);
         }
 
         if (!_piercing)

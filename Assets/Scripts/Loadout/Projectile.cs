@@ -24,7 +24,7 @@ public abstract class Projectile : MonoBehaviour
 
         if (other.gameObject.TryGetComponent<IDamageable>(out var damageable))
         {
-            damageable.Damage(_stats.secondaryDamage);
+            damageable.Damage(_stats.directDamage);
         }
 
         Destroy(gameObject);
