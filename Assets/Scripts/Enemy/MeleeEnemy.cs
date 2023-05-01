@@ -33,12 +33,6 @@ public class MeleeEnemy : EnemyAI
         for (int i = 0; i < _primaryAttackStats.positions.Length; i++)
         {
             AttackStart();
-            if (gameObject.CompareTag("Player") && gameObject.TryGetComponent<IDamageable>(out var damageable))
-            {
-                _previouslyHit.Add(damageable);
-                damageable.Damage(_primaryAttackStats.damage);
-            }
-            AttackEnd();
         }
 
         yield return new WaitForSeconds(_primaryAttackStats.rate);

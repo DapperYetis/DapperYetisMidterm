@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+[RequireComponent(typeof(Collider))]
 public class EnemyMeleeSlash : MonoBehaviour
 {
     [SerializeField]
@@ -12,10 +13,10 @@ public class EnemyMeleeSlash : MonoBehaviour
 
     private void Start()
     {
-        slash = GetComponent<SphereCollider>();
+        slash = GetComponent<Collider>();
     }
 
-    protected virtual void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerStay(Collider other)
     {
         if (other.isTrigger) return;
 

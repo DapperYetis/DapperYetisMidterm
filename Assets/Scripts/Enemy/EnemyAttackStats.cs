@@ -30,7 +30,7 @@ public struct EnemyAttackStats
         return new AbilityStats
         {
             prefab = stats.prefab,
-            secondaryDamage = stats.damage,
+            directDamage = stats.damage,
             cooldown = stats.rate,
             lifetime = stats.lifetime,
             speed = stats.speed

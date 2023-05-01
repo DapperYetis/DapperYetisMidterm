@@ -123,10 +123,7 @@ MonoBehaviour:
   _scaleRate: 1.2
   _startingMinutes: 0
   _waves:
-  - {fileID: 11400000, guid: b5352115f212d8c4b80e2057c0ff237d, type: 2}
-  - {fileID: 11400000, guid: 9f338045f9598f74f98773863fb0ba9d, type: 2}
-  - {fileID: 11400000, guid: 807f93dfdd782c2478c3308992d1e781, type: 2}
-  - {fileID: 11400000, guid: 32427e9f57ceefa4db2119d5894b7342, type: 2}
+  - {fileID: 11400000, guid: 8960b3a3b5bf0ad4cbf00878d05d2e21, type: 2}
   _attackTime: 0.5
   _attackBudgetMax: 6
   OnEnemyCountChange:

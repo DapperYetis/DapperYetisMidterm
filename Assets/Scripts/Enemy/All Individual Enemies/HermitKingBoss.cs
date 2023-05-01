@@ -78,8 +78,8 @@ public class HermitKingBoss : HybridEnemy
 
         for (int i = 0; i < EnemyManager.instance.scaleFactorInt - 1; ++i)
         {
-            _dashAttackStats = _dashAttackStats + _dashAttackScaling;
-            _sprayAttackStats = _sprayAttackStats + _sprayAttackScaling;
+            _dashAttackStats += _dashAttackScaling;
+            _sprayAttackStats += _sprayAttackScaling;
         }
     }
 
