@@ -165,4 +165,8 @@ public class UIReferences : MonoBehaviour
 
     public GameObject keyBindsMenu => _keyBindsMenu;
 
+    [SerializeField] Image _dynamicHealth;
+
+    public Image dynamicHealth => _dynamicHealth;
+
 }

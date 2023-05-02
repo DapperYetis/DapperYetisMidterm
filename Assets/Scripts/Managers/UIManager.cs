@@ -392,6 +392,7 @@ public class UIManager : MonoBehaviour
 
         if (_playerController.GetHealthCurrent() > 0)
         {
+            StartCoroutine(DynamicHealthDecrease());
             if(healthChange < 0)
                 StartCoroutine(Damaged());
             SetHealth();
@@ -506,6 +507,14 @@ public class UIManager : MonoBehaviour
             yield return new WaitForSeconds(Time.deltaTime);
         }
         target.SetText("");
+    }
+
+    IEnumerator DynamicHealthDecrease()
+    {
+
+        yield return new WaitForSeconds(1.5f);
+        _references.dynamicHealth.fillAmount = (float)_playerController.GetHealthCurrent() / (float)_playerController.GetHealthMax();
+
     }
     #endregion
 

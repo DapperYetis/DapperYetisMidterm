@@ -248,6 +248,7 @@ MonoBehaviour:
   _sprintCtrl: {fileID: 3971711820584132414}
   _sprintShift: {fileID: 6721584189016893332}
   _keyBindsMenu: {fileID: 7719843888595981572}
+  _dynamicHealth: {fileID: 5273857834160154873}
 --- !u!1001 &1806001866975669386
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -609,6 +610,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5273857834160154873 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6169803552493688827, guid: ae4c8e1415a5cee46af66865695c73a6,
+    type: 3}
+  m_PrefabInstance: {fileID: 2066882188419448578}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &5607687286377536516 stripped
