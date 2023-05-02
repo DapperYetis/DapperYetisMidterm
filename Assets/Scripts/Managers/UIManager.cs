@@ -378,6 +378,11 @@ public class UIManager : MonoBehaviour
         _isPlaying = false;
         _references.transitionScreen.SetActive(false);
     }
+
+    public void ToKeybinds()
+    {
+        NextMenu(_references.keyBindsMenu);
+    }
     #endregion
 
     #region HUD Functionality

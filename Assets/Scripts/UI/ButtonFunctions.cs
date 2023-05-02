@@ -79,4 +79,8 @@ public class ButtonFunctions : MonoBehaviour
         UIManager.instance.SetSprintHold();
     }
 
+    public void ToKeybindsMenu()
+    {
+        UIManager.instance.ToKeybinds();
+    }
 }
