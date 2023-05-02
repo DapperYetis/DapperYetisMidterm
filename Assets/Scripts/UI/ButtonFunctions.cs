@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class ButtonFunctions : MonoBehaviour
 {
-    public void PlayGame()
+    public async void PlayGame()
     {
         while (UIManager.instance.activeMenu != null)
         {
@@ -79,4 +79,8 @@ public class ButtonFunctions : MonoBehaviour
         UIManager.instance.SetSprintHold();
     }
 
+    public void ToKeybindsMenu()
+    {
+        UIManager.instance.ToKeybinds();
+    }
 }
