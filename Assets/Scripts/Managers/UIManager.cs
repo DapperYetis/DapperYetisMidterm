@@ -27,6 +27,10 @@ public class UIManager : MonoBehaviour
     private PlayerController _playerController;
     private Stack<GameObject> _menuStack;
     private bool _isPlaying = false;
+    private float endtime;
+    private bool _isHealthUpdating;
+    [SerializeField]
+    private float _healthWaitTime = 1f;
 
     private GameObject _activeMenu
     {
@@ -392,7 +396,10 @@ public class UIManager : MonoBehaviour
 
         if (_playerController.GetHealthCurrent() > 0)
         {
-            StartCoroutine(DynamicHealthDecrease());
+            if (_isHealthUpdating)
+                endtime = Time.time + _healthWaitTime;
+            else
+                StartCoroutine(DynamicHealthDecrease());
             if(healthChange < 0)
                 StartCoroutine(Damaged());
             SetHealth();
@@ -511,10 +518,15 @@ public class UIManager : MonoBehaviour
 
     IEnumerator DynamicHealthDecrease()
     {
+        _isHealthUpdating = true;
+        endtime = Time.time + _healthWaitTime;
+        while (Time.time < endtime)
+        {
+            yield return new WaitForEndOfFrame();
+        }
 
-        yield return new WaitForSeconds(1.5f);
         _references.dynamicHealth.fillAmount = (float)_playerController.GetHealthCurrent() / (float)_playerController.GetHealthMax();
-
+        _isHealthUpdating = false;
     }
     #endregion
 
