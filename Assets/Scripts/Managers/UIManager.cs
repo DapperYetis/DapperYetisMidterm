@@ -26,6 +26,7 @@ public class UIManager : MonoBehaviour
     public float origTimeScale => _origTimeScale;
     private PlayerController _playerController;
     private Stack<GameObject> _menuStack;
+    private bool _isPlaying = false;
 
     private GameObject _activeMenu
     {
@@ -62,37 +63,42 @@ public class UIManager : MonoBehaviour
     {
         if(GameManager.instance.inGame) 
             _references.timer.SetText($"{(int)GameManager.instance.runTimeMinutes} : {(GameManager.instance.runTime % 60).ToString("F1")}");
-
-        if (Input.GetButtonDown("Cancel"))
+        if (!_references.animator.GetCurrentAnimatorStateInfo(5).IsName("CrossFade"))
         {
-            if (_activeMenu != null && ReferenceEquals(_activeMenu, _references.pauseMenu))
+            if (!_isPlaying)
             {
-                PrevMenu();
-                ResumeState();
-            }
-            else if (_activeMenu == null)
-            {
-                PauseState();
-                NextMenu(_references.pauseMenu);
-            }
-        }
+                if (Input.GetButtonDown("Cancel"))
+                {
+                    if (_activeMenu != null && ReferenceEquals(_activeMenu, _references.pauseMenu))
+                    {
+                        PrevMenu();
+                        ResumeState();
+                    }
+                    else if (_activeMenu == null)
+                    {
+                        PauseState();
+                        NextMenu(_references.pauseMenu);
+                    }
+                }
 
-        if (_activeMenu == null)
-        {
-            if (Input.GetKeyDown("tab"))
-            {
+                if (_activeMenu == null)
+                {
+                    if (Input.GetKeyDown("tab"))
+                    {
 
-                _references.tabMenu.SetActive(true);
-                Cursor.lockState = CursorLockMode.Confined;
+                        _references.tabMenu.SetActive(true);
+                        Cursor.lockState = CursorLockMode.Confined;
 
-            }
+                    }
 
-            if (Input.GetKeyUp("tab"))
-            {
+                    if (Input.GetKeyUp("tab"))
+                    {
 
-                _references.tabMenu.SetActive(false);
-                Cursor.lockState = CursorLockMode.Locked;
+                        _references.tabMenu.SetActive(false);
+                        Cursor.lockState = CursorLockMode.Locked;
 
+                    }
+                }
             }
         }
     }
@@ -359,6 +365,18 @@ public class UIManager : MonoBehaviour
     {
         _references.transitionScreen.SetActive(true);
         _transition.SetTrigger("Button");
+
+    }
+
+    public void StartsPlaying()
+    {
+        _isPlaying = true;
+    }
+
+    public void StopsPlaying()
+    {
+        _isPlaying = false;
+        _references.transitionScreen.SetActive(false);
     }
     #endregion
 

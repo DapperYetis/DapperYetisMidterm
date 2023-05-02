@@ -160,4 +160,5 @@ public class UIReferences : MonoBehaviour
     [SerializeField] GameObject _sprintShift;
 
     public GameObject sprintShift => _sprintShift;
+
 }

@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class ButtonFunctions : MonoBehaviour
 {
-    public void PlayGame()
+    public async void PlayGame()
     {
         while (UIManager.instance.activeMenu != null)
         {
