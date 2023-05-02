@@ -5,7 +5,7 @@ using UnityEngine.AI;
 using UnityEngine.Events;
 using static UnityEngine.Rendering.DebugUI.Table;
 
-public abstract class EnemyAI : MonoBehaviour, IDamageable
+public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
 {
     [Header("--- Components ---")]
     [SerializeField]
@@ -121,6 +121,9 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
 
         EnemyManager.instance.AddEnemyToList(this);
         _isSetUp = true;
+
+        _agent.speed = _stats.speed;
+        _agent.acceleration = _stats.acceleration;
     }
 
     public virtual void ScaleEnemy()
@@ -153,7 +156,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * _stats.facePlayerSpeed);
     }
 
-    public virtual void Damage(float amount)
+    public virtual void Damage(float amount, (SOBuff buff, int amount)[] buffs)
     {
         _HPCurrent -= amount;
 
@@ -170,6 +173,13 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
         {
             _anim.SetTrigger("Damage");
             StartCoroutine(FlashColor(Color.red));
+            if(buffs != null)
+            {
+                foreach (var buff in buffs)
+                {
+                    AddBuff(buff.buff, buff.amount);
+                }
+            }
         }
 
         OnHealthChange.Invoke();
@@ -194,5 +204,30 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
     public virtual float GetHealthCurrent()
     {
         return _HPCurrent;
+    }
+
+    public List<SOBuff> GetBuffs()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void AddBuff(SOBuff buff, int amount = 1)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void AddBuffs(List<(SOBuff buff, int count)> buffCounts)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public int GetStackCount(SOBuff buff)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public bool RemoveBuff(SOBuff buff)
+    {
+        throw new System.NotImplementedException();
     }
 }

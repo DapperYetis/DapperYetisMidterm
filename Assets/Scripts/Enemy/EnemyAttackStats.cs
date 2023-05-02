@@ -11,6 +11,8 @@ public struct EnemyAttackStats
     public float lifetime;
     public float variance;
     public GameObject prefab;
+    public List<SOBuff> selfBuffs;
+    public List<SOBuff> targetBuffs;
     public float speed;
 
 
@@ -33,6 +35,8 @@ public struct EnemyAttackStats
             directDamage = stats.damage,
             cooldown = stats.rate,
             lifetime = stats.lifetime,
+            selfBuffs = stats.selfBuffs,
+            targetBuffs = stats.targetBuffs,
             speed = stats.speed
         };
     }

@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54615bcb37a115e4c86988bea0849cba, type: 3}
+  m_Name: Bleed
+  m_EditorClassIdentifier: 
+  _buffName: Bleed
+  _description: You're losing blood... a lot of it...
+  _timing: 1
+  _buffLength: 1
+  _removeType: 1
+  _removeEffectPrefab: {fileID: 4334024921141274484, guid: 40c1d4324e6687f4ea4043e82e4ed307,
+    type: 3}
+  _changeType: 0
+  _generalMods:
+    walkSpeed: 0
+    sprintMultiplier: 0
+    accelerationRate:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    accelerationTime: 0
+    jumpHeightMin: 0
+    jumpHeightMax: 0
+    jumpInputTime: 0
+    jumpCountMax: 0
+    gravityAcceleration: 0
+    healthMax: 0
+  _abilityMods:
+    prefab: {fileID: 0}
+    secondaryDamage: 0
+    directDamage: 0
+    cooldown: 0
+    lifetime: 0
+    secondaryLifetime: 0
+    speed: 0
+    fxIntesity: 0
+    selfBuffs: []
+    targetBuffs: []

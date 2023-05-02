@@ -39,4 +39,15 @@ public struct PlayerStats
 
         return s1;
     }
+
+    public static implicit operator EnemyStats(PlayerStats stats)
+    {
+        return new EnemyStats
+        {
+            HPMax = stats.healthMax,
+            facePlayerSpeed = 0,
+            speed = stats.walkSpeed,
+            acceleration = stats.accelerationRate.keys[^1].value
+        };
+    }
 }

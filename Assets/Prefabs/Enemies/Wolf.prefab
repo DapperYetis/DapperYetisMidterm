@@ -313,9 +313,13 @@ MonoBehaviour:
   _stats:
     HPMax: 3
     facePlayerSpeed: 500
+    speed: 18
+    acceleration: 20
   _statsScaling:
     HPMax: 1.5
     facePlayerSpeed: 0
+    speed: 0
+    acceleration: 0
   _primaryAttackStats:
     positions:
     - {fileID: 1394923249618638891}
@@ -324,6 +328,9 @@ MonoBehaviour:
     lifetime: 1
     variance: 1
     prefab: {fileID: 424343093267893311, guid: f7b16309293f2e949b61f60c035662d9, type: 3}
+    selfBuffs: []
+    targetBuffs:
+    - {fileID: 11400000, guid: 24ff1838f787af047b68ff00fd1d65b5, type: 2}
     speed: 100
   _primaryAttackStatsScaling:
     positions: []
@@ -332,6 +339,8 @@ MonoBehaviour:
     lifetime: 0
     variance: 0
     prefab: {fileID: 0}
+    selfBuffs: []
+    targetBuffs: []
     speed: 0
 --- !u!114 &-1971623083720848777
 MonoBehaviour:
