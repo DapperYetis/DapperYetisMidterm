@@ -316,6 +316,8 @@ MonoBehaviour:
   _statsScaling:
     HPMax: 1.5
     facePlayerSpeed: 0
+  _timeLength: 10
+  _scaleMultiplier: 20
   _primaryAttackStats:
     positions:
     - {fileID: 1394923249618638891}
@@ -1531,6 +1533,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1394923249618638893}
     m_Modifications:
+    - target: {fileID: 291928194299669301, guid: 535327310470fd740bba68476996b57b,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1896127371734880492, guid: 535327310470fd740bba68476996b57b,
         type: 3}
       propertyPath: m_Name

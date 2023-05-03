@@ -1022,7 +1022,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _radiusMod: 2
   _speedMod: 3
-  animTransSpeed: 0
+  animTransSpeed: 1
   OnHealthChange:
     m_PersistentCalls:
       m_Calls: []
@@ -1032,6 +1032,8 @@ MonoBehaviour:
   _statsScaling:
     HPMax: 2
     facePlayerSpeed: 0
+  _timeLength: 10
+  _scaleMultiplier: 20
   _primaryAttackStats:
     positions:
     - {fileID: 6826903240270837576}

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1568776396483139008}
   - component: {fileID: 1568776396483139015}
   - component: {fileID: 1568776396483139014}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5382,45 +5382,9 @@ MonoBehaviour:
   m_Mesh: {fileID: 0}
   m_VersionIndex: 616
   m_IsSelectable: 1
-  m_SelectedFaces: 570000005e00000062000000610000005f00000060000000
-  m_SelectedEdges:
-  - a: 396
-    b: 395
-  - a: 395
-    b: 394
-  - a: 394
-    b: 396
-  - a: 438
-    b: 437
-  - a: 437
-    b: 436
-  - a: 436
-    b: 438
-  - a: 462
-    b: 461
-  - a: 461
-    b: 460
-  - a: 460
-    b: 462
-  - a: 456
-    b: 455
-  - a: 455
-    b: 454
-  - a: 454
-    b: 456
-  - a: 444
-    b: 443
-  - a: 443
-    b: 442
-  - a: 442
-    b: 444
-  - a: 450
-    b: 449
-  - a: 449
-    b: 448
-  - a: 448
-    b: 450
-  m_SelectedVertices: 8c0100008b0100008a010000b6010000b5010000b4010000ce010000cd010000cc010000c8010000c7010000c6010000bc010000bb010000ba010000c2010000c1010000c0010000
+  m_SelectedFaces: 
+  m_SelectedEdges: []
+  m_SelectedVertices: 
 --- !u!114 &1568776396483139009
 MonoBehaviour:
   m_ObjectHideFlags: 0

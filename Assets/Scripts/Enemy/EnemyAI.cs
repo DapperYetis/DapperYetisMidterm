@@ -14,7 +14,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
     protected NavMeshAgent _agent;
     [SerializeField]
     protected Animator _anim;
-    [SerializeField] 
+    [SerializeField]
     protected Collider biteCol;
 
     [Header("--- NavMesh Mods ---")]
@@ -26,7 +26,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
     protected float _radiusMod;
     [SerializeField]
     protected float _speedMod;
-    [SerializeField] 
+    [SerializeField]
     protected float animTransSpeed;
 
     // Events
@@ -48,6 +48,12 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
     protected Vector3 _playerDir => GameManager.instance.player.transform.position - transform.position + 2 * Vector3.down;
     protected bool _indicatingHit;
     protected float _speed;
+
+    [Header("--- Death Controls ---")]
+    [SerializeField]
+    protected float _timeLength;
+    [SerializeField]
+    protected float _scaleMultiplier;
 
     [Space(20), SerializeField]
     protected EnemyAttackStats _primaryAttackStats;
@@ -88,7 +94,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
 
         if (_agent.isActiveAndEnabled)
             _agent.SetDestination(GameManager.instance.player.transform.position);
-        
+
         FacePlayer();
     }
 
@@ -125,7 +131,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
 
     public virtual void ScaleEnemy()
     {
-        for(int i = 0; i < EnemyManager.instance.scaleFactorInt - 1; ++i)
+        for (int i = 0; i < EnemyManager.instance.scaleFactorInt - 1; ++i)
         {
             _stats += _statsScaling;
             _primaryAttackStats += _primaryAttackStatsScaling;
@@ -134,7 +140,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
 
     protected virtual IEnumerator FlashColor(Color clr)
     {
-        if(!_indicatingHit)
+        if (!_indicatingHit)
         {
             _indicatingHit = true;
             Color mainColor = _model.material.color;
@@ -164,7 +170,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
             _agent.enabled = false;
             enabled = false;
             EnemyManager.instance.RemoveEnemyFromList(this);
-            Destroy(gameObject, 3);
+            StartCoroutine(EnemyRemoved());
         }
         else
         {
@@ -173,6 +179,22 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable
         }
 
         OnHealthChange.Invoke();
+    }
+
+    public virtual IEnumerator EnemyRemoved()
+    {
+        yield return new WaitForSeconds(10);
+
+        Vector3 scaleSize = transform.localScale;
+        float startTime = Time.time;
+        while (Time.time <= startTime + _timeLength)
+        {
+            yield return new WaitForEndOfFrame();
+            transform.Translate(0, -Time.deltaTime * _model.bounds.size.y, 0, Space.World);
+            transform.localScale = scaleSize * (1 - Mathf.Clamp(_scaleMultiplier * (Time.time - startTime) / _timeLength, 0, 1));
+        }
+
+        Destroy(gameObject);
     }
 
     public virtual void Heal(float health)

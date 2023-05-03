@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7816663513505905001}
   - component: {fileID: 7816663513505905000}
   - component: {fileID: 7816663513505905015}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Small World 250x250
   m_TagString: Untagged
   m_Icon: {fileID: 0}
