@@ -374,6 +374,9 @@ MonoBehaviour:
     facePlayerSpeed: 0
     speed: 0
     acceleration: 0
+  _deathDelay: 10
+  _timeLength: 10
+  _scaleMultiplier: 20
   _primaryAttackStats:
     positions: []
     damage: 10
@@ -381,6 +384,8 @@ MonoBehaviour:
     lifetime: 0
     variance: 0
     prefab: {fileID: 0}
+    selfBuffs: []
+    targetBuffs: []
     speed: 0
   _primaryAttackStatsScaling:
     positions: []
@@ -389,6 +394,8 @@ MonoBehaviour:
     lifetime: 0
     variance: 0
     prefab: {fileID: 0}
+    selfBuffs: []
+    targetBuffs: []
     speed: 0
   _secondaryAttackStats:
     positions:
@@ -398,6 +405,8 @@ MonoBehaviour:
     lifetime: 4
     variance: 0
     prefab: {fileID: 424343093267893311, guid: f7b16309293f2e949b61f60c035662d9, type: 3}
+    selfBuffs: []
+    targetBuffs: []
     speed: 30
   _secondaryAttackStatsScaling:
     positions: []
@@ -406,6 +415,8 @@ MonoBehaviour:
     lifetime: 0.1
     variance: -0.05
     prefab: {fileID: 0}
+    selfBuffs: []
+    targetBuffs: []
     speed: 0.1
 --- !u!114 &73426344941847313
 MonoBehaviour:

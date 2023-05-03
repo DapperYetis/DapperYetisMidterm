@@ -53,7 +53,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
 
     [Header("--- Death Controls ---")]
     [SerializeField]
-    protected float _deathDelay = 10;
+    protected float _deathDelay;
     [SerializeField]
     protected float _timeLength;
     [SerializeField]
