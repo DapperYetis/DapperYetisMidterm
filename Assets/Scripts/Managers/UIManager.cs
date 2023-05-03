@@ -68,41 +68,38 @@ public class UIManager : MonoBehaviour
     {
         if(GameManager.instance.inGame) 
             _references.timer.SetText($"{(int)GameManager.instance.runTimeMinutes} : {(GameManager.instance.runTime % 60).ToString("F1")}");
-        if (!_references.animator.GetCurrentAnimatorStateInfo(5).IsName("CrossFade"))
+        if (!_isPlaying)
         {
-            if (!_isPlaying)
+            if (Input.GetButtonDown("Cancel"))
             {
-                if (Input.GetButtonDown("Cancel"))
+                if (_activeMenu != null && ReferenceEquals(_activeMenu, _references.pauseMenu))
                 {
-                    if (_activeMenu != null && ReferenceEquals(_activeMenu, _references.pauseMenu))
-                    {
-                        PrevMenu();
-                        ResumeState();
-                    }
-                    else if (_activeMenu == null)
-                    {
-                        PauseState();
-                        NextMenu(_references.pauseMenu);
-                    }
+                    PrevMenu();
+                    ResumeState();
+                }
+                else if (_activeMenu == null)
+                {
+                    PauseState();
+                    NextMenu(_references.pauseMenu);
+                }
+            }
+
+            if (_activeMenu == null)
+            {
+                if (Input.GetKeyDown("tab"))
+                {
+
+                    _references.tabMenu.SetActive(true);
+                    Cursor.lockState = CursorLockMode.Confined;
+
                 }
 
-                if (_activeMenu == null)
+                if (Input.GetKeyUp("tab"))
                 {
-                    if (Input.GetKeyDown("tab"))
-                    {
 
-                        _references.tabMenu.SetActive(true);
-                        Cursor.lockState = CursorLockMode.Confined;
+                    _references.tabMenu.SetActive(false);
+                    Cursor.lockState = CursorLockMode.Locked;
 
-                    }
-
-                    if (Input.GetKeyUp("tab"))
-                    {
-
-                        _references.tabMenu.SetActive(false);
-                        Cursor.lockState = CursorLockMode.Locked;
-
-                    }
                 }
             }
         }
@@ -455,14 +452,15 @@ public class UIManager : MonoBehaviour
         _references.maxHealth.SetText(_playerController.GetHealthMax().ToString());
     }
 
-    public void PromptOn()
+    public void PromptOn(int cost)
     {
-        _references.interactPrompt.SetActive(true);
+        _references.interactPrompt.transform.parent.gameObject.SetActive(true);
+        _references.interactPrompt.text = $"Press F To\nInteract\n${cost}";
     }
 
     public void PromptOff()
     {
-        _references.interactPrompt.SetActive(false);
+        _references.interactPrompt.transform.parent.gameObject.SetActive(false);
     }
 
     public void AttackCD1()

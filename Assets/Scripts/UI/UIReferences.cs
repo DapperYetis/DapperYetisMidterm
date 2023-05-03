@@ -98,9 +98,9 @@ public class UIReferences : MonoBehaviour
 
     public Toggle toggleSprint => _toggleSprint;
 
-    [SerializeField] GameObject _interactPrompt;
+    [SerializeField] TextMeshProUGUI _interactPrompt;
 
-    public GameObject interactPrompt => _interactPrompt;
+    public TextMeshProUGUI interactPrompt => _interactPrompt;
 
     [SerializeField] GameObject _transitionScreen;
     public GameObject transitionScreen => _transitionScreen;

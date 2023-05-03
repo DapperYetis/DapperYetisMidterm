@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
         if (!GameManager.instance.inGame) return;
 
         _interactable = null;
-        UIManager.instance.references.interactPrompt.SetActive(false);
+        UIManager.instance.PromptOff();
         _canInteract = false;
 
         if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out RaycastHit hit, _interactDistance, 1 << 10))
@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
             _interactable = hit.transform.GetComponent<IInteractable>();
             if (_interactable != null)
             {
-                UIManager.instance.references.interactPrompt.SetActive(true);
+                UIManager.instance.PromptOn(_interactable.GetCost());
                 _canInteract = true;
             }
         }

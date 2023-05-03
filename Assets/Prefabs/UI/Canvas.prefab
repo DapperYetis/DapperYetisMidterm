@@ -231,7 +231,7 @@ MonoBehaviour:
   _camInvert: {fileID: 1837398746709795722}
   _ctrlRun: {fileID: 1752742537986424450}
   _toggleSprint: {fileID: 5914896238560716879}
-  _interactPrompt: {fileID: 1991953839035096100}
+  _interactPrompt: {fileID: 3958291507914865415}
   _transitionScreen: {fileID: 8553318795605864008}
   _animator: {fileID: 8140304480377269411}
   _loadoutScript: {fileID: 6922840297097755156}
@@ -2537,12 +2537,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2cf1ec09d918c954bab274940778d75e, type: 3}
---- !u!1 &1991953839035096100 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7992563715238865128, guid: 2cf1ec09d918c954bab274940778d75e,
+--- !u!114 &3958291507914865415 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4873229098637414347, guid: 2cf1ec09d918c954bab274940778d75e,
     type: 3}
   m_PrefabInstance: {fileID: 8453147838905627852}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &5625983289695842467 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4277325437539845231, guid: 2cf1ec09d918c954bab274940778d75e,

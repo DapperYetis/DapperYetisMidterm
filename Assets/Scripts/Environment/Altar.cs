@@ -8,6 +8,7 @@ public class Altar : MonoBehaviour, IInteractable
     protected SOWave _bossWave;
     [SerializeField]
     protected Transform _spawnPoint;
+    protected int _cost = 1000;
 
     public bool Interact()
     {
@@ -15,4 +16,11 @@ public class Altar : MonoBehaviour, IInteractable
         transform.parent.gameObject.SetActive(false);
         return true;
     }
+
+    public bool CanInteract()
+    {
+        return true;
+    }
+
+    public int GetCost() => _cost;
 }
