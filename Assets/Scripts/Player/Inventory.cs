@@ -45,7 +45,7 @@ public class Inventory : MonoBehaviour
 
         _currentLevel += levelCount;
         OnLevelChange.Invoke(levelCount);
-    }    
+    }
 
     public void AddCurrency(int amount)
     {
@@ -64,5 +64,11 @@ public class Inventory : MonoBehaviour
 
         Debug.Log($"Item: {item.name}\tCount: {_items[item]}");
         OnItemsChange.Invoke(item);
+    }
+
+    public void Spend(int cost)
+    {
+        _currency -= cost;
+        OnCurrencyChange.Invoke(-cost);
     }
 }

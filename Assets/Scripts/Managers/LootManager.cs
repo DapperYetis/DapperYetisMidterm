@@ -147,4 +147,9 @@ public class LootManager : MonoBehaviour
         Debug.LogError($"No loot prefab found for {rarity} rarity.");
         return null;
     }
+
+    public int GetChestCost()
+    {
+        return (int)Random.Range(100 * EnemyManager.instance.scaleFactor, 100 * Mathf.Ceil(EnemyManager.instance.scaleFactor + 1));
+    }
 }

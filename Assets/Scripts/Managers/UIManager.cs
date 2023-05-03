@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -26,6 +27,11 @@ public class UIManager : MonoBehaviour
     public float origTimeScale => _origTimeScale;
     private PlayerController _playerController;
     private Stack<GameObject> _menuStack;
+    private bool _isPlaying = false;
+    private float endtime;
+    private bool _isHealthUpdating;
+    [SerializeField]
+    private float _healthWaitTime = 1f;
 
     private GameObject _activeMenu
     {
@@ -62,37 +68,39 @@ public class UIManager : MonoBehaviour
     {
         if(GameManager.instance.inGame) 
             _references.timer.SetText($"{(int)GameManager.instance.runTimeMinutes} : {(GameManager.instance.runTime % 60).ToString("F1")}");
-
-        if (Input.GetButtonDown("Cancel"))
+        if (!_isPlaying)
         {
-            if (_activeMenu != null && ReferenceEquals(_activeMenu, _references.pauseMenu))
+            if (Input.GetButtonDown("Cancel"))
             {
-                PrevMenu();
-                ResumeState();
-            }
-            else if (_activeMenu == null)
-            {
-                PauseState();
-                NextMenu(_references.pauseMenu);
-            }
-        }
-
-        if (_activeMenu == null)
-        {
-            if (Input.GetKeyDown("tab"))
-            {
-
-                _references.tabMenu.SetActive(true);
-                Cursor.lockState = CursorLockMode.Confined;
-
+                if (_activeMenu != null && ReferenceEquals(_activeMenu, _references.pauseMenu))
+                {
+                    PrevMenu();
+                    ResumeState();
+                }
+                else if (_activeMenu == null)
+                {
+                    PauseState();
+                    NextMenu(_references.pauseMenu);
+                }
             }
 
-            if (Input.GetKeyUp("tab"))
+            if (_activeMenu == null)
             {
+                if (Input.GetKeyDown("tab"))
+                {
 
-                _references.tabMenu.SetActive(false);
-                Cursor.lockState = CursorLockMode.Locked;
+                    _references.tabMenu.SetActive(true);
+                    Cursor.lockState = CursorLockMode.Confined;
 
+                }
+
+                if (Input.GetKeyUp("tab"))
+                {
+
+                    _references.tabMenu.SetActive(false);
+                    Cursor.lockState = CursorLockMode.Locked;
+
+                }
             }
         }
     }
@@ -359,6 +367,23 @@ public class UIManager : MonoBehaviour
     {
         _references.transitionScreen.SetActive(true);
         _transition.SetTrigger("Button");
+
+    }
+
+    public void StartsPlaying()
+    {
+        _isPlaying = true;
+    }
+
+    public void StopsPlaying()
+    {
+        _isPlaying = false;
+        _references.transitionScreen.SetActive(false);
+    }
+
+    public void ToKeybinds()
+    {
+        NextMenu(_references.keyBindsMenu);
     }
     #endregion
 
@@ -369,8 +394,13 @@ public class UIManager : MonoBehaviour
 
         if (_playerController.GetHealthCurrent() > 0)
         {
+            if (_isHealthUpdating)
+                endtime = Time.time + _healthWaitTime;
+            else
+                StartCoroutine(DynamicHealthDecrease());
             if(healthChange < 0)
                 StartCoroutine(Damaged());
+            StartCoroutine(HealthRedFlash());
             SetHealth();
             float currHealth = (float)_playerController.GetHealthCurrent() / (float)_playerController.GetHealthMax();
             _references.hpBar.fillAmount = currHealth;
@@ -422,14 +452,15 @@ public class UIManager : MonoBehaviour
         _references.maxHealth.SetText(_playerController.GetHealthMax().ToString());
     }
 
-    public void PromptOn()
+    public void PromptOn(int cost)
     {
-        _references.interactPrompt.SetActive(true);
+        _references.interactPrompt.transform.parent.gameObject.SetActive(true);
+        _references.interactPrompt.text = $"Press F To\nInteract\n${cost}";
     }
 
     public void PromptOff()
     {
-        _references.interactPrompt.SetActive(false);
+        _references.interactPrompt.transform.parent.gameObject.SetActive(false);
     }
 
     public void AttackCD1()
@@ -483,6 +514,26 @@ public class UIManager : MonoBehaviour
             yield return new WaitForSeconds(Time.deltaTime);
         }
         target.SetText("");
+    }
+
+    IEnumerator DynamicHealthDecrease()
+    {
+        _isHealthUpdating = true;
+        endtime = Time.time + _healthWaitTime;
+        while (Time.time < endtime)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+
+        _references.dynamicHealth.fillAmount = (float)_playerController.GetHealthCurrent() / (float)_playerController.GetHealthMax();
+        _isHealthUpdating = false;
+    }
+
+    IEnumerator HealthRedFlash()
+    {
+        _references.hpBar.color = Color.red;
+        yield return new WaitForSeconds(0.2f);
+        _references.hpBar.color = Color.green;
     }
     #endregion
 

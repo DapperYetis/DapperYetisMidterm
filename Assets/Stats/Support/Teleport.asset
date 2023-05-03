@@ -13,3 +13,13 @@ MonoBehaviour:
   m_Name: Teleport
   m_EditorClassIdentifier: 
   _supportName: Teleport
+  _prefab: {fileID: 7484248903627905010, guid: 8c1b8894cd427504fa1989c0b1cd134b, type: 3}
+  _stats:
+    useRatePrimary: 1
+    useCountPrimary: 1
+    distancePrimary: 100
+    damagePrimary: 0
+    useRateSecondary: 1
+    useCountSecondary: 1
+    distanceSecondary: 70
+    damageSecondary: 0

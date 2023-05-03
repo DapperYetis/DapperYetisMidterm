@@ -367,11 +367,13 @@ MonoBehaviour:
   _stats:
     HPMax: 50
     facePlayerSpeed: 600
+    speed: 6
+    acceleration: 8
   _statsScaling:
     HPMax: 1
     facePlayerSpeed: 0
-  _timeLength: 10
-  _scaleMultiplier: 20
+    speed: 0
+    acceleration: 0
   _primaryAttackStats:
     positions: []
     damage: 10

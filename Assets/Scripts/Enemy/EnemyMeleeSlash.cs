@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -24,6 +25,11 @@ public class EnemyMeleeSlash : MonoBehaviour
         {
             _previouslyHit.Add(damageable);
             damageable.Damage(_enemy.primaryAttackStats.damage);
+        }
+        if(other.gameObject.TryGetComponent<IBuffable>(out var buffable))
+        {
+            var buffs = (from buff in _enemy.primaryAttackStats.targetBuffs select (buff, 1)).ToList();
+            buffable.AddBuffs(buffs);
         }
 
         slash.enabled = false;

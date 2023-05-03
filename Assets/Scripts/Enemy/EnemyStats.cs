@@ -5,6 +5,8 @@ public struct EnemyStats
 {
     public float HPMax;
     public int facePlayerSpeed;
+    public float speed;
+    public float acceleration;
 
     public static EnemyStats operator +(EnemyStats s1, EnemyStats s2)
     {

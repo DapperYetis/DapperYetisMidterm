@@ -1,18 +1,20 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerController : MonoBehaviour, IDamageable
+public class PlayerController : MonoBehaviour, IDamageable, IBuffable
 {
-    // Stats
+    // ------Stats------
     [SerializeField]
     private PlayerStats _stats;
     public PlayerStats stats => _stats;
     [SerializeField]
     private float _interactDistance;
     public float interactDistance => _interactDistance;
+    public Dictionary<SOBuff, (int stacks, float time)> _currentBuffs = new();
 
 
     // ------References------
@@ -36,12 +38,12 @@ public class PlayerController : MonoBehaviour, IDamageable
     private SOSupport _supportAsset;
     private Support _support;
     public Support support => _support;
-    
+
     //private SOCompanion _companionAsset;
     //private Companion _companion;
     //public Companion companion => _companion;
 
-    // Events
+    // ------Events------
     [HideInInspector]
     public UnityEvent<float> OnHealthChange;
     [HideInInspector]
@@ -61,6 +63,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         // Combat
         GetLoadout();
         _weapon.SetCamera(_camera);
+        _support.SetCamera(_camera);
         _inventory.OnItemsChange.AddListener(HandleNewItem);
         Heal(_stats.healthMax);
         OnPlayerSetUp.Invoke();
@@ -71,7 +74,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         if (!GameManager.instance.inGame) return;
 
         _interactable = null;
-        UIManager.instance.references.interactPrompt.SetActive(false);
+        UIManager.instance.PromptOff();
         _canInteract = false;
 
         if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out RaycastHit hit, _interactDistance, 1 << 10))
@@ -79,7 +82,7 @@ public class PlayerController : MonoBehaviour, IDamageable
             _interactable = hit.transform.GetComponent<IInteractable>();
             if (_interactable != null)
             {
-                UIManager.instance.references.interactPrompt.SetActive(true);
+                UIManager.instance.PromptOn(_interactable.GetCost());
                 _canInteract = true;
             }
         }
@@ -93,6 +96,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         {
             _interactable?.Interact();
         }
+        CheckBuffs();
     }
 
     private void GetLoadout()
@@ -108,13 +112,16 @@ public class PlayerController : MonoBehaviour, IDamageable
         // TODO: Add companion setting once they are implemented
     }
 
-    public void Damage(float damage)
+    public void Damage(float damage, (SOBuff buff , int amount)[] buffs = null)
     {
         _healthCurrent -= damage;
 
-        if(_healthCurrent <= 0)
+        if (buffs != null)
         {
-            // Lose condition
+            foreach (var buff in buffs)
+            {
+                AddBuff(buff.buff, buff.amount);
+            }
         }
 
         OnHealthChange?.Invoke(-damage);
@@ -145,6 +152,60 @@ public class PlayerController : MonoBehaviour, IDamageable
         if(item.statsModification.healthMax != 0)
         {
             Heal(item.statsModification.healthMax);
+        }
+    }
+
+    public List<SOBuff> GetBuffs() => _currentBuffs.Keys.ToList();
+
+    public void AddBuff(SOBuff buff, int amount = 1)
+    {
+        if (!_currentBuffs.ContainsKey(buff))
+            _currentBuffs.Add(buff, (0, Time.time + buff.buffLength));
+        _currentBuffs[buff] = (_currentBuffs[buff].stacks + amount, _currentBuffs[buff].time);
+    }
+
+    public void AddBuffs(List<(SOBuff buff, int count)> buffCounts)
+    {
+        foreach (var buff in buffCounts)
+            AddBuff(buff.buff, buff.count);
+    }
+
+    public int GetStackCount(SOBuff buff)
+    {
+        return _currentBuffs.ContainsKey(buff) ? _currentBuffs[buff].stacks : 0;
+    }
+
+    public bool RemoveBuff(SOBuff buff)
+    {
+        if (!_currentBuffs.ContainsKey(buff)) return false;
+
+        switch (buff.removeType)
+        {
+            case BuffRemoveType.Single:
+                _currentBuffs[buff] = (_currentBuffs[buff].stacks - 1, Time.time + buff.buffLength);
+                break;
+            case BuffRemoveType.Stack:
+                _currentBuffs[buff] = (0, 0);
+                break;
+        }
+
+        if (_currentBuffs[buff].stacks <= 0)
+        {
+            _currentBuffs.Remove(buff);
+            return true;
+        }
+
+        return false;
+    }
+
+    private void CheckBuffs()
+    {
+        for(int i = 0; i < _currentBuffs.Count; ++i)
+        {
+            if (Time.time < _currentBuffs[_currentBuffs.Keys.ElementAt(i)].time) continue;
+
+            if (RemoveBuff(_currentBuffs.Keys.ElementAt(i)))
+                --i;
         }
     }
 }
