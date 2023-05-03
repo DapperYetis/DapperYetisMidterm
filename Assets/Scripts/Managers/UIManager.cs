@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -402,6 +403,7 @@ public class UIManager : MonoBehaviour
                 StartCoroutine(DynamicHealthDecrease());
             if(healthChange < 0)
                 StartCoroutine(Damaged());
+            StartCoroutine(HealthRedFlash());
             SetHealth();
             float currHealth = (float)_playerController.GetHealthCurrent() / (float)_playerController.GetHealthMax();
             _references.hpBar.fillAmount = currHealth;
@@ -527,6 +529,13 @@ public class UIManager : MonoBehaviour
 
         _references.dynamicHealth.fillAmount = (float)_playerController.GetHealthCurrent() / (float)_playerController.GetHealthMax();
         _isHealthUpdating = false;
+    }
+
+    IEnumerator HealthRedFlash()
+    {
+        _references.hpBar.color = Color.red;
+        yield return new WaitForSeconds(0.2f);
+        _references.hpBar.color = Color.green;
     }
     #endregion
 
