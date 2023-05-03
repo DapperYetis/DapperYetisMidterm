@@ -320,6 +320,9 @@ MonoBehaviour:
     facePlayerSpeed: 0
     speed: 0
     acceleration: 0
+  _deathDelay: 3
+  _timeLength: 10
+  _scaleMultiplier: 20
   _primaryAttackStats:
     positions:
     - {fileID: 1394923249618638891}

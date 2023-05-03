@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
@@ -48,8 +49,11 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     protected Vector3 _playerDir => GameManager.instance.player.transform.position - transform.position + 2 * Vector3.down;
     protected bool _indicatingHit;
     protected float _speed;
+    public Dictionary<SOBuff, (int stacks, float time)> _currentBuffs = new();
 
     [Header("--- Death Controls ---")]
+    [SerializeField]
+    protected float _deathDelay = 10;
     [SerializeField]
     protected float _timeLength;
     [SerializeField]
@@ -96,6 +100,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
             _agent.SetDestination(GameManager.instance.player.transform.position);
 
         FacePlayer();
+        CheckBuffs();
     }
 
     // Creates the enemy avoidance system
@@ -193,7 +198,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
 
     public virtual IEnumerator EnemyRemoved()
     {
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(_deathDelay);
 
         Vector3 scaleSize = transform.localScale;
         float startTime = Time.time;
@@ -228,28 +233,57 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
         return _HPCurrent;
     }
 
-    public List<SOBuff> GetBuffs()
-    {
-        throw new System.NotImplementedException();
-    }
+    public List<SOBuff> GetBuffs() => _currentBuffs.Keys.ToList();
 
     public void AddBuff(SOBuff buff, int amount = 1)
     {
-        throw new System.NotImplementedException();
+        if (!_currentBuffs.ContainsKey(buff))
+            _currentBuffs.Add(buff, (0, Time.time + buff.buffLength));
+        _currentBuffs[buff] = (_currentBuffs[buff].stacks + amount, _currentBuffs[buff].time);
     }
 
     public void AddBuffs(List<(SOBuff buff, int count)> buffCounts)
     {
-        throw new System.NotImplementedException();
+        foreach (var buff in buffCounts)
+            AddBuff(buff.buff, buff.count);
     }
 
     public int GetStackCount(SOBuff buff)
     {
-        throw new System.NotImplementedException();
+        return _currentBuffs.ContainsKey(buff) ? _currentBuffs[buff].stacks : 0;
     }
 
     public bool RemoveBuff(SOBuff buff)
     {
-        throw new System.NotImplementedException();
+        if (!_currentBuffs.ContainsKey(buff)) return false;
+
+        switch (buff.removeType)
+        {
+            case BuffRemoveType.Single:
+                _currentBuffs[buff] = (_currentBuffs[buff].stacks - 1, Time.time + buff.buffLength);
+                break;
+            case BuffRemoveType.Stack:
+                _currentBuffs[buff] = (0, 0);
+                break;
+        }
+
+        if (_currentBuffs[buff].stacks <= 0)
+        {
+            _currentBuffs.Remove(buff);
+            return true;
+        }
+
+        return false;
+    }
+
+    private void CheckBuffs()
+    {
+        for (int i = 0; i < _currentBuffs.Count; ++i)
+        {
+            if (Time.time < _currentBuffs[_currentBuffs.Keys.ElementAt(i)].time) continue;
+
+            if (RemoveBuff(_currentBuffs.Keys.ElementAt(i)))
+                --i;
+        }
     }
 }
