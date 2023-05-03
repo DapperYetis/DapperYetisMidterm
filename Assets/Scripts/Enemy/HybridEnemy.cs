@@ -17,7 +17,7 @@ public class HybridEnemy : MeleeEnemy
         if (!_isSetUp) return;
 
         _anim.SetFloat("Speed", _speed);
-        _speed = Mathf.Lerp(_speed, _agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed);
+        _speed = Mathf.Lerp(_speed, _agent.velocity.normalized.magnitude, Time.deltaTime * _animTransSpeed);
 
         if (_agent.isActiveAndEnabled)
             _agent.SetDestination(GameManager.instance.player.transform.position);

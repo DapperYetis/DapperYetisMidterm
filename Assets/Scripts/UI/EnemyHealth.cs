@@ -20,7 +20,7 @@ public class EnemyHealth : MonoBehaviour
         _playerCam = Camera.main;
         _enemyAI = transform.parent.GetComponent<EnemyAI>();
 
-        _enemyAI.OnHealthChange.AddListener(UpdateEnemyHealth);
+        _enemyAI._OnHealthChange.AddListener(UpdateEnemyHealth);
     }
 
     void Update()

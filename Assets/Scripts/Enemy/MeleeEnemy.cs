@@ -41,12 +41,12 @@ public class MeleeEnemy : EnemyAI
 
     protected void AttackStart()
     {
-        biteCol.enabled = true;
+        _biteCol.enabled = true;
     }
 
     protected void AttackEnd()
     {
-        biteCol.enabled = false;
+        _biteCol.enabled = false;
     }
 
     void OnTriggerEnter(Collider other)
