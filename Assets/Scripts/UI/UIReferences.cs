@@ -160,4 +160,13 @@ public class UIReferences : MonoBehaviour
     [SerializeField] GameObject _sprintShift;
 
     public GameObject sprintShift => _sprintShift;
+
+    [SerializeField] GameObject _keyBindsMenu;
+
+    public GameObject keyBindsMenu => _keyBindsMenu;
+
+    [SerializeField] Image _dynamicHealth;
+
+    public Image dynamicHealth => _dynamicHealth;
+
 }

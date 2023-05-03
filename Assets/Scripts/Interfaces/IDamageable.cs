@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IDamageable
 {
-    public void Damage(float damage);
+    public void Damage(float damage, (SOBuff buff, int amount)[] buffs = null);
     public void Heal(float health);
 
     public float GetHealthMax();

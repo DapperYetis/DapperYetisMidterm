@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -11,7 +12,8 @@ public struct AbilityStats
     public float secondaryLifetime;
     public float speed;
     public float fxIntesity;
-
+    public List<SOBuff> selfBuffs;
+    public List<SOBuff> targetBuffs;
 
     public static AbilityStats operator +(AbilityStats s1, AbilityStats s2)
     {

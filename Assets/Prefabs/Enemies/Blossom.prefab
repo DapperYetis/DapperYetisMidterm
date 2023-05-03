@@ -90,6 +90,7 @@ MonoBehaviour:
   _model: {fileID: 5544356110855936434}
   _agent: {fileID: 2531924349731386330}
   _anim: {fileID: 5544356110851663730}
+  biteCol: {fileID: 0}
   _changeTime: 2
   _changeCurve:
     serializedVersion: 2
@@ -117,15 +118,20 @@ MonoBehaviour:
     m_RotationOrder: 4
   _radiusMod: 0.25
   _speedMod: 1.5
+  animTransSpeed: 0
   OnHealthChange:
     m_PersistentCalls:
       m_Calls: []
   _stats:
     HPMax: 0
     facePlayerSpeed: 0
+    speed: 0
+    acceleration: 0
   _statsScaling:
     HPMax: 0
     facePlayerSpeed: 0
+    speed: 0
+    acceleration: 0
   _primaryAttackStats:
     positions: []
     damage: 0
@@ -133,6 +139,9 @@ MonoBehaviour:
     lifetime: 0
     variance: 0
     prefab: {fileID: 0}
+    selfBuffs: []
+    targetBuffs:
+    - {fileID: 11400000, guid: 24ff1838f787af047b68ff00fd1d65b5, type: 2}
     speed: 0
   _primaryAttackStatsScaling:
     positions: []
@@ -141,6 +150,8 @@ MonoBehaviour:
     lifetime: 0
     variance: 0
     prefab: {fileID: 0}
+    selfBuffs: []
+    targetBuffs: []
     speed: 0
 --- !u!114 &3723839396439280103
 MonoBehaviour:
