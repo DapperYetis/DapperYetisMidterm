@@ -63,6 +63,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
         // Combat
         GetLoadout();
         _weapon.SetCamera(_camera);
+        _support.SetCamera(_camera);
         _inventory.OnItemsChange.AddListener(HandleNewItem);
         Heal(_stats.healthMax);
         OnPlayerSetUp.Invoke();
