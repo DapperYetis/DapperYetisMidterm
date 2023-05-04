@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "BuffName", menuName = "Stats/Buff")]
 public class SOBuff : ScriptableObject
 {
+    [Header("---General---")]
     [SerializeField]
     private string _buffName;
     public string buffName => _buffName;
@@ -10,6 +12,7 @@ public class SOBuff : ScriptableObject
     private string _description;
     public string description => _description;
 
+    [Header("---Timing---")]
     [SerializeField]
     private BuffTiming _timing;
     public BuffTiming timing => _timing;
@@ -19,10 +22,6 @@ public class SOBuff : ScriptableObject
     [SerializeField]
     private BuffRemoveType _removeType;
     public BuffRemoveType removeType => _removeType;
-
-    [SerializeField]
-    private GameObject _removeEffectPrefab;
-    public GameObject removeEffectPrefab => _removeEffectPrefab;
 
     [Header("---Modifications---")]
     [SerializeField]
@@ -34,4 +33,9 @@ public class SOBuff : ScriptableObject
     [SerializeField]
     private AbilityStats _abilityMods;
     public AbilityStats abilityMods => _abilityMods;
+
+    [Header("---Prefabs---")]
+    [SerializeField, FormerlySerializedAs("_removeEffectPrefab")]
+    private GameObject _effectPrefab;
+    public GameObject effectPrefab => _effectPrefab;
 }

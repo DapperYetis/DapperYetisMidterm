@@ -326,7 +326,6 @@ GameObject:
   - component: {fileID: 6230942851767379793}
   - component: {fileID: 2887638426317599639}
   - component: {fileID: 7485134682016057368}
-  - component: {fileID: 9134379571616293777}
   m_Layer: 7
   m_Name: Hermit King Boss
   m_TagString: Untagged
@@ -392,6 +391,7 @@ MonoBehaviour:
   _model: {fileID: 6230942851763231121}
   _agent: {fileID: 2887638426317599639}
   _anim: {fileID: 6230942851767379793}
+  d: {fileID: 0}
   _changeTime: 0
   _changeCurve:
     serializedVersion: 2
@@ -447,6 +447,7 @@ MonoBehaviour:
     selfBuffs: []
     targetBuffs: []
     speed: 100
+    range: 7
   _primaryAttackStatsScaling:
     positions: []
     damage: 7
@@ -457,7 +458,8 @@ MonoBehaviour:
     selfBuffs: []
     targetBuffs: []
     speed: 0
-  _biteCol: {fileID: 2919674195485479463}
+    range: 0
+  _meleeCollider: {fileID: 2919674195485479463}
   _secondaryAttackStats:
     positions:
     - {fileID: 7048595572675317456}
@@ -469,6 +471,7 @@ MonoBehaviour:
     selfBuffs: []
     targetBuffs: []
     speed: 35
+    range: 0
   _secondaryAttackStatsScaling:
     positions: []
     damage: 5
@@ -479,6 +482,7 @@ MonoBehaviour:
     selfBuffs: []
     targetBuffs: []
     speed: 5
+    range: 0
   _dashAttackStats:
     positions: []
     damage: 10
@@ -489,6 +493,7 @@ MonoBehaviour:
     selfBuffs: []
     targetBuffs: []
     speed: 75
+    range: 0
   _dashAttackScaling:
     positions: []
     damage: 3
@@ -499,6 +504,7 @@ MonoBehaviour:
     selfBuffs: []
     targetBuffs: []
     speed: 3
+    range: 0
   _dashLogic: {fileID: 1879528255952130813}
   _sprayAttackStats:
     positions:
@@ -511,6 +517,7 @@ MonoBehaviour:
     selfBuffs: []
     targetBuffs: []
     speed: 40
+    range: 0
   _sprayAttackScaling:
     positions: []
     damage: 2.5
@@ -521,6 +528,7 @@ MonoBehaviour:
     selfBuffs: []
     targetBuffs: []
     speed: 2.5
+    range: 0
 --- !u!114 &73426344941847313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -593,19 +601,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
---- !u!135 &9134379571616293777
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6230942851774796945}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.75
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6230942851774796947
 GameObject:
   m_ObjectHideFlags: 0
