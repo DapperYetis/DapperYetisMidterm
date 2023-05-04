@@ -6,6 +6,7 @@ using UnityEngine.AI;
 using UnityEngine.Events;
 using static UnityEngine.Rendering.DebugUI.Table;
 
+[RequireComponent(typeof(EnemyDrops))]
 public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
 {
     [Header("--- Components ---")]
@@ -40,6 +41,8 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     public EnemyStats stats => _stats;
     [SerializeField]
     protected EnemyStats _statsScaling;
+    [SerializeField]
+    protected float _attackRange;
     protected float _HPCurrent;
     protected float _angleToPlayer;
     protected float _stoppingDistOG;
@@ -50,6 +53,10 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     protected bool _indicatingHit;
     protected float _speed;
     public Dictionary<SOBuff, (int stacks, float time)> _currentBuffs = new();
+    protected int _moveType;
+    [SerializeField]
+    protected float _runTypeTimer;
+    protected bool _hasEnteredRange;
 
     [Header("--- Death Controls ---")]
     [SerializeField]
@@ -88,6 +95,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     {
         StartCoroutine(SizeChange());
         _drops = GetComponent<EnemyDrops>();
+        StartCoroutine(PickMoveType());
     }
 
     protected virtual void Update()
@@ -99,31 +107,43 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
 
         if (_agent.isActiveAndEnabled)
         {
-            StartCoroutine(Movement());
-            _agent.SetDestination(GameManager.instance.player.transform.position);
+            Movement();
         }
 
         CheckBuffs();
     }
 
-    protected virtual IEnumerator Movement()
+    protected IEnumerator PickMoveType()
     {
-        Vector3 playerPos = new(GameManager.instance.player.transform.position.x, GameManager.instance.player.transform.position.y, GameManager.instance.player.transform.position.z);
-        Vector3 enemyPos = transform.position;
+        _moveType = Random.Range(0, 3);
+        yield return new WaitForSeconds(_runTypeTimer);
+        StartCoroutine(PickMoveType());
+    }
 
-        float distanceToPlayer = Vector3.Distance(playerPos, enemyPos);
-        float attackRange = 10f;
+    protected virtual void Movement()
+    {
+        float distanceToPlayer = Vector3.Distance(GameManager.instance.player.transform.position, transform.position);
 
-        if (distanceToPlayer > attackRange)
+        if (_hasEnteredRange || distanceToPlayer <= _attackRange)
         {
-            yield return new WaitForEndOfFrame();
-            Vector3 randomDir = new Vector3(Random.Range(-20, 20), enemyPos.y, Random.Range(-20, 20));
-            _agent.SetDestination(enemyPos + randomDir);
-        }
-        else if (distanceToPlayer <= attackRange)
-        {
+            _hasEnteredRange = true;
             FacePlayer();
-            _agent.SetDestination(playerPos);
+            _agent.SetDestination(GameManager.instance.player.transform.position);
+        }
+        else
+        {
+            switch (_moveType)
+            {
+                case 0:
+                    _agent.SetDestination(transform.position + (Vector3.Cross(_playerDir.normalized, Vector3.up) * _stats.speed));
+                    break;
+                case 1:
+                    _agent.SetDestination(transform.position + (Vector3.Cross(_playerDir.normalized, Vector3.up) * _stats.speed * -1));
+                    break;
+                case 2:
+                    _agent.SetDestination(GameManager.instance.player.transform.position);
+                    break;
+            }
         }
     }
 

@@ -278,7 +278,7 @@ MonoBehaviour:
   _model: {fileID: 1394923249621846285}
   _agent: {fileID: -8553164506359077236}
   _anim: {fileID: 1394923249626068941}
-  d: {fileID: 0}
+  _drops: {fileID: 0}
   _changeTime: 2
   _changeCurve:
     serializedVersion: 2
@@ -320,6 +320,8 @@ MonoBehaviour:
     facePlayerSpeed: 0
     speed: 0
     acceleration: 0
+  _attackRange: 10
+  _runTypeTimer: 1
   _deathDelay: 3
   _timeLength: 10
   _scaleMultiplier: 20
