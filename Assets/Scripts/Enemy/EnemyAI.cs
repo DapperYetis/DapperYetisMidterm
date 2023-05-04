@@ -16,7 +16,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     [SerializeField]
     protected Animator _anim;
     [SerializeField]
-    protected EnemyDrops d;
+    protected EnemyDrops _drops;
 
     [Header("--- NavMesh Mods ---")]
     [SerializeField]
@@ -87,7 +87,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     protected virtual void Start()
     {
         StartCoroutine(SizeChange());
-        d = GetComponent<EnemyDrops>();
+        _drops = GetComponent<EnemyDrops>();
     }
 
     protected virtual void Update()
@@ -98,10 +98,33 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
         _speed = Mathf.Lerp(_speed, _agent.velocity.normalized.magnitude, Time.deltaTime * _animTransSpeed);
 
         if (_agent.isActiveAndEnabled)
+        {
+            StartCoroutine(Movement());
             _agent.SetDestination(GameManager.instance.player.transform.position);
+        }
 
-        FacePlayer();
         CheckBuffs();
+    }
+
+    protected virtual IEnumerator Movement()
+    {
+        Vector3 playerPos = new(GameManager.instance.player.transform.position.x, GameManager.instance.player.transform.position.y, GameManager.instance.player.transform.position.z);
+        Vector3 enemyPos = transform.position;
+
+        float distanceToPlayer = Vector3.Distance(playerPos, enemyPos);
+        float attackRange = 10f;
+
+        if (distanceToPlayer > attackRange)
+        {
+            yield return new WaitForEndOfFrame();
+            Vector3 randomDir = new Vector3(Random.Range(-20, 20), enemyPos.y, Random.Range(-20, 20));
+            _agent.SetDestination(enemyPos + randomDir);
+        }
+        else if (distanceToPlayer <= attackRange)
+        {
+            FacePlayer();
+            _agent.SetDestination(playerPos);
+        }
     }
 
     // Creates the enemy avoidance system
@@ -179,14 +202,14 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
             _agent.enabled = false;
             enabled = false;
             EnemyManager.instance.RemoveEnemyFromList(this);
-            d.Drop();
+            _drops.Drop();
             StartCoroutine(EnemyRemoved());
         }
         else
         {
             _anim.SetTrigger("Damage");
             StartCoroutine(FlashColor(Color.red));
-            if(buffs != null)
+            if (buffs != null)
             {
                 foreach (var buff in buffs)
                 {
