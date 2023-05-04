@@ -7,12 +7,6 @@ using TMPro;
 public class UIReferences : MonoBehaviour
 {
     [Header("----- UI -----")]
-    [SerializeField] GameObject _mainMenu;
-    public GameObject mainMenu => _mainMenu;
-
-    [SerializeField] GameObject _loadoutMenu;
-
-    public GameObject loadoutMenu => _loadoutMenu;
     
     [SerializeField] GameObject _settingsMenu;
 

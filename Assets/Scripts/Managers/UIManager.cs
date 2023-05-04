@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using TMPro;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -145,7 +146,6 @@ public class UIManager : MonoBehaviour
             if (!GameManager.instance.inGame)
             {
                 PauseState();
-                ToFirstMenu(_references.mainMenu);
             }
             else
             {
@@ -295,10 +295,6 @@ public class UIManager : MonoBehaviour
     #endregion
 
     #region Menu Buttons
-    public void TransitionToLoadout()
-    {
-        NextMenu(_references.loadoutMenu);
-    }
 
     public void TransitionToGame()
     {
@@ -357,12 +353,6 @@ public class UIManager : MonoBehaviour
             _activeMenu.SetActive(true);
     }
 
-    public void ToFirstMenu(GameObject newMenu)
-    {
-        _menuStack.Push(newMenu);
-        _activeMenu.SetActive(true);
-    }
-
     public void TriggerTransition()
     {
         _references.transitionScreen.SetActive(true);
@@ -381,10 +371,7 @@ public class UIManager : MonoBehaviour
         _references.transitionScreen.SetActive(false);
     }
 
-    public void ToKeybinds()
-    {
-        NextMenu(_references.keyBindsMenu);
-    }
+    
     #endregion
 
     #region HUD Functionality

@@ -7,21 +7,17 @@ using UnityEngine.SceneManagement;
 
 public class ButtonFunctions : MonoBehaviour
 {
+
+    MenuNav nav;
+
     public void PlayGame()
     {
-        while (UIManager.instance.activeMenu != null)
-        {
-            UIManager.instance.PopStack();
-        }
-        UIManager.instance.TriggerTransition();
-        UIManager.instance.TransitionToGame();
-        UIManager.instance.ResumeState();
-
+        SceneManage._instance.LoadScene(1);
     }
 
     public void ToLoadout()
     {
-        UIManager.instance.TransitionToLoadout();
+        
     }
 
     public void ToSettings()
@@ -81,6 +77,6 @@ public class ButtonFunctions : MonoBehaviour
 
     public void ToKeybindsMenu()
     {
-        UIManager.instance.ToKeybinds();
+       
     }
 }
