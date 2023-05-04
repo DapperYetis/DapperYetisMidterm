@@ -278,7 +278,7 @@ MonoBehaviour:
   _model: {fileID: 1394923249621846285}
   _agent: {fileID: -8553164506359077236}
   _anim: {fileID: 1394923249626068941}
-  biteCol: {fileID: 3368618465045421124}
+  d: {fileID: 0}
   _changeTime: 2
   _changeCurve:
     serializedVersion: 2
@@ -306,8 +306,8 @@ MonoBehaviour:
     m_RotationOrder: 4
   _radiusMod: 1
   _speedMod: 3
-  animTransSpeed: 1
-  OnHealthChange:
+  _animTransSpeed: 0
+  _OnHealthChange:
     m_PersistentCalls:
       m_Calls: []
   _stats:
@@ -327,7 +327,7 @@ MonoBehaviour:
     positions:
     - {fileID: 1394923249618638891}
     damage: 5
-    rate: 1
+    rate: 3
     lifetime: 1
     variance: 1
     prefab: {fileID: 424343093267893311, guid: f7b16309293f2e949b61f60c035662d9, type: 3}
@@ -345,6 +345,7 @@ MonoBehaviour:
     selfBuffs: []
     targetBuffs: []
     speed: 0
+  _meleeCollider: {fileID: 3368618465045421124}
 --- !u!114 &-1971623083720848777
 MonoBehaviour:
   m_ObjectHideFlags: 0

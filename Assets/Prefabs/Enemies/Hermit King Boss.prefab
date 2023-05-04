@@ -392,7 +392,6 @@ MonoBehaviour:
   _model: {fileID: 6230942851763231121}
   _agent: {fileID: 2887638426317599639}
   _anim: {fileID: 6230942851767379793}
-  biteCol: {fileID: 2919674195485479463}
   _changeTime: 0
   _changeCurve:
     serializedVersion: 2
@@ -420,8 +419,8 @@ MonoBehaviour:
     m_RotationOrder: 4
   _radiusMod: 0
   _speedMod: 0
-  animTransSpeed: 1
-  OnHealthChange:
+  _animTransSpeed: 0
+  _OnHealthChange:
     m_PersistentCalls:
       m_Calls: []
   _stats:
@@ -434,6 +433,9 @@ MonoBehaviour:
     facePlayerSpeed: 25
     speed: 0.5
     acceleration: 1
+  _deathDelay: 0
+  _timeLength: 0
+  _scaleMultiplier: 0
   _primaryAttackStats:
     positions:
     - {fileID: 6230942851774826721}
@@ -442,6 +444,8 @@ MonoBehaviour:
     lifetime: 0
     variance: 0
     prefab: {fileID: 0}
+    selfBuffs: []
+    targetBuffs: []
     speed: 100
   _primaryAttackStatsScaling:
     positions: []
@@ -450,7 +454,10 @@ MonoBehaviour:
     lifetime: 0
     variance: 0
     prefab: {fileID: 0}
+    selfBuffs: []
+    targetBuffs: []
     speed: 0
+  _biteCol: {fileID: 2919674195485479463}
   _secondaryAttackStats:
     positions:
     - {fileID: 7048595572675317456}
@@ -459,6 +466,8 @@ MonoBehaviour:
     lifetime: 10
     variance: 2
     prefab: {fileID: 424343093267893311, guid: f7b16309293f2e949b61f60c035662d9, type: 3}
+    selfBuffs: []
+    targetBuffs: []
     speed: 35
   _secondaryAttackStatsScaling:
     positions: []
@@ -467,6 +476,8 @@ MonoBehaviour:
     lifetime: 0
     variance: -0.2
     prefab: {fileID: 0}
+    selfBuffs: []
+    targetBuffs: []
     speed: 5
   _dashAttackStats:
     positions: []
@@ -475,6 +486,8 @@ MonoBehaviour:
     lifetime: 0.75
     variance: 8
     prefab: {fileID: 0}
+    selfBuffs: []
+    targetBuffs: []
     speed: 75
   _dashAttackScaling:
     positions: []
@@ -483,6 +496,8 @@ MonoBehaviour:
     lifetime: 0.25
     variance: -0.5
     prefab: {fileID: 0}
+    selfBuffs: []
+    targetBuffs: []
     speed: 3
   _dashLogic: {fileID: 1879528255952130813}
   _sprayAttackStats:
@@ -493,6 +508,8 @@ MonoBehaviour:
     lifetime: 5
     variance: 30
     prefab: {fileID: 424343093267893311, guid: 912a43b0040ffe643b0c56e5be18da99, type: 3}
+    selfBuffs: []
+    targetBuffs: []
     speed: 40
   _sprayAttackScaling:
     positions: []
@@ -501,6 +518,8 @@ MonoBehaviour:
     lifetime: 1
     variance: -2.5
     prefab: {fileID: 0}
+    selfBuffs: []
+    targetBuffs: []
     speed: 2.5
 --- !u!114 &73426344941847313
 MonoBehaviour:

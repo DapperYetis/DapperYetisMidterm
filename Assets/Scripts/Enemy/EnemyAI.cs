@@ -16,7 +16,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     [SerializeField]
     protected Animator _anim;
     [SerializeField]
-    protected Collider _biteCol;
+    protected EnemyDrops d;
 
     [Header("--- NavMesh Mods ---")]
     [SerializeField]
@@ -87,6 +87,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     protected virtual void Start()
     {
         StartCoroutine(SizeChange());
+        d = GetComponent<EnemyDrops>();
     }
 
     protected virtual void Update()
@@ -178,6 +179,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
             _agent.enabled = false;
             enabled = false;
             EnemyManager.instance.RemoveEnemyFromList(this);
+            d.Drop();
             StartCoroutine(EnemyRemoved());
         }
         else
@@ -205,7 +207,9 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
         while (Time.time <= startTime + _timeLength)
         {
             yield return new WaitForEndOfFrame();
+            // Enemy sinks into the ground
             transform.Translate(0, -Time.deltaTime * _model.bounds.size.y, 0, Space.World);
+            // Enemy shrinks
             transform.localScale = scaleSize * (1 - Mathf.Clamp(_scaleMultiplier * (Time.time - startTime) / _timeLength, 0, 1));
         }
 

@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
 public class MeleeEnemy : EnemyAI
 {
     private List<IDamageable> _previouslyHit = new();
     protected bool _inAttackRange;
+    [Header("---Melee Components---")]
+    [SerializeField, FormerlySerializedAs("_biteCol")]
+    protected Collider _meleeCollider;
 
     protected override void Update()
     {
@@ -30,10 +34,6 @@ public class MeleeEnemy : EnemyAI
     {
         _anim.SetTrigger("Attack");
 
-        for (int i = 0; i < _primaryAttackStats.positions.Length; i++)
-        {
-            AttackStart();
-        }
 
         yield return new WaitForSeconds(_primaryAttackStats.rate);
         _isAttacking = false;
@@ -41,12 +41,12 @@ public class MeleeEnemy : EnemyAI
 
     protected void AttackStart()
     {
-        _biteCol.enabled = true;
+        _meleeCollider.enabled = true;
     }
 
     protected void AttackEnd()
     {
-        _biteCol.enabled = false;
+        _meleeCollider.enabled = false;
     }
 
     void OnTriggerEnter(Collider other)

@@ -994,7 +994,7 @@ MonoBehaviour:
   _model: {fileID: 6826903240275748356}
   _agent: {fileID: -564942941452632455}
   _anim: {fileID: 6826903240279890116}
-  biteCol: {fileID: 0}
+  d: {fileID: 0}
   _changeTime: 2
   _changeCurve:
     serializedVersion: 2
@@ -1022,8 +1022,8 @@ MonoBehaviour:
     m_RotationOrder: 4
   _radiusMod: 2
   _speedMod: 3
-  animTransSpeed: 1
-  OnHealthChange:
+  _animTransSpeed: 0
+  _OnHealthChange:
     m_PersistentCalls:
       m_Calls: []
   _stats:

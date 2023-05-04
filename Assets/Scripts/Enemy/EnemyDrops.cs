@@ -12,11 +12,6 @@ public class EnemyDrops : MonoBehaviour
     private int _score = 10;
     private float _difficulty => EnemyManager.instance.scaleFactor;
 
-    private void OnDestroy()
-    {
-        Drop();
-    }
-
     public void Drop()
     {
         GameManager.instance.player.inventory.AddCurrency(Mathf.FloorToInt(_currency * _difficulty));

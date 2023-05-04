@@ -332,7 +332,7 @@ MonoBehaviour:
   _model: {fileID: 6230942851763231121}
   _agent: {fileID: 2887638426317599639}
   _anim: {fileID: 6230942851767379793}
-  biteCol: {fileID: 2919674195485479463}
+  d: {fileID: 0}
   _changeTime: 2
   _changeCurve:
     serializedVersion: 2
@@ -360,8 +360,8 @@ MonoBehaviour:
     m_RotationOrder: 4
   _radiusMod: 1
   _speedMod: 1.5
-  animTransSpeed: 1
-  OnHealthChange:
+  _animTransSpeed: 0
+  _OnHealthChange:
     m_PersistentCalls:
       m_Calls: []
   _stats:
@@ -397,6 +397,7 @@ MonoBehaviour:
     selfBuffs: []
     targetBuffs: []
     speed: 0
+  _meleeCollider: {fileID: 2919674195485479463}
   _secondaryAttackStats:
     positions:
     - {fileID: 7048595572675317456}
