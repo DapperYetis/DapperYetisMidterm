@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6299258252946714453}
   - component: {fileID: 1669827463216961414}
   - component: {fileID: 7875845384117858834}
+  - component: {fileID: 8898317810659672636}
   m_Layer: 3
   m_Name: Zigguraut Stairs
   m_TagString: Untagged
@@ -2763,3 +2764,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!208 &8898317810659672636
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8010946090818314817}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 5, y: 2.7500002, z: 2.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -5, y: 2.7500002, z: -2.5}
+  m_TimeToStationary: 0.5

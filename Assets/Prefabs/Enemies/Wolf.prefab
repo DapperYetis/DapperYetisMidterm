@@ -232,7 +232,6 @@ GameObject:
   - component: {fileID: 1394923249626068941}
   - component: {fileID: -8553164506359077236}
   - component: {fileID: -3642325205335614051}
-  - component: {fileID: 4114174069522232693}
   m_Layer: 7
   m_Name: Wolf
   m_TagString: Untagged
@@ -337,6 +336,7 @@ MonoBehaviour:
     targetBuffs:
     - {fileID: 11400000, guid: 24ff1838f787af047b68ff00fd1d65b5, type: 2}
     speed: 100
+    range: 3
   _primaryAttackStatsScaling:
     positions: []
     damage: 1
@@ -347,6 +347,7 @@ MonoBehaviour:
     selfBuffs: []
     targetBuffs: []
     speed: 0
+    range: 0
   _meleeCollider: {fileID: 3368618465045421124}
 --- !u!114 &-1971623083720848777
 MonoBehaviour:
@@ -420,19 +421,6 @@ CapsuleCollider:
   m_Height: 1.5
   m_Direction: 1
   m_Center: {x: 0, y: 0.6, z: 0.5}
---- !u!135 &4114174069522232693
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1394923249618666509}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 3
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1394923249618666511
 GameObject:
   m_ObjectHideFlags: 0

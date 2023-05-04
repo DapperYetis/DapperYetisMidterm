@@ -7,7 +7,7 @@ using UnityEngine.Serialization;
 public class MeleeEnemy : EnemyAI
 {
     private List<IDamageable> _previouslyHit = new();
-    protected bool _inAttackRange;
+    protected bool _inAttackRange => _playerDir.magnitude <= _primaryAttackStats.range;
     [Header("---Melee Components---")]
     [SerializeField, FormerlySerializedAs("_biteCol")]
     protected Collider _meleeCollider;
@@ -47,21 +47,5 @@ public class MeleeEnemy : EnemyAI
     protected void AttackEnd()
     {
         _meleeCollider.enabled = false;
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            _inAttackRange = true;
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            _inAttackRange = false;
-        }
     }
 }

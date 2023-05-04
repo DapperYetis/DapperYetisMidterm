@@ -14,6 +14,7 @@ public struct EnemyAttackStats
     public List<SOBuff> selfBuffs;
     public List<SOBuff> targetBuffs;
     public float speed;
+    public float range;
 
 
     public static EnemyAttackStats operator +(EnemyAttackStats s1, EnemyAttackStats s2)

@@ -15,10 +15,8 @@ MonoBehaviour:
   _buffName: Bleed
   _description: You're losing blood... a lot of it...
   _timing: 1
-  _buffLength: 1
-  _removeType: 1
-  _removeEffectPrefab: {fileID: 4334024921141274484, guid: 40c1d4324e6687f4ea4043e82e4ed307,
-    type: 3}
+  _buffLength: 1.5
+  _removeType: 0
   _changeType: 0
   _generalMods:
     walkSpeed: 0
@@ -39,7 +37,7 @@ MonoBehaviour:
   _abilityMods:
     prefab: {fileID: 0}
     secondaryDamage: 0
-    directDamage: 0
+    directDamage: 5
     cooldown: 0
     lifetime: 0
     secondaryLifetime: 0
@@ -47,3 +45,5 @@ MonoBehaviour:
     fxIntesity: 0
     selfBuffs: []
     targetBuffs: []
+  _effectPrefab: {fileID: 4334024921141274484, guid: 40c1d4324e6687f4ea4043e82e4ed307,
+    type: 3}
