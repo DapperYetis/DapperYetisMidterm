@@ -7,6 +7,7 @@ public class SceneManage : MonoBehaviour
 {
     public static SceneManage _instance;
 
+#if UNITY_EDITOR
     private void Update()
     {
         if (Input.GetKeyDown("0"))
@@ -14,6 +15,7 @@ public class SceneManage : MonoBehaviour
         if (Input.GetKeyDown("1"))
             LoadScene(1); 
     }
+#endif
 
     private void Start()
     {

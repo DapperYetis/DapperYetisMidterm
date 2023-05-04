@@ -5,7 +5,7 @@ using UnityEngine;
 public class MenuNav : MonoBehaviour
 {
     [SerializeField] MainMenuRefs _menuRef;
-    private Stack<GameObject> _menuStack;
+    private Stack<GameObject> _menuStack = new();
     private GameObject _activeMenu
     {
         get

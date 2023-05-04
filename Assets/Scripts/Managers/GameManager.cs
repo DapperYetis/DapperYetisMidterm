@@ -47,6 +47,10 @@ public class GameManager : MonoBehaviour
     {
         DontDestroyOnLoad(transform.parent.gameObject);
         SceneManager.sceneLoaded += DoResetMap;
+        if(SceneManager.GetActiveScene().buildIndex > 0)
+            _inGame = true;
+        else
+            _inGame = false;
     }
 
     private IEnumerator FindPlayer()
