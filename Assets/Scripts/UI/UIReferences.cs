@@ -147,14 +147,6 @@ public class UIReferences : MonoBehaviour
 
     public TextMeshProUGUI loseTime => _loseTime;
 
-    [SerializeField] GameObject _sprintCtrl;
-
-    public GameObject sprintCtrl => _sprintCtrl;
-
-    [SerializeField] GameObject _sprintShift;
-
-    public GameObject sprintShift => _sprintShift;
-
     [SerializeField] GameObject _keyBindsMenu;
 
     public GameObject keyBindsMenu => _keyBindsMenu;

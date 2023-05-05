@@ -5,7 +5,6 @@ using System.Threading;
 using TMPro;
 using UnityEditor.SearchService;
 using UnityEngine;
-using UnityEngine.Audio;
 
 public class UIManager : MonoBehaviour
 {
@@ -14,10 +13,8 @@ public class UIManager : MonoBehaviour
 
     [Header("----- Settings -----")]
     [SerializeField]
-    private AudioMixer _masterMixer;
     private UIReferences _references;
-    [SerializeField]
-    Inventory _playerInv;
+    private Inventory _playerInv;
     [SerializeField] Animator _transition;
 
     public UIReferences references => _references;
@@ -50,9 +47,8 @@ public class UIManager : MonoBehaviour
     public bool isPaused => _activeMenu != null;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-
         if (instance != null)
         {
             gameObject.SetActive(false);
@@ -125,18 +121,6 @@ public class UIManager : MonoBehaviour
                 _playerController.weapon.OnPrimary.AddListener(AttackCD1);
                 _playerController.weapon.OnSecondary.AddListener(AttackCD2);
                 _playerController.inventory.OnCurrencyChange.AddListener(TrackCurrency);
-
-                if(GetSprintKey())
-                {
-                    _references.sprintShift.SetActive(false);
-                    _references.sprintCtrl.SetActive(true);
-                }
-                else if(!GetSprintKey())
-                {
-                    _references.sprintShift.SetActive(true);
-                    _references.sprintCtrl.SetActive(false);
-                }
-
             });
             GameManager.instance.OnScoreChange.AddListener(UpdateScore);
 
@@ -170,126 +154,6 @@ public class UIManager : MonoBehaviour
         Debug.Log("UI References found");
 
         callback();
-    }
-
-    #endregion
-
-    #region Settings
-    public void SetVolume(float volume)
-    {
-        if (volume < 1)
-        {
-            volume = .001f;
-        }
-
-        RefreshSlider(volume);
-        PlayerPrefs.SetFloat("SavedMasterVolume", volume);
-        _masterMixer.SetFloat("MasterVolume", Mathf.Log10(volume / 100) * 20f);
-    }
-
-
-    public void SetVolumeFromSlider()
-    {
-        SetVolume(_references.soundSlider.value);
-    }
-
-    public void RefreshSlider(float volume)
-    {
-        _references.soundSlider.value = volume;
-    }
-
-
-
-
-    public void SetSensitivity(float sensitivity)
-    {
-        if (sensitivity < 1)
-        {
-            sensitivity = 1.5f;
-        }
-
-        RefreshSensitivity(sensitivity);
-        PlayerPrefs.SetFloat("Sensitivity", sensitivity);
-    }
-
-
-    public void SetSensitivityFromSlider()
-    {
-        SetSensitivity(_references.mouseSensitivity.value);
-    }
-
-    public void RefreshSensitivity(float sensitivity)
-    {
-        _references.mouseSensitivity.value = sensitivity;
-    }
-
-
-
-
-
-    public void SetSprintHold()
-    {
-        if (_references.toggleSprint.isOn)
-            PlayerPrefs.SetInt("HoldSprint", 1);
-
-        else
-            PlayerPrefs.SetInt("HoldSprint", 0);
-    }
-
-    public bool GetSprintToggle()
-    {
-        if (PlayerPrefs.GetInt("HoldSprint") == 1)
-            return true;
-        else
-            return false;
-    }
-
-
-
-
-
-    public void SetCtrlSprint()
-    {
-        if (_references.ctrlRun.isOn)
-        {
-            PlayerPrefs.SetInt("CtrlRun", 1);
-            _references.sprintShift.SetActive(false);
-            _references.sprintCtrl.SetActive(true);
-        }
-        else
-        {
-            PlayerPrefs.SetInt("CtrlRun", 0);
-            _references.sprintShift.SetActive(true);
-            _references.sprintCtrl.SetActive(false);
-        }
-    }
-
-    public bool GetSprintKey()
-    {
-        if (PlayerPrefs.GetInt("CtrlRun") == 1)
-            return true;
-        else
-            return false;
-    }
-
-
-
-
-    public void SetInvertCam()
-    {
-        if (_references.camInvert.isOn)
-            PlayerPrefs.SetInt("CamCtrl", 1);
-
-        else
-            PlayerPrefs.SetInt("CamCtrl", 0);
-    }
-
-    public bool GetInvertChoice()
-    {
-        if (PlayerPrefs.GetInt("CamCtrl") == 1)
-            return true;
-        else
-            return false;
     }
 
     #endregion

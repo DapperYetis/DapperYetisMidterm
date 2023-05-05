@@ -56,6 +56,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
 
     public void StartGame()
     {
+        DontDestroyOnLoad(gameObject);
         // Movement
         _camera = Camera.main;
         _movement.SetStats(_stats);

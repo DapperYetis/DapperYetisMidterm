@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: cf404008b5f183c438e987b18ce35118
   - enabled: 1
-    path: Assets/Scenes/Game.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Scenes/Jesus Sandbox.unity
+    guid: bcff5a265bd26e648b72135e3e40fb74
   m_configObjects: {}

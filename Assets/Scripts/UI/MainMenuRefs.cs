@@ -18,22 +18,6 @@ public class MainMenuRefs : MonoBehaviour
 
     public GameObject settingsMenu => _settingsMenu;
 
-    [SerializeField] Slider _soundSlider;
-
-    public Slider soundSlider => _soundSlider;
-
-    [SerializeField] Slider _mouseSensitivity;
-
-    public Slider mouseSensitivity => _mouseSensitivity;
-
-    [SerializeField] Toggle _camInvert;
-
-    public Toggle camInvert => _camInvert;
-
-    [SerializeField] Toggle _toggleSprint;
-
-    public Toggle toggleSprint => _toggleSprint;
-
     [SerializeField] GameObject _transitionScreen;
     public GameObject transitionScreen => _transitionScreen;
 

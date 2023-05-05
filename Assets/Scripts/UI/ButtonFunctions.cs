@@ -8,21 +8,27 @@ using UnityEngine.SceneManagement;
 public class ButtonFunctions : MonoBehaviour
 {
 
-    MenuNav nav;
+    [SerializeField] MenuNav nav;
 
     public void PlayGame()
     {
         SceneManage._instance.LoadScene(1);
+        UIManager.instance.ResumeState();
     }
 
     public void ToLoadout()
     {
-        
+        nav.ToLoadoutMenu();
     }
 
-    public void ToSettings()
+    public void ToGameSettings()
     {
         UIManager.instance.ToSettings();
+    }
+
+    public void ToMenuSettings()
+    {
+        nav.ToSettings();
     }
 
     public void Quit()
@@ -35,11 +41,14 @@ public class ButtonFunctions : MonoBehaviour
         GameManager.instance.ResetMap();
     }
 
-    public void BackButton()
+    public void GameBackButton()
     {
-
         UIManager.instance.PrevMenu();
+    }
 
+    public void MainBackButton()
+    {
+        nav.BackButton();
     }
 
     public void ResumeButton()
@@ -47,36 +56,30 @@ public class ButtonFunctions : MonoBehaviour
 
         UIManager.instance.PrevMenu();
         UIManager.instance.ResumeState();
-
     }
 
     public void SetVolume()
     {
-        UIManager.instance.SetVolumeFromSlider();
+        SettingVals._instance.SetVolumeFromSlider();
     }
 
     public void SetSensitivity()
     {
-        UIManager.instance.SetSensitivityFromSlider();
-    }
-
-    public void SetSprintButton()
-    {
-        UIManager.instance.SetCtrlSprint();
+        SettingVals._instance.SetSensitivityFromSlider();
     }
     
     public void SetInvertedControls()
     {
-        UIManager.instance.SetInvertCam();
+        SettingVals._instance.SetInvertCam();
     }
 
     public void SetToggleSprint()
     {
-        UIManager.instance.SetSprintHold();
+        SettingVals._instance.SetSprintHold();
     }
 
     public void ToKeybindsMenu()
     {
-       
+        nav.ToKeyBinds();
     }
 }

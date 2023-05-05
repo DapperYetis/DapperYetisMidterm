@@ -18,7 +18,8 @@ public class GameManager : MonoBehaviour
 
     public bool isPaused => UIManager.instance.isPaused;
 
-    private bool _inGame;
+    private int buildIndex = 0;
+    private bool _inGame => buildIndex > 0;
     public bool inGame => _inGame;
     private float _startTime;
     public float runTime => Time.time - _startTime;
@@ -47,10 +48,6 @@ public class GameManager : MonoBehaviour
     {
         DontDestroyOnLoad(transform.parent.gameObject);
         SceneManager.sceneLoaded += DoResetMap;
-        if(SceneManager.GetActiveScene().buildIndex > 0)
-            _inGame = true;
-        else
-            _inGame = false;
     }
 
     private IEnumerator FindPlayer()
@@ -74,7 +71,6 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        _inGame = true;
         _startTime = Time.time;
         _player.StartGame();
     }
@@ -99,7 +95,7 @@ public class GameManager : MonoBehaviour
 
     public void ResetMap()
     {
-        _inGame = false;
+        buildIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

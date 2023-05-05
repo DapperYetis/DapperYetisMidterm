@@ -18,16 +18,13 @@ public class MenuNav : MonoBehaviour
         }
     }
     public GameObject activeMenu => _activeMenu;
-
-
-    // Start is called before the first frame update
+   
     void Start()
     {
-        _menuStack.Push(_menuRef.mainMenu);
-        _activeMenu.SetActive(true);
+        UIManager.instance.PauseState();
+        ToFirstMenu(_menuRef.mainMenu);
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         
@@ -69,20 +66,23 @@ public class MenuNav : MonoBehaviour
 
     public void ToLoadoutMenu()
     {
-
+        NextMenu(_menuRef.loadoutMenu);
     }
 
     public void ToSettings()
     {
-
+        NextMenu(_menuRef.settingsMenu);
     }
 
     public void ToKeyBinds()
     {
-
+        NextMenu(_menuRef.keyBindsMenu);
     }
 
-
+    public void BackButton()
+    {
+        PrevMenu();
+    }
 
     #endregion
 
