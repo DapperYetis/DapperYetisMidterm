@@ -60,6 +60,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     [SerializeField]
     protected float _circlingRange = 10f;
     protected bool _hasEnteredRange => _playerDir.magnitude < _circlingRange;
+    protected bool _movementOverride;
 
     [Header("--- Death Controls ---")]
     [SerializeField]
@@ -120,41 +121,37 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     {
         _moveType = Random.Range(0, _moveChances);
         yield return new WaitForSeconds(_runTypeTimer);
-        if(this != null)
+        if (this != null)
             StartCoroutine(PickMoveType());
     }
 
     protected virtual void Movement()
     {
+        if (_movementOverride) return;
         float distanceToPlayer = Vector3.Distance(GameManager.instance.player.transform.position, transform.position);
 
-        if (_hasEnteredRange)
+        if (_hasCompletedAttack) // If the enemy has already attacked, back off to let another enemy queue
         {
-
-            if (_hasCompletedAttack) // If the enemy has already attacked, back off to let another enemy queue
-            {
-                _agent.SetDestination(transform.position - _playerDir.normalized * _stats.speed);
-            }
-            else
-            {
-                if (_moveType % 2 == 0)
-                {
-                    _agent.SetDestination(transform.position + (Vector3.Cross(_playerDir.normalized, Vector3.up) * _stats.speed));
-                }
-                else
-                {
-                    _agent.SetDestination(transform.position + (Vector3.Cross(_playerDir.normalized, Vector3.up) * _stats.speed * -1));
-                }
-            }
-
-        }
-        else
-        {
-            if (_hasCompletedAttack)
+            _agent.SetDestination(transform.position - (_playerDir.normalized * _stats.speed));
+            if (!_hasEnteredRange)
             {
                 _hasCompletedAttack = false;
             }
-            if (_moveType < _moveChances * 0.8f)
+        }
+        else if (_hasEnteredRange)
+        {
+            if (_moveType % 2 == 0)
+            {
+                _agent.SetDestination(transform.position + (Vector3.Cross(_playerDir.normalized, Vector3.up) * _stats.speed));
+            }
+            else
+            {
+                _agent.SetDestination(transform.position + (Vector3.Cross(_playerDir.normalized, Vector3.up) * _stats.speed * -1));
+            }
+        }
+        else
+        {
+            if (_moveType < _moveChances * 0.6f)
             {
                 _agent.SetDestination(GameManager.instance.player.transform.position);
             }

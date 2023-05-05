@@ -35,6 +35,7 @@ public class RangedEnemy : EnemyAI
             Instantiate(_primaryAttackStats.prefab, _primaryAttackStats.positions[i].position, rot).GetComponent<EnemyProjectile>().SetStats(_primaryAttackStats);
         }
 
+        _hasCompletedAttack = true;
         yield return new WaitForSeconds(_primaryAttackStats.rate);
         _isAttacking = false;
     }

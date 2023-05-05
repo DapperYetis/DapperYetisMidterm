@@ -14,16 +14,14 @@ public class MeleeEnemy : EnemyAI
 
     protected override void Update()
     {
-        base.Update();
 
         if (!_isAttacking && _hasEnteredRange)
         {
             _isAttacking = true;
-        }
-        else if(_isAttacking && _inAttackRange)
-        {
             EnemyManager.instance.QueueAttack(Melee, () => Mathf.FloorToInt(_playerDir.magnitude - _primaryAttackStats.range), this);
         }
+
+        base.Update();
     }
 
     protected override void Movement()
@@ -48,7 +46,7 @@ public class MeleeEnemy : EnemyAI
     {
         _anim.SetTrigger("Attack");
 
-
+        _hasCompletedAttack = true;
         yield return new WaitForSeconds(_primaryAttackStats.rate);
         _isAttacking = false;
     }
