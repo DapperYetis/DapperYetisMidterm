@@ -855,7 +855,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8988cf52eb75c81489c5bfb5dbd2b2ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ctrlSprint: {fileID: 0}
+  _volume: {fileID: 2049047460}
+  _sensitivity: {fileID: 422935526738154230}
   _sprintHold: {fileID: 240554827009021660}
   _camInvert: {fileID: 5205230920968625433}
 --- !u!1 &1407368895252407942
