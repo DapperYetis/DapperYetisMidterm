@@ -31,8 +31,9 @@ public class SceneManage : MonoBehaviour
             return;
         }
         _instance = this;
-        _menuCanvas = GameObject.FindGameObjectWithTag("MenuCanvas").GetComponent<MainMenuRefs>();
-        _loadout = _menuCanvas.loadout;
+        if(!GameManager.instance.inGame)
+            _menuCanvas = GameObject.FindGameObjectWithTag("MenuCanvas").GetComponent<MainMenuRefs>();
+        _loadout = _menuCanvas.loadoutScript;
     }
 
     public void LoadScene(int scene)

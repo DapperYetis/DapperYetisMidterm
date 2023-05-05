@@ -30,7 +30,8 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
     public PlayerMovementGrappling grappling => _grappling;
 
 
-    // ------Loadout------
+    // ------Loadout------\
+    private PlayerController _instance;
     private SOWeapon _weaponAsset;
     private Weapon _weapon;
     public Weapon weapon => _weapon;
@@ -54,9 +55,20 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
     private bool _canInteract;
     private IInteractable _interactable;
 
+    private void Awake()
+    {
+        if (_instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        _instance = this;
+
+        DontDestroyOnLoad(gameObject);
+    }
+
     public void StartGame()
     {
-        DontDestroyOnLoad(gameObject);
         // Movement
         _camera = Camera.main;
         _movement.SetStats(_stats);

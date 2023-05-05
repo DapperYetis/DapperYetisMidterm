@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     public static GameManager instance => _instance;
 
+    [SerializeField]
+    private GameObject _playerPrefab;
     private PlayerController _player;
     public PlayerController player => _player;
     public PlayerMovement playerMovement => _player.movement;
@@ -40,8 +42,9 @@ public class GameManager : MonoBehaviour
         }
 
         _instance = this;
+        buildIndex = SceneManager.GetActiveScene().buildIndex;
 
-        StartCoroutine(FindPlayer());
+        FindPlayer();
     }
 
     private void Start()
@@ -50,18 +53,15 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded += DoResetMap;
     }
 
-    private IEnumerator FindPlayer()
+    private void FindPlayer()
     {
-        _player = null;
-        while(true)
+        if (_player == null)
         {
+            Instantiate(_playerPrefab);
             _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-            if (_player != null) break;
-
-            yield return new WaitForEndOfFrame();
+            _player.OnHealthChange.AddListener((amt) => EndConditions());
         }
 
-        _player.OnHealthChange.AddListener((amt) => EndConditions());
         _playerSpawnPos = GameObject.FindGameObjectWithTag("PlayerSpawnPoint").transform;
         Debug.Log("Player found!");
     }
@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
         buildIndex = SceneManager.GetActiveScene().buildIndex;
         if (mode == LoadSceneMode.Additive) return;
 
-        StartCoroutine(FindPlayer());
+        FindPlayer();
         if (buildIndex == 0)
             player.ResetLoadout();
         if (EnemyManager.instance != null)
