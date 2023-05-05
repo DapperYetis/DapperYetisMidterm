@@ -8,7 +8,13 @@ public class Altar : MonoBehaviour, IInteractable
     protected SOWave _bossWave;
     [SerializeField]
     protected Transform _spawnPoint;
+    [SerializeField]
     protected int _cost = 1000;
+
+    private void Start()
+    {
+        _cost = (int)(_cost * EnemyManager.instance.scaleFactor);
+    }
 
     public bool Interact()
     {

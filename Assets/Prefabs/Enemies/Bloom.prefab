@@ -1049,9 +1049,9 @@ MonoBehaviour:
     variance: 5
     prefab: {fileID: 424343093267893311, guid: 912a43b0040ffe643b0c56e5be18da99, type: 3}
     selfBuffs: []
-    targetBuffs:
-    - {fileID: 11400000, guid: 24ff1838f787af047b68ff00fd1d65b5, type: 2}
+    targetBuffs: []
     speed: 25
+    range: 0
   _primaryAttackStatsScaling:
     positions: []
     damage: 1
@@ -1062,6 +1062,7 @@ MonoBehaviour:
     selfBuffs: []
     targetBuffs: []
     speed: 0.1
+    range: 0
 --- !u!114 &3617471448665440551
 MonoBehaviour:
   m_ObjectHideFlags: 0

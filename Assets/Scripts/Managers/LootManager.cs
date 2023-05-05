@@ -16,6 +16,10 @@ public class LootManager : MonoBehaviour
     [SerializeField]
     private GameObject _chestPrefab;
     [SerializeField]
+    private int _chestBaseCost = 30;
+    [SerializeField]
+    private float _chestCostRange = 0.5f;
+    [SerializeField]
     private int _lootCount;
     [SerializeField]
     private Bounds _spawningBounds;
@@ -150,6 +154,6 @@ public class LootManager : MonoBehaviour
 
     public int GetChestCost()
     {
-        return (int)Random.Range(100 * EnemyManager.instance.scaleFactor, 100 * Mathf.Ceil(EnemyManager.instance.scaleFactor + 1));
+        return (int)Random.Range(_chestBaseCost * EnemyManager.instance.scaleFactor, _chestBaseCost * Mathf.Ceil(EnemyManager.instance.scaleFactor + _chestCostRange));
     }
 }
