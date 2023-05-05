@@ -37,7 +37,7 @@ public abstract class BuffEffect : MonoBehaviour
     public void RemoveStacks(int amount)
     {
         _stacks -= amount;
-        Debug.Log(_stacks);
+
         EffectRemoveAction();
         if (_stacks <= 0)
             Invoke(nameof(DestroyEffect), _buffEndTime);

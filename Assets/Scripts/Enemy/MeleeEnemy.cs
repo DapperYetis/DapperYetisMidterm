@@ -16,11 +16,25 @@ public class MeleeEnemy : EnemyAI
     {
         base.Update();
 
-        if (!_isAttacking && _inAttackRange)
+        if (!_isAttacking && _hasEnteredRange)
         {
             _isAttacking = true;
-            EnemyManager.instance.QueueAttack(Melee, () => Mathf.FloorToInt(_playerDir.magnitude));
         }
+        else if(_isAttacking && _inAttackRange)
+        {
+            EnemyManager.instance.QueueAttack(Melee, () => Mathf.FloorToInt(_playerDir.magnitude - _primaryAttackStats.range), this);
+        }
+    }
+
+    protected override void Movement()
+    {
+        if (_isAttacking)
+        {
+            FacePlayer();
+            _agent.SetDestination(GameManager.instance.player.transform.position);
+        }
+        else
+            base.Movement();
     }
 
     protected virtual void Melee()

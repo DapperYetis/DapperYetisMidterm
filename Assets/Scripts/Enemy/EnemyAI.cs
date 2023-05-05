@@ -41,22 +41,25 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     public EnemyStats stats => _stats;
     [SerializeField]
     protected EnemyStats _statsScaling;
-    [SerializeField]
-    protected float _attackRange;
     protected float _HPCurrent;
     protected float _angleToPlayer;
     protected float _stoppingDistOG;
     protected SOWave _spawnPoint;
     protected bool _isSetUp;
     protected bool _isAttacking;
+    protected bool _hasCompletedAttack;
     protected Vector3 _playerDir => GameManager.instance.player.transform.position - transform.position + 2 * Vector3.down;
     protected bool _indicatingHit;
     protected float _speed;
     public Dictionary<SOBuff, (int stacks, float time)> _currentBuffs = new();
     protected int _moveType;
     [SerializeField]
+    protected int _moveChances = 10;
+    [SerializeField]
     protected float _runTypeTimer;
-    protected bool _hasEnteredRange;
+    [SerializeField]
+    protected float _circlingRange = 10f;
+    protected bool _hasEnteredRange => _playerDir.magnitude < _circlingRange;
 
     [Header("--- Death Controls ---")]
     [SerializeField]
@@ -115,34 +118,54 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
 
     protected IEnumerator PickMoveType()
     {
-        _moveType = Random.Range(0, 3);
+        _moveType = Random.Range(0, _moveChances);
         yield return new WaitForSeconds(_runTypeTimer);
-        StartCoroutine(PickMoveType());
+        if(this != null)
+            StartCoroutine(PickMoveType());
     }
 
     protected virtual void Movement()
     {
         float distanceToPlayer = Vector3.Distance(GameManager.instance.player.transform.position, transform.position);
 
-        if (_hasEnteredRange || distanceToPlayer <= _attackRange)
+        if (_hasEnteredRange)
         {
-            _hasEnteredRange = true;
-            FacePlayer();
-            _agent.SetDestination(GameManager.instance.player.transform.position);
+
+            if (_hasCompletedAttack) // If the enemy has already attacked, back off to let another enemy queue
+            {
+                _agent.SetDestination(transform.position - _playerDir.normalized * _stats.speed);
+            }
+            else
+            {
+                if (_moveType % 2 == 0)
+                {
+                    _agent.SetDestination(transform.position + (Vector3.Cross(_playerDir.normalized, Vector3.up) * _stats.speed));
+                }
+                else
+                {
+                    _agent.SetDestination(transform.position + (Vector3.Cross(_playerDir.normalized, Vector3.up) * _stats.speed * -1));
+                }
+            }
+
         }
         else
         {
-            switch (_moveType)
+            if (_hasCompletedAttack)
             {
-                case 0:
-                    _agent.SetDestination(transform.position + (Vector3.Cross(_playerDir.normalized, Vector3.up) * _stats.speed));
-                    break;
-                case 1:
-                    _agent.SetDestination(transform.position + (Vector3.Cross(_playerDir.normalized, Vector3.up) * _stats.speed * -1));
-                    break;
-                case 2:
-                    _agent.SetDestination(GameManager.instance.player.transform.position);
-                    break;
+                _hasCompletedAttack = false;
+            }
+            if (_moveType < _moveChances * 0.8f)
+            {
+                _agent.SetDestination(GameManager.instance.player.transform.position);
+            }
+            else if (_moveType % 2 == 0)
+            {
+                _agent.SetDestination(transform.position + (Vector3.Cross(_playerDir.normalized, Vector3.up) * _stats.speed));
+
+            }
+            else
+            {
+                _agent.SetDestination(transform.position + (Vector3.Cross(_playerDir.normalized, Vector3.up) * _stats.speed * -1));
             }
         }
     }
@@ -217,13 +240,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
 
         if (_HPCurrent <= 0)
         {
-            _anim.SetBool("Dead", true);
-            GetComponent<CapsuleCollider>().enabled = false;
-            _agent.enabled = false;
-            enabled = false;
-            EnemyManager.instance.RemoveEnemyFromList(this);
-            _drops.Drop();
-            StartCoroutine(EnemyRemoved());
+            Die();
         }
         else
         {
@@ -239,6 +256,17 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
         }
 
         _OnHealthChange.Invoke();
+    }
+
+    private void Die()
+    {
+        _anim.SetBool("Dead", true);
+        GetComponent<CapsuleCollider>().enabled = false;
+        _agent.enabled = false;
+        enabled = false;
+        EnemyManager.instance.RemoveEnemyFromList(this);
+        _drops.Drop();
+        StartCoroutine(EnemyRemoved());
     }
 
     public virtual IEnumerator EnemyRemoved()

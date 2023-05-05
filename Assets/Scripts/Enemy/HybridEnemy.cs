@@ -28,9 +28,9 @@ public class HybridEnemy : MeleeEnemy
         {
             _isAttacking = true;
             if (_inAttackRange)
-                EnemyManager.instance.QueueAttack(Melee, () => Mathf.FloorToInt(_playerDir.magnitude));
+                EnemyManager.instance.QueueAttack(Melee, () => Mathf.FloorToInt(_playerDir.magnitude - _primaryAttackStats.range), this);
             else
-                EnemyManager.instance.QueueAttack(Shoot, () => Mathf.FloorToInt(_playerDir.magnitude));            
+                EnemyManager.instance.QueueAttack(Shoot, () => Mathf.FloorToInt(_playerDir.magnitude - _secondaryAttackStats.range), this);
         }
     }
 
