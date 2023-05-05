@@ -71,4 +71,11 @@ public class Inventory : MonoBehaviour
         _currency -= cost;
         OnCurrencyChange.Invoke(-cost);
     }
+
+    public void ResetPlayer()
+    {
+        _currency = 0;
+        _items.Clear();
+        _currentLevel = 0;
+    }
 }

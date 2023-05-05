@@ -102,11 +102,11 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
 
     private void GetLoadout()
     {
-        _weaponAsset = UIManager.instance.references.loadoutScript.GetWeapon();
+        _weaponAsset = SceneManage._instance._loadout.GetWeapon();
         _weapon = Instantiate(_weaponAsset.prefab, transform).GetComponent<Weapon>();
         _weapon.SetStats(_weaponAsset.stats);
 
-        _supportAsset = UIManager.instance.references.loadoutScript.GetSupport();
+        _supportAsset = SceneManage._instance._loadout.GetSupport();
         _support = Instantiate(_supportAsset.prefab, transform).GetComponent<Support>();
         _support.SetStats(_supportAsset.stats);
 
@@ -208,5 +208,16 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
             if (RemoveBuff(_currentBuffs.Keys.ElementAt(i)))
                 --i;
         }
+    }
+
+    public void ResetLoadout()
+    {
+        inventory.ResetPlayer();
+        Destroy(_weapon.gameObject);
+        _weapon = null;
+        Destroy(_support.gameObject); 
+        _support = null;
+        _support = null;
+        _currentBuffs.Clear();
     }
 }

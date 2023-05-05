@@ -21,11 +21,9 @@ public class SetSettings : MonoBehaviour
 
         if (PlayerPrefs.HasKey("SavedMasterVolume"))
             _volume.value = PlayerPrefs.GetFloat("SavedMasterVolume");
-        //SettingVals._instance.SetVolume(PlayerPrefs.GetFloat("SavedMasterVolume"));
 
         if (PlayerPrefs.HasKey("Sensitivity"))
             _sensitivity.value = PlayerPrefs.GetFloat("Sensitivity");
-                //SettingVals._instance.SetSensitivity(PlayerPrefs.GetFloat("Sensitivity"));
             
     }
 }

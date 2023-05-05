@@ -38,7 +38,6 @@ public class ButtonFunctions : MonoBehaviour
 
     public void ToMainMenu()
     {
-        GameManager.instance.ResetMap();
         UIManager.instance.PauseState();
         SceneManage._instance.LoadScene(0);
     }

@@ -93,17 +93,14 @@ public class GameManager : MonoBehaviour
         //}
     }
 
-    public void ResetMap()
-    {
-        buildIndex = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
     private void DoResetMap(Scene scene, LoadSceneMode mode)
     {
+        buildIndex = SceneManager.GetActiveScene().buildIndex;
         if (mode == LoadSceneMode.Additive) return;
 
         StartCoroutine(FindPlayer());
+        if (buildIndex == 0)
+            player.ResetLoadout();
         if (EnemyManager.instance != null)
             EnemyManager.instance.ResetMap();
         if (UIManager.instance != null)

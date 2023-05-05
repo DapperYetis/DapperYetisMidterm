@@ -32,4 +32,8 @@ public class MainMenuRefs : MonoBehaviour
     [SerializeField] GameObject _keyBindsMenu;
 
     public GameObject keyBindsMenu => _keyBindsMenu;
+
+    [SerializeField] LoadoutScript _loadout;
+
+    public LoadoutScript loadout => _loadout;
 }

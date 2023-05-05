@@ -173,6 +173,7 @@ public class UIManager : MonoBehaviour
 
     public void TransitionToMainMenu()
     {
+        StopAllCoroutines();
         Time.timeScale = _origTimeScale;
         SetUp();
     }

@@ -11,10 +11,6 @@ public class UIReferences : MonoBehaviour
     [SerializeField] GameObject _settingsMenu;
 
     public GameObject settingsMenu => _settingsMenu;
-    
-    [SerializeField] Slider _soundSlider;
-
-    public Slider soundSlider => _soundSlider;
 
     [SerializeField] GameObject _pauseMenu;
 
@@ -76,36 +72,17 @@ public class UIReferences : MonoBehaviour
 
     public GameObject tabMenu => _tabMenu;
 
-    [SerializeField] Slider _mouseSensitivity;
-
-    public Slider mouseSensitivity => _mouseSensitivity;
-
-    [SerializeField] Toggle _camInvert;
-
-    public Toggle camInvert => _camInvert;
-
-    [SerializeField] Toggle _ctrlRun;
-
-    public Toggle ctrlRun => _ctrlRun;
-
-    [SerializeField] Toggle _toggleSprint;
-
-    public Toggle toggleSprint => _toggleSprint;
-
     [SerializeField] TextMeshProUGUI _interactPrompt;
 
     public TextMeshProUGUI interactPrompt => _interactPrompt;
 
     [SerializeField] GameObject _transitionScreen;
+
     public GameObject transitionScreen => _transitionScreen;
 
     [SerializeField] Animator _animator;
 
     public Animator animator => _animator;
-
-    [SerializeField] LoadoutScript _loadoutScript;
-    
-    public LoadoutScript loadoutScript => _loadoutScript;
 
     [SerializeField] TextMeshProUGUI _timer;
 
@@ -146,10 +123,6 @@ public class UIReferences : MonoBehaviour
     [SerializeField] TextMeshProUGUI _loseTime;
 
     public TextMeshProUGUI loseTime => _loseTime;
-
-    [SerializeField] GameObject _keyBindsMenu;
-
-    public GameObject keyBindsMenu => _keyBindsMenu;
 
     [SerializeField] Image _dynamicHealth;
 

@@ -166,6 +166,4 @@ public class LoadoutScript : MonoBehaviour
     public SOCompanion GetCompainion() => null; //_companions[PlayerPrefs.GetInt("CompanionChoice")];
 
     #endregion
-
-
 }
