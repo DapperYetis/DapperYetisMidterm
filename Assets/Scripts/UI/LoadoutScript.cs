@@ -16,8 +16,11 @@ public class LoadoutScript : MonoBehaviour
     [SerializeField] GameObject _supportGroup;
     [SerializeField] GameObject _companionGroup;
     [SerializeField] List<SOWeapon> _weapons;
+    private static List<SOWeapon> _cachedWeapons;
     [SerializeField] List<SOSupport> _supports;
+    private static List<SOSupport> _cachedSupports;
     [SerializeField] List<SOCompanion> _companions;
+    private static List<SOCompanion> _cachedCompanions;
 
     private Dictionary<SOWeapon, Button> _weaponButtons = new();
     private Dictionary<SOSupport, Button> _supportButtons = new();
@@ -26,38 +29,51 @@ public class LoadoutScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(!PlayerPrefs.HasKey("WeaponChoice"))
+        CacheOptions();
+
+        if (!PlayerPrefs.HasKey("WeaponChoice"))
             PlayerPrefs.SetInt("WeaponChoice", 0);
         if (!PlayerPrefs.HasKey("SupportChoice"))
             PlayerPrefs.SetInt("SupportChoice", 0);
         if (!PlayerPrefs.HasKey("CompanionChoice"))
             PlayerPrefs.SetInt("CompanionChoice", 0);
 
-        if (PlayerPrefs.GetInt("WeaponChoice") >= _weapons.Count)
+        if (PlayerPrefs.GetInt("WeaponChoice") >= _cachedWeapons.Count)
             PlayerPrefs.SetInt("WeaponChoice", 0);
-        if (PlayerPrefs.GetInt("SupportChoice") >= _supports.Count)
+        if (PlayerPrefs.GetInt("SupportChoice") >= _cachedSupports.Count)
             PlayerPrefs.SetInt("SupportChoice", 0);
-        if (PlayerPrefs.GetInt("CompanionChoice") >= _supports.Count)
+        if (PlayerPrefs.GetInt("CompanionChoice") >= _cachedSupports.Count)
             PlayerPrefs.SetInt("CompanionChoice", 0);
 
-        foreach(var weapon in _weapons)
+        foreach(var weapon in _cachedWeapons)
         {
             AddWeapon(weapon);
         }
         _weaponButtons[GetWeapon()].interactable = false;
 
-        foreach(var support in _supports)
+        foreach(var support in _cachedSupports)
         {
             AddSupport(support);
         }
         _supportButtons[GetSupport()].interactable = false;
 
-        foreach (var companion in _companions)
+        foreach (var companion in _cachedCompanions)
         {
             AddCompanion(companion);
         }
         if(GetCompainion() != null)
             _companionButtons[GetCompainion()].interactable = false;
+    }
+
+    private void CacheOptions()
+    {
+        _cachedWeapons = new(_weapons);
+        _cachedSupports = new(_supports);
+        _cachedCompanions = new(_companions);
+
+        _weapons.Clear();
+        _supports.Clear();
+        _companions.Clear();
     }
 
     #region Setters
@@ -79,7 +95,7 @@ public class LoadoutScript : MonoBehaviour
 
     private void SetWeapon(Button button)
     {
-        PlayerPrefs.SetInt("WeaponChoice", _weapons.IndexOf((from weapon in _weapons where _weaponButtons[weapon] == button select weapon).First()));
+        PlayerPrefs.SetInt("WeaponChoice", _cachedWeapons.IndexOf((from weapon in _cachedWeapons where _weaponButtons[weapon] == button select weapon).First()));
         Debug.Log(GetWeapon());
     }
 
@@ -112,7 +128,7 @@ public class LoadoutScript : MonoBehaviour
 
     private void SetSupport(Button button)
     {
-        PlayerPrefs.SetInt("SupportChoice", _supports.IndexOf((from support in _supports where _supportButtons[support] == button select support).First()));
+        PlayerPrefs.SetInt("SupportChoice", _cachedSupports.IndexOf((from support in _cachedSupports where _supportButtons[support] == button select support).First()));
         Debug.Log(GetSupport());
     }
 
@@ -145,7 +161,7 @@ public class LoadoutScript : MonoBehaviour
 
     private void SetCompanion(Button button)
     {
-        PlayerPrefs.SetInt("CompanionChoice", _companions.IndexOf((from companion in _companions where _companionButtons[companion] == button select companion).First()));
+        PlayerPrefs.SetInt("CompanionChoice", _cachedCompanions.IndexOf((from companion in _cachedCompanions where _companionButtons[companion] == button select companion).First()));
         Debug.Log(GetCompainion());
     }
 
@@ -159,11 +175,11 @@ public class LoadoutScript : MonoBehaviour
     #endregion
 
     #region Getters
-    public SOWeapon GetWeapon() => _weapons[PlayerPrefs.GetInt("WeaponChoice")];
+    public SOWeapon GetWeapon() => _cachedWeapons[PlayerPrefs.GetInt("WeaponChoice")];
 
-    public SOSupport GetSupport() => _supports[PlayerPrefs.GetInt("SupportChoice")];
+    public SOSupport GetSupport() => _cachedSupports[PlayerPrefs.GetInt("SupportChoice")];
 
-    public SOCompanion GetCompainion() => null; //_companions[PlayerPrefs.GetInt("CompanionChoice")];
+    public SOCompanion GetCompainion() => null; //_cachedCompanions[PlayerPrefs.GetInt("CompanionChoice")];
 
     #endregion
 }

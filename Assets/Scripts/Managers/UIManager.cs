@@ -63,7 +63,7 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        if(GameManager.instance.inGame) 
+        if (GameManager.instance.inGame)
             _references.timer.SetText($"{(int)GameManager.instance.runTimeMinutes} : {(GameManager.instance.runTime % 60).ToString("F1")}");
         if (!_isPlaying)
         {
@@ -135,7 +135,7 @@ public class UIManager : MonoBehaviour
             {
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
-                TransitionToGame();
+                _references.hud.SetActive(true);
             }
 
             return true;
@@ -151,6 +151,8 @@ public class UIManager : MonoBehaviour
             if (_references != null) break;
             yield return new WaitForEndOfFrame();
         }
+        if (GameManager.instance.inGame)
+            _references.hud.SetActive(true);
         Debug.Log("UI References found");
 
         callback();
@@ -162,7 +164,6 @@ public class UIManager : MonoBehaviour
 
     public void TransitionToGame()
     {
-        _references.hud.SetActive(true);
         GameManager.instance.StartGame();
     }
 
@@ -171,7 +172,7 @@ public class UIManager : MonoBehaviour
         NextMenu(_references.settingsMenu);
     }
 
-    public void TransitionToMainMenu()
+    public void SceneReset()
     {
         StopAllCoroutines();
         Time.timeScale = _origTimeScale;
@@ -236,13 +237,13 @@ public class UIManager : MonoBehaviour
         _references.transitionScreen.SetActive(false);
     }
 
-    
+
     #endregion
 
     #region HUD Functionality
     public void UpdateHealth(float healthChange)
     {
-        if (UIManager.instance.activeMenu != null) return;
+        if (activeMenu != null || _references == null) return;
 
         if (_playerController.GetHealthCurrent() > 0)
         {
@@ -250,7 +251,7 @@ public class UIManager : MonoBehaviour
                 endtime = Time.time + _healthWaitTime;
             else
                 StartCoroutine(DynamicHealthDecrease());
-            if(healthChange < 0)
+            if (healthChange < 0)
                 StartCoroutine(Damaged());
             StartCoroutine(HealthRedFlash());
             SetHealth();
@@ -267,21 +268,25 @@ public class UIManager : MonoBehaviour
     }
     public void UpdateScore(int newScore)
     {
+        if (_references == null) return;
         _references.score.SetText(GameManager.instance.score.ToString());
     }
 
     public void TrackCurrency(int currency)
     {
+        if (_references == null) return;
         _references.currency.SetText(_playerInv.currency.ToString());
     }
 
     public void LevelUp(int newLevel)
     {
+        if (_references == null) return;
         _references.playerLevel.SetText(newLevel.ToString());
     }
 
     public void IncreaseXP(int currXP)
     {
+        if (_references == null) return;
         if (_references.xpbar && _references.xpbar.isActiveAndEnabled)
             _references.xpbar.fillAmount = (_playerInv.currentXP % 100f) / 100f;
     }
@@ -295,53 +300,63 @@ public class UIManager : MonoBehaviour
 
     private void SetHealth()
     {
+        if (_references == null) return;
         _references.maxHealth.SetText(_playerController.GetHealthMax().ToString());
         _references.remainingHealth.SetText(_playerController.GetHealthCurrent().ToString());
     }
 
     public void MaxHealthUpdate()
     {
+        if (_references == null) return;
         _references.maxHealth.SetText(_playerController.GetHealthMax().ToString());
     }
 
     public void PromptOn(int cost)
     {
+        if (_references == null) return;
         _references.interactPrompt.transform.parent.gameObject.SetActive(true);
         _references.interactPrompt.text = $"Press F To\nInteract\n${cost}";
     }
 
     public void PromptOff()
     {
+        if (_references == null) return;
         _references.interactPrompt.transform.parent.gameObject.SetActive(false);
     }
 
     public void AttackCD1()
     {
-        StartCoroutine(CooldownTimer(_playerController.weapon.stats.primaryAbility.cooldown , Time.time, _references.attCoolDwn1));
+        if (_references == null) return;
+        StartCoroutine(CooldownTimer(_playerController.weapon.stats.primaryAbility.cooldown, Time.time, _references.attCoolDwn1));
     }
 
     public void AttackCD2()
     {
+        if (_references == null) return;
         StartCoroutine(CooldownTimer(_playerController.weapon.stats.secondaryAbility.cooldown, Time.time, _references.attCoolDwn2));
     }
 
     public void SupportCD1()
     {
+        if (_references == null) return;
         StartCoroutine(CooldownTimer(10f, Time.time, _references.suppCoolDwn1));
     }
 
     public void SupportCD2()
     {
+        if (_references == null) return;
         StartCoroutine(CooldownTimer(10f, Time.time, _references.suppCoolDwn2));
     }
 
     public void CompanionCD()
     {
+        if (_references == null) return;
 
     }
 
     public void LoseScreenStats(int _score)
     {
+        if (_references == null) return;
 
         _references.loseScore.SetText(_score.ToString());
 
@@ -351,6 +366,7 @@ public class UIManager : MonoBehaviour
 
     public void WinScreenStats(int _score)
     {
+        if (_references == null) return;
 
         _references.winScore.SetText(_score.ToString());
 
@@ -360,12 +376,17 @@ public class UIManager : MonoBehaviour
 
     IEnumerator CooldownTimer(float cooldown, float startTime, TextMeshProUGUI target)
     {
-        while((cooldown - (Time.time - startTime) > 0))
+        if (_references != null)
         {
-            target.SetText ((cooldown - (Time.time - startTime)).ToString("F1"));
-            yield return new WaitForSeconds(Time.deltaTime);
+            while ((cooldown - (Time.time - startTime) > 0))
+            {
+                target.SetText((cooldown - (Time.time - startTime)).ToString("F1"));
+                yield return new WaitForSeconds(Time.deltaTime);
+            }
+            target.SetText("");
         }
-        target.SetText("");
+        else
+            yield return null;
     }
 
     IEnumerator DynamicHealthDecrease()

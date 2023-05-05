@@ -71,6 +71,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        SceneManage._instance.LoadScene(1);
         _startTime = Time.time;
         _player.StartGame();
     }
@@ -104,7 +105,7 @@ public class GameManager : MonoBehaviour
         if (EnemyManager.instance != null)
             EnemyManager.instance.ResetMap();
         if (UIManager.instance != null)
-            UIManager.instance.TransitionToMainMenu();
+            UIManager.instance.SceneReset();
         if (LootManager.instance != null)
             LootManager.instance.ResetMap();
     }

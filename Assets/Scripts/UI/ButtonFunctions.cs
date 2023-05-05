@@ -12,8 +12,7 @@ public class ButtonFunctions : MonoBehaviour
 
     public void PlayGame()
     {
-        SceneManage._instance.LoadScene(1);
-        UIManager.instance.ResumeState();
+        UIManager.instance.TransitionToGame();
     }
 
     public void ToLoadout()
