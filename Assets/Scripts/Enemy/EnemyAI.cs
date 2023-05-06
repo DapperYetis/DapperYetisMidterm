@@ -79,18 +79,30 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     protected EnemyAttackStats _primaryAttackStatsScaling;
 
     [Header("--- Audio Controls ---")]
-    [Range(0, 1)][SerializeField] float audSpawnVol;
-    [SerializeField] AudioClip[] audSpawn;
-    [Range(0, 1)][SerializeField] float audSpawnRoarVol;
-    [SerializeField] AudioClip[] audSpawnRoar;
-    [Range(0, 1)][SerializeField] float audGettingCloseVol;
-    [SerializeField] AudioClip[] audGettingClose;
-    [Range(0, 1)][SerializeField] float audTakeDamageVol;
-    [SerializeField] AudioClip[] audTakeDamage;
-    [Range(0, 1)][SerializeField] float audDeathVol;
-    [SerializeField] AudioClip[] audDeath;
-    [Range(0, 1)][SerializeField] float audFallDownVol;
-    [SerializeField] AudioClip[] audFallDown;
+    [Range(0, 1)][SerializeField]
+    protected float _audSpawnVol;
+    [SerializeField]
+    protected AudioClip[] _audSpawn;
+    [Range(0, 1)][SerializeField]
+    protected float _audSpawnRoarVol;
+    [SerializeField]
+    protected AudioClip[] _audSpawnRoar;
+    [Range(0, 1)][SerializeField]
+    protected float _audGettingCloseVol;
+    [SerializeField]
+    protected AudioClip[] _audGettingClose;
+    [Range(0, 1)][SerializeField]
+    protected float _audTakeDamageVol;
+    [SerializeField]
+    protected AudioClip[] _audTakeDamage;
+    [Range(0, 1)][SerializeField]
+    protected float _audDeathVol;
+    [SerializeField]
+    protected AudioClip[] _audDeath;
+    [Range(0, 1)][SerializeField]
+    protected float _audFallDownVol;
+    [SerializeField]
+    protected AudioClip[] _audFallDown;
 
     protected Vector3 _playerDirProjected
     {
@@ -258,6 +270,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
         else
         {
             _anim.SetTrigger("Damage");
+            _aud.PlayOneShot(_audTakeDamage[Random.Range(0, _audTakeDamage.Length)], _audTakeDamageVol);
             StartCoroutine(FlashColor(Color.red));
             if (buffs != null)
             {
@@ -273,12 +286,14 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
 
     private void Die()
     {
+        _aud.PlayOneShot(_audDeath[Random.Range(0, _audDeath.Length)], _audDeathVol);
         _anim.SetBool("Dead", true);
         GetComponent<CapsuleCollider>().enabled = false;
         _agent.enabled = false;
         enabled = false;
         EnemyManager.instance.RemoveEnemyFromList(this);
         _drops.Drop();
+        _aud.PlayOneShot(_audFallDown[Random.Range(0, _audFallDown.Length)], _audFallDownVol);
         StartCoroutine(EnemyRemoved());
     }
 

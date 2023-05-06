@@ -15,7 +15,8 @@ public struct EnemyAttackStats
     public List<SOBuff> targetBuffs;
     public float speed;
     public float range;
-
+    [Range(0, 1)] public float _attackAudioVol;
+    public AudioClip[] _attackAudio;
 
     public static EnemyAttackStats operator +(EnemyAttackStats s1, EnemyAttackStats s2)
     {

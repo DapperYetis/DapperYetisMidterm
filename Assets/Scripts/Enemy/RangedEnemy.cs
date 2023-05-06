@@ -26,6 +26,7 @@ public class RangedEnemy : EnemyAI
     protected virtual IEnumerator FireShot()
     {
         _anim.SetTrigger("Shoot");
+        _aud.PlayOneShot(_primaryAttackStats._attackAudio[Random.Range(0, _primaryAttackStats._attackAudio.Length)], _primaryAttackStats._attackAudioVol);
         Quaternion rot = Quaternion.LookRotation(_playerDirProjected * 0.5f);
         if (Mathf.Abs(Quaternion.Angle(rot, Quaternion.LookRotation(_playerDir))) >= 60)
             rot = Quaternion.LookRotation(_playerDir);
