@@ -19,7 +19,7 @@ public class FireProjectile : Projectile
     {
         if (other.isTrigger) return;
 
-        if(!_exploding)
+        if(_isAOE && !_exploding)
         {
             if (other.gameObject.TryGetComponent<IDamageable>(out var damageable))
             {
@@ -49,6 +49,7 @@ public class FireProjectile : Projectile
         _exploding = true;
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         Destroy(gameObject, _stats.secondaryLifetime);
+        _stats.directDamage = _stats.secondaryDamage;
         while(true)
         {
             transform.localScale += Vector3.one * _stats.fxIntesity;
