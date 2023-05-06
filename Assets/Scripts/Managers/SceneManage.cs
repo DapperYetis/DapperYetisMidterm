@@ -5,10 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneManage : MonoBehaviour
 {
-    public LoadoutScript _loadout;
-
-    private MainMenuRefs _menuCanvas;
-    public static SceneManage _instance;
+    public static SceneManage instance;
 
 
 #if UNITY_EDITOR
@@ -18,22 +15,17 @@ public class SceneManage : MonoBehaviour
             LoadScene(0);
         if (Input.GetKeyDown("1"))
             LoadScene(1);
-        if (Input.GetKeyDown("2"))
-            LoadScene(2);
     }
 #endif
 
     private void Start()
     {
-        if(_instance != null)
+        if(instance != null)
         {
             gameObject.SetActive(false);
             return;
         }
-        _instance = this;
-        if(!GameManager.instance.inGame)
-            _menuCanvas = GameObject.FindGameObjectWithTag("MenuCanvas").GetComponent<MainMenuRefs>();
-        _loadout = _menuCanvas.loadoutScript;
+        instance = this;
     }
 
     public void LoadScene(int scene)

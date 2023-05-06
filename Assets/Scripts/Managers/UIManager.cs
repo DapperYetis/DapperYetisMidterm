@@ -46,7 +46,6 @@ public class UIManager : MonoBehaviour
 
     public bool isPaused => _activeMenu != null;
 
-    // Start is called before the first frame update
     void Awake()
     {
         if (instance != null)
@@ -136,6 +135,7 @@ public class UIManager : MonoBehaviour
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
                 _references.hud.SetActive(true);
+                //GameManager.instance.StartGame();
             }
 
             return true;
@@ -253,7 +253,8 @@ public class UIManager : MonoBehaviour
                 StartCoroutine(DynamicHealthDecrease());
             if (healthChange < 0)
                 StartCoroutine(Damaged());
-            StartCoroutine(HealthRedFlash());
+            if (healthChange < 0)
+                StartCoroutine(HealthRedFlash());
             SetHealth();
             float currHealth = (float)_playerController.GetHealthCurrent() / (float)_playerController.GetHealthMax();
             _references.hpBar.fillAmount = currHealth;

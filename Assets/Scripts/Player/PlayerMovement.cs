@@ -46,8 +46,6 @@ public class PlayerMovement : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _playerVelocity = new();
-
-        _rb.position = GameManager.instance.playerSpawnPos.position;
     }
 
     private void Update()
@@ -59,6 +57,8 @@ public class PlayerMovement : MonoBehaviour
     {
         _rb.velocity = _playerVelocity;
     }
+
+    public void SetPosition(Vector3 pos) => _rb.position = pos;
 
     private void Movement()
     {

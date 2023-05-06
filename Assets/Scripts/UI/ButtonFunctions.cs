@@ -38,7 +38,7 @@ public class ButtonFunctions : MonoBehaviour
     public void ToMainMenu()
     {
         UIManager.instance.PauseState();
-        SceneManage._instance.LoadScene(0);
+        SceneManage.instance.LoadScene(0);
     }
 
     public void GameBackButton()
@@ -55,26 +55,6 @@ public class ButtonFunctions : MonoBehaviour
     {
         UIManager.instance.PrevMenu();
         UIManager.instance.ResumeState();
-    }
-
-    public void SetVolume()
-    {
-        SettingVals._instance.SetVolumeFromSlider();
-    }
-
-    public void SetSensitivity()
-    {
-        SettingVals._instance.SetSensitivityFromSlider();
-    }
-    
-    public void SetInvertedControls()
-    {
-        SettingVals._instance.SetInvertCam();
-    }
-
-    public void SetToggleSprint()
-    {
-        SettingVals._instance.SetSprintHold();
     }
 
     public void ToKeybindsMenu()

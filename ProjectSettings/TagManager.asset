@@ -9,6 +9,7 @@ TagManager:
   - PlayerSpawnPoint
   - TransitionScreen
   - MenuCanvas
+  - Settings
   layers:
   - Default
   - TransparentFX

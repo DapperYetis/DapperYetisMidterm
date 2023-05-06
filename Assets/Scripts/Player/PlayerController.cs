@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
 
 
     // ------References------
+    [SerializeField] 
     private Camera _camera;
     [SerializeField]
     private PlayerMovement _movement;
@@ -30,7 +31,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
     public PlayerMovementGrappling grappling => _grappling;
 
 
-    // ------Loadout------\
+    // ------Loadout------
     private PlayerController _instance;
     private SOWeapon _weaponAsset;
     private Weapon _weapon;
@@ -54,6 +55,8 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
     private float _healthCurrent;
     private bool _canInteract;
     private IInteractable _interactable;
+    private bool _isSetUp;
+    public bool isSetUp => _isSetUp;
 
     private void Awake()
     {
@@ -67,11 +70,12 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
         DontDestroyOnLoad(gameObject);
     }
 
-    public void StartGame()
+    public void SetUp()
     {
         // Movement
-        _camera = Camera.main;
+        //_camera = Camera.main;
         _movement.SetStats(_stats);
+        _movement.SetPosition(GameManager.instance.playerSpawnPos.position);
 
         // Combat
         GetLoadout();
@@ -80,6 +84,8 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
         _inventory.OnItemsChange.AddListener(HandleNewItem);
         Heal(_stats.healthMax);
         OnPlayerSetUp.Invoke();
+
+        _isSetUp = true;
     }
 
     private void FixedUpdate()
@@ -114,11 +120,11 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
 
     private void GetLoadout()
     {
-        _weaponAsset = SceneManage._instance._loadout.GetWeapon();
+        _weaponAsset = SettingsManager.instance.loadoutScript.GetWeapon();
         _weapon = Instantiate(_weaponAsset.prefab, transform).GetComponent<Weapon>();
         _weapon.SetStats(_weaponAsset.stats);
 
-        _supportAsset = SceneManage._instance._loadout.GetSupport();
+        _supportAsset = SettingsManager.instance.loadoutScript.GetSupport();
         _support = Instantiate(_supportAsset.prefab, transform).GetComponent<Support>();
         _support.SetStats(_supportAsset.stats);
 
@@ -224,12 +230,15 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
 
     public void ResetLoadout()
     {
+        if(!isSetUp)
+            return;
         inventory.ResetPlayer();
         Destroy(_weapon.gameObject);
         _weapon = null;
         Destroy(_support.gameObject); 
         _support = null;
-        _support = null;
         _currentBuffs.Clear();
+
+        _isSetUp = false;
     }
 }

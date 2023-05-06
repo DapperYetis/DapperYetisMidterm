@@ -71,9 +71,8 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManage._instance.LoadScene(1);
+        SceneManage.instance.LoadScene(1);
         _startTime = Time.time;
-        _player.StartGame();
     }
 
     public void EndConditions()
@@ -96,18 +95,24 @@ public class GameManager : MonoBehaviour
 
     private void DoResetMap(Scene scene, LoadSceneMode mode)
     {
-        buildIndex = SceneManager.GetActiveScene().buildIndex;
-        if (mode == LoadSceneMode.Additive) return;
+        buildIndex = scene.buildIndex;
+        //if (mode == LoadSceneMode.Additive) return;
 
         FindPlayer();
-        if (buildIndex == 0)
-            player.ResetLoadout();
+        
         if (EnemyManager.instance != null)
             EnemyManager.instance.ResetMap();
         if (UIManager.instance != null)
             UIManager.instance.SceneReset();
         if (LootManager.instance != null)
             LootManager.instance.ResetMap();
+        if (SettingsManager.instance != null)
+            SettingsManager.instance.ResetMap();
+
+        if (buildIndex == 0)
+            player.ResetLoadout();
+        if (buildIndex != 0 && !_player.isSetUp)
+            _player.SetUp();
     }
     #endregion
 

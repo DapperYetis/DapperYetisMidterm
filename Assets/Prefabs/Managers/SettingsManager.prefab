@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8461578349141247782}
   - component: {fileID: 4717514634520303342}
+  - component: {fileID: 3480202966095305411}
   m_Layer: 0
   m_Name: SettingsManager
   m_TagString: Untagged
@@ -49,3 +50,27 @@ MonoBehaviour:
   _volume: {fileID: 0}
   _sensitivity: {fileID: 0}
   _masterMixer: {fileID: 24100000, guid: 7507eae28a1122c4ba5057e6e3d7ba58, type: 2}
+  _loadoutScript: {fileID: 3480202966095305411}
+--- !u!114 &3480202966095305411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806769373858325397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15520525a330bf8429c4cfe72ce7275d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _buttonPrefab: {fileID: 0}
+  _weaponGroup: {fileID: 0}
+  _supportGroup: {fileID: 0}
+  _companionGroup: {fileID: 0}
+  _weapons:
+  - {fileID: 11400000, guid: b68926fbb5736ec4d8d214ac1d99cdd5, type: 2}
+  - {fileID: 11400000, guid: 076e20b409de1c648a9ed0faa8f2b967, type: 2}
+  _supports:
+  - {fileID: 11400000, guid: e12b777ff4b28ab45aa29f244964cc0b, type: 2}
+  - {fileID: 11400000, guid: 91896b14eb852d2408cd756d1ab6c0f2, type: 2}
+  _companions: []

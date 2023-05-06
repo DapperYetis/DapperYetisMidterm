@@ -25,11 +25,20 @@ public class MainMenuRefs : MonoBehaviour
 
     public Animator animator => _animator;
 
-    [SerializeField] LoadoutScript _loadoutScript;
-
-    public LoadoutScript loadoutScript => _loadoutScript;
-
     [SerializeField] GameObject _keyBindsMenu;
 
     public GameObject keyBindsMenu => _keyBindsMenu;
+
+    [SerializeField] GameObject _weaponGroup;
+
+    public GameObject weaponGroup => _weaponGroup;
+
+    [SerializeField] GameObject _supportGroup;
+
+    public GameObject supportGroup => _supportGroup;
+
+    [SerializeField] GameObject _companionGroup;
+
+    public GameObject companionGroup => _companionGroup;
+
 }

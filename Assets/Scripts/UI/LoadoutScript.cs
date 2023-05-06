@@ -12,9 +12,9 @@ public class LoadoutScript : MonoBehaviour
 {
     [Header("----- Components -----")]
     [SerializeField] GameObject _buttonPrefab;
-    [SerializeField] GameObject _weaponGroup;
-    [SerializeField] GameObject _supportGroup;
-    [SerializeField] GameObject _companionGroup;
+    private GameObject _weaponGroup;
+    private GameObject _supportGroup;
+    private GameObject _companionGroup;
     [SerializeField] List<SOWeapon> _weapons;
     private static List<SOWeapon> _cachedWeapons;
     [SerializeField] List<SOSupport> _supports;
@@ -29,6 +29,8 @@ public class LoadoutScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+
         CacheOptions();
 
         if (!PlayerPrefs.HasKey("WeaponChoice"))
@@ -45,24 +47,9 @@ public class LoadoutScript : MonoBehaviour
         if (PlayerPrefs.GetInt("CompanionChoice") >= _cachedSupports.Count)
             PlayerPrefs.SetInt("CompanionChoice", 0);
 
-        foreach(var weapon in _cachedWeapons)
-        {
-            AddWeapon(weapon);
-        }
-        _weaponButtons[GetWeapon()].interactable = false;
+        AddOptions();
 
-        foreach(var support in _cachedSupports)
-        {
-            AddSupport(support);
-        }
-        _supportButtons[GetSupport()].interactable = false;
 
-        foreach (var companion in _cachedCompanions)
-        {
-            AddCompanion(companion);
-        }
-        if(GetCompainion() != null)
-            _companionButtons[GetCompainion()].interactable = false;
     }
 
     private void CacheOptions()
@@ -115,7 +102,7 @@ public class LoadoutScript : MonoBehaviour
         Button support = Instantiate(_buttonPrefab, _supportGroup.transform).GetComponent<Button>();
 
         support.name = newSupport.name;
-        support.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = newSupport.supportName;    
+        support.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = newSupport.supportName;
 
         support.onClick.AddListener(() =>
         {
@@ -182,4 +169,63 @@ public class LoadoutScript : MonoBehaviour
     public SOCompanion GetCompainion() => null; //_cachedCompanions[PlayerPrefs.GetInt("CompanionChoice")];
 
     #endregion
+
+    public void SetWeaponGroup(GameObject row)
+    {
+        _weaponGroup = row;
+    }
+
+    public void SetSupportGroup(GameObject row)
+    {
+        _supportGroup = row;
+    }
+
+    public void SetCompanionGroup(GameObject row)
+    {
+        _companionGroup = row;
+    }
+
+    public void AddOptions()
+    {
+        FindGroups();
+        if (_weaponGroup != null)
+        {
+            _weaponButtons.Clear();
+            foreach (var weapon in _cachedWeapons)
+            {
+                AddWeapon(weapon);
+            }
+            _weaponButtons[GetWeapon()].interactable = false;
+        }
+        if (_supportGroup != null)
+        {
+            _supportButtons.Clear();
+            foreach (var support in _cachedSupports)
+            {
+                AddSupport(support);
+            }
+            _supportButtons[GetSupport()].interactable = false;
+        }
+        if (_companionGroup != null)
+        {
+            _companionButtons.Clear();
+            foreach (var companion in _cachedCompanions)
+            {
+                AddCompanion(companion);
+            }
+            if (GetCompainion() != null)
+                _companionButtons[GetCompainion()].interactable = false;
+        }
+    }
+
+    private void FindGroups()
+    {
+        GameObject obj = GameObject.FindGameObjectWithTag("MenuCanvas");
+        if (!obj || !obj.TryGetComponent<MainMenuRefs>(out MainMenuRefs menu))
+            return;
+
+        _weaponGroup = menu.weaponGroup;
+        _supportGroup = menu.supportGroup;
+        _companionGroup = menu.companionGroup;
+    }
 }
