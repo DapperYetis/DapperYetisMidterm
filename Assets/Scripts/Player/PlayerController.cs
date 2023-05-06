@@ -98,11 +98,11 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
         _weapon.SetCamera(_camera);
         _support.SetCamera(_camera);
         _inventory.OnItemsChange.AddListener(HandleNewItem);
-        Heal(_stats.healthMax);
-        OnPlayerSetUp.Invoke();
-
+        Heal(_stats.healthMax, true);
 
         SetupEvents();
+
+        OnPlayerSetUp.Invoke();
     }
 
     private void FixedUpdate()
@@ -204,7 +204,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
         OnTakeDamage?.Invoke(damage);
     }
 
-    public void Heal(float health)
+    public void Heal(float health, bool silent = false)
     {
         _healthCurrent += health;
 
@@ -214,7 +214,8 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
         }
 
         OnHealthChange?.Invoke(health);
-        OnHeal?.Invoke(health);
+        if(!silent)
+            OnHeal?.Invoke(health);
     }
 
     public float GetHealthMax() => _stats.healthMax;
