@@ -64,7 +64,7 @@ public class UIManager : MonoBehaviour
     {
         if (GameManager.instance.inGame)
             _references.timer.SetText($"{(int)GameManager.instance.runTimeMinutes} : {(GameManager.instance.runTime % 60).ToString("F1")}");
-        if (!_isPlaying)
+        if (GameManager.instance.inGame)
         {
             if (Input.GetButtonDown("Cancel"))
             {
