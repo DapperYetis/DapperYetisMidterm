@@ -36,6 +36,7 @@ public class AudioManager : MonoBehaviour
     private IEnumerator DoBackgroundMusic()
     {
         _bgMusicPlaying = true;
+        _musicAudioSource.loop = true;
         WaitForEndOfFrame wait = new();
         _musicAudioSource.PlayOneShot(_backgroundMusic);
         while (_bgMusicPlaying)
@@ -43,5 +44,6 @@ public class AudioManager : MonoBehaviour
             yield return wait;
         }
         _musicAudioSource.Stop();
+        _musicAudioSource.loop = false;
     }
 }
