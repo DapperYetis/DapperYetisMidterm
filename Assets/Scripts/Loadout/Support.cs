@@ -18,6 +18,8 @@ public abstract class Support : MonoBehaviour
     public UnityEvent OnPrimary;
     [HideInInspector]
     public UnityEvent OnSecondary;
+    [HideInInspector]
+    public UnityEvent<Projectile, IDamageable> OnHit;
 
     public void SetCamera(Camera camera)
     {
@@ -32,9 +34,15 @@ public abstract class Support : MonoBehaviour
     protected virtual void Update()
     {
         if (Input.GetButton("Primary Support") && _canUsePrimary && !GameManager.instance.isPaused)
+        {
             StartCoroutine(Primary());
+            OnPrimary.Invoke();
+        }
         else if (Input.GetButton("Secondary Support") && _canUseSecondary && !GameManager.instance.isPaused)
+        {
             StartCoroutine(Secondary());
+            OnSecondary.Invoke();
+        }
     }
 
     protected abstract IEnumerator Primary();
