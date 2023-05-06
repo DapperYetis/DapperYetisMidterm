@@ -27,9 +27,15 @@ public class Teleport : Support
     protected override void Update()
     {
         if (Input.GetButtonDown("Primary Support") && _canUsePrimary && !GameManager.instance.isPaused)
+        {
             StartCoroutine(Primary());
+            OnPrimary.Invoke();
+        }
         else if (Input.GetButtonDown("Secondary Support") && _canUseSecondary && !GameManager.instance.isPaused)
+        {
             StartCoroutine(Secondary());
+            OnSecondary.Invoke();
+        }
     }
 
     protected override IEnumerator Primary()

@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     public int jumpCountCurrent => _jumpCountCurrent;
     private bool _isGrounded;
     public bool isGrounded => _isGrounded;
+    private bool _toggleSprint => UIManager.instance.GetSprintToggle();
 
     // Events
     [HideInInspector]
@@ -41,6 +42,8 @@ public class PlayerMovement : MonoBehaviour
     public UnityEvent OnSprintStop;
     [HideInInspector]
     public UnityEvent OnJump;
+    [HideInInspector]
+    public UnityEvent OnLand;
 
     private void Start()
     {
@@ -71,13 +74,19 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetButtonDown("Sprint"))
         {
-            _isRunning = !_isRunning;
-            if (_isRunning)
-                OnSprintStart.Invoke();
+            if (_toggleSprint)
+                _isRunning = !_isRunning;
             else
+                _isRunning = true;
+
+            if (_isRunning)
+            {
+                OnSprintStart.Invoke();
+            }
+            else if(_toggleSprint)
                 OnSprintStop.Invoke();
         }
-        else if (_isRunning && Input.GetAxis("Vertical") < 0.001f)
+        else if ((Input.GetButtonUp("Sprint") && !_toggleSprint) || (_isRunning && Input.GetAxis("Vertical") < 0.001f))
         {
             _isRunning = false;
             OnSprintStop.Invoke();
@@ -94,17 +103,30 @@ public class PlayerMovement : MonoBehaviour
 
         if (!_wasMoving && (playerVelocity - Vector3.up * playerVelocity.y).sqrMagnitude > 0.005)
         {
+            _wasMoving = true;
             OnMoveStart.Invoke();
         }
         else if (_wasMoving && (playerVelocity - Vector3.up * playerVelocity.y).sqrMagnitude <= 0.005)
         {
+            _wasMoving = false;
             OnMoveStop.Invoke();
         }
     }
 
     private void VerticalMovement()
     {
-        _isGrounded = Physics.Raycast(_footPos.position, Vector3.down, 0.125f, Physics.AllLayers ^ (1 << 6));
+        if(Physics.Raycast(_footPos.position, Vector3.down, 0.125f, Physics.AllLayers ^ (1 << 6)))
+        {
+            if (!_isGrounded)
+                OnLand.Invoke();
+
+            _isGrounded = true;
+        }
+        else
+        {
+            _isGrounded = false;
+        }
+
         if (_isGrounded && !Input.GetButton("Jump"))
         {
             _jumpCountCurrent = 0;
