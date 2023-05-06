@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using static UnityEngine.Rendering.DebugUI.Table;
 
 public abstract class Weapon : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public abstract class Weapon : MonoBehaviour
     public UnityEvent OnPrimary;
     [HideInInspector]
     public UnityEvent OnSecondary;
+    [HideInInspector]
+    public UnityEvent<Projectile, IDamageable> OnHit;
 
     public void SetCamera(Camera camera)
     {
@@ -67,8 +70,16 @@ public abstract class Weapon : MonoBehaviour
             rot = Quaternion.LookRotation(hit.point - _shootPos.position);
         }
 
-        Instantiate(ability.prefab, _shootPos.position, rot).GetComponent<Projectile>().SetStats(ability);
+        CreateProjectile(ability, rot);
 
         yield return new WaitForSeconds(ability.cooldown);
+    }
+    protected virtual void CreateProjectile(AbilityStats ability, Quaternion rot = default)
+    {
+        if (rot == default(Quaternion)) rot = Quaternion.identity;
+
+        Projectile projectile = Instantiate(ability.prefab, _shootPos.position, rot).GetComponent<Projectile>();
+        projectile.SetStats(ability);
+        projectile.OnHit.AddListener((projectile, damageable) => OnHit.Invoke(projectile, damageable));
     }
 }

@@ -17,9 +17,14 @@ public class Grapple : Support
     protected override void Update()
     {
         if (Input.GetButtonDown("Primary Support") && _canUsePrimary && !GameManager.instance.isPaused)
+        {
             StartPrimary();
+            OnPrimary.Invoke();
+        }
         else if (Input.GetButtonUp("Primary Support") && !_canUsePrimary && !GameManager.instance.isPaused && !_isStopping)
+        {
             StartCoroutine(Primary());
+        }
 
         //else if (Input.GetButton("Secondary Support") && _canUseSecondary && !GameManager.instance.isPaused)
         //    StartCoroutine(Secondary());
