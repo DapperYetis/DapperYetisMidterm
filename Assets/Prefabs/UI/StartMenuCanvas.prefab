@@ -163,28 +163,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2780114919064020890}
     m_Modifications:
-    - target: {fileID: 2049047460, guid: b50c6a7c3281273458636f50dd0ebc92, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1805209321484363491}
-    - target: {fileID: 2049047460, guid: b50c6a7c3281273458636f50dd0ebc92, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetVolume
-      objectReference: {fileID: 0}
-    - target: {fileID: 2049047460, guid: b50c6a7c3281273458636f50dd0ebc92, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ButtonFunctions, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 240554827009021660, guid: b50c6a7c3281273458636f50dd0ebc92,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1805209321484363491}
-    - target: {fileID: 422935526738154230, guid: b50c6a7c3281273458636f50dd0ebc92,
-        type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1805209321484363491}
     - target: {fileID: 1211810649098540210, guid: b50c6a7c3281273458636f50dd0ebc92,
         type: 3}
       propertyPath: m_Pivot.x
@@ -295,16 +273,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SettingsMenu
       objectReference: {fileID: 0}
-    - target: {fileID: 1211810649098540211, guid: b50c6a7c3281273458636f50dd0ebc92,
-        type: 3}
-      propertyPath: m_TagString
-      value: Settings
-      objectReference: {fileID: 0}
-    - target: {fileID: 5205230920968625433, guid: b50c6a7c3281273458636f50dd0ebc92,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1805209321484363491}
     - target: {fileID: 5653961484632187129, guid: b50c6a7c3281273458636f50dd0ebc92,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

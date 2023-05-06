@@ -1175,17 +1175,31 @@ PrefabInstance:
     - target: {fileID: 2049047460, guid: b50c6a7c3281273458636f50dd0ebc92, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 4724916751031679165}
+      objectReference: {fileID: 1024188453673448677}
+    - target: {fileID: 2049047460, guid: b50c6a7c3281273458636f50dd0ebc92, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetVolumeFromSlider
+      objectReference: {fileID: 0}
     - target: {fileID: 240554827009021660, guid: b50c6a7c3281273458636f50dd0ebc92,
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 4724916751031679165}
+      objectReference: {fileID: 1024188453673448677}
+    - target: {fileID: 240554827009021660, guid: b50c6a7c3281273458636f50dd0ebc92,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetSprintToggle
+      objectReference: {fileID: 0}
     - target: {fileID: 422935526738154230, guid: b50c6a7c3281273458636f50dd0ebc92,
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 4724916751031679165}
+      objectReference: {fileID: 1024188453673448677}
+    - target: {fileID: 422935526738154230, guid: b50c6a7c3281273458636f50dd0ebc92,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetSensitivityFromSlider
+      objectReference: {fileID: 0}
     - target: {fileID: 1211810649098540210, guid: b50c6a7c3281273458636f50dd0ebc92,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1315,7 +1329,12 @@ PrefabInstance:
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 4724916751031679165}
+      objectReference: {fileID: 1024188453673448677}
+    - target: {fileID: 5205230920968625433, guid: b50c6a7c3281273458636f50dd0ebc92,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetInvertCam
+      objectReference: {fileID: 0}
     - target: {fileID: 5265147288769118225, guid: b50c6a7c3281273458636f50dd0ebc92,
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1348,6 +1367,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b50c6a7c3281273458636f50dd0ebc92, type: 3}
+--- !u!114 &1024188453673448677 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6878637538518977142, guid: b50c6a7c3281273458636f50dd0ebc92,
+    type: 3}
+  m_PrefabInstance: {fileID: 5855648861419503251}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4724916749527001632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8988cf52eb75c81489c5bfb5dbd2b2ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4724916749527001632 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1211810649098540211, guid: b50c6a7c3281273458636f50dd0ebc92,
