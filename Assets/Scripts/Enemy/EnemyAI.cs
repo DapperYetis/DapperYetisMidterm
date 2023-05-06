@@ -79,27 +79,48 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     protected EnemyAttackStats _primaryAttackStatsScaling;
 
     [Header("--- Audio Controls ---")]
-    [Range(0, 1)][SerializeField]
+    [Range(0, 1)]
+    [SerializeField]
     protected float _audSpawnVol;
     [SerializeField]
     protected AudioClip[] _audSpawn;
-    [Range(0, 1)][SerializeField]
+    [Range(0, 1)]
+    [SerializeField]
     protected float _audSpawnRoarVol;
     [SerializeField]
     protected AudioClip[] _audSpawnRoar;
-    [Range(0, 1)][SerializeField]
+    [Range(0, 1)]
+    [SerializeField]
     protected float _audGettingCloseVol;
     [SerializeField]
     protected AudioClip[] _audGettingClose;
-    [Range(0, 1)][SerializeField]
+    [Range(0, 1)]
+    [SerializeField]
     protected float _audTakeDamageVol;
     [SerializeField]
     protected AudioClip[] _audTakeDamage;
-    [Range(0, 1)][SerializeField]
+    [Range(0, 1)]
+    [SerializeField]
+    protected float _audHealVol;
+    [SerializeField]
+    protected AudioClip[] _audHeal;
+    [Range(0, 1)]
+    [SerializeField]
+    protected float _audBuffVol;
+    [SerializeField]
+    protected AudioClip[] _audBuff;
+    [Range(0, 1)]
+    [SerializeField]
+    protected float _audDebuffVol;
+    [SerializeField]
+    protected AudioClip[] _audDebuff;
+    [Range(0, 1)]
+    [SerializeField]
     protected float _audDeathVol;
     [SerializeField]
     protected AudioClip[] _audDeath;
-    [Range(0, 1)][SerializeField]
+    [Range(0, 1)]
+    [SerializeField]
     protected float _audFallDownVol;
     [SerializeField]
     protected AudioClip[] _audFallDown;
@@ -318,10 +339,14 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     public virtual void Heal(float health)
     {
         _HPCurrent += health;
-        StartCoroutine(FlashColor(Color.green));
 
         if (_HPCurrent >= _stats.HPMax)
             _HPCurrent = _stats.HPMax;
+        else
+        {
+            StartCoroutine(FlashColor(Color.green));
+            _aud.PlayOneShot(_audHeal[Random.Range(0, _audHeal.Length)], _audHealVol);
+        }
 
         _OnHealthChange.Invoke();
     }
@@ -341,7 +366,10 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     public void AddBuff(SOBuff buff, int amount = 1)
     {
         if (!_currentBuffs.ContainsKey(buff))
-            _currentBuffs.Add(buff, (0, Time.time + buff.buffLength));
+        {
+            if (buff)
+                _currentBuffs.Add(buff, (0, Time.time + buff.buffLength));
+        }
         _currentBuffs[buff] = (_currentBuffs[buff].stacks + amount, _currentBuffs[buff].time);
     }
 
