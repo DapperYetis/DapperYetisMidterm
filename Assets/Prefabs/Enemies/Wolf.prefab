@@ -307,7 +307,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _radiusMod: 1
   _speedMod: 3
-  _animTransSpeed: 0.1
+  _animTransSpeed: 1
   _OnHealthChange:
     m_PersistentCalls:
       m_Calls: []
@@ -512,7 +512,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -527,7 +527,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.055555556
       inSlope: 0
       outSlope: 0
       tangentMode: 0

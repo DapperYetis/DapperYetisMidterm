@@ -305,20 +305,28 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
         _OnHealthChange.Invoke();
     }
 
-    private void Die()
+    protected void Die()
     {
-        _aud.PlayOneShot(_audDeath[Random.Range(0, _audDeath.Length)], _audDeathVol);
         _anim.SetBool("Dead", true);
         GetComponent<CapsuleCollider>().enabled = false;
         _agent.enabled = false;
         enabled = false;
         EnemyManager.instance.RemoveEnemyFromList(this);
         _drops.Drop();
-        _aud.PlayOneShot(_audFallDown[Random.Range(0, _audFallDown.Length)], _audFallDownVol);
         StartCoroutine(EnemyRemoved());
     }
 
-    public virtual IEnumerator EnemyRemoved()
+    protected void DeathCry()
+    {
+        _aud.PlayOneShot(_audDeath[Random.Range(0, _audDeath.Length)], _audDeathVol);
+    }
+
+    protected void FellDownDead()
+    {
+        _aud.PlayOneShot(_audFallDown[Random.Range(0, _audFallDown.Length)], _audFallDownVol);
+    }
+
+    protected virtual IEnumerator EnemyRemoved()
     {
         yield return new WaitForSeconds(_deathDelay);
 
@@ -368,7 +376,18 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
         if (!_currentBuffs.ContainsKey(buff))
         {
             if (buff)
+            {
                 _currentBuffs.Add(buff, (0, Time.time + buff.buffLength));
+
+                //if (buff == )
+                //{
+                //    _aud.PlayOneShot(_audBuff[Random.Range(0, _audBuff.Length)], _audBuffVol);
+                //}
+                //else if (buff == )
+                //{
+                //    _aud.PlayOneShot(_audDebuff[Random.Range(0, _audDebuff.Length)], _audDebuffVol);
+                //}
+            }
         }
         _currentBuffs[buff] = (_currentBuffs[buff].stacks + amount, _currentBuffs[buff].time);
     }
