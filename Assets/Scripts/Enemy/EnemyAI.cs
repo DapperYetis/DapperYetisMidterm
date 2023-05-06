@@ -17,6 +17,8 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     [SerializeField]
     protected Animator _anim;
     [SerializeField]
+    protected AudioSource _aud;
+    [SerializeField]
     protected EnemyDrops _drops;
 
     [Header("--- NavMesh Mods ---")]
@@ -75,6 +77,20 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     public EnemyAttackStats primaryAttackStats => _primaryAttackStats;
     [SerializeField]
     protected EnemyAttackStats _primaryAttackStatsScaling;
+
+    [Header("--- Audio Controls ---")]
+    [Range(0, 1)][SerializeField] float audSpawnVol;
+    [SerializeField] AudioClip[] audSpawn;
+    [Range(0, 1)][SerializeField] float audSpawnRoarVol;
+    [SerializeField] AudioClip[] audSpawnRoar;
+    [Range(0, 1)][SerializeField] float audGettingCloseVol;
+    [SerializeField] AudioClip[] audGettingClose;
+    [Range(0, 1)][SerializeField] float audTakeDamageVol;
+    [SerializeField] AudioClip[] audTakeDamage;
+    [Range(0, 1)][SerializeField] float audDeathVol;
+    [SerializeField] AudioClip[] audDeath;
+    [Range(0, 1)][SerializeField] float audFallDownVol;
+    [SerializeField] AudioClip[] audFallDown;
 
     protected Vector3 _playerDirProjected
     {
