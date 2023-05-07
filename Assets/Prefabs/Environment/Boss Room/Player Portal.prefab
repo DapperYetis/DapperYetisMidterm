@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 2582428321238852710}
   - component: {fileID: 943256191735353480}
   - component: {fileID: 6221065216782454242}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Portal Ring
-  m_TagString: Untagged
+  m_TagString: PlayerSpawnPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -11586,7 +11586,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 835
+  m_VersionIndex: 838
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -11706,7 +11706,7 @@ GameObject:
   - component: {fileID: 3503037983399348359}
   m_Layer: 3
   m_Name: Player Portal
-  m_TagString: EnemySpawnPoint
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -12257,7 +12257,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 937
+  m_VersionIndex: 940
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
