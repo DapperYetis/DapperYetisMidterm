@@ -11,6 +11,9 @@ public class SOItem : ScriptableObject
     private Sprite _icon;
     public Sprite icon => _icon;
     [SerializeField]
+    private string _itemName;
+    public string itemName => _itemName;
+    [SerializeField]
     private string _description;
     public string description => _description;
     [SerializeField]
