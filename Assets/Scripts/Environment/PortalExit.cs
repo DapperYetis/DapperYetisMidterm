@@ -1,0 +1,32 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PortalExit : MonoBehaviour, IInteractable
+{
+    [SerializeField]
+    protected SOWave _bossWave;
+    [SerializeField]
+    protected Transform _spawnPoint;
+    [SerializeField]
+    protected int _cost = 1000;
+
+    private void Start()
+    {
+        _cost = (int)(_cost * EnemyManager.instance.scaleFactor);
+    }
+
+    public bool Interact()
+    {
+        EnemyManager.SpawnWave(_bossWave, _spawnPoint);
+        transform.parent.gameObject.SetActive(false);
+        return true;
+    }
+
+    public bool CanInteract()
+    {
+        return true;
+    }
+
+    public int GetCost() => _cost;
+}

@@ -1,0 +1,128 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &3646053762685831246
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 300656903233129977, guid: ce9eb809e08467f4982dc22ccf3b50d4,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 943256191735353480, guid: ce9eb809e08467f4982dc22ccf3b50d4,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2408136276147488851, guid: ce9eb809e08467f4982dc22ccf3b50d4,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691522330303470401, guid: ce9eb809e08467f4982dc22ccf3b50d4,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691522330303470401, guid: ce9eb809e08467f4982dc22ccf3b50d4,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691522330303470401, guid: ce9eb809e08467f4982dc22ccf3b50d4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691522330303470401, guid: ce9eb809e08467f4982dc22ccf3b50d4,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691522330303470401, guid: ce9eb809e08467f4982dc22ccf3b50d4,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691522330303470401, guid: ce9eb809e08467f4982dc22ccf3b50d4,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691522330303470401, guid: ce9eb809e08467f4982dc22ccf3b50d4,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691522330303470401, guid: ce9eb809e08467f4982dc22ccf3b50d4,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691522330303470401, guid: ce9eb809e08467f4982dc22ccf3b50d4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691522330303470401, guid: ce9eb809e08467f4982dc22ccf3b50d4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691522330303470401, guid: ce9eb809e08467f4982dc22ccf3b50d4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4216629384554833113, guid: ce9eb809e08467f4982dc22ccf3b50d4,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4736989210747000129, guid: ce9eb809e08467f4982dc22ccf3b50d4,
+        type: 3}
+      propertyPath: m_Name
+      value: Player Portal Enter Boss Arena
+      objectReference: {fileID: 0}
+    - target: {fileID: 6221065216782454242, guid: ce9eb809e08467f4982dc22ccf3b50d4,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ce9eb809e08467f4982dc22ccf3b50d4, type: 3}
+--- !u!82 &3438750468559657368 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2099108162877084118, guid: ce9eb809e08467f4982dc22ccf3b50d4,
+    type: 3}
+  m_PrefabInstance: {fileID: 3646053762685831246}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8296835590032416015 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4736989210747000129, guid: ce9eb809e08467f4982dc22ccf3b50d4,
+    type: 3}
+  m_PrefabInstance: {fileID: 3646053762685831246}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-8885861883120960295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8296835590032416015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac0ce53710162c34fbf61e2a53e54dac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawnPoint: {fileID: 0}
+  _aud: {fileID: 3438750468559657368}
+  _audPortalVol: 0.5
+  _audPortal:
+  - {fileID: 8300000, guid: 1644d0cba2875e849a67b99e86f3ef62, type: 3}
+  _audBossExclamationVol: 0.5
+  _audBossExclamation:
+  - {fileID: 8300000, guid: d675c599f6ecded48b409c06cff448d1, type: 3}
