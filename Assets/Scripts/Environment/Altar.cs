@@ -18,7 +18,7 @@ public class Altar : MonoBehaviour, IInteractable
 
     public bool Interact()
     {
-        EnemyManager.SpawnWave(_bossWave, _spawnPoint);
+        EnemyManager.SpawnEnemy(_bossWave, _spawnPoint.position);
         transform.parent.gameObject.SetActive(false);
         return true;
     }
