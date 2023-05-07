@@ -5,6 +5,7 @@ using System.Threading;
 using TMPro;
 using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {

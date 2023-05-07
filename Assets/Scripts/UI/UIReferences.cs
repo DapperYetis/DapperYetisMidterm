@@ -128,4 +128,8 @@ public class UIReferences : MonoBehaviour
 
     public Image dynamicHealth => _dynamicHealth;
 
+    [SerializeField] GameObject _itemNotif;
+
+    public GameObject itemNotif => _itemNotif;
+
 }
