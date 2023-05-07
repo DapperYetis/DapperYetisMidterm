@@ -45,7 +45,7 @@ public class MeleeEnemy : EnemyAI
     protected virtual IEnumerator TakeSwing()
     {
         _anim.SetTrigger("Attack");
-
+        _aud.PlayOneShot(_primaryAttackStats._attackAudio[Random.Range(0, _primaryAttackStats._attackAudio.Length)], _primaryAttackStats._attackAudioVol);
         _hasCompletedAttack = true;
         yield return new WaitForSeconds(_primaryAttackStats.rate);
         _isAttacking = false;

@@ -2,11 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class Projectile : MonoBehaviour
 {
     protected AbilityStats _stats;
     public AbilityStats stats => _stats;
+    [HideInInspector]
+    public UnityEvent<Projectile, IDamageable> OnHit;
+    protected bool _hasCrit;
+    public bool hasCrit => _hasCrit;
 
     protected virtual void Start()
     {
@@ -17,6 +22,12 @@ public abstract class Projectile : MonoBehaviour
     public virtual void SetStats(AbilityStats stats)
     {
         _stats = stats;
+        if(Random.Range(0,1f) <= _stats.critChance)
+        {
+            _stats.directDamage *= 1.5f;
+            _stats.secondaryDamage *= 1.5f;
+            _hasCrit = true;
+        }
     }
 
     protected virtual void OnTriggerEnter(Collider other)
@@ -25,12 +36,10 @@ public abstract class Projectile : MonoBehaviour
 
         if (other.gameObject.TryGetComponent<IDamageable>(out var damageable))
         {
-            damageable.Damage(_stats.directDamage);
-        }
-        if(other.gameObject.TryGetComponent<IBuffable>(out var buffable) && _stats.targetBuffs != null)
-        {
-            var buffs = (from buff in _stats.targetBuffs select (buff, 1)).ToList();
-            buffable.AddBuffs(buffs);
+            var buffs = (from buff in _stats.targetBuffs select (buff, 1)).ToArray();
+            damageable.Damage(_stats.directDamage, buffs);
+
+            OnHit?.Invoke(this, damageable);
         }
 
         Destroy(gameObject);

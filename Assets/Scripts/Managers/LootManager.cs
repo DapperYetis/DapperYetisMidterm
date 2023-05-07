@@ -139,7 +139,7 @@ public class LootManager : MonoBehaviour
     public SOItem GetItem()
     {
         Rarity rarity = _rarityChances.GetItem();
-        Debug.Log("RARITY: " + rarity);
+        //Debug.Log("RARITY: " + rarity);
         return _itemsByRarity[rarity][Random.Range(0, _itemsByRarity[rarity].Count)];
     }
 

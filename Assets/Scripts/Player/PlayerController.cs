@@ -50,9 +50,39 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
 
     // ------Events------
     [HideInInspector]
+    public UnityEvent OnPlayerSetUp;
+    [HideInInspector]
     public UnityEvent<float> OnHealthChange;
     [HideInInspector]
-    public UnityEvent OnPlayerSetUp;
+    public UnityEvent<float> OnTakeDamage;
+    [HideInInspector]
+    public UnityEvent<float> OnHeal;
+    // ---Consolidated Events---
+    // Movement
+    [HideInInspector]
+    public UnityEvent OnMoveStart;
+    [HideInInspector]
+    public UnityEvent OnMoveStop;
+    [HideInInspector]
+    public UnityEvent OnSprintStart;
+    [HideInInspector]
+    public UnityEvent OnSprintStop;
+    [HideInInspector]
+    public UnityEvent OnJump;
+    [HideInInspector]
+    public UnityEvent OnLand;
+    // Combat
+    [HideInInspector]
+    public UnityEvent<Projectile, IDamageable> OnHit;
+    [HideInInspector]
+    public UnityEvent OnPrimary;
+    [HideInInspector]
+    public UnityEvent OnSecondary;
+    [HideInInspector]
+    public UnityEvent OnSupportPrimary;
+    [HideInInspector]
+    public UnityEvent OnSupportSecondary;
+    // add companion events here
 
     // Instance variables
     private float _healthCurrent;
@@ -85,7 +115,10 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
         _weapon.SetCamera(_camera);
         _support.SetCamera(_camera);
         _inventory.OnItemsChange.AddListener(HandleNewItem);
-        Heal(_stats.healthMax);
+        Heal(_stats.healthMax, true);
+
+        SetupEvents();
+
         OnPlayerSetUp.Invoke();
 
         _isSetUp = true;
@@ -101,8 +134,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
 
         if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out RaycastHit hit, _interactDistance, 1 << 10))
         {
-            _interactable = hit.transform.GetComponent<IInteractable>();
-            if (_interactable != null)
+            if (hit.transform.TryGetComponent<IInteractable>(out _interactable))
             {
                 UIManager.instance.PromptOn(_interactable.GetCost());
                 _canInteract = true;
@@ -134,6 +166,47 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
         // TODO: Add companion setting once they are implemented
     }
 
+    private void SetupEvents()
+    {
+        // Movement Events
+        _movement.OnMoveStart.AddListener(() => OnMoveStart?.Invoke());
+        _movement.OnMoveStop.AddListener(() => OnMoveStop?.Invoke());
+        _movement.OnSprintStart.AddListener(() => OnSprintStart?.Invoke());
+        _movement.OnSprintStop.AddListener(() => OnSprintStop?.Invoke());
+        _movement.OnJump.AddListener(() => OnJump?.Invoke());
+        _movement.OnLand.AddListener(() => OnLand?.Invoke());
+
+        // Combat Events
+        _weapon.OnPrimary.AddListener(() => OnPrimary?.Invoke());
+        _weapon.OnSecondary.AddListener(() => OnSecondary?.Invoke());
+        _weapon.OnHit.AddListener((projectile, damageable) => OnHit?.Invoke(projectile, damageable));
+        _support.OnPrimary.AddListener(() => OnSupportPrimary?.Invoke());
+        _support.OnSecondary.AddListener(() => OnSupportSecondary?.Invoke());
+        _support.OnHit.AddListener((projectile, damageable) => OnHit?.Invoke(projectile, damageable));
+
+        // Testing Events
+#if false
+        //moving
+        OnMoveStart.AddListener(() => Debug.Log("Moving"));
+        OnMoveStop.AddListener(() => Debug.Log("Stopping"));
+        //sprinting
+        OnSprintStart.AddListener(() => Debug.Log("Sprinting"));
+        OnSprintStop.AddListener(() => Debug.Log("Stopping sprinting"));
+        //jumping
+        OnJump.AddListener(() => Debug.Log("Jumping"));
+        OnLand.AddListener(() => Debug.Log("Landing"));
+        
+        //weapon
+        OnPrimary.AddListener(() => Debug.Log("Primary fire"));
+        OnSecondary.AddListener(() => Debug.Log("Secondary fire"));
+        //support
+        OnSupportPrimary.AddListener(() => Debug.Log("Support Primary"));
+        OnSupportSecondary.AddListener(() => Debug.Log("Support Secondary"));
+        //damage
+        OnHit.AddListener((projectile, damageable) => Debug.Log($"Hit {damageable} for {projectile.stats.directDamage} damage."));
+#endif
+    }
+
     public void Damage(float damage, (SOBuff buff , int amount)[] buffs = null)
     {
         _healthCurrent -= damage;
@@ -147,9 +220,10 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
         }
 
         OnHealthChange?.Invoke(-damage);
+        OnTakeDamage?.Invoke(damage);
     }
 
-    public void Heal(float health)
+    public void Heal(float health, bool silent = false)
     {
         _healthCurrent += health;
 
@@ -159,6 +233,8 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
         }
 
         OnHealthChange?.Invoke(health);
+        if(!silent)
+            OnHeal?.Invoke(health);
     }
 
     public float GetHealthMax() => _stats.healthMax;

@@ -17,6 +17,8 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     [SerializeField]
     protected Animator _anim;
     [SerializeField]
+    protected AudioSource _aud;
+    [SerializeField]
     protected EnemyDrops _drops;
 
     [Header("--- NavMesh Mods ---")]
@@ -75,6 +77,53 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     public EnemyAttackStats primaryAttackStats => _primaryAttackStats;
     [SerializeField]
     protected EnemyAttackStats _primaryAttackStatsScaling;
+
+    [Header("--- Audio Controls ---")]
+    [Range(0, 1)]
+    [SerializeField]
+    protected float _audSpawnVol;
+    [SerializeField]
+    protected AudioClip[] _audSpawn;
+    [Range(0, 1)]
+    [SerializeField]
+    protected float _audSpawnRoarVol;
+    [SerializeField]
+    protected AudioClip[] _audSpawnRoar;
+    [Range(0, 1)]
+    [SerializeField]
+    protected float _audGettingCloseVol;
+    [SerializeField]
+    protected AudioClip[] _audGettingClose;
+    [Range(0, 1)]
+    [SerializeField]
+    protected float _audTakeDamageVol;
+    [SerializeField]
+    protected AudioClip[] _audTakeDamage;
+    [Range(0, 1)]
+    [SerializeField]
+    protected float _audHealVol;
+    [SerializeField]
+    protected AudioClip[] _audHeal;
+    [Range(0, 1)]
+    [SerializeField]
+    protected float _audBuffVol;
+    [SerializeField]
+    protected AudioClip[] _audBuff;
+    [Range(0, 1)]
+    [SerializeField]
+    protected float _audDebuffVol;
+    [SerializeField]
+    protected AudioClip[] _audDebuff;
+    [Range(0, 1)]
+    [SerializeField]
+    protected float _audDeathVol;
+    [SerializeField]
+    protected AudioClip[] _audDeath;
+    [Range(0, 1)]
+    [SerializeField]
+    protected float _audFallDownVol;
+    [SerializeField]
+    protected AudioClip[] _audFallDown;
 
     protected Vector3 _playerDirProjected
     {
@@ -242,6 +291,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
         else
         {
             _anim.SetTrigger("Damage");
+            _aud.PlayOneShot(_audTakeDamage[Random.Range(0, _audTakeDamage.Length)], _audTakeDamageVol);
             StartCoroutine(FlashColor(Color.red));
             if (buffs != null)
             {
@@ -255,7 +305,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
         _OnHealthChange.Invoke();
     }
 
-    private void Die()
+    protected void Die()
     {
         _anim.SetBool("Dead", true);
         GetComponent<CapsuleCollider>().enabled = false;
@@ -266,7 +316,17 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
         StartCoroutine(EnemyRemoved());
     }
 
-    public virtual IEnumerator EnemyRemoved()
+    protected void DeathCry()
+    {
+        _aud.PlayOneShot(_audDeath[Random.Range(0, _audDeath.Length)], _audDeathVol);
+    }
+
+    protected void FellDownDead()
+    {
+        _aud.PlayOneShot(_audFallDown[Random.Range(0, _audFallDown.Length)], _audFallDownVol);
+    }
+
+    protected virtual IEnumerator EnemyRemoved()
     {
         yield return new WaitForSeconds(_deathDelay);
 
@@ -284,13 +344,17 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
         Destroy(gameObject);
     }
 
-    public virtual void Heal(float health)
+    public virtual void Heal(float health, bool silent = false)
     {
         _HPCurrent += health;
-        StartCoroutine(FlashColor(Color.green));
 
         if (_HPCurrent >= _stats.HPMax)
             _HPCurrent = _stats.HPMax;
+        else
+        {
+            StartCoroutine(FlashColor(Color.green));
+            _aud.PlayOneShot(_audHeal[Random.Range(0, _audHeal.Length)], _audHealVol);
+        }
 
         _OnHealthChange.Invoke();
     }
@@ -310,7 +374,21 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     public void AddBuff(SOBuff buff, int amount = 1)
     {
         if (!_currentBuffs.ContainsKey(buff))
-            _currentBuffs.Add(buff, (0, Time.time + buff.buffLength));
+        {
+            if (buff)
+            {
+                _currentBuffs.Add(buff, (0, Time.time + buff.buffLength));
+
+                //if (buff == )
+                //{
+                //    _aud.PlayOneShot(_audBuff[Random.Range(0, _audBuff.Length)], _audBuffVol);
+                //}
+                //else if (buff == )
+                //{
+                //    _aud.PlayOneShot(_audDebuff[Random.Range(0, _audDebuff.Length)], _audDebuffVol);
+                //}
+            }
+        }
         _currentBuffs[buff] = (_currentBuffs[buff].stacks + amount, _currentBuffs[buff].time);
     }
 

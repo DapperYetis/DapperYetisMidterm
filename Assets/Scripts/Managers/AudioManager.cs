@@ -36,12 +36,22 @@ public class AudioManager : MonoBehaviour
     private IEnumerator DoBackgroundMusic()
     {
         _bgMusicPlaying = true;
+        _musicAudioSource.loop = true;
+        _musicAudioSource.clip = GetBackgroundMusic();
         WaitForEndOfFrame wait = new();
-        _musicAudioSource.PlayOneShot(_backgroundMusic);
+        _musicAudioSource.Play();
         while (_bgMusicPlaying)
         {
             yield return wait;
         }
         _musicAudioSource.Stop();
+        _musicAudioSource.loop = false;
+    }
+
+
+    // For later logic based off the current game state
+    private AudioClip GetBackgroundMusic()
+    {
+        return _backgroundMusic;
     }
 }

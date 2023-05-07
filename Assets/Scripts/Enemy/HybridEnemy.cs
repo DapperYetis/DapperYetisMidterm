@@ -11,7 +11,7 @@ public class HybridEnemy : MeleeEnemy
     [SerializeField]
     protected EnemyAttackStats _secondaryAttackStatsScaling;
     public EnemyAttackStats secondaryAttackStatsScaling => _secondaryAttackStatsScaling;
-
+    
     protected override void Update()
     {
         _movementOverride = false;
@@ -48,6 +48,7 @@ public class HybridEnemy : MeleeEnemy
     protected virtual IEnumerator FireShot()
     {
         _anim.SetTrigger("Shoot");
+        _aud.PlayOneShot(_secondaryAttackStats._attackAudio[Random.Range(0, _secondaryAttackStats._attackAudio.Length)], _secondaryAttackStats._attackAudioVol);
         Quaternion rot = Quaternion.LookRotation(_playerDir * 0.5f);
         if (Mathf.Abs(Quaternion.Angle(rot, Quaternion.LookRotation(_playerDir))) >= 60)
             rot = Quaternion.LookRotation(_playerDir);
