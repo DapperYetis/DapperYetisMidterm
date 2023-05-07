@@ -10,6 +10,8 @@ public abstract class Projectile : MonoBehaviour
     public AbilityStats stats => _stats;
     [HideInInspector]
     public UnityEvent<Projectile, IDamageable> OnHit;
+    protected bool _hasCrit;
+    public bool hasCrit => _hasCrit;
 
     protected virtual void Start()
     {
@@ -20,6 +22,12 @@ public abstract class Projectile : MonoBehaviour
     public virtual void SetStats(AbilityStats stats)
     {
         _stats = stats;
+        if(Random.Range(0,1f) <= _stats.critChance)
+        {
+            _stats.directDamage *= 1.5f;
+            _stats.secondaryDamage *= 1.5f;
+            _hasCrit = true;
+        }
     }
 
     protected virtual void OnTriggerEnter(Collider other)
