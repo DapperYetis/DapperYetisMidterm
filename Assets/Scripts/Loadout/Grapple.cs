@@ -8,6 +8,7 @@ using UnityEngine.Events;
 public class Grapple : Support
 {
     protected GrappleSwing _grappleSwing;
+    public GrappleSwing grappleSwing => _grappleSwing;
     protected bool _isStopping = false;
 
     private void Start()

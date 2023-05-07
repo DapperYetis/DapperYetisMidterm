@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using TMPro;
+using UnityEditor.SearchService;
 using UnityEngine;
-using UnityEngine.Audio;
 
 public class UIManager : MonoBehaviour
 {
@@ -13,10 +13,8 @@ public class UIManager : MonoBehaviour
 
     [Header("----- Settings -----")]
     [SerializeField]
-    private AudioMixer _masterMixer;
     private UIReferences _references;
-    [SerializeField]
-    Inventory _playerInv;
+    private Inventory _playerInv;
     [SerializeField] Animator _transition;
 
     public UIReferences references => _references;
@@ -48,10 +46,8 @@ public class UIManager : MonoBehaviour
 
     public bool isPaused => _activeMenu != null;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-
         if (instance != null)
         {
             gameObject.SetActive(false);
@@ -66,9 +62,9 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        if(GameManager.instance.inGame) 
+        if (GameManager.instance.inGame)
             _references.timer.SetText($"{(int)GameManager.instance.runTimeMinutes} : {(GameManager.instance.runTime % 60).ToString("F1")}");
-        if (!_isPlaying)
+        if (GameManager.instance.inGame && !_isPlaying)
         {
             if (Input.GetButtonDown("Cancel"))
             {
@@ -124,18 +120,6 @@ public class UIManager : MonoBehaviour
                 _playerController.weapon.OnPrimary.AddListener(AttackCD1);
                 _playerController.weapon.OnSecondary.AddListener(AttackCD2);
                 _playerController.inventory.OnCurrencyChange.AddListener(TrackCurrency);
-
-                if(GetSprintKey())
-                {
-                    _references.sprintShift.SetActive(false);
-                    _references.sprintCtrl.SetActive(true);
-                }
-                else if(!GetSprintKey())
-                {
-                    _references.sprintShift.SetActive(true);
-                    _references.sprintCtrl.SetActive(false);
-                }
-
             });
             GameManager.instance.OnScoreChange.AddListener(UpdateScore);
 
@@ -145,13 +129,20 @@ public class UIManager : MonoBehaviour
             if (!GameManager.instance.inGame)
             {
                 PauseState();
-                ToFirstMenu(_references.mainMenu);
             }
             else
             {
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
-                TransitionToGame();
+                _references.hud.SetActive(true);
+
+                UpdateHealth(0);
+                UpdateEnemyCount();
+                UpdateScore(0);
+                TrackCurrency(0);
+                LevelUp(0);
+                IncreaseXP(0);
+                _references.hud.GetComponent<HudItems>().ResetVisual();
             }
 
             return true;
@@ -167,6 +158,8 @@ public class UIManager : MonoBehaviour
             if (_references != null) break;
             yield return new WaitForEndOfFrame();
         }
+        if (GameManager.instance.inGame)
+            _references.hud.SetActive(true);
         Debug.Log("UI References found");
 
         callback();
@@ -174,135 +167,10 @@ public class UIManager : MonoBehaviour
 
     #endregion
 
-    #region Settings
-    public void SetVolume(float volume)
-    {
-        if (volume < 1)
-        {
-            volume = .001f;
-        }
-
-        RefreshSlider(volume);
-        PlayerPrefs.SetFloat("SavedMasterVolume", volume);
-        _masterMixer.SetFloat("MasterVolume", Mathf.Log10(volume / 100) * 20f);
-    }
-
-
-    public void SetVolumeFromSlider()
-    {
-        SetVolume(_references.soundSlider.value);
-    }
-
-    public void RefreshSlider(float volume)
-    {
-        _references.soundSlider.value = volume;
-    }
-
-
-
-
-    public void SetSensitivity(float sensitivity)
-    {
-        if (sensitivity < 1)
-        {
-            sensitivity = 1.5f;
-        }
-
-        RefreshSensitivity(sensitivity);
-        PlayerPrefs.SetFloat("Sensitivity", sensitivity);
-    }
-
-
-    public void SetSensitivityFromSlider()
-    {
-        SetSensitivity(_references.mouseSensitivity.value);
-    }
-
-    public void RefreshSensitivity(float sensitivity)
-    {
-        _references.mouseSensitivity.value = sensitivity;
-    }
-
-
-
-
-
-    public void SetSprintHold()
-    {
-        if (_references.toggleSprint.isOn)
-            PlayerPrefs.SetInt("HoldSprint", 1);
-
-        else
-            PlayerPrefs.SetInt("HoldSprint", 0);
-    }
-
-    public bool GetSprintToggle()
-    {
-        if (PlayerPrefs.GetInt("HoldSprint") == 1)
-            return true;
-        else
-            return false;
-    }
-
-
-
-
-
-    public void SetCtrlSprint()
-    {
-        if (_references.ctrlRun.isOn)
-        {
-            PlayerPrefs.SetInt("CtrlRun", 1);
-            _references.sprintShift.SetActive(false);
-            _references.sprintCtrl.SetActive(true);
-        }
-        else
-        {
-            PlayerPrefs.SetInt("CtrlRun", 0);
-            _references.sprintShift.SetActive(true);
-            _references.sprintCtrl.SetActive(false);
-        }
-    }
-
-    public bool GetSprintKey()
-    {
-        if (PlayerPrefs.GetInt("CtrlRun") == 1)
-            return true;
-        else
-            return false;
-    }
-
-
-
-
-    public void SetInvertCam()
-    {
-        if (_references.camInvert.isOn)
-            PlayerPrefs.SetInt("CamCtrl", 1);
-
-        else
-            PlayerPrefs.SetInt("CamCtrl", 0);
-    }
-
-    public bool GetInvertChoice()
-    {
-        if (PlayerPrefs.GetInt("CamCtrl") == 1)
-            return true;
-        else
-            return false;
-    }
-
-    #endregion
-
     #region Menu Buttons
-    public void TransitionToLoadout()
-    {
-        NextMenu(_references.loadoutMenu);
-    }
 
     public void TransitionToGame()
     {
-        _references.hud.SetActive(true);
         GameManager.instance.StartGame();
     }
 
@@ -311,10 +179,12 @@ public class UIManager : MonoBehaviour
         NextMenu(_references.settingsMenu);
     }
 
-    public void TransitionToMainMenu()
+    public void SceneReset()
     {
+        StopAllCoroutines();
         Time.timeScale = _origTimeScale;
         SetUp();
+
     }
     #endregion
 
@@ -357,12 +227,6 @@ public class UIManager : MonoBehaviour
             _activeMenu.SetActive(true);
     }
 
-    public void ToFirstMenu(GameObject newMenu)
-    {
-        _menuStack.Push(newMenu);
-        _activeMenu.SetActive(true);
-    }
-
     public void TriggerTransition()
     {
         _references.transitionScreen.SetActive(true);
@@ -381,16 +245,13 @@ public class UIManager : MonoBehaviour
         _references.transitionScreen.SetActive(false);
     }
 
-    public void ToKeybinds()
-    {
-        NextMenu(_references.keyBindsMenu);
-    }
+
     #endregion
 
     #region HUD Functionality
     public void UpdateHealth(float healthChange)
     {
-        if (UIManager.instance.activeMenu != null) return;
+        if (activeMenu != null || _references == null) return;
 
         if (_playerController.GetHealthCurrent() > 0)
         {
@@ -398,9 +259,10 @@ public class UIManager : MonoBehaviour
                 endtime = Time.time + _healthWaitTime;
             else
                 StartCoroutine(DynamicHealthDecrease());
-            if(healthChange < 0)
+            if (healthChange < 0)
                 StartCoroutine(Damaged());
-            StartCoroutine(HealthRedFlash());
+            if (healthChange < 0)
+                StartCoroutine(HealthRedFlash());
             SetHealth();
             float currHealth = (float)_playerController.GetHealthCurrent() / (float)_playerController.GetHealthMax();
             _references.hpBar.fillAmount = currHealth;
@@ -415,21 +277,25 @@ public class UIManager : MonoBehaviour
     }
     public void UpdateScore(int newScore)
     {
+        if (_references == null) return;
         _references.score.SetText(GameManager.instance.score.ToString());
     }
 
     public void TrackCurrency(int currency)
     {
+        if (_references == null) return;
         _references.currency.SetText(_playerInv.currency.ToString());
     }
 
     public void LevelUp(int newLevel)
     {
+        if (_references == null) return;
         _references.playerLevel.SetText(newLevel.ToString());
     }
 
     public void IncreaseXP(int currXP)
     {
+        if (_references == null) return;
         if (_references.xpbar && _references.xpbar.isActiveAndEnabled)
             _references.xpbar.fillAmount = (_playerInv.currentXP % 100f) / 100f;
     }
@@ -443,53 +309,63 @@ public class UIManager : MonoBehaviour
 
     private void SetHealth()
     {
+        if (_references == null) return;
         _references.maxHealth.SetText(_playerController.GetHealthMax().ToString());
         _references.remainingHealth.SetText(_playerController.GetHealthCurrent().ToString());
     }
 
     public void MaxHealthUpdate()
     {
+        if (_references == null) return;
         _references.maxHealth.SetText(_playerController.GetHealthMax().ToString());
     }
 
     public void PromptOn(int cost)
     {
+        if (_references == null) return;
         _references.interactPrompt.transform.parent.gameObject.SetActive(true);
         _references.interactPrompt.text = $"Press F To\nInteract\n${cost}";
     }
 
     public void PromptOff()
     {
+        if (_references == null) return;
         _references.interactPrompt.transform.parent.gameObject.SetActive(false);
     }
 
     public void AttackCD1()
     {
-        StartCoroutine(CooldownTimer(_playerController.weapon.stats.primaryAbility.cooldown , Time.time, _references.attCoolDwn1));
+        if (_references == null) return;
+        StartCoroutine(CooldownTimer(_playerController.weapon.stats.primaryAbility.cooldown, Time.time, _references.attCoolDwn1));
     }
 
     public void AttackCD2()
     {
+        if (_references == null) return;
         StartCoroutine(CooldownTimer(_playerController.weapon.stats.secondaryAbility.cooldown, Time.time, _references.attCoolDwn2));
     }
 
     public void SupportCD1()
     {
+        if (_references == null) return;
         StartCoroutine(CooldownTimer(10f, Time.time, _references.suppCoolDwn1));
     }
 
     public void SupportCD2()
     {
+        if (_references == null) return;
         StartCoroutine(CooldownTimer(10f, Time.time, _references.suppCoolDwn2));
     }
 
     public void CompanionCD()
     {
+        if (_references == null) return;
 
     }
 
     public void LoseScreenStats(int _score)
     {
+        if (_references == null) return;
 
         _references.loseScore.SetText(_score.ToString());
 
@@ -499,6 +375,7 @@ public class UIManager : MonoBehaviour
 
     public void WinScreenStats(int _score)
     {
+        if (_references == null) return;
 
         _references.winScore.SetText(_score.ToString());
 
@@ -508,12 +385,17 @@ public class UIManager : MonoBehaviour
 
     IEnumerator CooldownTimer(float cooldown, float startTime, TextMeshProUGUI target)
     {
-        while((cooldown - (Time.time - startTime) > 0))
+        if (_references != null)
         {
-            target.SetText ((cooldown - (Time.time - startTime)).ToString("F1"));
-            yield return new WaitForSeconds(Time.deltaTime);
+            while ((cooldown - (Time.time - startTime) > 0))
+            {
+                target.SetText((cooldown - (Time.time - startTime)).ToString("F1"));
+                yield return new WaitForSeconds(Time.deltaTime);
+            }
+            target.SetText("");
         }
-        target.SetText("");
+        else
+            yield return null;
     }
 
     IEnumerator DynamicHealthDecrease()

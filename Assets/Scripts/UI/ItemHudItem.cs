@@ -11,9 +11,9 @@ public class ItemHudItem : MonoBehaviour
 
     int _total;
 
-    public void UpdateCount(int toAdd)
+    public void SetCount(int total)
     {
-        _total += toAdd;
+        _total = total;
        _count.SetText(_total.ToString());
     }
 

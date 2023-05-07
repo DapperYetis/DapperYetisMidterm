@@ -8,6 +8,8 @@ TagManager:
   - EnemySpawnPoint
   - PlayerSpawnPoint
   - TransitionScreen
+  - MenuCanvas
+  - Settings
   layers:
   - Default
   - TransparentFX
