@@ -19,6 +19,8 @@ public class HudItems : MonoBehaviour
 
     public void ResetVisual()
     {
+        if (GameManager.instance.player.inventory.items == null) return;
+
         foreach(var item in GameManager.instance.player.inventory.items.Keys)
         {
             AddItem(item);

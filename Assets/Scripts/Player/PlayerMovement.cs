@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
     public int jumpCountCurrent => _jumpCountCurrent;
     private bool _isGrounded;
     public bool isGrounded => _isGrounded;
-    private bool _toggleSprint => UIManager.instance.GetSprintToggle();
+    private bool _toggleSprint => SettingsManager.instance.GetSprintToggle();
 
     // Events
     [HideInInspector]
