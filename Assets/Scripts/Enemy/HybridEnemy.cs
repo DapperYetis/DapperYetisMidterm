@@ -23,10 +23,15 @@ public class HybridEnemy : MeleeEnemy
         else if (!_isAttacking)
         {
             _isAttacking = true;
-            EnemyManager.instance.QueueAttack(Shoot, () => Mathf.FloorToInt(_playerDir.magnitude - _secondaryAttackStats.range), this);
+            EnemyManager.instance.QueueAttack(Shoot, AttackPriority, this);
         }
 
         base.Update();
+    }
+
+    protected override float AttackPriority()
+    {
+        return base.AttackPriority() + _primaryAttackStats.range - _secondaryAttackStats.range;
     }
 
     public override void ScaleEnemy()

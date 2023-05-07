@@ -43,7 +43,7 @@ public class EnemyManager : MonoBehaviour
     private int _attackBudgetMax;
     private int _attackBudget;
     private bool _isRunning;
-    private List<(System.Action func, System.Func<int> priority, EnemyAI enemy)> _attacks;
+    private List<(System.Action func, System.Func<float> priority, EnemyAI enemy)> _attacks;
 
     [HideInInspector]
     public UnityEvent OnEnemyCountChange;
@@ -69,7 +69,7 @@ public class EnemyManager : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        foreach(var point in _wavePoints)
+        foreach (var point in _wavePoints)
         {
             Gizmos.DrawSphere(point.transform.position, 1);
         }
@@ -92,9 +92,9 @@ public class EnemyManager : MonoBehaviour
             RunWave(Random.Range(0, _waves.Count));
         }
         float waitTime = 0;
-        while(GameManager.instance.inGame)
+        while (GameManager.instance.inGame)
         {
-            for(int i = 0; i < scaleFactorInt; ++i)
+            for (int i = 0; i < scaleFactorInt; ++i)
             {
                 waitTime = RunWave(Random.Range(0, _waves.Count));
             }
@@ -115,7 +115,7 @@ public class EnemyManager : MonoBehaviour
         if (GameManager.instance.player == null) return Vector3.zero;
 
         List<EnemySpawnPoint> sortedPoints = (from point in _wavePoints where (GameManager.instance.player.transform.position - point.transform.position).magnitude > _minSpawnDistanceFromPlayer orderby (GameManager.instance.player.transform.position - point.transform.position).sqrMagnitude ascending select point).ToList();
-        return sortedPoints.Count > 0 ? sortedPoints[Mathf.FloorToInt(_waveDistance.Evaluate(Random.Range(0f,1f)))].GetPointInRange() : Vector3.zero;
+        return sortedPoints.Count > 0 ? sortedPoints[Mathf.FloorToInt(_waveDistance.Evaluate(Random.Range(0f, 1f)))].GetPointInRange() : Vector3.zero;
     }
 
     private IEnumerator Spawner(SOWave wave, Vector3 spawnPoint, int spawnedCount)
@@ -160,10 +160,9 @@ public class EnemyManager : MonoBehaviour
         SetWaves();
     }
 
-    public void QueueAttack(System.Action attack, System.Func<int> getPriority, EnemyAI enemyAttacking)
+    public void QueueAttack(System.Action attack, System.Func<float> getPriority, EnemyAI enemyAttacking)
     {
         _attacks.Add((attack, getPriority, enemyAttacking));
-        RemoveBadAttacks();
         _attacks = (from queuedAttack in _attacks orderby queuedAttack.priority.Invoke() ascending select queuedAttack).ToList();
         if (!_isRunning)
             StartCoroutine(RunDequeue());
@@ -171,9 +170,9 @@ public class EnemyManager : MonoBehaviour
 
     public void RemoveBadAttacks()
     {
-        for(int i = 0; i < _attacks.Count; i++)
+        for (int i = 0; i < _attacks.Count; i++)
         {
-            if(_attacks[i].enemy == null)
+            if (_attacks[i].enemy == null)
             {
                 _attacks.RemoveAt(i);
                 --i;
@@ -184,15 +183,17 @@ public class EnemyManager : MonoBehaviour
     private IEnumerator RunDequeue()
     {
         _isRunning = true;
+        RemoveBadAttacks();
         if (_attacks.Count > 0 && _attackBudget > 0)
         {
-                --_attackBudget;
-                _attacks[0].func.Invoke();
-                _attacks.RemoveAt(0);
+            int index = _attacks.Count >= 3 ? Random.Range(0,3) : 0;
+            --_attackBudget;
+            _attacks[index].func.Invoke();
+            _attacks.RemoveAt(index);
 
-                StartCoroutine(RunDequeue());
-                yield return new WaitForSeconds(_attackTime);
-                ++_attackBudget;
+            StartCoroutine(RunDequeue());
+            yield return new WaitForSeconds(_attackTime);
+            ++_attackBudget;
         }
         else
         {
