@@ -181,10 +181,14 @@ public class AchievementManager : MonoBehaviour
             _runStats.damageDealt += projectile.stats.directDamage;
             _gameStats.damageDealt += projectile.stats.directDamage;
 
+            if(projectile.hasCrit)
+            {
+                ++_runStats.criticalHits;
+                ++_gameStats.criticalHits;
+            }
+
             Save();
         });
-
-        // Add critical hit event here when critical hits are implemented
 
         // Add boss killed event here when next level portal is implemented
 

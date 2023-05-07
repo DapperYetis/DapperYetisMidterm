@@ -24,6 +24,7 @@ public class FireProjectile : Projectile
             if (other.gameObject.TryGetComponent<IDamageable>(out var damageable))
             {
                 damageable.Damage(_stats.directDamage);
+                OnHit?.Invoke(this, damageable);
             }
             StartCoroutine(DoExplode());
         }
@@ -31,6 +32,7 @@ public class FireProjectile : Projectile
         {
             _previouslyHit.Add(damageable);
             damageable.Damage(_stats.directDamage);
+            OnHit?.Invoke(this, damageable);
         }
 
         if (!_isAOE)
