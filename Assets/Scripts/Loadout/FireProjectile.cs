@@ -19,11 +19,12 @@ public class FireProjectile : Projectile
     {
         if (other.isTrigger) return;
 
-        if(!_exploding)
+        if(_isAOE && !_exploding)
         {
             if (other.gameObject.TryGetComponent<IDamageable>(out var damageable))
             {
                 damageable.Damage(_stats.directDamage);
+                OnHit?.Invoke(this, damageable);
             }
             StartCoroutine(DoExplode());
         }
@@ -31,6 +32,7 @@ public class FireProjectile : Projectile
         {
             _previouslyHit.Add(damageable);
             damageable.Damage(_stats.directDamage);
+            OnHit?.Invoke(this, damageable);
         }
 
         if (!_isAOE)
@@ -49,6 +51,7 @@ public class FireProjectile : Projectile
         _exploding = true;
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         Destroy(gameObject, _stats.secondaryLifetime);
+        _stats.directDamage = _stats.secondaryDamage;
         while(true)
         {
             transform.localScale += Vector3.one * _stats.fxIntesity;

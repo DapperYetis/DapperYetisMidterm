@@ -397,7 +397,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
         Destroy(gameObject);
     }
 
-    public virtual void Heal(float health)
+    public virtual void Heal(float health, bool silent = false)
     {
         _HPCurrent += health;
 

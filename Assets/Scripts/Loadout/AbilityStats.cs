@@ -5,8 +5,10 @@ using UnityEngine;
 public struct AbilityStats
 {
     public GameObject prefab;
-    public float secondaryDamage;
+    [Range(0, 1)]
+    public float critChance;
     public float directDamage;
+    public float secondaryDamage;
     public float cooldown;
     public float lifetime;
     public float secondaryLifetime;
@@ -17,6 +19,7 @@ public struct AbilityStats
 
     public static AbilityStats operator +(AbilityStats s1, AbilityStats s2)
     {
+        s1.critChance += s2.critChance;
         s1.directDamage += s2.directDamage;
         s1.secondaryDamage += s2.secondaryDamage;
         s1.cooldown += s2.cooldown;
