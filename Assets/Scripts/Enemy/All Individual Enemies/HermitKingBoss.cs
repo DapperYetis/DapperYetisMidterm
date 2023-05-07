@@ -50,7 +50,7 @@ public class HermitKingBoss : HybridEnemy
         {
             _isAttacking = true;
             if (_inAttackRange)
-                EnemyManager.instance.QueueAttack(Melee, () => Mathf.FloorToInt(_playerDir.magnitude));
+                EnemyManager.instance.QueueAttack(Melee, () => isActiveAndEnabled ? Mathf.FloorToInt(_playerDir.magnitude) : int.MaxValue, this);
             else
             {
                 int attack = Random.Range(0, 3);

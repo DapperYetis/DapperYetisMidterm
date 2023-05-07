@@ -38,7 +38,7 @@ public class EnemyManager : MonoBehaviour
     private int _attackBudgetMax;
     private int _attackBudget;
     private bool _isRunning;
-    private List<(System.Action func, System.Func<int> priority)> _attacks;
+    private List<(System.Action func, System.Func<int> priority, EnemyAI enemy)> _attacks;
 
     [HideInInspector]
     public UnityEvent OnEnemyCountChange;
@@ -141,12 +141,25 @@ public class EnemyManager : MonoBehaviour
         SetWaves();
     }
 
-    public void QueueAttack(System.Action attack, System.Func<int> getPriority)
+    public void QueueAttack(System.Action attack, System.Func<int> getPriority, EnemyAI enemyAttacking)
     {
-        _attacks.Add((attack, getPriority));
-        _attacks = (from queuedAttack in _attacks orderby queuedAttack.priority.Invoke() select queuedAttack).ToList();
+        _attacks.Add((attack, getPriority, enemyAttacking));
+        RemoveBadAttacks();
+        _attacks = (from queuedAttack in _attacks orderby queuedAttack.priority.Invoke() ascending select queuedAttack).ToList();
         if (!_isRunning)
             StartCoroutine(RunDequeue());
+    }
+
+    public void RemoveBadAttacks()
+    {
+        for(int i = 0; i < _attacks.Count; i++)
+        {
+            if(_attacks[i].enemy == null)
+            {
+                _attacks.RemoveAt(i);
+                --i;
+            }
+        }
     }
 
     private IEnumerator RunDequeue()
@@ -154,13 +167,13 @@ public class EnemyManager : MonoBehaviour
         _isRunning = true;
         if (_attacks.Count > 0 && _attackBudget > 0)
         {
-            --_attackBudget;
-            _attacks[0].func.Invoke();
-            _attacks.RemoveAt(0);
+                --_attackBudget;
+                _attacks[0].func.Invoke();
+                _attacks.RemoveAt(0);
 
-            StartCoroutine(RunDequeue());
-            yield return new WaitForSeconds(_attackTime);
-            ++_attackBudget;
+                StartCoroutine(RunDequeue());
+                yield return new WaitForSeconds(_attackTime);
+                ++_attackBudget;
         }
         else
         {

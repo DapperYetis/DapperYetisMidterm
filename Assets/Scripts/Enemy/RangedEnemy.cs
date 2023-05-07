@@ -12,7 +12,7 @@ public class RangedEnemy : EnemyAI
         if (!_isAttacking)
         {
             _isAttacking = true;
-            EnemyManager.instance.QueueAttack(Shoot, () => Mathf.FloorToInt(_playerDir.magnitude));
+            EnemyManager.instance.QueueAttack(Shoot, () => Mathf.FloorToInt(_playerDir.magnitude - _primaryAttackStats.range), this);
         }
     }
 
@@ -35,6 +35,7 @@ public class RangedEnemy : EnemyAI
             Instantiate(_primaryAttackStats.prefab, _primaryAttackStats.positions[i].position, rot).GetComponent<EnemyProjectile>().SetStats(_primaryAttackStats);
         }
 
+        _hasCompletedAttack = true;
         yield return new WaitForSeconds(_primaryAttackStats.rate);
         _isAttacking = false;
     }

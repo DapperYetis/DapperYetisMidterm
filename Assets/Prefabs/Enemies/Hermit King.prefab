@@ -267,7 +267,6 @@ GameObject:
   - component: {fileID: 6230942851767379793}
   - component: {fileID: 2887638426317599639}
   - component: {fileID: 7485134682016057368}
-  - component: {fileID: 9134379571616293777}
   m_Layer: 7
   m_Name: Hermit King
   m_TagString: Untagged
@@ -387,6 +386,7 @@ MonoBehaviour:
     selfBuffs: []
     targetBuffs: []
     speed: 0
+    range: 7
   _primaryAttackStatsScaling:
     positions: []
     damage: 1
@@ -397,6 +397,7 @@ MonoBehaviour:
     selfBuffs: []
     targetBuffs: []
     speed: 0
+    range: 0
   _meleeCollider: {fileID: 2919674195485479463}
   _secondaryAttackStats:
     positions:
@@ -409,6 +410,7 @@ MonoBehaviour:
     selfBuffs: []
     targetBuffs: []
     speed: 30
+    range: 0
   _secondaryAttackStatsScaling:
     positions: []
     damage: 1
@@ -419,6 +421,7 @@ MonoBehaviour:
     selfBuffs: []
     targetBuffs: []
     speed: 0.1
+    range: 0
 --- !u!114 &73426344941847313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -491,19 +494,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
---- !u!135 &9134379571616293777
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6230942851774796945}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 3
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6230942851774796947
 GameObject:
   m_ObjectHideFlags: 0

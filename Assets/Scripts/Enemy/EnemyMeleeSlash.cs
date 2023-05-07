@@ -23,13 +23,9 @@ public class EnemyMeleeSlash : MonoBehaviour
 
         if (other.gameObject.TryGetComponent<IDamageable>(out var damageable))
         {
+            var buffs = (from buff in _enemy.primaryAttackStats.targetBuffs select (buff, 1)).ToArray();
             _previouslyHit.Add(damageable);
-            damageable.Damage(_enemy.primaryAttackStats.damage);
-        }
-        if(other.gameObject.TryGetComponent<IBuffable>(out var buffable))
-        {
-            var buffs = (from buff in _enemy.primaryAttackStats.targetBuffs select (buff, 1)).ToList();
-            buffable.AddBuffs(buffs);
+            damageable.Damage(_enemy.primaryAttackStats.damage, buffs);
         }
 
         slash.enabled = false;

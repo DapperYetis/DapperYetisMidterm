@@ -6,6 +6,7 @@ using UnityEngine.AI;
 using UnityEngine.Events;
 using static UnityEngine.Rendering.DebugUI.Table;
 
+[RequireComponent(typeof(EnemyDrops))]
 public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
 {
     [Header("--- Components ---")]
@@ -16,7 +17,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     [SerializeField]
     protected Animator _anim;
     [SerializeField]
-    protected EnemyDrops d;
+    protected EnemyDrops _drops;
 
     [Header("--- NavMesh Mods ---")]
     [SerializeField]
@@ -46,10 +47,20 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     protected SOWave _spawnPoint;
     protected bool _isSetUp;
     protected bool _isAttacking;
+    protected bool _hasCompletedAttack;
     protected Vector3 _playerDir => GameManager.instance.player.transform.position - transform.position + 2 * Vector3.down;
     protected bool _indicatingHit;
     protected float _speed;
     public Dictionary<SOBuff, (int stacks, float time)> _currentBuffs = new();
+    protected int _moveType;
+    [SerializeField]
+    protected int _moveChances = 10;
+    [SerializeField]
+    protected float _runTypeTimer;
+    [SerializeField]
+    protected float _circlingRange = 10f;
+    protected bool _hasEnteredRange => _playerDir.magnitude < _circlingRange;
+    protected bool _movementOverride;
 
     [Header("--- Death Controls ---")]
     [SerializeField]
@@ -87,7 +98,8 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     protected virtual void Start()
     {
         StartCoroutine(SizeChange());
-        d = GetComponent<EnemyDrops>();
+        _drops = GetComponent<EnemyDrops>();
+        StartCoroutine(PickMoveType());
     }
 
     protected virtual void Update()
@@ -98,10 +110,61 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
         _speed = Mathf.Lerp(_speed, _agent.velocity.normalized.magnitude, Time.deltaTime * _animTransSpeed);
 
         if (_agent.isActiveAndEnabled)
-            _agent.SetDestination(GameManager.instance.player.transform.position);
+        {
+            Movement();
+        }
 
-        FacePlayer();
         CheckBuffs();
+    }
+
+    protected IEnumerator PickMoveType()
+    {
+        _moveType = Random.Range(0, _moveChances);
+        yield return new WaitForSeconds(_runTypeTimer);
+        if (this != null)
+            StartCoroutine(PickMoveType());
+    }
+
+    protected virtual void Movement()
+    {
+        if (_movementOverride) return;
+        float distanceToPlayer = Vector3.Distance(GameManager.instance.player.transform.position, transform.position);
+
+        if (_hasCompletedAttack) // If the enemy has already attacked, back off to let another enemy queue
+        {
+            _agent.SetDestination(transform.position - (_playerDir.normalized * _stats.speed));
+            if (!_hasEnteredRange)
+            {
+                _hasCompletedAttack = false;
+            }
+        }
+        else if (_hasEnteredRange)
+        {
+            if (_moveType % 2 == 0)
+            {
+                _agent.SetDestination(transform.position + (Vector3.Cross(_playerDir.normalized, Vector3.up) * _stats.speed));
+            }
+            else
+            {
+                _agent.SetDestination(transform.position + (Vector3.Cross(_playerDir.normalized, Vector3.up) * _stats.speed * -1));
+            }
+        }
+        else
+        {
+            if (_moveType < _moveChances * 0.6f)
+            {
+                _agent.SetDestination(GameManager.instance.player.transform.position);
+            }
+            else if (_moveType % 2 == 0)
+            {
+                _agent.SetDestination(transform.position + (Vector3.Cross(_playerDir.normalized, Vector3.up) * _stats.speed));
+
+            }
+            else
+            {
+                _agent.SetDestination(transform.position + (Vector3.Cross(_playerDir.normalized, Vector3.up) * _stats.speed * -1));
+            }
+        }
     }
 
     // Creates the enemy avoidance system
@@ -174,19 +237,13 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
 
         if (_HPCurrent <= 0)
         {
-            _anim.SetBool("Dead", true);
-            GetComponent<CapsuleCollider>().enabled = false;
-            _agent.enabled = false;
-            enabled = false;
-            EnemyManager.instance.RemoveEnemyFromList(this);
-            d.Drop();
-            StartCoroutine(EnemyRemoved());
+            Die();
         }
         else
         {
             _anim.SetTrigger("Damage");
             StartCoroutine(FlashColor(Color.red));
-            if(buffs != null)
+            if (buffs != null)
             {
                 foreach (var buff in buffs)
                 {
@@ -196,6 +253,17 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
         }
 
         _OnHealthChange.Invoke();
+    }
+
+    private void Die()
+    {
+        _anim.SetBool("Dead", true);
+        GetComponent<CapsuleCollider>().enabled = false;
+        _agent.enabled = false;
+        enabled = false;
+        EnemyManager.instance.RemoveEnemyFromList(this);
+        _drops.Drop();
+        StartCoroutine(EnemyRemoved());
     }
 
     public virtual IEnumerator EnemyRemoved()

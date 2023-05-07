@@ -48,6 +48,8 @@ MonoBehaviour:
     type: 3}
   _chestPrefab: {fileID: 2589429095351886765, guid: f30c0b3139383084bb1c92fbada29182,
     type: 3}
+  _chestBaseCost: 30
+  _chestCostRange: 0.25
   _lootCount: 20
   _spawningBounds:
     m_Center: {x: 0, y: 84, z: 0}

@@ -7,20 +7,32 @@ using UnityEngine.Serialization;
 public class MeleeEnemy : EnemyAI
 {
     private List<IDamageable> _previouslyHit = new();
-    protected bool _inAttackRange;
+    protected bool _inAttackRange => _playerDir.magnitude <= _primaryAttackStats.range;
     [Header("---Melee Components---")]
     [SerializeField, FormerlySerializedAs("_biteCol")]
     protected Collider _meleeCollider;
 
     protected override void Update()
     {
-        base.Update();
 
-        if (!_isAttacking && _inAttackRange)
+        if (!_isAttacking && _hasEnteredRange)
         {
             _isAttacking = true;
-            EnemyManager.instance.QueueAttack(Melee, () => Mathf.FloorToInt(_playerDir.magnitude));
+            EnemyManager.instance.QueueAttack(Melee, () => Mathf.FloorToInt(_playerDir.magnitude - _primaryAttackStats.range), this);
         }
+
+        base.Update();
+    }
+
+    protected override void Movement()
+    {
+        if (_isAttacking)
+        {
+            FacePlayer();
+            _agent.SetDestination(GameManager.instance.player.transform.position);
+        }
+        else
+            base.Movement();
     }
 
     protected virtual void Melee()
@@ -34,7 +46,7 @@ public class MeleeEnemy : EnemyAI
     {
         _anim.SetTrigger("Attack");
 
-
+        _hasCompletedAttack = true;
         yield return new WaitForSeconds(_primaryAttackStats.rate);
         _isAttacking = false;
     }
@@ -47,21 +59,5 @@ public class MeleeEnemy : EnemyAI
     protected void AttackEnd()
     {
         _meleeCollider.enabled = false;
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            _inAttackRange = true;
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            _inAttackRange = false;
-        }
     }
 }

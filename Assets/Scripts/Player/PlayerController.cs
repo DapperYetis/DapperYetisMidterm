@@ -15,10 +15,13 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
     private float _interactDistance;
     public float interactDistance => _interactDistance;
     public Dictionary<SOBuff, (int stacks, float time)> _currentBuffs = new();
+    public Dictionary<SOBuff, BuffEffect> _currentBuffEffects = new();
 
 
     // ------References------
-    [SerializeField] 
+    [SerializeField]
+    private Transform _effectsParent;
+    [SerializeField]
     private Camera _camera;
     [SerializeField]
     private PlayerMovement _movement;
@@ -179,8 +182,13 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
     public void AddBuff(SOBuff buff, int amount = 1)
     {
         if (!_currentBuffs.ContainsKey(buff))
+        {
             _currentBuffs.Add(buff, (0, Time.time + buff.buffLength));
+            _currentBuffEffects.Add(buff, Instantiate(buff.effectPrefab, _effectsParent).GetComponent<BuffEffect>());
+            _currentBuffEffects[buff].SetUp(this, buff);
+        }
         _currentBuffs[buff] = (_currentBuffs[buff].stacks + amount, _currentBuffs[buff].time);
+        _currentBuffEffects[buff].AddStacks(amount);
     }
 
     public void AddBuffs(List<(SOBuff buff, int count)> buffCounts)
@@ -202,15 +210,18 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
         {
             case BuffRemoveType.Single:
                 _currentBuffs[buff] = (_currentBuffs[buff].stacks - 1, Time.time + buff.buffLength);
+                _currentBuffEffects[buff].RemoveStacks(1);
                 break;
             case BuffRemoveType.Stack:
                 _currentBuffs[buff] = (0, 0);
+                _currentBuffEffects[buff].RemoveStacks(_currentBuffEffects[buff].stacks);
                 break;
         }
 
         if (_currentBuffs[buff].stacks <= 0)
         {
             _currentBuffs.Remove(buff);
+            _currentBuffEffects.Remove(buff);
             return true;
         }
 
