@@ -176,6 +176,14 @@ public class AchievementManager : MonoBehaviour
             Save();
         });
 
+        GameManager.instance.player.inventory.OnItemsChange.AddListener((item) =>
+        {
+            ++_runStats.itemsCollected;
+            ++_gameStats.itemsCollected;
+        });
+
+
+
         GameManager.instance.player.OnHit.AddListener((projectile, target) =>
         {
             _runStats.damageDealt += projectile.stats.directDamage;
