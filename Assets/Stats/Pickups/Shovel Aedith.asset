@@ -40,9 +40,9 @@ MonoBehaviour:
       directDamage: 10
       secondaryDamage: 0
       cooldown: 0
-      lifetime: 0
+      lifetime: 3
       secondaryLifetime: 0
-      speed: 45
+      speed: 30
       fxIntesity: 0
       selfBuffs: []
       targetBuffs: []
