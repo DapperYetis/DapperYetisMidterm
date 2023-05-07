@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class LootManager : MonoBehaviour
@@ -132,12 +133,16 @@ public class LootManager : MonoBehaviour
         }
 
         // Generate Altar
-        GenerateLootLocation(ref location);
-        if (Physics.Raycast(location, Vector3.down, out RaycastHit hitInfo2))
+        validPlacement = false;
+        while (!validPlacement)
         {
-            location.y = hitInfo2.point.y;
+            GenerateLootLocation(ref location);
+            if (Physics.Raycast(location, Vector3.down, out RaycastHit hitInfo2))
+            {
+                location.y = hitInfo2.point.y;
+            }
+            validPlacement = hitInfo2.transform.gameObject.layer != 11;
         }
-
         _altar = Instantiate(_altarPrefab, location, Quaternion.identity);
     }
 
