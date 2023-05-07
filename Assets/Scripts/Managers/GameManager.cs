@@ -51,6 +51,9 @@ public class GameManager : MonoBehaviour
     {
         DontDestroyOnLoad(transform.parent.gameObject);
         SceneManager.sceneLoaded += DoResetMap;
+
+        if (inGame)
+            _player.SetUp();
     }
 
     private void FindPlayer()
@@ -63,6 +66,7 @@ public class GameManager : MonoBehaviour
         }
 
         _playerSpawnPos = GameObject.FindGameObjectWithTag("PlayerSpawnPoint").transform;
+
         Debug.Log("Player found!");
     }
 

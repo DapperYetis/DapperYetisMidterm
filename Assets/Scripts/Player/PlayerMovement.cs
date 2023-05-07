@@ -42,9 +42,13 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector]
     public UnityEvent OnJump;
 
-    private void Start()
+    private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
+    }
+
+    private void Start()
+    {
         _playerVelocity = new();
     }
 

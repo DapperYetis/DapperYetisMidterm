@@ -17,10 +17,12 @@ public class HudItems : MonoBehaviour
         GameManager.instance.player.inventory.OnItemsChange.AddListener(AddItem);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ResetVisual()
     {
-        
+        foreach(var item in GameManager.instance.player.inventory.items.Keys)
+        {
+            AddItem(item);
+        }
     }
 
     public void AddItem(SOItem toAdd)
@@ -30,12 +32,12 @@ public class HudItems : MonoBehaviour
             ItemHudItem item = Instantiate(_itemUI, _layoutArea.transform).GetComponent<ItemHudItem>();
             _itemHud.Add(toAdd, item);
             item.SetImage(toAdd.icon);
-            item.UpdateCount(1);
+            item.SetCount(GameManager.instance.player.inventory.items[toAdd]);
             item.transform.SetParent(_layoutArea.transform);
         }
         else
         {
-            _itemHud[toAdd].UpdateCount(1);
+            _itemHud[toAdd].SetCount(GameManager.instance.player.inventory.items[toAdd]);
         }
 
     }

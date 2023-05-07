@@ -64,7 +64,7 @@ public class UIManager : MonoBehaviour
     {
         if (GameManager.instance.inGame)
             _references.timer.SetText($"{(int)GameManager.instance.runTimeMinutes} : {(GameManager.instance.runTime % 60).ToString("F1")}");
-        if (GameManager.instance.inGame)
+        if (GameManager.instance.inGame && !_isPlaying)
         {
             if (Input.GetButtonDown("Cancel"))
             {
@@ -135,7 +135,14 @@ public class UIManager : MonoBehaviour
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
                 _references.hud.SetActive(true);
-                //GameManager.instance.StartGame();
+
+                UpdateHealth(0);
+                UpdateEnemyCount();
+                UpdateScore(0);
+                TrackCurrency(0);
+                LevelUp(0);
+                IncreaseXP(0);
+                _references.hud.GetComponent<HudItems>().ResetVisual();
             }
 
             return true;
@@ -177,6 +184,7 @@ public class UIManager : MonoBehaviour
         StopAllCoroutines();
         Time.timeScale = _origTimeScale;
         SetUp();
+
     }
     #endregion
 

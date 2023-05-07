@@ -8,6 +8,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(SettingsManager))]
 public class LoadoutScript : MonoBehaviour
 {
     [Header("----- Components -----")]
@@ -26,11 +27,8 @@ public class LoadoutScript : MonoBehaviour
     private Dictionary<SOSupport, Button> _supportButtons = new();
     private Dictionary<SOCompanion, Button> _companionButtons = new();
 
-    // Start is called before the first frame update
-    void Start()
+    public void SetUp()
     {
-
-
         CacheOptions();
 
         if (!PlayerPrefs.HasKey("WeaponChoice"))
@@ -48,8 +46,6 @@ public class LoadoutScript : MonoBehaviour
             PlayerPrefs.SetInt("CompanionChoice", 0);
 
         AddOptions();
-
-
     }
 
     private void CacheOptions()
@@ -77,7 +73,8 @@ public class LoadoutScript : MonoBehaviour
             WeaponOn();
             weapon.interactable = false;
         });
-        _weaponButtons.Add(newWeapon, weapon);
+        if(!_weaponButtons.ContainsKey(newWeapon))
+            _weaponButtons.Add(newWeapon, weapon);
     }
 
     private void SetWeapon(Button button)
@@ -162,7 +159,12 @@ public class LoadoutScript : MonoBehaviour
     #endregion
 
     #region Getters
-    public SOWeapon GetWeapon() => _cachedWeapons[PlayerPrefs.GetInt("WeaponChoice")];
+    public SOWeapon GetWeapon()
+    {
+        int choice = PlayerPrefs.GetInt("WeaponChoice");
+        return _cachedWeapons[choice];
+
+    }
 
     public SOSupport GetSupport() => _cachedSupports[PlayerPrefs.GetInt("SupportChoice")];
 
@@ -190,7 +192,13 @@ public class LoadoutScript : MonoBehaviour
         FindGroups();
         if (_weaponGroup != null)
         {
+            foreach(var button in _weaponButtons.Values)
+            {
+                if(button)
+                    Destroy(button.gameObject);
+            }
             _weaponButtons.Clear();
+
             foreach (var weapon in _cachedWeapons)
             {
                 AddWeapon(weapon);
@@ -199,7 +207,13 @@ public class LoadoutScript : MonoBehaviour
         }
         if (_supportGroup != null)
         {
+            foreach (var button in _supportButtons.Values)
+            {
+                if (button)
+                    Destroy(button.gameObject);
+            }
             _supportButtons.Clear();
+
             foreach (var support in _cachedSupports)
             {
                 AddSupport(support);
@@ -208,7 +222,13 @@ public class LoadoutScript : MonoBehaviour
         }
         if (_companionGroup != null)
         {
+            foreach (var button in _companionButtons.Values)
+            {
+                if (button)
+                    Destroy(button.gameObject);
+            }
             _companionButtons.Clear();
+
             foreach (var companion in _cachedCompanions)
             {
                 AddCompanion(companion);

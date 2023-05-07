@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
-[RequireComponent(typeof(LoadoutScript))]
 public class SettingsManager : MonoBehaviour
 {
     
     public static SettingsManager instance;
+    [SerializeField] 
     private LoadoutScript _loadoutScript;
+
 
     public LoadoutScript loadoutScript => _loadoutScript;
 
-    void Start()
+    void Awake()
     {
         if (instance != null)
         {
@@ -21,9 +22,7 @@ public class SettingsManager : MonoBehaviour
         }
 
         instance = this;
-
-        _loadoutScript = GetComponent<LoadoutScript>();
-
+        _loadoutScript.SetUp();
     }
 
     public void SetVolume(float volume)
@@ -89,6 +88,4 @@ public class SettingsManager : MonoBehaviour
     {
         _loadoutScript?.AddOptions();
     }
-
-
 }

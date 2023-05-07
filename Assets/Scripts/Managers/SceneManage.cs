@@ -13,8 +13,10 @@ public class SceneManage : MonoBehaviour
     {
         if (Input.GetKeyDown("0"))
             LoadScene(0);
-        if (Input.GetKeyDown("1"))
+        else if (Input.GetKeyDown("1"))
             LoadScene(1);
+        else if (Input.GetKeyDown("2"))
+            LoadScene(2);
     }
 #endif
 
