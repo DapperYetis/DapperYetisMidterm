@@ -257,7 +257,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
         spFX.SetActive(true);
         _aud.PlayOneShot(_audSpawn[Random.Range(0, _audSpawn.Length)], _audSpawnVol);
 
-        float timer = 10;
+        float timer = 5;
         float max = 4;
         spFX.transform.localScale = new Vector3(Mathf.Lerp(0.1f, max, timer), Mathf.Lerp(0.1f, max, timer), Mathf.Lerp(0.1f, max, timer));
 

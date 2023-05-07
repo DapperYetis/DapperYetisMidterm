@@ -446,7 +446,7 @@ MonoBehaviour:
   _anim: {fileID: 8377023706065620463}
   _aud: {fileID: 8109709000158326837}
   _drops: {fileID: 0}
-  _spawnEffect: {fileID: 2737276754389857535, guid: cbb64ba14b98d4f40a04946727b661e4,
+  _spawnEffect: {fileID: 1145477858525832329, guid: 5b82f5c3b6793fb4bbd015c2ab19b48f,
     type: 3}
   _bodyCollider: {fileID: 6841228695077934807}
   _changeTime: 2
