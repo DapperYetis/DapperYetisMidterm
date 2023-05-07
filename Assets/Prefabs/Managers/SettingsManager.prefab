@@ -45,11 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 880a10461e598f545bbe67839b83fee4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _toggleSprint: {fileID: 0}
-  _invertCam: {fileID: 0}
-  _volume: {fileID: 0}
-  _sensitivity: {fileID: 0}
-  _masterMixer: {fileID: 24100000, guid: 7507eae28a1122c4ba5057e6e3d7ba58, type: 2}
   _loadoutScript: {fileID: 3480202966095305411}
 --- !u!114 &3480202966095305411
 MonoBehaviour:
@@ -63,10 +58,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15520525a330bf8429c4cfe72ce7275d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonPrefab: {fileID: 0}
-  _weaponGroup: {fileID: 0}
-  _supportGroup: {fileID: 0}
-  _companionGroup: {fileID: 0}
+  _buttonPrefab: {fileID: 1260101179956053727, guid: 9dee025dfe8491e4ead2577de17c1779,
+    type: 3}
   _weapons:
   - {fileID: 11400000, guid: b68926fbb5736ec4d8d214ac1d99cdd5, type: 2}
   - {fileID: 11400000, guid: 076e20b409de1c648a9ed0faa8f2b967, type: 2}
