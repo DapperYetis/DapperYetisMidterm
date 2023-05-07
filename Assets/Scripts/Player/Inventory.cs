@@ -8,6 +8,10 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     private Dictionary<SOItem, int> _items;
     public Dictionary<SOItem, int> items => _items;
+    private Dictionary<SOItem, ItemEffect> _itemEffects = new();
+    public Dictionary<SOItem, ItemEffect> itemEffects => _itemEffects;
+    [SerializeField]
+    private Transform _itemEffectsParent;
 
     private int _currentLevel;
     public int currentLevel => _currentLevel;
@@ -57,12 +61,18 @@ public class Inventory : MonoBehaviour
 
     public void AddItem(SOItem item)
     {
-        if (_items.ContainsKey(item))
-            ++_items[item];
-        else
-            _items.Add(item, 1);
+        if (!_items.ContainsKey(item))
+        {
+            _items.Add(item, 0);
+            _itemEffects.Add(item, (item.prefab != null ? Instantiate(item.prefab, _itemEffectsParent) : Instantiate(LootManager.instance.noEffectPrefab, _itemEffectsParent)).GetComponent<ItemEffect>());
+            
+            _itemEffects[item].name = item.name;
+            _itemEffects[item].SetUp(item);
+        }
+        ++_items[item];
+        _itemEffects[item].AddStacks(1);
 
-        Debug.Log($"Item: {item.name}\tCount: {_items[item]}");
+        //Debug.Log($"Item: {item.name}\tCount: {_items[item]}");
         OnItemsChange.Invoke(item);
     }
 
@@ -70,5 +80,12 @@ public class Inventory : MonoBehaviour
     {
         _currency -= cost;
         OnCurrencyChange.Invoke(-cost);
+    }
+
+    public void ResetPlayer()
+    {
+        _currency = 0;
+        _items.Clear();
+        _currentLevel = 0;
     }
 }

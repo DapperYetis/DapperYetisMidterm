@@ -44,27 +44,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f9a59a3374ad054bb7ccfe0d82dcb8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _initialWait: 1.5
   _timeBetweenWaves:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 30
-      inSlope: -0.12222223
-      outSlope: -0.12222223
+      value: 10
+      inSlope: 0.013333297
+      outSlope: 0.013333297
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.15483876
+      outWeight: 1
     - serializedVersion: 3
       time: 0.5
       value: 10
-      inSlope: Infinity
-      outSlope: -0.18263844
+      inSlope: 0.012238651
+      outSlope: -0.066755764
       tangentMode: 1
       weightedMode: 0
-      inWeight: 0
-      outWeight: 0.22419938
+      inWeight: 1
+      outWeight: 0.24365649
     - serializedVersion: 3
       time: 15
       value: 5

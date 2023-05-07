@@ -7,26 +7,27 @@ using UnityEngine.SceneManagement;
 
 public class ButtonFunctions : MonoBehaviour
 {
+
+    [SerializeField] MenuNav nav;
+
     public void PlayGame()
     {
-        while (UIManager.instance.activeMenu != null)
-        {
-            UIManager.instance.PopStack();
-        }
-        UIManager.instance.TriggerTransition();
         UIManager.instance.TransitionToGame();
-        UIManager.instance.ResumeState();
-
     }
 
     public void ToLoadout()
     {
-        UIManager.instance.TransitionToLoadout();
+        nav.ToLoadoutMenu();
     }
 
-    public void ToSettings()
+    public void ToGameSettings()
     {
         UIManager.instance.ToSettings();
+    }
+
+    public void ToMenuSettings()
+    {
+        nav.ToSettings();
     }
 
     public void Quit()
@@ -36,51 +37,28 @@ public class ButtonFunctions : MonoBehaviour
 
     public void ToMainMenu()
     {
-        GameManager.instance.ResetMap();
+        UIManager.instance.PauseState();
+        SceneManage.instance.LoadScene(0);
     }
 
-    public void BackButton()
+    public void GameBackButton()
     {
-
         UIManager.instance.PrevMenu();
+    }
 
+    public void MainBackButton()
+    {
+        nav.BackButton();
     }
 
     public void ResumeButton()
     {
-
         UIManager.instance.PrevMenu();
         UIManager.instance.ResumeState();
-
-    }
-
-    public void SetVolume()
-    {
-        UIManager.instance.SetVolumeFromSlider();
-    }
-
-    public void SetSensitivity()
-    {
-        UIManager.instance.SetSensitivityFromSlider();
-    }
-
-    public void SetSprintButton()
-    {
-        UIManager.instance.SetCtrlSprint();
-    }
-    
-    public void SetInvertedControls()
-    {
-        UIManager.instance.SetInvertCam();
-    }
-
-    public void SetToggleSprint()
-    {
-        UIManager.instance.SetSprintHold();
     }
 
     public void ToKeybindsMenu()
     {
-        UIManager.instance.ToKeybinds();
+        nav.ToKeyBinds();
     }
 }

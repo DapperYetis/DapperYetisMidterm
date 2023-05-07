@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
     // ------References------
     [SerializeField]
     private Transform _effectsParent;
+    [SerializeField]
     private Camera _camera;
     [SerializeField]
     private PlayerMovement _movement;
@@ -34,6 +35,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
 
 
     // ------Loadout------
+    private PlayerController _instance;
     private SOWeapon _weaponAsset;
     private Weapon _weapon;
     public Weapon weapon => _weapon;
@@ -86,12 +88,27 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
     private float _healthCurrent;
     private bool _canInteract;
     private IInteractable _interactable;
+    private bool _isSetUp;
+    public bool isSetUp => _isSetUp;
 
-    public void StartGame()
+    private void Awake()
+    {
+        if (_instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        _instance = this;
+
+        DontDestroyOnLoad(gameObject);
+    }
+
+    public void SetUp()
     {
         // Movement
-        _camera = Camera.main;
+        //_camera = Camera.main;
         _movement.SetStats(_stats);
+        _movement.SetPosition(GameManager.instance.playerSpawnPos.position);
 
         // Combat
         GetLoadout();
@@ -103,6 +120,8 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
         SetupEvents();
 
         OnPlayerSetUp.Invoke();
+
+        _isSetUp = true;
     }
 
     private void FixedUpdate()
@@ -136,11 +155,11 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
 
     private void GetLoadout()
     {
-        _weaponAsset = UIManager.instance.references.loadoutScript.GetWeapon();
+        _weaponAsset = SettingsManager.instance.loadoutScript.GetWeapon();
         _weapon = Instantiate(_weaponAsset.prefab, transform).GetComponent<Weapon>();
         _weapon.SetStats(_weaponAsset.stats);
 
-        _supportAsset = UIManager.instance.references.loadoutScript.GetSupport();
+        _supportAsset = SettingsManager.instance.loadoutScript.GetSupport();
         _support = Instantiate(_supportAsset.prefab, transform).GetComponent<Support>();
         _support.SetStats(_supportAsset.stats);
 
@@ -224,6 +243,8 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
 
     private void HandleNewItem(SOItem item)
     {
+        if (item.ignoreStats) return;
+
         _stats += item.statsModification;
         _weapon.SetStats(_weapon.stats + item.attackStats);
         _movement.SetStats(_stats);
@@ -294,5 +315,19 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
             if (RemoveBuff(_currentBuffs.Keys.ElementAt(i)))
                 --i;
         }
+    }
+
+    public void ResetLoadout()
+    {
+        if(!isSetUp)
+            return;
+        inventory.ResetPlayer();
+        Destroy(_weapon.gameObject);
+        _weapon = null;
+        Destroy(_support.gameObject); 
+        _support = null;
+        _currentBuffs.Clear();
+
+        _isSetUp = false;
     }
 }

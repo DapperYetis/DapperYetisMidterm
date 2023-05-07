@@ -238,10 +238,9 @@ MonoBehaviour:
     m_Bits: 8
   pm: {fileID: 0}
   maxSwingDistance: 70
-  predictionPoint: {fileID: 8773828727256481356, guid: c7ef6b1988d8d9948b154b9236f0e2e3,
+  _predictionPointPrefab: {fileID: 8773828727256481352, guid: c7ef6b1988d8d9948b154b9236f0e2e3,
     type: 3}
   predictionSphereCastRadius: 1
-  swingKey: 323
   orientation: {fileID: 0}
   rb: {fileID: 0}
   horizontalThrustForce: 3000
@@ -259,7 +258,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16f5a7270df20aa41a636ead01707a3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _referencePos: {fileID: 0}
   OnPrimary:
     m_PersistentCalls:
       m_Calls: []

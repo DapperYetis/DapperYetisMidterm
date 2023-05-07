@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 5305103713753407724}
   - component: {fileID: 5305103713753407725}
   - component: {fileID: 5752458277779317275}
+  - component: {fileID: 6296275427959793321}
   m_Layer: 5
   m_Name: BG
   m_TagString: Untagged
@@ -247,3 +248,15 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6296275427959793321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5305103713753407728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eed09ba90ecf17438233a5192240707, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

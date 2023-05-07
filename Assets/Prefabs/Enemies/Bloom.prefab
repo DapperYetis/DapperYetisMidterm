@@ -997,6 +997,9 @@ MonoBehaviour:
   _anim: {fileID: 6826903240279890116}
   _aud: {fileID: 1159159473439725771}
   _drops: {fileID: 0}
+  _spawnEffect: {fileID: 2737276754389857535, guid: cbb64ba14b98d4f40a04946727b661e4,
+    type: 3}
+  _bodyCollider: {fileID: 6215277626263852326}
   _changeTime: 2
   _changeCurve:
     serializedVersion: 2

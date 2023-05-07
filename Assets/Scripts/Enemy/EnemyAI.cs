@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
@@ -20,6 +22,10 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     protected AudioSource _aud;
     [SerializeField]
     protected EnemyDrops _drops;
+    [SerializeField]
+    protected GameObject _spawnEffect;
+    [SerializeField]
+    protected CapsuleCollider _bodyCollider;
 
     [Header("--- NavMesh Mods ---")]
     [SerializeField]
@@ -236,6 +242,44 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
         _agent.speed = speed;
     }
 
+    protected virtual IEnumerator SpawnInEffect()
+    {
+        _agent.enabled = true;
+        FacePlayer();
+        _anim.speed = 0;
+        _agent.enabled = false;
+        _bodyCollider.enabled = false;
+        enabled = false;
+
+        Color mainColor = _model.material.color;
+        _model.material.color = new Color(0, 0, 0, 0f);
+        GameObject spFX = Instantiate(_spawnEffect, transform, worldPositionStays:false);
+        spFX.SetActive(true);
+        _aud.PlayOneShot(_audSpawn[Random.Range(0, _audSpawn.Length)], _audSpawnVol);
+
+        float timer = 10;
+        float max = 4;
+        spFX.transform.localScale = new Vector3(Mathf.Lerp(0.1f, max, timer), Mathf.Lerp(0.1f, max, timer), Mathf.Lerp(0.1f, max, timer));
+
+        yield return new WaitForSeconds(2);
+
+        _model.material.color = mainColor;
+        Destroy(spFX);
+        _anim.speed = 1;
+    }
+
+    protected virtual void SpawnRoar()
+    {
+        _aud.PlayOneShot(_audSpawnRoar[Random.Range(0, _audSpawnRoar.Length)], _audSpawnRoarVol);
+    }
+
+    protected virtual void ReadyToFight()
+    {
+        _agent.enabled = true;
+        _bodyCollider.enabled = true;
+        enabled = true;
+    }
+
     public virtual void SetUp(SOWave spawnPoint)
     {
         ScaleEnemy();
@@ -307,8 +351,10 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
 
     protected void Die()
     {
+        _aud.enabled = false;
+        _aud.enabled = true;
         _anim.SetBool("Dead", true);
-        GetComponent<CapsuleCollider>().enabled = false;
+        _bodyCollider.enabled = false;
         _agent.enabled = false;
         enabled = false;
         EnemyManager.instance.RemoveEnemyFromList(this);
