@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 2173714442797831783}
   - component: {fileID: 6675498777043566647}
   - component: {fileID: 3635159444154805382}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Orb Of Power
-  m_TagString: Untagged
+  m_TagString: EnemySpawnPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -33987,7 +33987,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 560
+  m_VersionIndex: 566
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -34088,7 +34088,7 @@ GameObject:
   - component: {fileID: 3650195006862322047}
   m_Layer: 3
   m_Name: Boss Spawn Point
-  m_TagString: EnemySpawnPoint
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -34100,7 +34100,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9190179240435321379}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -34639,7 +34639,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1884
+  m_VersionIndex: 1890
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
