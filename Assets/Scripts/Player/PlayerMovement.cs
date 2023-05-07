@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
     public int jumpCountCurrent => _jumpCountCurrent;
     private bool _isGrounded;
     public bool isGrounded => _isGrounded;
-    private bool _toggleSprint => UIManager.instance.GetSprintToggle();
+    private bool _toggleSprint => SettingsManager.instance.GetSprintToggle();
 
     // Events
     [HideInInspector]
@@ -45,12 +45,14 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector]
     public UnityEvent OnLand;
 
-    private void Start()
+    private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
-        _playerVelocity = new();
+    }
 
-        _rb.position = GameManager.instance.playerSpawnPos.position;
+    private void Start()
+    {
+        _playerVelocity = new();
     }
 
     private void Update()
@@ -62,6 +64,8 @@ public class PlayerMovement : MonoBehaviour
     {
         _rb.velocity = _playerVelocity;
     }
+
+    public void SetPosition(Vector3 pos) => _rb.position = pos;
 
     private void Movement()
     {

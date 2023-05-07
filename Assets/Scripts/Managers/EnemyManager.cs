@@ -134,6 +134,7 @@ public class EnemyManager : MonoBehaviour
 
     public void ResetMap()
     {
+        StopAllCoroutines();
         OnEnemyCountChange.RemoveAllListeners();
 
         _enemies.Clear();

@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     public static GameManager instance => _instance;
 
+    [SerializeField]
+    private GameObject _playerPrefab;
     private PlayerController _player;
     public PlayerController player => _player;
     public PlayerMovement playerMovement => _player.movement;
@@ -18,7 +20,8 @@ public class GameManager : MonoBehaviour
 
     public bool isPaused => UIManager.instance.isPaused;
 
-    private bool _inGame;
+    private int buildIndex = 0;
+    private bool _inGame => buildIndex > 0;
     public bool inGame => _inGame;
     private float _startTime;
     public float runTime => Time.time - _startTime;
@@ -39,29 +42,31 @@ public class GameManager : MonoBehaviour
         }
 
         _instance = this;
+        buildIndex = SceneManager.GetActiveScene().buildIndex;
 
-        StartCoroutine(FindPlayer());
+        FindPlayer();
     }
 
     private void Start()
     {
         DontDestroyOnLoad(transform.parent.gameObject);
         SceneManager.sceneLoaded += DoResetMap;
+
+        if (inGame)
+            _player.SetUp();
     }
 
-    private IEnumerator FindPlayer()
+    private void FindPlayer()
     {
-        _player = null;
-        while(true)
+        if (_player == null)
         {
+            Instantiate(_playerPrefab);
             _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-            if (_player != null) break;
-
-            yield return new WaitForEndOfFrame();
+            _player.OnHealthChange.AddListener((amt) => EndConditions());
         }
 
-        _player.OnHealthChange.AddListener((amt) => EndConditions());
         _playerSpawnPos = GameObject.FindGameObjectWithTag("PlayerSpawnPoint").transform;
+
         Debug.Log("Player found!");
     }
 
@@ -70,9 +75,8 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        _inGame = true;
+        SceneManage.instance.LoadScene(1);
         _startTime = Time.time;
-        _player.StartGame();
     }
 
     public void EndConditions()
@@ -93,23 +97,26 @@ public class GameManager : MonoBehaviour
         //}
     }
 
-    public void ResetMap()
-    {
-        _inGame = false;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
     private void DoResetMap(Scene scene, LoadSceneMode mode)
     {
-        if (mode == LoadSceneMode.Additive) return;
+        buildIndex = scene.buildIndex;
+        //if (mode == LoadSceneMode.Additive) return;
 
-        StartCoroutine(FindPlayer());
+        FindPlayer();
+        
         if (EnemyManager.instance != null)
             EnemyManager.instance.ResetMap();
         if (UIManager.instance != null)
-            UIManager.instance.TransitionToMainMenu();
+            UIManager.instance.SceneReset();
         if (LootManager.instance != null)
             LootManager.instance.ResetMap();
+        if (SettingsManager.instance != null)
+            SettingsManager.instance.ResetMap();
+
+        if (buildIndex == 0)
+            player.ResetLoadout();
+        if (buildIndex != 0 && !_player.isSetUp)
+            _player.SetUp();
     }
     #endregion
 

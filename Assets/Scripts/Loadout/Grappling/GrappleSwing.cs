@@ -17,7 +17,21 @@ public class GrappleSwing : MonoBehaviour
 
     [Header("Prediction")]
     public RaycastHit predictionHit;
-    public Transform predictionPoint;
+    [SerializeField]
+    private GameObject _predictionPointPrefab;
+    private Transform _predictionPoint;
+    public Transform predictionPoint
+    {
+        get
+        {
+            if (_predictionPoint == null)
+            {
+                _predictionPoint = Instantiate(_predictionPointPrefab).transform;
+            }
+
+            return _predictionPoint;
+        }
+    }
     public float predictionSphereCastRadius;
 
     [Header("OdmGear")]
@@ -29,15 +43,14 @@ public class GrappleSwing : MonoBehaviour
 
     private void Start()
     {
-        predictionPoint = Instantiate(predictionPoint.gameObject).transform;
         cam = Camera.main.transform;
         player = GameManager.instance.player.transform;
         pm = GameManager.instance.player.grappling;
         pm.enabled = true;
         orientation = GameManager.instance.player.grappling.orintation;
         rb = GameManager.instance.player.movement.rb;
-
     }
+
     void Update()
     {
         CheckForSwingPoints();
@@ -45,10 +58,12 @@ public class GrappleSwing : MonoBehaviour
         if (joint != null)
             OdmGearMovement();
     }
+
     private void LateUpdate()
     {
         DrawRope();
     }
+
     public void StartSwing()
     {
         if (predictionHit.point == Vector3.zero)
@@ -73,6 +88,7 @@ public class GrappleSwing : MonoBehaviour
         lr.positionCount = 2;
         currentGrapplePosition = gunTip.position;
     }
+
     public void StopSwing()
     {
         pm.swinging = false;
@@ -80,6 +96,7 @@ public class GrappleSwing : MonoBehaviour
         Destroy(joint);
         joint = null;
     }
+
     private Vector3 currentGrapplePosition;
     void DrawRope()
     {
@@ -90,6 +107,7 @@ public class GrappleSwing : MonoBehaviour
         lr.SetPosition(0, gunTip.position);
         lr.SetPosition(1, currentGrapplePosition);
     }
+
     private void OdmGearMovement()
     {
         if (Input.GetKey(KeyCode.D))
@@ -117,6 +135,7 @@ public class GrappleSwing : MonoBehaviour
             joint.minDistance = extendedDistanceFromPoint * 0.25f;
         }
     }
+
     private void CheckForSwingPoints()
     {
         //if (joint != null)
