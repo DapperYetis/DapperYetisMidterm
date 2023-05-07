@@ -252,24 +252,15 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
         enabled = false;
 
         Color mainColor = _model.material.color;
-        _model.material.color = new Color(0, 0, 0, 0);
+        _model.material.color = new Color(0, 0, 0, 0f);
         GameObject spFX = Instantiate(_spawnEffect, transform, worldPositionStays:false);
         spFX.SetActive(true);
         _aud.PlayOneShot(_audSpawn[Random.Range(0, _audSpawn.Length)], _audSpawnVol);
 
         float timer = 10;
         float max = 4;
-
-        //Vector3 scaleSize = _spawnEffect.transform.localScale * 0.1f;
-        //float startTime = Time.time;
-        //while (Time.time <= startTime + _timeLength)
-        //{
-        //    yield return new WaitForEndOfFrame();
-        //    // Portal Grows
-        //    _spawnEffect.transform.localScale = scaleSize * (Mathf.Clamp(_scaleMultiplier * (Time.time + startTime) * _timeLength, 0, 1));
-        //}
-
         spFX.transform.localScale = new Vector3(Mathf.Lerp(0.1f, max, timer), Mathf.Lerp(0.1f, max, timer), Mathf.Lerp(0.1f, max, timer));
+
         yield return new WaitForSeconds(2);
 
         _model.material.color = mainColor;
@@ -360,6 +351,8 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
 
     protected void Die()
     {
+        _aud.enabled = false;
+        _aud.enabled = true;
         _anim.SetBool("Dead", true);
         _bodyCollider.enabled = false;
         _agent.enabled = false;
