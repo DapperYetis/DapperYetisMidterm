@@ -12,7 +12,7 @@ public class DirtProjectile : Projectile
     {
         base.Start();
         _rb = GetComponent<Rigidbody>();
-        _target = (from enemy in EnemyManager.instance.enemies orderby (enemy.transform.position - transform.position).magnitude / Vector3.Dot(enemy.transform.position - transform.position.normalized, transform.forward) ascending select enemy).First();
+        _target = EnemyManager.instance.GetEnemyListSize() > 0 ? (from enemy in EnemyManager.instance.enemies orderby (enemy.transform.position - transform.position).magnitude / Vector3.Dot(enemy.transform.position - transform.position.normalized, transform.forward) ascending select enemy).First() : null;
     }
 
     private void FixedUpdate()

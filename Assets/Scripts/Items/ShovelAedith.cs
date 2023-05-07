@@ -14,7 +14,7 @@ public class ShovelAedith : ItemEffect
 
     protected void Fire(Projectile projectile, IDamageable damageable)
     {
-        DirtProjectile fired = Instantiate(_projectilePrefab, transform.position, GameManager.instance.player.transform.rotation).GetComponent<DirtProjectile>();
+        DirtProjectile fired = Instantiate(_projectilePrefab, GameManager.instance.player.transform.position, GameManager.instance.player.transform.rotation).GetComponent<DirtProjectile>();
         fired.SetStats(_item.attackStats.primaryAbility);
     }
 }
