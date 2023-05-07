@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class LootManager : MonoBehaviour
@@ -38,7 +39,7 @@ public class LootManager : MonoBehaviour
     [SerializeField]
     private List<GameObject> _itemPrefabs;
     private Dictionary<Rarity, GameObject> _prefabByRarity;
-    
+
     private void Start()
     {
         if (_instance)
@@ -48,12 +49,14 @@ public class LootManager : MonoBehaviour
         }
 
         _instance = this;
-        
+
         ResetMap();
     }
 
     public void ResetMap()
     {
+        if (!GameManager.instance.inGame) return;
+
         SortPrefabs();
         SortItems();
 
@@ -63,7 +66,7 @@ public class LootManager : MonoBehaviour
     private void SortPrefabs()
     {
         _prefabByRarity = new(_itemPrefabs.Count);
-        foreach(var prefab in _itemPrefabs)
+        foreach (var prefab in _itemPrefabs)
         {
             _prefabByRarity[prefab.GetComponent<LootItem>().item.rarity] = prefab;
         }
@@ -90,9 +93,9 @@ public class LootManager : MonoBehaviour
         if (!Application.isPlaying) return;
 
         Gizmos.color = Color.black;
-        foreach(Transform trans in _lootLocations)
+        foreach (Transform trans in _lootLocations)
         {
-            if(trans != null)
+            if (trans != null)
                 Gizmos.DrawSphere(trans.position, 1);
         }
     }
@@ -109,13 +112,20 @@ public class LootManager : MonoBehaviour
         Vector3 location = new();
 
         // Generate chest
-        for(int i = 0; i < _lootCount; ++i)
+        bool validPlacement;
+        for (int i = 0; i < _lootCount; ++i)
         {
-            GenerateLootLocation(ref location);
-
-            if (Physics.Raycast(location, Vector3.down, out RaycastHit hitInfo))
+            validPlacement = false;
+            while (!validPlacement)
             {
-                location.y = hitInfo.point.y;
+                GenerateLootLocation(ref location);
+
+                if (Physics.Raycast(location, Vector3.down, out RaycastHit hitInfo))
+                {
+                    location.y = hitInfo.point.y;
+                }
+                // Loot blocking layer
+                validPlacement = hitInfo.transform.gameObject.layer != 11;
             }
 
             _lootLocations.Add(Instantiate(_chestPrefab, location, Quaternion.identity).transform);
@@ -123,12 +133,16 @@ public class LootManager : MonoBehaviour
         }
 
         // Generate Altar
-        GenerateLootLocation(ref location);
-        if (Physics.Raycast(location, Vector3.down, out RaycastHit hitInfo2))
+        validPlacement = false;
+        while (!validPlacement)
         {
-            location.y = hitInfo2.point.y;
+            GenerateLootLocation(ref location);
+            if (Physics.Raycast(location, Vector3.down, out RaycastHit hitInfo2))
+            {
+                location.y = hitInfo2.point.y;
+            }
+            validPlacement = hitInfo2.transform.gameObject.layer != 11;
         }
-
         _altar = Instantiate(_altarPrefab, location, Quaternion.identity);
     }
 
