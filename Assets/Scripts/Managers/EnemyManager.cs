@@ -11,6 +11,8 @@ public class EnemyManager : MonoBehaviour
 
     // Waves management
     [SerializeField]
+    private float _initialWaveWait = 1.5f;
+    [SerializeField]
     private AnimationCurve _timeBetweenWaves;
     public AnimationCurve timeBetweenWaves => _timeBetweenWaves;
     [SerializeField]
@@ -27,6 +29,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField]
     private float _startingMinutes = 10;
     private List<EnemyAI> _enemies;
+    public List<EnemyAI> enemies => _enemies;
     [SerializeField]
     private List<SOWave> _waves;
     private List<Transform> _wavePoints;
@@ -71,7 +74,7 @@ public class EnemyManager : MonoBehaviour
 
     private IEnumerator RunWaves()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(_initialWaveWait);
         float waitTime = 0;
         while(GameManager.instance.inGame)
         {
