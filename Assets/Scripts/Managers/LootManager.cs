@@ -29,6 +29,9 @@ public class LootManager : MonoBehaviour
     [SerializeField]
     private List<SOItem> _items;
     private Dictionary<Rarity, List<SOItem>> _itemsByRarity;
+    [SerializeField]
+    private GameObject _noEffectPrefab;
+    public GameObject noEffectPrefab => _noEffectPrefab;
 
     [SerializeField]
     private RandomItem<Rarity> _rarityChances;

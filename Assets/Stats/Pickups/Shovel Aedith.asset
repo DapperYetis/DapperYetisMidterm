@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: 8b603be824e7a4a9f8cad21c15ca93dc, type: 3}
   _description: 
-  _rarity: 0
+  _rarity: 1
+  _prefab: {fileID: 408873413887565784, guid: 17c43b740759c9e46b420f9cb7fd72bf, type: 3}
+  _ignoreStats: 1
   _movementStats:
     walkSpeed: 0
     sprintMultiplier: 0
@@ -34,19 +36,25 @@ MonoBehaviour:
   _attackStats:
     primaryAbility:
       prefab: {fileID: 0}
-      damage: 0
-      directDamage: 0
+      critChance: 0
+      directDamage: 10
+      secondaryDamage: 0
       cooldown: 0
-      lifetime: 0
+      lifetime: 3
       secondaryLifetime: 0
-      speed: 0
+      speed: 30
       fxIntesity: 0
+      selfBuffs: []
+      targetBuffs: []
     secondaryAbility:
       prefab: {fileID: 0}
-      damage: 0
+      critChance: 0
       directDamage: 0
+      secondaryDamage: 0
       cooldown: 0
       lifetime: 0
       secondaryLifetime: 0
       speed: 0
       fxIntesity: 0
+      selfBuffs: []
+      targetBuffs: []

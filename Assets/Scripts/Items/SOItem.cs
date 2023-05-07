@@ -16,6 +16,13 @@ public class SOItem : ScriptableObject
     [SerializeField]
     private Rarity _rarity;
     public Rarity rarity => _rarity;
+    [SerializeField]
+    private GameObject _prefab;
+    public GameObject prefab => _prefab;
+
+    [SerializeField]
+    private bool _ignoreStats;
+    public bool ignoreStats => _ignoreStats;
     [SerializeField, FormerlySerializedAs("_statsModifications")]
     private PlayerStats _movementStats;
     public PlayerStats statsModification => _movementStats;
