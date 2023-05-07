@@ -166,6 +166,6 @@ public class LootManager : MonoBehaviour
 
     public int GetChestCost()
     {
-        return (int)Random.Range(_chestBaseCost * EnemyManager.instance.scaleFactor, _chestBaseCost * Mathf.Ceil(EnemyManager.instance.scaleFactor + _chestCostRange));
+        return (int)(Random.Range(_chestBaseCost, _chestBaseCost + _chestCostRange) * EnemyManager.instance.scaleFactor);
     }
 }
