@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class AudioManager : MonoBehaviour
     private AudioSource _musicAudioSource;
     [SerializeField]
     private AudioClip _backgroundMusic;
+    [SerializeField]
+    private AudioMixer _musicVolume;
+    [SerializeField]
+    private AudioMixer _sfxVolume;
 
     private bool _bgMusicPlaying;
 
@@ -25,6 +30,10 @@ public class AudioManager : MonoBehaviour
         _instance = this;
 
         StartBackgroundMusic();
+        SettingsManager.instance._onMusicSliderChange.AddListener(SetMusicVolume);
+        SettingsManager.instance._onSFXSliderChange.AddListener(SetSFXVolume);
+        SetMusicVolume();
+        SetSFXVolume();
     }
 
     public void StartBackgroundMusic()
@@ -54,4 +63,16 @@ public class AudioManager : MonoBehaviour
     {
         return _backgroundMusic;
     }
+
+    private void SetMusicVolume()
+    {
+        _musicVolume.SetFloat("MusicVolume", Mathf.Log10(SettingsManager.instance.GetMusicVolume()) * 30);
+    }
+
+    private void SetSFXVolume()
+    {
+        _sfxVolume.SetFloat("sfxVolume", Mathf.Log10(SettingsManager.instance.GetSFXVolume()) * 50);
+    }
+
+
 }

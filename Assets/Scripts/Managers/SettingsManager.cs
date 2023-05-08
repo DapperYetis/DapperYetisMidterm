@@ -30,10 +30,6 @@ public class SettingsManager : MonoBehaviour
 
     public void SetMusicVolume(float volume)
     {
-        if (volume < 1)
-        {
-            volume = .001f;
-        }
 
         PlayerPrefs.SetFloat("SavedMusicVolume", volume);
         _onMusicSliderChange.Invoke();
@@ -47,10 +43,6 @@ public class SettingsManager : MonoBehaviour
 
     public void SetSFXVolume(float volume)
     {
-        if (volume < 1)
-        {
-            volume = .001f;
-        }
 
         PlayerPrefs.SetFloat("SavedSFXVolume", volume);
         _onSFXSliderChange.Invoke();

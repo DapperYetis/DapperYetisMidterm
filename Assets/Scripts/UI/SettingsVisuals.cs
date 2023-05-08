@@ -28,7 +28,7 @@ public class SettingsVisuals : MonoBehaviour
 
     public void SetSFXFromSlider()
     {
-        SettingsManager.instance.SetMusicVolume(_musicVolume.value);
+        SettingsManager.instance.SetSFXVolume(_sfxVolume.value);
     }
 
     public void SetSensitivityFromSlider()
