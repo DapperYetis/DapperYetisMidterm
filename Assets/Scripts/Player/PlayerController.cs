@@ -244,9 +244,15 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
     private void HandleNewItem(SOItem item)
     {
         if (item.ignoreStats) return;
-
-        _stats += item.statsModification;
-        _weapon.SetStats(_weapon.stats + item.attackStats);
+        if(item.statsModification.changeType == StatChangeType.Additive)
+        {
+            _stats += item.statsModification;
+        }
+        else
+        {
+            _stats += GameManager.instance.startingPlayer.stats * item.statsModification;
+        }
+        _weapon.ApplyItem(item, _weaponAsset);
         _movement.SetStats(_stats);
 
         if(item.statsModification.healthMax != 0)

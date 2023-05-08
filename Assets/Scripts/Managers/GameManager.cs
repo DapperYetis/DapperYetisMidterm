@@ -12,6 +12,16 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private GameObject _playerPrefab;
+    private PlayerController _startingPlayer;
+    public PlayerController startingPlayer
+    {
+        get
+        {
+            if (_startingPlayer == null)
+                _startingPlayer = _playerPrefab.GetComponent<PlayerController>();
+            return _startingPlayer;
+        }
+    }
     private PlayerController _player;
     public PlayerController player => _player;
     public PlayerMovement playerMovement => _player.movement;
@@ -90,11 +100,6 @@ public class GameManager : MonoBehaviour
             UIManager.instance.NextMenu(UIManager.instance.references.loseMenu);
             UIManager.instance.PauseState();
         }
-        //else if (EnemyManager.instance.GetEnemyListSize() <= 0)
-        //{
-        //    UIManager.instance.NextMenu(UIManager.instance.references.winMenu);
-        //    UIManager.instance.PauseState();
-        //}
     }
 
     private void DoResetMap(Scene scene, LoadSceneMode mode)
