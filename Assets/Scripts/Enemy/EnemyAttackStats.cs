@@ -29,6 +29,28 @@ public struct EnemyAttackStats
         return s1;
     }
 
+    public static EnemyAttackStats operator *(EnemyAttackStats s1, EnemyAttackStats s2)
+    {
+        s1.damage *= s2.damage;
+        s1.rate *= s2.rate;
+        s1.lifetime *= s2.lifetime;
+        s1.variance *= s2.variance;
+        s1.speed *= s2.speed;
+
+        return s1;
+    }
+
+    public static EnemyAttackStats operator *(float scalar, EnemyAttackStats s1)
+    {
+        s1.damage *= scalar;
+        s1.rate *= scalar;
+        s1.lifetime *= scalar;
+        s1.variance *= scalar;
+        s1.speed *= scalar;
+
+        return s1;
+    }
+
     public static implicit operator AbilityStats(EnemyAttackStats stats)
     {
         return new AbilityStats
