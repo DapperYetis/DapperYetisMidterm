@@ -49,6 +49,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     [SerializeField]
     protected EnemyStats _stats;
     public EnemyStats stats => _stats;
+    protected EnemyStats _baseStats;
     [SerializeField]
     protected EnemyStats _statsScaling;
     protected float _HPCurrent;
@@ -85,6 +86,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     public EnemyAttackStats primaryAttackStats => _primaryAttackStats;
     [SerializeField]
     protected EnemyAttackStats _primaryAttackStatsScaling;
+    protected EnemyAttackStats _basePrimaryAttackStats;
 
     [Header("--- Audio Controls ---")]
     [Range(0, 1)]
@@ -308,6 +310,9 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
             _stats += _statsScaling;
             _primaryAttackStats += _primaryAttackStatsScaling;
         }
+
+        _baseStats = _stats;
+        _basePrimaryAttackStats = _primaryAttackStats;
     }
 
     protected virtual IEnumerator FlashColor(Color clr)
@@ -431,6 +436,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
             if (buff)
             {
                 _currentBuffs.Add(buff, (0, Time.time + buff.buffLength));
+                BuffStats(buff);
 
                 //if (buff == )
                 //{
@@ -443,6 +449,28 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
             }
         }
         _currentBuffs[buff] = (_currentBuffs[buff].stacks + amount, _currentBuffs[buff].time);
+    }
+
+    protected virtual void BuffStats(SOBuff buff, bool invert = false)
+    {
+        if (buff.generalMods.changeType == StatChangeType.Additive)
+        {
+            _stats += (invert ? -1 : 1) * buff.generalMods;
+        }
+        else
+        {
+            _stats += (invert ? -1 : 1) * (_baseStats * buff.generalMods);
+        }
+
+        if(buff.abilityMods.changeType == StatChangeType.Additive)
+        {
+            _primaryAttackStats += (invert ? -1 : 1) * (EnemyAttackStats)buff.abilityMods;
+        }
+        else
+        {
+            _primaryAttackStats += (invert ? -1 : 1) * (_basePrimaryAttackStats * (EnemyAttackStats)buff.abilityMods);
+        }
+        _agent.speed = _stats.speed;
     }
 
     public void AddBuffs(List<(SOBuff buff, int count)> buffCounts)
@@ -469,6 +497,8 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
                 _currentBuffs[buff] = (0, 0);
                 break;
         }
+
+        BuffStats(buff, true);
 
         if (_currentBuffs[buff].stacks <= 0)
         {

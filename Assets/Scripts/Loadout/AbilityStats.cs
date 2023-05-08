@@ -50,4 +50,19 @@ public struct AbilityStats
 
         return s1;
     }
+
+
+    public static implicit operator EnemyAttackStats(AbilityStats stats)
+    {
+        return new EnemyAttackStats
+        {
+            prefab = stats.prefab,
+            damage = stats.directDamage,
+            rate = stats.cooldown,
+            lifetime = stats.lifetime,
+            selfBuffs = stats.selfBuffs,
+            targetBuffs = stats.targetBuffs,
+            speed = stats.speed
+        };
+    }
 }

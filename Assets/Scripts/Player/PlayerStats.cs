@@ -29,6 +29,8 @@ public struct PlayerStats
     public static PlayerStats operator +(PlayerStats s1, PlayerStats s2)
     {
         s1.walkSpeed += s2.walkSpeed;
+        if (s1.walkSpeed < 0)
+            s1.walkSpeed = 0;
         s1.sprintMultiplier += s2.sprintMultiplier;
 
         s1.jumpHeightMin += s2.jumpHeightMin;
@@ -56,6 +58,21 @@ public struct PlayerStats
         return s1;
     }
 
+    public static PlayerStats operator *(float scalar, PlayerStats s1)
+    {
+        s1.walkSpeed *= scalar;
+        s1.sprintMultiplier *= scalar;
+
+        s1.jumpHeightMin *= scalar;
+        s1.jumpHeightMax *= scalar;
+        s1.jumpCountMax = (int)(s1.jumpCountMax * scalar);
+
+        s1.healthMax *= scalar;
+
+
+        return s1;
+    }
+
     public static implicit operator EnemyStats(PlayerStats stats)
     {
         return new EnemyStats
@@ -63,7 +80,7 @@ public struct PlayerStats
             HPMax = stats.healthMax,
             facePlayerSpeed = 0,
             speed = stats.walkSpeed,
-            acceleration = stats.accelerationRate.keys[^1].value
+            acceleration = stats.accelerationRate.keys.Length > 0 ? stats.accelerationRate.keys[^1].value : 0
         };
     }
 }
