@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Camera))]
 public class CameraController : MonoBehaviour
@@ -36,6 +38,13 @@ public class CameraController : MonoBehaviour
         _playerMove = GameManager.instance.playerMovement;
         _playerMove.OnSprintStart.AddListener(HandleSprintStart);
         _playerMove.OnSprintStop.AddListener(HandleSprintStop);
+        SettingsManager.instance._onSensitivityChange.AddListener(ChangeSensitivity);
+        ChangeSensitivity();
+    }
+
+    private void ChangeSensitivity()
+    {
+        _sensitivity = (SettingsManager.instance.GetSensitivity() * 100);
     }
 
     private void Update()
