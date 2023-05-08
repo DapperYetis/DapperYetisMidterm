@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afb7d4ac09f749f4bab466a52b45e31f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _altarPrefab: {fileID: 7632674772474913127, guid: c390d6c4a8fe2b041876d698818777bb,
+  _altarPrefab: {fileID: 1752110838582077844, guid: 54dd960119b75f548b4cd7d6e5b046aa,
     type: 3}
   _chestPrefab: {fileID: 2589429095351886765, guid: f30c0b3139383084bb1c92fbada29182,
     type: 3}
