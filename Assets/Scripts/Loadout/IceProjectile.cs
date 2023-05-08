@@ -8,7 +8,7 @@ public class IceProjectile : Projectile
     private bool _piercing;
     private List<IDamageable> _previouslyHit = new();
 
-    protected override void OnTriggerEnter(Collider other)
+    protected override void OnTriggerStay(Collider other)
     {
         if (other.isTrigger) return;
 

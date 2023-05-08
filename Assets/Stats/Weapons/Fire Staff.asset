@@ -16,10 +16,10 @@ MonoBehaviour:
   _prefab: {fileID: 2045518251835205895, guid: 38416ae80a76cb0458dd8718d9c04a38, type: 3}
   _stats:
     primaryAbility:
-      prefab: {fileID: 424343093267893311, guid: 6829f420ff30b004da8146daccd5cacf,
-        type: 3}
+      changeType: 0
+      prefab: {fileID: 0}
       critChance: 0.1
-      directDamage: 0.5
+      directDamage: 1
       secondaryDamage: 0
       cooldown: 0.15
       lifetime: 1.5
@@ -29,6 +29,7 @@ MonoBehaviour:
       selfBuffs: []
       targetBuffs: []
     secondaryAbility:
+      changeType: 0
       prefab: {fileID: 424343093267893311, guid: 8be84b71d6cae8943903b776e3ef8b8d,
         type: 3}
       critChance: 0.05
