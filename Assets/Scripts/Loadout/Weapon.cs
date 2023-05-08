@@ -87,15 +87,18 @@ public abstract class Weapon : MonoBehaviour
 
     protected virtual IEnumerator Fire(AbilityStats ability)
     {
-        Quaternion rot = _camera.transform.rotation;
-        if (Physics.Raycast(_camera.ViewportPointToRay(new(0.5f, 0.5f)), out RaycastHit hit,ability.lifetime) && hit.transform.gameObject.layer == 7)
+        if(ability.prefab != null)
         {
-            rot = Quaternion.LookRotation(hit.point - _shootPos.position);
+            Quaternion rot = _camera.transform.rotation;
+            if (Physics.Raycast(_camera.ViewportPointToRay(new(0.5f, 0.5f)), out RaycastHit hit, ability.lifetime) && hit.transform.gameObject.layer == 7)
+            {
+                rot = Quaternion.LookRotation(hit.point - _shootPos.position);
+            }
+
+            CreateProjectile(ability, rot);
+
+            yield return new WaitForSeconds(ability.cooldown);
         }
-
-        CreateProjectile(ability, rot);
-
-        yield return new WaitForSeconds(ability.cooldown);
     }
     protected virtual void CreateProjectile(AbilityStats ability, Quaternion rot = default)
     {
