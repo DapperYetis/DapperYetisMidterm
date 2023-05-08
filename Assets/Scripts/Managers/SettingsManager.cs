@@ -13,6 +13,7 @@ public class SettingsManager : MonoBehaviour
 
     public UnityEvent _onMusicSliderChange;
     public UnityEvent _onSFXSliderChange;
+    public UnityEvent _onSensitivityChange;
 
     public LoadoutScript loadoutScript => _loadoutScript;
 
@@ -57,13 +58,9 @@ public class SettingsManager : MonoBehaviour
 
     public void SetSensitivity(float sensitivity)
     {
-        if (sensitivity < 1)
-        {
-            sensitivity = 1.5f;
-        }
-
 
         PlayerPrefs.SetFloat("Sensitivity", sensitivity);
+        _onSensitivityChange.Invoke();
     }
 
     public float GetSensitivity()
