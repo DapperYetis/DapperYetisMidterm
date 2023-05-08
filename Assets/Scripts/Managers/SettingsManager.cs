@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Events;
 using UnityEngine.UI;
 public class SettingsManager : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] 
     private LoadoutScript _loadoutScript;
 
+    public UnityEvent _onMusicSliderChange;
+    public UnityEvent _onSFXSliderChange;
 
     public LoadoutScript loadoutScript => _loadoutScript;
 
@@ -25,20 +28,31 @@ public class SettingsManager : MonoBehaviour
         _loadoutScript.SetUp();
     }
 
-    public void SetVolume(float volume)
+    public void SetMusicVolume(float volume)
     {
-        if (volume < 1)
-        {
-            volume = .001f;
-        }
 
-        PlayerPrefs.SetFloat("SavedMasterVolume", volume);
+        PlayerPrefs.SetFloat("SavedMusicVolume", volume);
+        _onMusicSliderChange.Invoke();
     }
 
-    public float GetVolume()
+    public float GetMusicVolume()
     {
-        return PlayerPrefs.GetFloat("SavedMasterVolume");
+        return PlayerPrefs.GetFloat("SavedMusicVolume");
     }
+
+
+    public void SetSFXVolume(float volume)
+    {
+
+        PlayerPrefs.SetFloat("SavedSFXVolume", volume);
+        _onSFXSliderChange.Invoke();
+    }
+
+    public float GetSFXVolume()
+    {
+        return PlayerPrefs.GetFloat("SavedSFXVolume");
+    }
+
 
 
     public void SetSensitivity(float sensitivity)
