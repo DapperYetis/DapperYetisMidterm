@@ -11,6 +11,7 @@ public class EnemyManager : MonoBehaviour
 
     // Waves management
     private bool _inBossRoom;
+    public bool inBossRoom => _inBossRoom;
     [SerializeField]
     private int _initialAdditionalWaves = 0;
     [SerializeField]
