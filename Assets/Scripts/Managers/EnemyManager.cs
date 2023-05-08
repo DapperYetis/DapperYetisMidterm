@@ -11,6 +11,8 @@ public class EnemyManager : MonoBehaviour
 
     // Waves management
     [SerializeField]
+    private int _initialAdditionalWaves = 0;
+    [SerializeField]
     private float _initialWaveWait = 1.5f;
     [SerializeField]
     private AnimationCurve _timeBetweenWaves;
@@ -32,7 +34,7 @@ public class EnemyManager : MonoBehaviour
     public List<EnemyAI> enemies => _enemies;
     [SerializeField]
     private List<SOWave> _waves;
-    private List<Transform> _wavePoints;
+    private List<EnemySpawnPoint> _wavePoints = new();
 
     // Combat management
     [SerializeField]
@@ -41,7 +43,7 @@ public class EnemyManager : MonoBehaviour
     private int _attackBudgetMax;
     private int _attackBudget;
     private bool _isRunning;
-    private List<(System.Action func, System.Func<int> priority, EnemyAI enemy)> _attacks;
+    private List<(System.Action func, System.Func<float> priority, EnemyAI enemy)> _attacks;
 
     [HideInInspector]
     public UnityEvent OnEnemyCountChange;
@@ -64,21 +66,35 @@ public class EnemyManager : MonoBehaviour
         SetWaves();
     }
 
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        foreach (var point in _wavePoints)
+        {
+            Gizmos.DrawSphere(point.transform.position, 1);
+        }
+    }
+
     public void SetWaves()
     {
         _enemies = new();
 
-        _wavePoints = (from go in GameObject.FindGameObjectsWithTag("EnemySpawnPoint") select go.transform).ToList();
+        _wavePoints = (from go in GameObject.FindGameObjectsWithTag("EnemySpawnPoint") select go.GetComponent<EnemySpawnPoint>()).ToList();
         StartCoroutine(RunWaves());
     }
 
     private IEnumerator RunWaves()
     {
         yield return new WaitForSeconds(_initialWaveWait);
-        float waitTime = 0;
-        while(GameManager.instance.inGame)
+        Debug.Log($"Time: {GameManager.instance.runTimeMinutes} min.\tSpawning: {_initialAdditionalWaves} ADDITIONAL waves.");
+        for (int i = 0; i < _initialAdditionalWaves; ++i)
         {
-            for(int i = 0; i < scaleFactorInt; ++i)
+            RunWave(Random.Range(0, _waves.Count));
+        }
+        float waitTime = 0;
+        while (GameManager.instance.inGame)
+        {
+            for (int i = 0; i < scaleFactorInt; ++i)
             {
                 waitTime = RunWave(Random.Range(0, _waves.Count));
             }
@@ -94,27 +110,27 @@ public class EnemyManager : MonoBehaviour
         return _waves[index].maxEnemyCount * _waves[index].spawnInterval + _timeBetweenWaves.Evaluate(GameManager.instance.runTimeMinutes);
     }
 
-    private Transform GetSpawnPoint()
+    private Vector3 GetSpawnPoint()
     {
-        if (GameManager.instance.player == null) return _wavePoints[0];
+        if (GameManager.instance.player == null) return Vector3.zero;
 
-        List<Transform> sortedPoints = _wavePoints.OrderBy((trans) => (GameManager.instance.player.transform.position - trans.position).sqrMagnitude).Where((trans) => (GameManager.instance.player.transform.position - trans.position).magnitude > _minSpawnDistanceFromPlayer).ToList();
-        return sortedPoints.Count > 0 ? sortedPoints[Mathf.FloorToInt(_waveDistance.Evaluate(Random.Range(0f,1f)))] : null;
+        List<EnemySpawnPoint> sortedPoints = (from point in _wavePoints where (GameManager.instance.player.transform.position - point.transform.position).magnitude > _minSpawnDistanceFromPlayer orderby (GameManager.instance.player.transform.position - point.transform.position).sqrMagnitude ascending select point).ToList();
+        return sortedPoints.Count > 0 ? sortedPoints[Mathf.FloorToInt(_waveDistance.Evaluate(Random.Range(0f, 1f)))].GetPointInRange() : Vector3.zero;
     }
 
-    private IEnumerator Spawner(SOWave wave, Transform spawnPoint, int spawnedCount)
+    private IEnumerator Spawner(SOWave wave, Vector3 spawnPoint, int spawnedCount)
     {
         if (spawnedCount++ < wave.maxEnemyCount && spawnPoint != null)
         {
-            SpawnWave(wave, spawnPoint);
+            SpawnEnemy(wave, spawnPoint);
             yield return new WaitForSeconds(wave.spawnInterval);
             StartCoroutine(Spawner(wave, spawnPoint, spawnedCount));
         }
     }
 
-    public static void SpawnWave(SOWave wave, Transform spawnPoint)
+    public static void SpawnEnemy(SOWave wave, Vector3 spawnPosition)
     {
-        EnemyAI enemy = Instantiate(wave.enemyType, spawnPoint.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity).GetComponent<EnemyAI>();
+        EnemyAI enemy = Instantiate(wave.enemyType, spawnPosition + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity).GetComponent<EnemyAI>();
         enemy.SetUp(wave);
     }
 
@@ -144,10 +160,9 @@ public class EnemyManager : MonoBehaviour
         SetWaves();
     }
 
-    public void QueueAttack(System.Action attack, System.Func<int> getPriority, EnemyAI enemyAttacking)
+    public void QueueAttack(System.Action attack, System.Func<float> getPriority, EnemyAI enemyAttacking)
     {
         _attacks.Add((attack, getPriority, enemyAttacking));
-        RemoveBadAttacks();
         _attacks = (from queuedAttack in _attacks orderby queuedAttack.priority.Invoke() ascending select queuedAttack).ToList();
         if (!_isRunning)
             StartCoroutine(RunDequeue());
@@ -155,9 +170,9 @@ public class EnemyManager : MonoBehaviour
 
     public void RemoveBadAttacks()
     {
-        for(int i = 0; i < _attacks.Count; i++)
+        for (int i = 0; i < _attacks.Count; i++)
         {
-            if(_attacks[i].enemy == null)
+            if (_attacks[i].enemy == null)
             {
                 _attacks.RemoveAt(i);
                 --i;
@@ -168,15 +183,17 @@ public class EnemyManager : MonoBehaviour
     private IEnumerator RunDequeue()
     {
         _isRunning = true;
+        RemoveBadAttacks();
         if (_attacks.Count > 0 && _attackBudget > 0)
         {
-                --_attackBudget;
-                _attacks[0].func.Invoke();
-                _attacks.RemoveAt(0);
+            int index = _attacks.Count >= 3 ? Random.Range(0,3) : 0;
+            --_attackBudget;
+            _attacks[index].func.Invoke();
+            _attacks.RemoveAt(index);
 
-                StartCoroutine(RunDequeue());
-                yield return new WaitForSeconds(_attackTime);
-                ++_attackBudget;
+            StartCoroutine(RunDequeue());
+            yield return new WaitForSeconds(_attackTime);
+            ++_attackBudget;
         }
         else
         {

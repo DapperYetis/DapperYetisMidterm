@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,9 @@ public class HudItems : MonoBehaviour
 {
     [SerializeField] GameObject _layoutArea;
     [SerializeField] GameObject _itemUI;
+    [SerializeField] Image _itemSprite;
+    [SerializeField] TextMeshProUGUI _itemName;
+    [SerializeField] TextMeshProUGUI _itemDescription;
 
     private Dictionary<SOItem, ItemHudItem> _itemHud = new();
 
@@ -41,7 +45,17 @@ public class HudItems : MonoBehaviour
         {
             _itemHud[toAdd].SetCount(GameManager.instance.player.inventory.items[toAdd]);
         }
+        StartCoroutine(UpdateNotification(toAdd));
+    }
 
+    IEnumerator UpdateNotification(SOItem itemToAdd)
+    {
+        UIManager.instance.references.itemNotif.SetActive(true);
+        _itemSprite.sprite = itemToAdd.icon;
+        _itemName.SetText(itemToAdd.itemName);
+        _itemDescription.SetText(itemToAdd.description);
+        yield return new WaitForSeconds(3f);
+        UIManager.instance.references.itemNotif.SetActive(false);
     }
 
 }

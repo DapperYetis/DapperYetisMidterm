@@ -36,6 +36,29 @@ public abstract class Weapon : MonoBehaviour
         _stats = stats;
     }
 
+    public void ApplyItem(SOItem item, SOWeapon weapon)
+    {
+        // Primary
+        if(item.attackStats.primaryAbility.changeType == StatChangeType.Additive)
+        {
+            _stats.primaryAbility += item.attackStats.primaryAbility;
+        }
+        else
+        {
+            _stats.primaryAbility += weapon.stats.primaryAbility * item.attackStats.primaryAbility;
+        }
+
+        // Secondary
+        if(item.attackStats.secondaryAbility.changeType == StatChangeType.Additive)
+        {
+            _stats.secondaryAbility += item.attackStats.secondaryAbility;
+        }
+        else
+        {
+            _stats.secondaryAbility += weapon.stats.secondaryAbility * item.attackStats.secondaryAbility;
+        }
+    }
+
     protected virtual void Update()
     {
         if (Input.GetButton("Primary Fire") && _canUsePrimary && !GameManager.instance.isPaused)

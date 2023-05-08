@@ -44,6 +44,8 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     public UnityEvent _OnHealthChange;
 
     // Enemy Stats
+    [SerializeField, Space(20)]
+    protected float _additivePriorityMod;
     [SerializeField]
     protected EnemyStats _stats;
     public EnemyStats stats => _stats;
@@ -170,6 +172,11 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
         }
 
         CheckBuffs();
+    }
+
+    protected virtual float AttackPriority()
+    {
+        return (GameManager.instance.player.transform.position - transform.position).sqrMagnitude - _primaryAttackStats.range - _additivePriorityMod;
     }
 
     protected IEnumerator PickMoveType()

@@ -48,8 +48,8 @@ MonoBehaviour:
     type: 3}
   _chestPrefab: {fileID: 2589429095351886765, guid: f30c0b3139383084bb1c92fbada29182,
     type: 3}
-  _chestBaseCost: 30
-  _chestCostRange: 0.25
+  _chestBaseCost: 20
+  _chestCostRange: 15
   _lootCount: 20
   _spawningBounds:
     m_Center: {x: 0, y: 84, z: 0}
@@ -67,6 +67,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1e20484e14af5484b83c341e4d03b2b5, type: 2}
   - {fileID: 11400000, guid: af0aa0f075cc6ed47901e6dedc33e65a, type: 2}
   - {fileID: 11400000, guid: 567789f17956dfa4aae41a3c66a02f05, type: 2}
+  _noEffectPrefab: {fileID: 2111052692326853008, guid: 299f9daebbc7a314c931f4eb1ffbb9ec,
+    type: 3}
   _rarityChances:
     _chanceItems:
     - _weight: 60
@@ -81,5 +83,3 @@ MonoBehaviour:
   - {fileID: 5599611686792540281, guid: 1f45c72c9ec066b469f0fc321b662089, type: 3}
   - {fileID: 5599611686792540281, guid: c1bdcc29de51e654bb29afd4b66da526, type: 3}
   - {fileID: 5599611686792540281, guid: e882630470f797d429eee594447ee2e3, type: 3}
-  _noEffectPrefab: {fileID: 2111052692326853008, guid: 299f9daebbc7a314c931f4eb1ffbb9ec,
-    type: 3}

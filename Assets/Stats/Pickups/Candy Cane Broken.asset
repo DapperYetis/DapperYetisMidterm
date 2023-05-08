@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: Candy Cane Broken
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: 46729a92ff0734b9f9af7f2c2d3a7263, type: 3}
+  _itemName: 
   _description: 
   _rarity: 0
+  _prefab: {fileID: 0}
+  _ignoreStats: 0
   _movementStats:
     walkSpeed: 0.5
     sprintMultiplier: 0
@@ -31,22 +34,31 @@ MonoBehaviour:
     jumpCountMax: 0
     gravityAcceleration: 0
     healthMax: 0
+    changeType: 1
   _attackStats:
     primaryAbility:
+      changeType: 0
       prefab: {fileID: 0}
-      damage: 0
+      critChance: 0
       directDamage: 0
+      secondaryDamage: 0
       cooldown: 0
       lifetime: 0
       secondaryLifetime: 0
       speed: 0
       fxIntesity: 0
+      selfBuffs: []
+      targetBuffs: []
     secondaryAbility:
+      changeType: 0
       prefab: {fileID: 0}
-      damage: 0
+      critChance: 0
       directDamage: 0
+      secondaryDamage: 0
       cooldown: 0
       lifetime: 0
       secondaryLifetime: 0
       speed: 0
       fxIntesity: 0
+      selfBuffs: []
+      targetBuffs: []

@@ -1031,6 +1031,7 @@ MonoBehaviour:
   _OnHealthChange:
     m_PersistentCalls:
       m_Calls: []
+  _additivePriorityMod: 0
   _stats:
     HPMax: 6
     facePlayerSpeed: 600
