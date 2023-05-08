@@ -24,6 +24,7 @@ public struct PlayerStats
 
     [Space(20), Header("---Combat---")]
     public float healthMax;
+    public StatChangeType changeType;
 
     public static PlayerStats operator +(PlayerStats s1, PlayerStats s2)
     {
@@ -35,6 +36,21 @@ public struct PlayerStats
         s1.jumpCountMax += s2.jumpCountMax;
 
         s1.healthMax += s2.healthMax;
+
+
+        return s1;
+    }
+
+    public static PlayerStats operator *(PlayerStats s1, PlayerStats s2)
+    {
+        s1.walkSpeed *= s2.walkSpeed;
+        s1.sprintMultiplier *= s2.sprintMultiplier;
+
+        s1.jumpHeightMin *= s2.jumpHeightMin;
+        s1.jumpHeightMax *= s2.jumpHeightMax;
+        s1.jumpCountMax *= s2.jumpCountMax;
+
+        s1.healthMax *= s2.healthMax;
 
 
         return s1;
