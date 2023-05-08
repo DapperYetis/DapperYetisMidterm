@@ -2,19 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PortalEntry : MonoBehaviour
+public class PortalBossRoom : MonoBehaviour
 {
     [Header("--- Components ---")]
     [SerializeField]
     protected GameObject _portalEnterObject;
     [SerializeField]
-    protected BoxCollider _proclamationCollider;
-    [SerializeField]
     protected GameObject _portalExitObject;
+    [SerializeField]
+    protected BoxCollider _proclamationCollider;
     [SerializeField]
     protected AudioSource _aud;
     [SerializeField]
-    protected int _nextSceneNum;
+    protected string _sceneNextName;
+    [SerializeField]
+    protected SOWave _bossWave;
+    [SerializeField]
+    protected Transform _bossSpawnPoint;
 
     [Header("--- Audio Controls ---")]
     [Range(0, 1)]
@@ -57,12 +61,14 @@ public class PortalEntry : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        SceneManage.instance.LoadScene(_nextSceneNum);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(_sceneNextName);
     }
 
     private void OnTriggerExit(Collider other)
     {
         _aud.PlayOneShot(_audBossExclamation[Random.Range(0, _audBossExclamation.Length)], _audBossExclamationVol);
         _proclamationCollider.enabled = false;
+
+        EnemyManager.SpawnEnemy(_bossWave, _bossSpawnPoint.position);
     }
 }

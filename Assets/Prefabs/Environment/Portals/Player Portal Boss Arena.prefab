@@ -33990,7 +33990,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 519
+  m_VersionIndex: 525
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -38865,7 +38865,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 8, y: 10.000005, z: 2}
+  m_Size: {x: 6, y: 10.000005, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &3249492719501390424
 PrefabInstance:
@@ -38997,7 +38997,7 @@ PrefabInstance:
     - target: {fileID: 7311611922411677425, guid: ce9eb809e08467f4982dc22ccf3b50d4,
         type: 3}
       propertyPath: m_Name
-      value: Player Portal Enter Boss Arena
+      value: Player Portal Boss Arena
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 862755872193057786, guid: ce9eb809e08467f4982dc22ccf3b50d4, type: 3}
@@ -39051,9 +39051,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0ce53710162c34fbf61e2a53e54dac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _portalObject: {fileID: 3924518342653169626}
+  _portalEnterObject: {fileID: 3924518342653169626}
+  _portalExitObject: {fileID: 7407556847642709557}
   _proclamationCollider: {fileID: 4926548603548487091}
   _aud: {fileID: 438502981585461010}
+  _sceneNextName: 
+  _bossWave: {fileID: 0}
+  _bossSpawnPoint: {fileID: 0}
   _audPortalVol: 0.5
   _audPortal:
   - {fileID: 8300000, guid: 1644d0cba2875e849a67b99e86f3ef62, type: 3}

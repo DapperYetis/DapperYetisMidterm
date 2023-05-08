@@ -2,14 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PortalExit : MonoBehaviour, IInteractable
+public class PortalOverworld : MonoBehaviour, IInteractable
 {
+    [Header("--- Components ---")]
     [SerializeField]
-    protected int _cost = 1000;
+    protected int _cost = 1;
+    [SerializeField]
+    protected AudioSource _aud;
     [SerializeField]
     private GameObject _portalObject;
     [SerializeField]
-    private int _nextSceneNum;
+    protected string _sceneNextName;
+
+    [Header("--- Audio Controls ---")]
+    [Range(0, 1)]
+    [SerializeField]
+    protected float _audPortalVol;
+    [SerializeField]
+    protected AudioClip[] _audPortal;
 
     private void Start()
     {
@@ -19,6 +29,7 @@ public class PortalExit : MonoBehaviour, IInteractable
     public bool Interact()
     {
         _portalObject.SetActive(true);
+        _aud.PlayOneShot(_audPortal[Random.Range(0, _audPortal.Length)], _audPortalVol);
         return true;
     }
 
@@ -26,7 +37,7 @@ public class PortalExit : MonoBehaviour, IInteractable
     {
         GameManager.instance.player.movement.enabled = false;
 
-        SceneManage.instance.LoadScene(_nextSceneNum);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(_sceneNextName);
     }
 
     public bool CanInteract()

@@ -17,6 +17,11 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1976575331342794969, guid: ce9eb809e08467f4982dc22ccf3b50d4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1976575331342794971, guid: ce9eb809e08467f4982dc22ccf3b50d4,
         type: 3}
       propertyPath: m_Mesh
@@ -45,7 +50,7 @@ PrefabInstance:
     - target: {fileID: 1976575331573824906, guid: ce9eb809e08467f4982dc22ccf3b50d4,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 519
+      value: 528
       objectReference: {fileID: 0}
     - target: {fileID: 2203173031915467207, guid: ce9eb809e08467f4982dc22ccf3b50d4,
         type: 3}
@@ -115,7 +120,7 @@ PrefabInstance:
     - target: {fileID: 7311611922411677425, guid: ce9eb809e08467f4982dc22ccf3b50d4,
         type: 3}
       propertyPath: m_Name
-      value: Player Portal Exit Normal Arena
+      value: Player Portal Overworld
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce9eb809e08467f4982dc22ccf3b50d4, type: 3}
@@ -137,9 +142,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3c25a9ba280c914fbefdd9bbb385d52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cost: 1000
-  _portalObject: {fileID: 0}
-  _sceneNum: 0
+  _cost: 1
+  _aud: {fileID: 6207591422121533999}
+  _portalObject: {fileID: 7369748277028319975}
+  _sceneNextName: Base Boss Level
+  _audPortalVol: 0.5
+  _audPortal:
+  - {fileID: 8300000, guid: 1644d0cba2875e849a67b99e86f3ef62, type: 3}
+--- !u!82 &6207591422121533999 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3102245987792514378, guid: ce9eb809e08467f4982dc22ccf3b50d4,
+    type: 3}
+  m_PrefabInstance: {fileID: 9018651528513195877}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7369748277028319975 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1976575331573824898, guid: ce9eb809e08467f4982dc22ccf3b50d4,
@@ -157,5 +172,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 8, y: 10.000005, z: 2}
+  m_Size: {x: 6, y: 10.000005, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
