@@ -70,7 +70,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     protected float _runTypeTimer;
     [SerializeField]
     protected float _circlingRange = 10f;
-    protected bool _hasEnteredRange => _playerDir.magnitude < _circlingRange;
+    protected bool _hasEnteredRange;
     protected bool _movementOverride;
 
     [Header("--- Death Controls ---")]
@@ -114,16 +114,6 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     protected float _audHealVol;
     [SerializeField]
     protected AudioClip[] _audHeal;
-    [Range(0, 1)]
-    [SerializeField]
-    protected float _audBuffVol;
-    [SerializeField]
-    protected AudioClip[] _audBuff;
-    [Range(0, 1)]
-    [SerializeField]
-    protected float _audDebuffVol;
-    [SerializeField]
-    protected AudioClip[] _audDebuff;
     [Range(0, 1)]
     [SerializeField]
     protected float _audDeathVol;
@@ -191,15 +181,22 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
 
     protected virtual void Movement()
     {
+        if (!_hasEnteredRange && _playerDir.magnitude < _circlingRange)
+        {
+            _hasEnteredRange = true;
+            _aud.PlayOneShot(_audGettingClose[Random.Range(0, _audGettingClose.Length)], _audGettingCloseVol);
+        }
+
         if (_movementOverride) return;
         float distanceToPlayer = Vector3.Distance(GameManager.instance.player.transform.position, transform.position);
 
         if (_hasCompletedAttack) // If the enemy has already attacked, back off to let another enemy queue
         {
             _agent.SetDestination(transform.position - (_playerDir.normalized * _stats.speed));
-            if (!_hasEnteredRange)
+            if (_hasEnteredRange)
             {
                 _hasCompletedAttack = false;
+                _hasEnteredRange = false;
             }
         }
         else if (_hasEnteredRange)
@@ -262,7 +259,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
 
         Color mainColor = _model.material.color;
         _model.material.color = new Color(0, 0, 0, 0f);
-        GameObject spFX = Instantiate(_spawnEffect, transform, worldPositionStays:false);
+        GameObject spFX = Instantiate(_spawnEffect, transform, worldPositionStays: false);
         spFX.SetActive(true);
         _aud.PlayOneShot(_audSpawn[Random.Range(0, _audSpawn.Length)], _audSpawnVol);
         Debug.Log($"{name} played a sound");
@@ -270,7 +267,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
         float max = 4;
         spFX.transform.localScale = new Vector3(Mathf.Lerp(0.1f, max, timer), Mathf.Lerp(0.1f, max, timer), Mathf.Lerp(0.1f, max, timer));
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0.5f);
 
         _model.material.color = mainColor;
         Destroy(spFX);
@@ -285,6 +282,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
 
     protected virtual void ReadyToFight()
     {
+        _anim.speed = 1;
         _agent.enabled = true;
         _bodyCollider.enabled = true;
         enabled = true;
@@ -443,14 +441,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
                 _currentBuffs.Add(buff, (0, Time.time + buff.buffLength));
                 BuffStats(buff);
 
-                //if (buff == )
-                //{
-                //    _aud.PlayOneShot(_audBuff[Random.Range(0, _audBuff.Length)], _audBuffVol);
-                //}
-                //else if (buff == )
-                //{
-                //    _aud.PlayOneShot(_audDebuff[Random.Range(0, _audDebuff.Length)], _audDebuffVol);
-                //}
+                _aud.PlayOneShot(buff.audioClips[Random.Range(0, buff.audioClips.Length)], buff.audioVolume);
             }
         }
         _currentBuffs[buff] = (_currentBuffs[buff].stacks + amount, _currentBuffs[buff].time);
@@ -467,7 +458,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
             _stats += (invert ? -1 : 1) * (_baseStats * buff.generalMods);
         }
 
-        if(buff.abilityMods.changeType == StatChangeType.Additive)
+        if (buff.abilityMods.changeType == StatChangeType.Additive)
         {
             _primaryAttackStats += (invert ? -1 : 1) * (EnemyAttackStats)buff.abilityMods;
         }
