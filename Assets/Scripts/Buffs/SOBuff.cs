@@ -25,9 +25,6 @@ public class SOBuff : ScriptableObject
 
     [Header("---Modifications---")]
     [SerializeField]
-    private StatChangeType _changeType;
-    public StatChangeType changeType => _changeType;
-    [SerializeField]
     private PlayerStats _generalMods;
     public PlayerStats generalMods => _generalMods;
     [SerializeField]

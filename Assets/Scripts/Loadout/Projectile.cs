@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(Rigidbody))]
 public abstract class Projectile : MonoBehaviour
 {
     protected AbilityStats _stats;
@@ -30,7 +31,7 @@ public abstract class Projectile : MonoBehaviour
         }
     }
 
-    protected virtual void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerStay(Collider other)
     {
         if (other.isTrigger) return;
 

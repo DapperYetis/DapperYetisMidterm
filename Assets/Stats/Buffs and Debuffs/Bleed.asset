@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _buffName: Bleed
   _description: You're losing blood... a lot of it...
-  _timing: 1
+  _timing: 0
   _buffLength: 1.5
   _removeType: 0
   _changeType: 0
@@ -34,10 +34,13 @@ MonoBehaviour:
     jumpCountMax: 0
     gravityAcceleration: 0
     healthMax: 0
+    changeType: 0
   _abilityMods:
+    changeType: 0
     prefab: {fileID: 0}
-    secondaryDamage: 0
+    critChance: 0
     directDamage: 5
+    secondaryDamage: 0
     cooldown: 0
     lifetime: 0
     secondaryLifetime: 0

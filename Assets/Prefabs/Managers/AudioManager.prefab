@@ -47,6 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _musicAudioSource: {fileID: 1176047485951376479}
   _backgroundMusic: {fileID: 8300000, guid: e618294af632810449ff712e7325e531, type: 3}
+  _musicVolume: {fileID: 24100000, guid: 7507eae28a1122c4ba5057e6e3d7ba58, type: 2}
+  _sfxVolume: {fileID: 24100000, guid: ee91a59677e14a24f8f1e16aeb721c3c, type: 2}
 --- !u!1 &8405336143694848079
 GameObject:
   m_ObjectHideFlags: 0
