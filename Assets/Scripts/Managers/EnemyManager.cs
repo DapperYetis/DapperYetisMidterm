@@ -10,6 +10,7 @@ public class EnemyManager : MonoBehaviour
     public static EnemyManager instance => _instance;
 
     // Waves management
+    private bool _inBossRoom;
     [SerializeField]
     private int _initialAdditionalWaves = 0;
     [SerializeField]
@@ -47,6 +48,8 @@ public class EnemyManager : MonoBehaviour
 
     [HideInInspector]
     public UnityEvent OnEnemyCountChange;
+    public UnityEvent<SOWave> OnBossRoomEnter;
+    public UnityEvent<int> OnBossRoomLeave;
 
     void Awake()
     {
@@ -120,7 +123,7 @@ public class EnemyManager : MonoBehaviour
 
     private IEnumerator Spawner(SOWave wave, Vector3 spawnPoint, int spawnedCount)
     {
-        if (spawnedCount++ < wave.maxEnemyCount && spawnPoint != null)
+        if (!_inBossRoom && spawnedCount++ < wave.maxEnemyCount && spawnPoint != null)
         {
             SpawnEnemy(wave, spawnPoint);
             yield return new WaitForSeconds(wave.spawnInterval);
@@ -200,5 +203,17 @@ public class EnemyManager : MonoBehaviour
             _isRunning = false;
             yield return null;
         }
+    }
+
+    public void EnterBossRoom(SOWave wave)
+    {
+        _inBossRoom = true;
+        OnBossRoomEnter.Invoke(wave);
+    }
+
+    public void LeaveBossRoom(int nextLevel)
+    {
+        _inBossRoom = false;
+        OnBossRoomLeave.Invoke(nextLevel);
     }
 }
