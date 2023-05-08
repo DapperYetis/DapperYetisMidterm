@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -82,6 +83,11 @@ public class MenuNav : MonoBehaviour
     public void BackButton()
     {
         PrevMenu();
+    }
+
+    internal void ToCredits()
+    {
+        NextMenu(_menuRef.creditsScreen);
     }
 
     #endregion

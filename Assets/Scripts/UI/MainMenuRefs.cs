@@ -41,4 +41,7 @@ public class MainMenuRefs : MonoBehaviour
 
     public GameObject companionGroup => _companionGroup;
 
+    [SerializeField] GameObject _creditsScreen;
+
+    public GameObject creditsScreen => _creditsScreen;
 }
