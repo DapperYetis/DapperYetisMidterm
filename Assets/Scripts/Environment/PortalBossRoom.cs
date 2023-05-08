@@ -10,15 +10,15 @@ public class PortalBossRoom : MonoBehaviour
     [SerializeField]
     protected GameObject _portalExitObject;
     [SerializeField]
-    protected BoxCollider _proclamationCollider;
+    protected SphereCollider _proclamationCollider;
     [SerializeField]
     protected AudioSource _aud;
-    [SerializeField]
-    protected string _sceneNextName;
     [SerializeField]
     protected SOWave _bossWave;
     [SerializeField]
     protected Transform _bossSpawnPoint;
+
+    bool _bossHasSpawned;
 
     [Header("--- Audio Controls ---")]
     [Range(0, 1)]
@@ -39,36 +39,41 @@ public class PortalBossRoom : MonoBehaviour
 
     private void Update()
     {
-        if (EnemyManager.instance.enemies.Count == 0)
+        if (_bossHasSpawned && EnemyManager.instance.enemies.Count < 1 && !_portalExitObject.activeInHierarchy)
         {
-            StartCoroutine(PlayerWon());
+            PlayerWon();
         }
     }
 
     private IEnumerator PlayerEntry()
     {
         _aud.PlayOneShot(_audPortal[Random.Range(0, _audPortal.Length)], _audPortalVol);
+        Debug.Log($"{name} played a sound");
+        if (!EnemyManager.instance.inBossRoom)
+            EnemyManager.instance.EnterBossRoom(null);
         yield return new WaitForSeconds(3);
         _portalEnterObject.SetActive(false);
     }
 
-    private IEnumerator PlayerWon()
+    private void PlayerWon()
     {
-        yield return new WaitForSeconds(3);
         _aud.PlayOneShot(_audPortal[Random.Range(0, _audPortal.Length)], _audPortalVol);
+        Debug.Log($"{name} played a sound");
         _portalExitObject.SetActive(true);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(_sceneNextName);
+        RenderSettings.fog = false;
     }
 
     private void OnTriggerExit(Collider other)
     {
-        _aud.PlayOneShot(_audBossExclamation[Random.Range(0, _audBossExclamation.Length)], _audBossExclamationVol);
-        _proclamationCollider.enabled = false;
+        Debug.Log(other.gameObject);
+        if (other.gameObject.layer == 6)
+        {
+            _aud.PlayOneShot(_audBossExclamation[Random.Range(0, _audBossExclamation.Length)], _audBossExclamationVol);
+            Debug.Log($"{name} played a sound");
+            _proclamationCollider.enabled = false;
 
-        EnemyManager.SpawnEnemy(_bossWave, _bossSpawnPoint.position);
+            EnemyManager.SpawnEnemy(_bossWave, _bossSpawnPoint.position);
+            _bossHasSpawned = true;
+        }
     }
 }

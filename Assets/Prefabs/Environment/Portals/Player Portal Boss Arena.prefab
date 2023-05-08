@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4357781734398418631}
   - component: {fileID: 5397284574021213943}
   - component: {fileID: 3002761948422234369}
+  - component: {fileID: 8372257646965786631}
   m_Layer: 0
   m_Name: Portal To Exit
   m_TagString: Untagged
@@ -33990,7 +33991,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 525
+  m_VersionIndex: 528
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -38867,6 +38868,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 6, y: 10.000005, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8372257646965786631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7407556847642709557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dc8a6629334c804ea6e9661e62c8f33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _buildIndex: 2
+  _isBossRoom: 1
 --- !u!1001 &3249492719501390424
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38882,7 +38897,7 @@ PrefabInstance:
     - target: {fileID: 247420428438994268, guid: ce9eb809e08467f4982dc22ccf3b50d4,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 2001
+      value: 2097
       objectReference: {fileID: 0}
     - target: {fileID: 1976575331342794968, guid: ce9eb809e08467f4982dc22ccf3b50d4,
         type: 3}
@@ -38892,7 +38907,7 @@ PrefabInstance:
     - target: {fileID: 1976575331342794969, guid: ce9eb809e08467f4982dc22ccf3b50d4,
         type: 3}
       propertyPath: m_TagString
-      value: PlayerSpawnPoint
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 1976575331342794971, guid: ce9eb809e08467f4982dc22ccf3b50d4,
         type: 3}
@@ -38907,12 +38922,22 @@ PrefabInstance:
     - target: {fileID: 1976575331342794972, guid: ce9eb809e08467f4982dc22ccf3b50d4,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 1231
+      value: 1327
       objectReference: {fileID: 0}
     - target: {fileID: 1976575331573824898, guid: ce9eb809e08467f4982dc22ccf3b50d4,
         type: 3}
       propertyPath: m_Name
       value: Portal To Enter
+      objectReference: {fileID: 0}
+    - target: {fileID: 1976575331573824898, guid: ce9eb809e08467f4982dc22ccf3b50d4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1976575331573824898, guid: ce9eb809e08467f4982dc22ccf3b50d4,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 1976575331573824905, guid: ce9eb809e08467f4982dc22ccf3b50d4,
         type: 3}
@@ -38927,7 +38952,7 @@ PrefabInstance:
     - target: {fileID: 1976575331573824906, guid: ce9eb809e08467f4982dc22ccf3b50d4,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 621
+      value: 717
       objectReference: {fileID: 0}
     - target: {fileID: 2203173031915467207, guid: ce9eb809e08467f4982dc22ccf3b50d4,
         type: 3}
@@ -39001,6 +39026,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 862755872193057786, guid: ce9eb809e08467f4982dc22ccf3b50d4, type: 3}
+    - {fileID: 4975332836140697606, guid: ce9eb809e08467f4982dc22ccf3b50d4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ce9eb809e08467f4982dc22ccf3b50d4, type: 3}
 --- !u!82 &438502981585461010 stripped
 AudioSource:
@@ -39026,8 +39052,8 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3249492719501390424}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &4926548603548487091
-BoxCollider:
+--- !u!135 &1184200462907896880
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -39037,8 +39063,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 300, y: 300, z: 80}
-  m_Center: {x: 0, y: 149.4, z: 0}
+  m_Radius: 40
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2157609763140807589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39053,10 +39079,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _portalEnterObject: {fileID: 3924518342653169626}
   _portalExitObject: {fileID: 7407556847642709557}
-  _proclamationCollider: {fileID: 4926548603548487091}
+  _proclamationCollider: {fileID: 1184200462907896880}
   _aud: {fileID: 438502981585461010}
-  _sceneNextName: 
-  _bossWave: {fileID: 0}
+  _bossWave: {fileID: 11400000, guid: 98c6760a55c29244d8d233ee1356757e, type: 2}
   _bossSpawnPoint: {fileID: 0}
   _audPortalVol: 0.5
   _audPortal:

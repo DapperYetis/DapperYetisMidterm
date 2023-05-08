@@ -263,7 +263,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
         GameObject spFX = Instantiate(_spawnEffect, transform, worldPositionStays:false);
         spFX.SetActive(true);
         _aud.PlayOneShot(_audSpawn[Random.Range(0, _audSpawn.Length)], _audSpawnVol);
-
+        Debug.Log($"{name} played a sound");
         float timer = 5;
         float max = 4;
         spFX.transform.localScale = new Vector3(Mathf.Lerp(0.1f, max, timer), Mathf.Lerp(0.1f, max, timer), Mathf.Lerp(0.1f, max, timer));
@@ -278,6 +278,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     protected virtual void SpawnRoar()
     {
         _aud.PlayOneShot(_audSpawnRoar[Random.Range(0, _audSpawnRoar.Length)], _audSpawnRoarVol);
+        Debug.Log($"{name} played a sound");
     }
 
     protected virtual void ReadyToFight()
@@ -343,6 +344,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
         {
             _anim.SetTrigger("Damage");
             _aud.PlayOneShot(_audTakeDamage[Random.Range(0, _audTakeDamage.Length)], _audTakeDamageVol);
+            Debug.Log($"{name} played a sound");
             StartCoroutine(FlashColor(Color.red));
             if (buffs != null)
             {
@@ -372,11 +374,13 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     protected void DeathCry()
     {
         _aud.PlayOneShot(_audDeath[Random.Range(0, _audDeath.Length)], _audDeathVol);
+        Debug.Log($"{name} played a sound");
     }
 
     protected void FellDownDead()
     {
         _aud.PlayOneShot(_audFallDown[Random.Range(0, _audFallDown.Length)], _audFallDownVol);
+        Debug.Log($"{name} played a sound");
     }
 
     protected virtual IEnumerator EnemyRemoved()
@@ -407,6 +411,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
         {
             StartCoroutine(FlashColor(Color.green));
             _aud.PlayOneShot(_audHeal[Random.Range(0, _audHeal.Length)], _audHealVol);
+            Debug.Log($"{name} played a sound");
         }
 
         _OnHealthChange.Invoke();

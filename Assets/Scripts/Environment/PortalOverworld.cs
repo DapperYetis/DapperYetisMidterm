@@ -11,8 +11,6 @@ public class PortalOverworld : MonoBehaviour, IInteractable
     protected AudioSource _aud;
     [SerializeField]
     private GameObject _portalObject;
-    [SerializeField]
-    protected string _sceneNextName;
 
     [Header("--- Audio Controls ---")]
     [Range(0, 1)]
@@ -31,13 +29,6 @@ public class PortalOverworld : MonoBehaviour, IInteractable
         _portalObject.SetActive(true);
         _aud.PlayOneShot(_audPortal[Random.Range(0, _audPortal.Length)], _audPortalVol);
         return true;
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        GameManager.instance.player.movement.enabled = false;
-
-        UnityEngine.SceneManagement.SceneManager.LoadScene(_sceneNextName);
     }
 
     public bool CanInteract()

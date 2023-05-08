@@ -89,6 +89,10 @@ public class Teleport : Support
     {
         _player.transform.position = _hit.point + _hit.normal * 3f;
         if (_audioClip != null)
+        {
             AudioSource.PlayClipAtPoint(_audioClip, transform.position);
+            Debug.Log($"{name} played a sound");
+        }
+
     }
 }
