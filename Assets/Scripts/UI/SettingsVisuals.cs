@@ -8,7 +8,8 @@ public class SettingsVisuals : MonoBehaviour
 {
     [SerializeField] Toggle _toggleSprint;
     [SerializeField] Toggle _invertCam;
-    [SerializeField] Slider _volume;
+    [SerializeField] Slider _musicVolume;
+    [SerializeField] Slider _sfxVolume;
     [SerializeField] Slider _sensitivity;
     private AudioMixer _masterMixer;
 
@@ -16,12 +17,18 @@ public class SettingsVisuals : MonoBehaviour
     {
         _toggleSprint.isOn = SettingsManager.instance.GetSprintToggle();
         _invertCam.isOn = SettingsManager.instance.GetInvertChoice();
-        _volume.value = SettingsManager.instance.GetVolume();
+        _musicVolume.value = SettingsManager.instance.GetMusicVolume();
+        _sfxVolume.value = SettingsManager.instance.GetSFXVolume();
         _sensitivity.value = SettingsManager.instance.GetSensitivity();
     }
-    public void SetVolumeFromSlider()
+    public void SetMusicFromSlider()
     {
-        SettingsManager.instance.SetVolume(_volume.value);
+        SettingsManager.instance.SetMusicVolume(_musicVolume.value);
+    }
+
+    public void SetSFXFromSlider()
+    {
+        SettingsManager.instance.SetSFXVolume(_sfxVolume.value);
     }
 
     public void SetSensitivityFromSlider()

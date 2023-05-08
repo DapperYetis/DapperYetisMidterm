@@ -61,4 +61,9 @@ public class ButtonFunctions : MonoBehaviour
     {
         nav.ToKeyBinds();
     }
+
+    public void ToCreditsScreen()
+    {
+        nav.ToCredits();
+    }
 }
