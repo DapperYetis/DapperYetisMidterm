@@ -187,6 +187,11 @@ public class UIManager : MonoBehaviour
         SetUp();
 
     }
+
+    public void PlayClick()
+    {
+        _references.buttonClick.PlayOneShot(_references.buttonClip);
+    }
     #endregion
 
     #region Pauses

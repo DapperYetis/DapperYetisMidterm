@@ -44,4 +44,13 @@ public class MainMenuRefs : MonoBehaviour
     [SerializeField] GameObject _creditsScreen;
 
     public GameObject creditsScreen => _creditsScreen;
+
+    [SerializeField] AudioSource _buttonClick;
+
+    public AudioSource buttonClick => _buttonClick;
+
+    [SerializeField] AudioClip _buttonClip;
+
+    public AudioClip buttonClip => _buttonClip;
+
 }
