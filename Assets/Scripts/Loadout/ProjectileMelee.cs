@@ -18,8 +18,16 @@ public class ProjectileMelee : Projectile
 
         if (other.gameObject.TryGetComponent<IDamageable>(out var damageable) && !_previouslyHit.Contains(damageable))
         {
-            var buffs = (from buff in _stats.targetBuffs select (buff, 1)).ToArray();
-            damageable.Damage(_stats.directDamage, buffs);
+            if(_stats.targetBuffs != null)
+            {
+                var buffs = (from buff in _stats.targetBuffs select (buff, 1)).ToArray();
+                if (buffs.Length > 0)
+                    damageable.Damage(_stats.directDamage, buffs);
+                else
+                    damageable.Damage(_stats.directDamage);
+            }
+            else
+                damageable.Damage(_stats.directDamage);
 
             StartCoroutine(TrackHit(damageable));
         }
