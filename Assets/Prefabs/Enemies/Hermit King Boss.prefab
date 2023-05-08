@@ -428,6 +428,7 @@ MonoBehaviour:
   _OnHealthChange:
     m_PersistentCalls:
       m_Calls: []
+  _additivePriorityMod: 0
   _stats:
     HPMax: 350
     facePlayerSpeed: 600
@@ -665,7 +666,8 @@ AudioSource:
   m_GameObject: {fileID: 6230942851774796945}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: ee91a59677e14a24f8f1e16aeb721c3c,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1

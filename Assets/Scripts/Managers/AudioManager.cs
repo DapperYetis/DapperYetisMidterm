@@ -71,7 +71,7 @@ public class AudioManager : MonoBehaviour
 
     private void SetSFXVolume()
     {
-        _sfxVolume.SetFloat("sfxVolume", Mathf.Log10(SettingsManager.instance.GetSFXVolume()) * 50);
+        _sfxVolume.SetFloat("sfxVolume", Mathf.Log10(SettingsManager.instance.GetSFXVolume()) * 30);
     }
 
 
