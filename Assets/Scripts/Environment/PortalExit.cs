@@ -5,11 +5,11 @@ using UnityEngine;
 public class PortalExit : MonoBehaviour, IInteractable
 {
     [SerializeField]
-    protected SOWave _bossWave;
-    [SerializeField]
-    protected Transform _spawnPoint;
-    [SerializeField]
     protected int _cost = 1000;
+    [SerializeField]
+    private GameObject _portalObject;
+    [SerializeField]
+    private int _nextSceneNum;
 
     private void Start()
     {
@@ -18,9 +18,15 @@ public class PortalExit : MonoBehaviour, IInteractable
 
     public bool Interact()
     {
-        EnemyManager.SpawnWave(_bossWave, _spawnPoint);
-        transform.parent.gameObject.SetActive(false);
+        _portalObject.SetActive(true);
         return true;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        GameManager.instance.player.movement.enabled = false;
+
+        SceneManage.instance.LoadScene(_nextSceneNum);
     }
 
     public bool CanInteract()
