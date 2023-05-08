@@ -25,11 +25,6 @@ public class MenuNav : MonoBehaviour
         UIManager.instance.PauseState();
         ToFirstMenu(_menuRef.mainMenu);
     }
-    
-    void Update()
-    {
-        
-    }
 
     #region MenuNav
 
@@ -88,6 +83,11 @@ public class MenuNav : MonoBehaviour
     internal void ToCredits()
     {
         NextMenu(_menuRef.creditsScreen);
+    }
+
+    public void ButtonClick()
+    {
+        _menuRef.buttonClick.PlayOneShot(_menuRef.buttonClip);
     }
 
     #endregion

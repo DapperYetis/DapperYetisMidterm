@@ -132,4 +132,12 @@ public class UIReferences : MonoBehaviour
 
     public GameObject itemNotif => _itemNotif;
 
+    [SerializeField] AudioSource _buttonClick;
+
+    public AudioSource buttonClick => _buttonClick;
+
+    [SerializeField] AudioClip _buttonClip;
+
+    public AudioClip buttonClip => _buttonClip;
+
 }

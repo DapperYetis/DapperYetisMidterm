@@ -12,21 +12,25 @@ public class ButtonFunctions : MonoBehaviour
 
     public void PlayGame()
     {
+        nav.ButtonClick();
         UIManager.instance.TransitionToGame();
     }
 
     public void ToLoadout()
     {
+        nav.ButtonClick();
         nav.ToLoadoutMenu();
     }
 
     public void ToGameSettings()
     {
+        UIManager.instance.PlayClick();
         UIManager.instance.ToSettings();
     }
 
     public void ToMenuSettings()
     {
+        nav.ButtonClick();
         nav.ToSettings();
     }
 
@@ -37,33 +41,40 @@ public class ButtonFunctions : MonoBehaviour
 
     public void ToMainMenu()
     {
+        UIManager.instance.PlayClick();
+        UIManager.instance.PlayClick();
         UIManager.instance.PauseState();
         SceneManage.instance.LoadScene(0);
     }
 
     public void GameBackButton()
     {
+        UIManager.instance.PlayClick();
         UIManager.instance.PrevMenu();
     }
 
     public void MainBackButton()
     {
+        nav.ButtonClick();
         nav.BackButton();
     }
 
     public void ResumeButton()
     {
+        UIManager.instance.PlayClick();
         UIManager.instance.PrevMenu();
         UIManager.instance.ResumeState();
     }
 
     public void ToKeybindsMenu()
     {
+        nav.ButtonClick();
         nav.ToKeyBinds();
     }
 
     public void ToCreditsScreen()
     {
+        nav.ButtonClick();
         nav.ToCredits();
     }
 }
