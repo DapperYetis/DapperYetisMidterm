@@ -355,17 +355,36 @@ public class UIManager : MonoBehaviour
 
         _references.loseScore.SetText(AchievementManager.instance.runStats.totalPoints.ToString());
         _references.loseTime.SetText($"{(int)AchievementManager.instance.runStats.timePlayed % 60} : {(AchievementManager.instance.runStats.timePlayed).ToString("F1")}");
-
+        _references.loseDeaths.SetText(AchievementManager.instance.runStats.deaths.ToString());
+        _references.loseDistance.SetText(AchievementManager.instance.runStats.distanceMoved.ToString());
+        _references.loseJumps.SetText(AchievementManager.instance.runStats.jumps.ToString());
+        _references.loseGold.SetText(AchievementManager.instance.runStats.goldCollected.ToString());
+        _references.loseItems.SetText(AchievementManager.instance.runStats.itemsCollected.ToString());
+        _references.loseBuys.SetText(AchievementManager.instance.runStats.purchasesMade.ToString());
+        _references.loseDamage.SetText(AchievementManager.instance.runStats.damageDealt.ToString());
+        _references.loseCrits.SetText(AchievementManager.instance.runStats.criticalHits.ToString());
+        _references.loseBosses.SetText(AchievementManager.instance.runStats.bossesKilled.ToString());
+        _references.loseHealth.SetText(AchievementManager.instance.runStats.damageTaken.ToString());
+        _references.loseHealed.SetText(AchievementManager.instance.runStats.damageHealed.ToString());
     }
 
     public void WinScreenStats(int _score)
     {
         if (_references == null) return;
 
-        _references.winScore.SetText(_score.ToString());
-
-        _references.winTime.SetText($"{(int)GameManager.instance.runTimeMinutes} : {(GameManager.instance.runTime % 60).ToString("F1")}");
-
+        _references.winScore.SetText(AchievementManager.instance.runStats.totalPoints.ToString());
+        _references.winTime.SetText($"{(int)AchievementManager.instance.runStats.timePlayed % 60} : {(AchievementManager.instance.runStats.timePlayed).ToString("F1")}");
+        _references.winDeaths.SetText(AchievementManager.instance.runStats.deaths.ToString());
+        _references.winDistance.SetText(AchievementManager.instance.runStats.distanceMoved.ToString());
+        _references.winJumps.SetText(AchievementManager.instance.runStats.jumps.ToString());
+        _references.winGold.SetText(AchievementManager.instance.runStats.goldCollected.ToString());
+        _references.winItems.SetText(AchievementManager.instance.runStats.itemsCollected.ToString());
+        _references.winBuys.SetText(AchievementManager.instance.runStats.purchasesMade.ToString());
+        _references.winDamage.SetText(AchievementManager.instance.runStats.damageDealt.ToString());
+        _references.winCrits.SetText(AchievementManager.instance.runStats.criticalHits.ToString());
+        _references.winBosses.SetText(AchievementManager.instance.runStats.bossesKilled.ToString());
+        _references.winHealth.SetText(AchievementManager.instance.runStats.damageTaken.ToString());
+        _references.winHealed.SetText(AchievementManager.instance.runStats.damageHealed.ToString());
     }
 
     IEnumerator CooldownTimer(float cooldown, float startTime, TextMeshProUGUI target)

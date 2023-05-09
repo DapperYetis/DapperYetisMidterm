@@ -112,6 +112,53 @@ public class UIReferences : MonoBehaviour
 
     public TextMeshProUGUI winScore => _winScore;
 
+    [SerializeField] TextMeshProUGUI _winDeaths;
+
+    public TextMeshProUGUI winDeaths => _winDeaths;
+
+    [SerializeField] TextMeshProUGUI _winDistance;
+
+    public TextMeshProUGUI winDistance => _winDistance;
+
+    [SerializeField] TextMeshProUGUI _winJumps;
+
+    public TextMeshProUGUI winJumps => _winJumps;
+
+    [SerializeField] TextMeshProUGUI _winGold;
+
+    public TextMeshProUGUI winGold => _winGold;
+
+    [SerializeField] TextMeshProUGUI _winItems;
+
+    public TextMeshProUGUI winItems => _winItems;
+
+    [SerializeField] TextMeshProUGUI _winBuys;
+
+    public TextMeshProUGUI winBuys => _winBuys;
+
+    [SerializeField] TextMeshProUGUI _winDamage;
+
+    public TextMeshProUGUI winDamage => _winDamage;
+
+    [SerializeField] TextMeshProUGUI _winCrits;
+
+    public TextMeshProUGUI winCrits => _winCrits;
+
+    [SerializeField] TextMeshProUGUI _winBosses;
+
+    public TextMeshProUGUI winBosses => _winBosses;
+
+    [SerializeField] TextMeshProUGUI _winHealth;
+
+    public TextMeshProUGUI winHealth => _winHealth;
+
+    [SerializeField] TextMeshProUGUI _winHealed;
+
+    public TextMeshProUGUI winHealed => _winHealed;
+
+
+
+
     [SerializeField] TextMeshProUGUI _loseScore;
 
     public TextMeshProUGUI loseScore => _loseScore;
