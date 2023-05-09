@@ -58,6 +58,7 @@ public class AchievementManager : MonoBehaviour
     private void Update()
     {
         _gameStats.timePlayed += Time.deltaTime * 0.0166f;
+        _runStats.timePlayed += Time.deltaTime * 0.0166f;
         if (_isPlayerMoving)
         {
             _gameStats.distanceMoved += GameManager.instance.player.movement.playerVelocity.magnitude * Time.deltaTime;
