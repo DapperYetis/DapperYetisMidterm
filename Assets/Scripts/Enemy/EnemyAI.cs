@@ -47,6 +47,9 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     [SerializeField, Space(20)]
     protected float _additivePriorityMod;
     [SerializeField]
+    protected int _spawnCost = 1;
+    public int spawnCost => _spawnCost;
+    [SerializeField]
     protected EnemyStats _stats;
     public EnemyStats stats => _stats;
     protected EnemyStats _baseStats;
@@ -441,7 +444,8 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
                 _currentBuffs.Add(buff, (0, Time.time + buff.buffLength));
                 BuffStats(buff);
 
-                _aud.PlayOneShot(buff.audioClips[Random.Range(0, buff.audioClips.Length)], buff.audioVolume);
+                if(buff.audioClips.Length > 0)
+                    _aud.PlayOneShot(buff.audioClips[Random.Range(0, buff.audioClips.Length)], buff.audioVolume);
             }
         }
         _currentBuffs[buff] = (_currentBuffs[buff].stacks + amount, _currentBuffs[buff].time);

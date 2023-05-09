@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f9a59a3374ad054bb7ccfe0d82dcb8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spawningBudgetMax: 20
   _initialAdditionalWaves: 5
   _initialWaveWait: 1.5
   _timeBetweenWaves:
@@ -131,5 +132,11 @@ MonoBehaviour:
   _attackTime: 0.5
   _attackBudgetMax: 6
   OnEnemyCountChange:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBossRoomEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBossRoomLeave:
     m_PersistentCalls:
       m_Calls: []
