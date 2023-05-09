@@ -120,6 +120,50 @@ public class UIReferences : MonoBehaviour
 
     public TextMeshProUGUI loseTime => _loseTime;
 
+    [SerializeField] TextMeshProUGUI _loseDeaths;
+
+    public TextMeshProUGUI loseDeaths => _loseDeaths;
+
+    [SerializeField] TextMeshProUGUI _loseDistance;
+
+    public TextMeshProUGUI loseDistance => _loseDistance;
+
+    [SerializeField] TextMeshProUGUI _loseJumps;
+
+    public TextMeshProUGUI loseJumps => _loseJumps;
+
+    [SerializeField] TextMeshProUGUI _loseGold;
+
+    public TextMeshProUGUI loseGold => _loseGold;
+
+    [SerializeField] TextMeshProUGUI _loseItems;
+
+    public TextMeshProUGUI loseItems => _loseItems;
+
+    [SerializeField] TextMeshProUGUI _loseBuys;
+
+    public TextMeshProUGUI loseBuys => _loseBuys;
+
+    [SerializeField] TextMeshProUGUI _loseDamage;
+
+    public TextMeshProUGUI loseDamage => _loseDamage;
+
+    [SerializeField] TextMeshProUGUI _loseCrits;
+
+    public TextMeshProUGUI loseCrits => _loseCrits;
+
+    [SerializeField] TextMeshProUGUI _loseBosses;
+
+    public TextMeshProUGUI loseBosses => _loseBosses;
+
+    [SerializeField] TextMeshProUGUI _loseHealth;
+
+    public TextMeshProUGUI loseHealth => _loseHealth;
+
+    [SerializeField] TextMeshProUGUI _loseHealed;
+
+    public TextMeshProUGUI loseHealed => _loseHealed;
+
     [SerializeField] Image _dynamicHealth;
 
     public Image dynamicHealth => _dynamicHealth;

@@ -283,7 +283,7 @@ public class UIManager : MonoBehaviour
     public void UpdateScore(int newScore)
     {
         if (_references == null) return;
-        _references.score.SetText(GameManager.instance.score.ToString());
+        _references.score.SetText(AchievementManager.instance.runStats.totalPoints.ToString());
     }
 
     public void TrackCurrency(int currency)
@@ -353,9 +353,8 @@ public class UIManager : MonoBehaviour
     {
         if (_references == null) return;
 
-        _references.loseScore.SetText(_score.ToString());
-
-        _references.loseTime.SetText($"{(int)GameManager.instance.runTimeMinutes} : {(GameManager.instance.runTime % 60).ToString("F1")}");
+        _references.loseScore.SetText(AchievementManager.instance.runStats.totalPoints.ToString());
+        _references.loseTime.SetText($"{(int)AchievementManager.instance.runStats.timePlayed % 60} : {(AchievementManager.instance.runStats.timePlayed).ToString("F1")}");
 
     }
 
