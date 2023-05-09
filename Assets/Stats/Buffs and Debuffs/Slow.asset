@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _buffName: Slow
   _description: 
-  _sprite: {fileID: 21300000, guid: 7f9a202674837754a8e77fbbf5df3f03, type: 3}
+  _icon: {fileID: 21300000, guid: 7f9a202674837754a8e77fbbf5df3f03, type: 3}
   _timing: 1
   _buffLength: 2
   _removeType: 0
