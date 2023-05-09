@@ -258,13 +258,13 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
         enabled = false;
 
         Color mainColor = _model.material.color;
-        _model.material.color = new Color(0, 0, 0, 0f);
+        _model.material.color = new Color(0, 0, 0, 0f); // shoud but doesnt make enemies transparent.  You have to make the material transparent and that causes visual problems so that was scrapped, but this is still good to have for other reasons.
         GameObject spFX = Instantiate(_spawnEffect, transform, worldPositionStays: false);
         spFX.SetActive(true);
         _aud.PlayOneShot(_audSpawn[Random.Range(0, _audSpawn.Length)], _audSpawnVol);
         Debug.Log($"{name} played a sound");
         float timer = 5;
-        float max = 4;
+        float max = 6;
         spFX.transform.localScale = new Vector3(Mathf.Lerp(0.1f, max, timer), Mathf.Lerp(0.1f, max, timer), Mathf.Lerp(0.1f, max, timer));
 
         yield return new WaitForSeconds(0.5f);
