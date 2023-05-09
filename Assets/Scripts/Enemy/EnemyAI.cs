@@ -47,6 +47,9 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     [SerializeField, Space(20)]
     protected float _additivePriorityMod;
     [SerializeField]
+    protected int _spawnCost = 1;
+    public int spawnCost => _spawnCost;
+    [SerializeField]
     protected EnemyStats _stats;
     public EnemyStats stats => _stats;
     protected EnemyStats _baseStats;
