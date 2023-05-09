@@ -20,12 +20,9 @@ public class LoadoutScript : MonoBehaviour
     private static List<SOWeapon> _cachedWeapons;
     [SerializeField] List<SOSupport> _supports;
     private static List<SOSupport> _cachedSupports;
-    [SerializeField] List<SOCompanion> _companions;
-    private static List<SOCompanion> _cachedCompanions;
 
     private Dictionary<SOWeapon, Button> _weaponButtons = new();
     private Dictionary<SOSupport, Button> _supportButtons = new();
-    private Dictionary<SOCompanion, Button> _companionButtons = new();
 
     public void SetUp()
     {
@@ -35,15 +32,11 @@ public class LoadoutScript : MonoBehaviour
             PlayerPrefs.SetInt("WeaponChoice", 0);
         if (!PlayerPrefs.HasKey("SupportChoice"))
             PlayerPrefs.SetInt("SupportChoice", 0);
-        if (!PlayerPrefs.HasKey("CompanionChoice"))
-            PlayerPrefs.SetInt("CompanionChoice", 0);
 
         if (PlayerPrefs.GetInt("WeaponChoice") >= _cachedWeapons.Count)
             PlayerPrefs.SetInt("WeaponChoice", 0);
         if (PlayerPrefs.GetInt("SupportChoice") >= _cachedSupports.Count)
             PlayerPrefs.SetInt("SupportChoice", 0);
-        if (PlayerPrefs.GetInt("CompanionChoice") >= _cachedSupports.Count)
-            PlayerPrefs.SetInt("CompanionChoice", 0);
 
         AddOptions();
     }
@@ -52,11 +45,9 @@ public class LoadoutScript : MonoBehaviour
     {
         _cachedWeapons = new(_weapons);
         _cachedSupports = new(_supports);
-        _cachedCompanions = new(_companions);
 
         _weapons.Clear();
         _supports.Clear();
-        _companions.Clear();
     }
 
     #region Setters
@@ -125,37 +116,7 @@ public class LoadoutScript : MonoBehaviour
     }
 
 
-
-
-    public void AddCompanion(SOCompanion newCompanion)
-    {
-        Button companion = Instantiate(_buttonPrefab, _companionGroup.transform).GetComponent<Button>();
-
-        companion.name = newCompanion.name;
-        companion.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = newCompanion.companionName;
-
-        companion.onClick.AddListener(() =>
-        {
-            SetCompanion(companion);
-            CompanionOn();
-            companion.interactable = false;
-        });
-        _companionButtons.Add(newCompanion, companion);
-    }
-
-    private void SetCompanion(Button button)
-    {
-        PlayerPrefs.SetInt("CompanionChoice", _cachedCompanions.IndexOf((from companion in _cachedCompanions where _companionButtons[companion] == button select companion).First()));
-        Debug.Log(GetCompainion());
-    }
-
-    private void CompanionOn()
-    {
-        foreach (var button in _companionButtons.Values)
-        {
-            button.interactable = true;
-        }
-    }
+    
     #endregion
 
     #region Getters
@@ -168,8 +129,6 @@ public class LoadoutScript : MonoBehaviour
 
     public SOSupport GetSupport() => _cachedSupports[PlayerPrefs.GetInt("SupportChoice")];
 
-    public SOCompanion GetCompainion() => null; //_cachedCompanions[PlayerPrefs.GetInt("CompanionChoice")];
-
     #endregion
 
     public void SetWeaponGroup(GameObject row)
@@ -180,11 +139,6 @@ public class LoadoutScript : MonoBehaviour
     public void SetSupportGroup(GameObject row)
     {
         _supportGroup = row;
-    }
-
-    public void SetCompanionGroup(GameObject row)
-    {
-        _companionGroup = row;
     }
 
     public void AddOptions()
@@ -220,22 +174,6 @@ public class LoadoutScript : MonoBehaviour
             }
             _supportButtons[GetSupport()].interactable = false;
         }
-        if (_companionGroup != null)
-        {
-            foreach (var button in _companionButtons.Values)
-            {
-                if (button)
-                    Destroy(button.gameObject);
-            }
-            _companionButtons.Clear();
-
-            foreach (var companion in _cachedCompanions)
-            {
-                AddCompanion(companion);
-            }
-            if (GetCompainion() != null)
-                _companionButtons[GetCompainion()].interactable = false;
-        }
     }
 
     private void FindGroups()
@@ -246,6 +184,5 @@ public class LoadoutScript : MonoBehaviour
 
         _weaponGroup = menu.weaponGroup;
         _supportGroup = menu.supportGroup;
-        _companionGroup = menu.companionGroup;
     }
 }

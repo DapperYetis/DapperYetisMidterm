@@ -17,6 +17,8 @@ public class UIManager : MonoBehaviour
     private UIReferences _references;
     private Inventory _playerInv;
     [SerializeField] Animator _transition;
+    [SerializeField]
+    private Gradient _healthGradient;
 
     public UIReferences references => _references;
 
@@ -114,10 +116,8 @@ public class UIManager : MonoBehaviour
             _playerInv = _playerController.inventory;
             _transition = _references.animator;
             _playerController.OnHealthChange.AddListener(UpdateHealth);
-            _playerInv.OnLevelChange.AddListener(LevelUp);
             _playerController.OnPlayerSetUp.AddListener(() =>
             {
-                _playerController.inventory.OnXPChange.AddListener(IncreaseXP);
                 _playerController.weapon.OnPrimary.AddListener(AttackCD1);
                 _playerController.weapon.OnSecondary.AddListener(AttackCD2);
                 _playerController.inventory.OnCurrencyChange.AddListener(TrackCurrency);
@@ -141,8 +141,6 @@ public class UIManager : MonoBehaviour
                 UpdateEnemyCount();
                 UpdateScore(0);
                 TrackCurrency(0);
-                LevelUp(0);
-                IncreaseXP(0);
                 _references.hud.GetComponent<HudItems>().ResetVisual();
             }
 
@@ -271,6 +269,7 @@ public class UIManager : MonoBehaviour
                 StartCoroutine(HealthRedFlash());
             SetHealth();
             float currHealth = (float)_playerController.GetHealthCurrent() / (float)_playerController.GetHealthMax();
+            _references.hpBar.color = _healthGradient.Evaluate(currHealth);
             _references.hpBar.fillAmount = currHealth;
         }
     }
@@ -291,19 +290,6 @@ public class UIManager : MonoBehaviour
     {
         if (_references == null) return;
         _references.currency.SetText(_playerInv.currency.ToString());
-    }
-
-    public void LevelUp(int newLevel)
-    {
-        if (_references == null) return;
-        _references.playerLevel.SetText(newLevel.ToString());
-    }
-
-    public void IncreaseXP(int currXP)
-    {
-        if (_references == null) return;
-        if (_references.xpbar && _references.xpbar.isActiveAndEnabled)
-            _references.xpbar.fillAmount = (_playerInv.currentXP % 100f) / 100f;
     }
 
     IEnumerator Damaged()
@@ -363,12 +349,6 @@ public class UIManager : MonoBehaviour
         StartCoroutine(CooldownTimer(10f, Time.time, _references.suppCoolDwn2));
     }
 
-    public void CompanionCD()
-    {
-        if (_references == null) return;
-
-    }
-
     public void LoseScreenStats(int _score)
     {
         if (_references == null) return;
@@ -421,7 +401,7 @@ public class UIManager : MonoBehaviour
     {
         _references.hpBar.color = Color.red;
         yield return new WaitForSeconds(0.2f);
-        _references.hpBar.color = Color.green;
+        _references.hpBar.color = _healthGradient.Evaluate(_references.hpBar.fillAmount);
     }
     #endregion
 

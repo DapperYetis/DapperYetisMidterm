@@ -32,9 +32,9 @@ public class UIReferences : MonoBehaviour
 
     public Image hpBar => _hpBar;
 
-    [SerializeField] Image _xpBar;
+    [SerializeField] Image _effectsBar;
 
-    public Image xpbar => _xpBar;
+    public Image effectsBar => _effectsBar;
 
     [SerializeField] TextMeshProUGUI _enemyCount;
 
@@ -103,10 +103,6 @@ public class UIReferences : MonoBehaviour
     [SerializeField] TextMeshProUGUI _suppCoolDwn2;
 
     public TextMeshProUGUI suppCoolDwn2 => _suppCoolDwn2;
-
-    [SerializeField] TextMeshProUGUI _companionCD;
-
-    public TextMeshProUGUI companionCD => _companionCD;
 
     [SerializeField] TextMeshProUGUI _winTime;
 
