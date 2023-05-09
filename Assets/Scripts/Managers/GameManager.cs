@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
         if (_player.GetHealthCurrent() <= 0)
         {
             if (EnemyManager.instance.GetEnemyListSize() <= 0) return;
-            UIManager.instance.LoseScreenStats(_score);
+            UIManager.instance.LoseScreenStats();
             UIManager.instance.NextMenu(UIManager.instance.references.loseMenu);
             UIManager.instance.PauseState();
         }

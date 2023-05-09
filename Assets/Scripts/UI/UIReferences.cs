@@ -32,9 +32,9 @@ public class UIReferences : MonoBehaviour
 
     public Image hpBar => _hpBar;
 
-    [SerializeField] Image _xpBar;
+    [SerializeField] Image _effectsBar;
 
-    public Image xpbar => _xpBar;
+    public Image effectsBar => _effectsBar;
 
     [SerializeField] TextMeshProUGUI _enemyCount;
 
@@ -59,10 +59,6 @@ public class UIReferences : MonoBehaviour
     [SerializeField] TextMeshProUGUI _remainingHealth;
 
     public TextMeshProUGUI remainingHealth => _remainingHealth;
-
-    [SerializeField] TextMeshProUGUI _playerLevel;
-
-    public TextMeshProUGUI playerLevel => _playerLevel;
 
     [SerializeField] GameObject _damageIndicator;
 
@@ -104,10 +100,6 @@ public class UIReferences : MonoBehaviour
 
     public TextMeshProUGUI suppCoolDwn2 => _suppCoolDwn2;
 
-    [SerializeField] TextMeshProUGUI _companionCD;
-
-    public TextMeshProUGUI companionCD => _companionCD;
-
     [SerializeField] TextMeshProUGUI _winTime;
 
     public TextMeshProUGUI winTime => _winTime;
@@ -116,6 +108,53 @@ public class UIReferences : MonoBehaviour
 
     public TextMeshProUGUI winScore => _winScore;
 
+    [SerializeField] TextMeshProUGUI _winDeaths;
+
+    public TextMeshProUGUI winDeaths => _winDeaths;
+
+    [SerializeField] TextMeshProUGUI _winDistance;
+
+    public TextMeshProUGUI winDistance => _winDistance;
+
+    [SerializeField] TextMeshProUGUI _winJumps;
+
+    public TextMeshProUGUI winJumps => _winJumps;
+
+    [SerializeField] TextMeshProUGUI _winGold;
+
+    public TextMeshProUGUI winGold => _winGold;
+
+    [SerializeField] TextMeshProUGUI _winItems;
+
+    public TextMeshProUGUI winItems => _winItems;
+
+    [SerializeField] TextMeshProUGUI _winBuys;
+
+    public TextMeshProUGUI winBuys => _winBuys;
+
+    [SerializeField] TextMeshProUGUI _winDamage;
+
+    public TextMeshProUGUI winDamage => _winDamage;
+
+    [SerializeField] TextMeshProUGUI _winCrits;
+
+    public TextMeshProUGUI winCrits => _winCrits;
+
+    [SerializeField] TextMeshProUGUI _winBosses;
+
+    public TextMeshProUGUI winBosses => _winBosses;
+
+    [SerializeField] TextMeshProUGUI _winHealth;
+
+    public TextMeshProUGUI winHealth => _winHealth;
+
+    [SerializeField] TextMeshProUGUI _winHealed;
+
+    public TextMeshProUGUI winHealed => _winHealed;
+
+
+
+
     [SerializeField] TextMeshProUGUI _loseScore;
 
     public TextMeshProUGUI loseScore => _loseScore;
@@ -123,6 +162,50 @@ public class UIReferences : MonoBehaviour
     [SerializeField] TextMeshProUGUI _loseTime;
 
     public TextMeshProUGUI loseTime => _loseTime;
+
+    [SerializeField] TextMeshProUGUI _loseDeaths;
+
+    public TextMeshProUGUI loseDeaths => _loseDeaths;
+
+    [SerializeField] TextMeshProUGUI _loseDistance;
+
+    public TextMeshProUGUI loseDistance => _loseDistance;
+
+    [SerializeField] TextMeshProUGUI _loseJumps;
+
+    public TextMeshProUGUI loseJumps => _loseJumps;
+
+    [SerializeField] TextMeshProUGUI _loseGold;
+
+    public TextMeshProUGUI loseGold => _loseGold;
+
+    [SerializeField] TextMeshProUGUI _loseItems;
+
+    public TextMeshProUGUI loseItems => _loseItems;
+
+    [SerializeField] TextMeshProUGUI _loseBuys;
+
+    public TextMeshProUGUI loseBuys => _loseBuys;
+
+    [SerializeField] TextMeshProUGUI _loseDamage;
+
+    public TextMeshProUGUI loseDamage => _loseDamage;
+
+    [SerializeField] TextMeshProUGUI _loseCrits;
+
+    public TextMeshProUGUI loseCrits => _loseCrits;
+
+    [SerializeField] TextMeshProUGUI _loseBosses;
+
+    public TextMeshProUGUI loseBosses => _loseBosses;
+
+    [SerializeField] TextMeshProUGUI _loseHealth;
+
+    public TextMeshProUGUI loseHealth => _loseHealth;
+
+    [SerializeField] TextMeshProUGUI _loseHealed;
+
+    public TextMeshProUGUI loseHealed => _loseHealed;
 
     [SerializeField] Image _dynamicHealth;
 

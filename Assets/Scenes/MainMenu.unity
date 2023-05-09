@@ -123,12 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!95 &117388684 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 1259385116455962495, guid: 12702f9542dd440438df29d94f00b6c2,
-    type: 3}
-  m_PrefabInstance: {fileID: 725418946}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &258458843
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -206,7 +200,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _transition
       value: 
-      objectReference: {fileID: 117388684}
+      objectReference: {fileID: 0}
     - target: {fileID: 7858258163794152511, guid: 61d081160cf84b748abb9316d5cf4d82,
         type: 3}
       propertyPath: _volume
@@ -363,6 +357,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1671233469921854856, guid: 12702f9542dd440438df29d94f00b6c2,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1671233469921854868, guid: 12702f9542dd440438df29d94f00b6c2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2780114919064020890, guid: 12702f9542dd440438df29d94f00b6c2,
         type: 3}
       propertyPath: m_Pivot.x
