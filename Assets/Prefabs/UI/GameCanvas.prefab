@@ -153,7 +153,6 @@ MonoBehaviour:
   _score: {fileID: 5243863211352721206}
   _maxHealth: {fileID: 5855000054805040154}
   _remainingHealth: {fileID: 325166756575605477}
-  _playerLevel: {fileID: 0}
   _damageIndicator: {fileID: 1746268520333807818}
   _tabMenu: {fileID: 145211973630669578}
   _interactPrompt: {fileID: 3958291507914865415}
@@ -903,6 +902,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WinMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 9065021077006557250, guid: 091ef941ab0d9e8408d674e25e82fd46,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9065021077006557251, guid: 091ef941ab0d9e8408d674e25e82fd46,
         type: 3}

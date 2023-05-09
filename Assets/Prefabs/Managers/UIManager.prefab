@@ -49,7 +49,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c2d05a0bac39347a274ee316160712, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _references: {fileID: 0}
   _transition: {fileID: 0}
   _healthGradient:
     serializedVersion: 2
@@ -80,4 +79,5 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
+  _tallyTime: 5
   _healthWaitTime: 1

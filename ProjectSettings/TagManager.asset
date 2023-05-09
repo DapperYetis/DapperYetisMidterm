@@ -10,6 +10,9 @@ TagManager:
   - TransitionScreen
   - MenuCanvas
   - Settings
+  - WeaponRow
+  - SupRow
+  - Transition
   layers:
   - Default
   - TransparentFX

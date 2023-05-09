@@ -424,15 +424,10 @@ public class UIManager : MonoBehaviour
     }
     #endregion
 
-    IEnumerator TallyIncreaseDelay()
-    {
-        yield return new WaitForSeconds(0.05f);
-    }
-
     IEnumerator SetScoreTally(TextMeshProUGUI toChange, int number)
     {
         float startTime = Time.realtimeSinceStartup;
-        WaitForSecondsRealtime wait = new(0.03f);
+        WaitForSecondsRealtime wait = new(0.02f);
         while(Time.realtimeSinceStartup < startTime + _tallyTime)
         {
             toChange.SetText((number * (Time.realtimeSinceStartup - startTime) / _tallyTime).ToString("F0"));
