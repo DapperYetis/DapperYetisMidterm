@@ -316,7 +316,7 @@ MonoBehaviour:
       m_Calls: []
   _additivePriorityMod: 0
   _stats:
-    HPMax: 3
+    HPMax: 50
     facePlayerSpeed: 500
     speed: 18
     acceleration: 20
@@ -334,30 +334,32 @@ MonoBehaviour:
   _primaryAttackStats:
     positions:
     - {fileID: 1394923249618638891}
+    prefab: {fileID: 424343093267893311, guid: f7b16309293f2e949b61f60c035662d9, type: 3}
     damage: 5
     rate: 3
     lifetime: 1
+    speed: 100
+    range: 1
     variance: 1
-    prefab: {fileID: 424343093267893311, guid: f7b16309293f2e949b61f60c035662d9, type: 3}
+    _interruptible: 0
     selfBuffs: []
     targetBuffs:
     - {fileID: 11400000, guid: 24ff1838f787af047b68ff00fd1d65b5, type: 2}
-    speed: 100
-    range: 1
     _attackAudioVol: 0.5
     _attackAudio:
     - {fileID: 8300000, guid: 45f51811c4f0f7040a63e44aea81b8d3, type: 3}
   _primaryAttackStatsScaling:
     positions: []
+    prefab: {fileID: 0}
     damage: 1
     rate: -0.01
     lifetime: 0
-    variance: 0
-    prefab: {fileID: 0}
-    selfBuffs: []
-    targetBuffs: []
     speed: 0
     range: 0
+    variance: 0
+    _interruptible: 0
+    selfBuffs: []
+    targetBuffs: []
     _attackAudioVol: 0
     _attackAudio: []
   _audSpawnVol: 0.8
@@ -375,12 +377,6 @@ MonoBehaviour:
   _audHealVol: 0.5
   _audHeal:
   - {fileID: 8300000, guid: 76ef01426104ef141a558bdac28e13a8, type: 3}
-  _audBuffVol: 0.5
-  _audBuff:
-  - {fileID: 8300000, guid: b034ba2bd4bf92d4a894eab037f9ac90, type: 3}
-  _audDebuffVol: 0.5
-  _audDebuff:
-  - {fileID: 8300000, guid: b80a9937b28e3b541be104f51b8534fa, type: 3}
   _audDeathVol: 0.5
   _audDeath:
   - {fileID: 8300000, guid: 1c6f02bc26fb6c642b7a9eada4dd632e, type: 3}

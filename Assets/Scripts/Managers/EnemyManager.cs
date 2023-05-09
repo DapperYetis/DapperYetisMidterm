@@ -206,6 +206,17 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+    public void RequestDequeue(EnemyAI enemy)
+    {
+        for (int i = 0; i < _attacks.Count; i++)
+        {
+            if (_attacks[i].enemy == enemy)
+            {
+                RunDequeue();
+            }
+        }
+    }
+
     public void EnterBossRoom(SOWave wave)
     {
         _inBossRoom = true;

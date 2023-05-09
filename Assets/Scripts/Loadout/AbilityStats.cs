@@ -15,6 +15,7 @@ public struct AbilityStats
     public float secondaryLifetime;
     public float speed;
     public float fxIntesity;
+    public bool canInterrupt;
     public List<SOBuff> selfBuffs;
     public List<SOBuff> targetBuffs;
 

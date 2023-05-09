@@ -13,7 +13,7 @@ public abstract class Projectile : MonoBehaviour
     public UnityEvent<Projectile, IDamageable> OnHit;
     protected bool _hasCrit;
     public bool hasCrit => _hasCrit;
-
+    
     protected virtual void Start()
     {
         Destroy(gameObject, _stats.lifetime);

@@ -6,15 +6,16 @@ using UnityEngine;
 public struct EnemyAttackStats
 {
     public Transform[] positions;
+    public GameObject prefab;
     public float damage;
     public float rate;
     public float lifetime;
-    public float variance;
-    public GameObject prefab;
-    public List<SOBuff> selfBuffs;
-    public List<SOBuff> targetBuffs;
     public float speed;
     public float range;
+    public float variance;
+    public bool _interruptible;
+    public List<SOBuff> selfBuffs;
+    public List<SOBuff> targetBuffs;
     [Range(0, 1)] public float _attackAudioVol;
     public AudioClip[] _attackAudio;
 

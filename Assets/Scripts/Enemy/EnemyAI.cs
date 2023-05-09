@@ -61,6 +61,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     protected bool _hasCompletedAttack;
     protected Vector3 _playerDir => GameManager.instance.player.transform.position - transform.position + 2 * Vector3.down;
     protected bool _indicatingHit;
+    protected bool _isInInterruptibleState;
     protected float _speed;
     public Dictionary<SOBuff, (int stacks, float time)> _currentBuffs = new();
     protected int _moveType;
@@ -89,6 +90,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     protected EnemyAttackStats _basePrimaryAttackStats;
 
     [Header("--- Audio Controls ---")]
+    #region Audio Fields
     [Range(0, 1)]
     [SerializeField]
     protected float _audSpawnVol;
@@ -124,6 +126,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     protected float _audFallDownVol;
     [SerializeField]
     protected AudioClip[] _audFallDown;
+    #endregion
 
     protected Vector3 _playerDirProjected
     {
@@ -345,6 +348,15 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
         }
         else
         {
+            if (_isInInterruptibleState)
+            {
+                EnemyManager.instance.RequestDequeue(this);
+                Debug.Log("Attack Interrupted");
+                _anim.enabled = false;
+                _anim.enabled = true;
+                _isInInterruptibleState = false;
+            }
+
             _anim.SetTrigger("Damage");
             _aud.PlayOneShot(_audTakeDamage[Random.Range(0, _audTakeDamage.Length)], _audTakeDamageVol);
             Debug.Log($"{name} played a sound");
@@ -441,7 +453,10 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
                 _currentBuffs.Add(buff, (0, Time.time + buff.buffLength));
                 BuffStats(buff);
 
-                _aud.PlayOneShot(buff.audioClips[Random.Range(0, buff.audioClips.Length)], buff.audioVolume);
+                if (buff.audioClips.Length > 0)
+                {
+                    _aud.PlayOneShot(buff.audioClips[Random.Range(0, buff.audioClips.Length)], buff.audioVolume);
+                }
             }
         }
         _currentBuffs[buff] = (_currentBuffs[buff].stacks + amount, _currentBuffs[buff].time);

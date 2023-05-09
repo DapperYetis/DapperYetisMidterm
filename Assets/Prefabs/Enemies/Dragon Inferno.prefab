@@ -345,30 +345,33 @@ MonoBehaviour:
   _timeLength: 10
   _scaleMultiplier: 20
   _primaryAttackStats:
-    positions: []
+    positions:
+    - {fileID: 1257636781288750093}
+    prefab: {fileID: 0}
     damage: 10
     rate: 1
     lifetime: 0
-    variance: 0
-    prefab: {fileID: 0}
-    selfBuffs: []
-    targetBuffs: []
     speed: 0
     range: 0
+    variance: 0
+    _interruptible: 1
+    selfBuffs: []
+    targetBuffs: []
     _attackAudioVol: 0.5
     _attackAudio:
     - {fileID: 8300000, guid: 45f51811c4f0f7040a63e44aea81b8d3, type: 3}
   _primaryAttackStatsScaling:
     positions: []
+    prefab: {fileID: 0}
     damage: 0
     rate: 0
     lifetime: 0
-    variance: 0
-    prefab: {fileID: 0}
-    selfBuffs: []
-    targetBuffs: []
     speed: 0
     range: 0
+    variance: 0
+    _interruptible: 0
+    selfBuffs: []
+    targetBuffs: []
     _attackAudioVol: 0
     _attackAudio: []
   _audSpawnVol: 0.5
@@ -396,29 +399,31 @@ MonoBehaviour:
   _secondaryAttackStats:
     positions:
     - {fileID: 1257636781288750093}
+    prefab: {fileID: 424343093267893311, guid: 1bcc9b7c1094fd547910ca2344bca383, type: 3}
     damage: 15
     rate: 3
     lifetime: 5
-    variance: 2
-    prefab: {fileID: 424343093267893311, guid: 1bcc9b7c1094fd547910ca2344bca383, type: 3}
-    selfBuffs: []
-    targetBuffs: []
     speed: 25
     range: 12
+    variance: 2
+    _interruptible: 0
+    selfBuffs: []
+    targetBuffs: []
     _attackAudioVol: 0.5
     _attackAudio:
     - {fileID: 8300000, guid: dff08afbd9ead4f409a2e498fe3babc5, type: 3}
   _secondaryAttackStatsScaling:
     positions: []
+    prefab: {fileID: 0}
     damage: 1
     rate: -0.1
     lifetime: 0
-    variance: 0
-    prefab: {fileID: 0}
-    selfBuffs: []
-    targetBuffs: []
     speed: 0
     range: 0
+    variance: 0
+    _interruptible: 0
+    selfBuffs: []
+    targetBuffs: []
     _attackAudioVol: 0
     _attackAudio: []
 --- !u!114 &1741508700612088740

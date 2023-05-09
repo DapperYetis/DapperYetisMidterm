@@ -52,6 +52,14 @@ public class MeleeEnemy : EnemyAI
         _isAttacking = false;
     }
 
+    protected void PreAttack()
+    {
+        if (_primaryAttackStats._interruptible)
+        {
+            _isInInterruptibleState = true;
+        }
+    }
+
     protected void AttackStart()
     {
         _meleeCollider.enabled = true;

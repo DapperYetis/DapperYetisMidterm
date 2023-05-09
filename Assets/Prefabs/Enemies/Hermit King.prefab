@@ -368,6 +368,7 @@ MonoBehaviour:
   _OnHealthChange:
     m_PersistentCalls:
       m_Calls: []
+  _additivePriorityMod: 0
   _stats:
     HPMax: 50
     facePlayerSpeed: 600
@@ -386,29 +387,31 @@ MonoBehaviour:
   _scaleMultiplier: 20
   _primaryAttackStats:
     positions: []
+    prefab: {fileID: 0}
     damage: 10
     rate: 2.5
     lifetime: 0
-    variance: 0
-    prefab: {fileID: 0}
-    selfBuffs: []
-    targetBuffs: []
     speed: 0
     range: 7
+    variance: 0
+    _interruptible: 1
+    selfBuffs: []
+    targetBuffs: []
     _attackAudioVol: 0.5
     _attackAudio:
     - {fileID: 8300000, guid: 45f51811c4f0f7040a63e44aea81b8d3, type: 3}
   _primaryAttackStatsScaling:
     positions: []
+    prefab: {fileID: 0}
     damage: 1
     rate: -0.01
     lifetime: 0
-    variance: 0
-    prefab: {fileID: 0}
-    selfBuffs: []
-    targetBuffs: []
     speed: 0
     range: 0
+    variance: 0
+    _interruptible: 0
+    selfBuffs: []
+    targetBuffs: []
     _attackAudioVol: 0
     _attackAudio:
     - {fileID: 8300000, guid: 45f51811c4f0f7040a63e44aea81b8d3, type: 3}
@@ -427,12 +430,6 @@ MonoBehaviour:
   _audHealVol: 0.5
   _audHeal:
   - {fileID: 8300000, guid: 76ef01426104ef141a558bdac28e13a8, type: 3}
-  _audBuffVol: 0.5
-  _audBuff:
-  - {fileID: 8300000, guid: b034ba2bd4bf92d4a894eab037f9ac90, type: 3}
-  _audDebuffVol: 0.5
-  _audDebuff:
-  - {fileID: 8300000, guid: b80a9937b28e3b541be104f51b8534fa, type: 3}
   _audDeathVol: 0.5
   _audDeath:
   - {fileID: 8300000, guid: 1c6f02bc26fb6c642b7a9eada4dd632e, type: 3}
@@ -443,29 +440,31 @@ MonoBehaviour:
   _secondaryAttackStats:
     positions:
     - {fileID: 7048595572675317456}
+    prefab: {fileID: 424343093267893311, guid: f7b16309293f2e949b61f60c035662d9, type: 3}
     damage: 15
     rate: 2
     lifetime: 4
-    variance: 0
-    prefab: {fileID: 424343093267893311, guid: f7b16309293f2e949b61f60c035662d9, type: 3}
-    selfBuffs: []
-    targetBuffs: []
     speed: 30
     range: 0
+    variance: 0
+    _interruptible: 0
+    selfBuffs: []
+    targetBuffs: []
     _attackAudioVol: 0.5
     _attackAudio:
     - {fileID: 8300000, guid: dff08afbd9ead4f409a2e498fe3babc5, type: 3}
   _secondaryAttackStatsScaling:
     positions: []
+    prefab: {fileID: 0}
     damage: 1
     rate: -0.01
     lifetime: 0.1
-    variance: -0.05
-    prefab: {fileID: 0}
-    selfBuffs: []
-    targetBuffs: []
     speed: 0.1
     range: 0
+    variance: -0.05
+    _interruptible: 0
+    selfBuffs: []
+    targetBuffs: []
     _attackAudioVol: 0.5
     _attackAudio:
     - {fileID: 8300000, guid: 45f51811c4f0f7040a63e44aea81b8d3, type: 3}
