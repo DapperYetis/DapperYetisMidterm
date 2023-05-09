@@ -13,12 +13,13 @@ public class UIManager : MonoBehaviour
 
 
     [Header("----- Settings -----")]
-    [SerializeField]
     private UIReferences _references;
     private Inventory _playerInv;
     [SerializeField] Animator _transition;
     [SerializeField]
     private Gradient _healthGradient;
+    [SerializeField]
+    private int _tallyTime;
 
     public UIReferences references => _references;
 
@@ -349,42 +350,42 @@ public class UIManager : MonoBehaviour
         StartCoroutine(CooldownTimer(10f, Time.time, _references.suppCoolDwn2));
     }
 
-    public void LoseScreenStats(int _score)
+    public void LoseScreenStats()
     {
         if (_references == null) return;
 
-        _references.loseScore.SetText(AchievementManager.instance.runStats.totalPoints.ToString());
-        _references.loseTime.SetText($"{(int)AchievementManager.instance.runStats.timePlayed % 60} : {(AchievementManager.instance.runStats.timePlayed).ToString("F1")}");
-        _references.loseDeaths.SetText(AchievementManager.instance.runStats.deaths.ToString());
-        _references.loseDistance.SetText(AchievementManager.instance.runStats.distanceMoved.ToString());
-        _references.loseJumps.SetText(AchievementManager.instance.runStats.jumps.ToString());
-        _references.loseGold.SetText(AchievementManager.instance.runStats.goldCollected.ToString());
-        _references.loseItems.SetText(AchievementManager.instance.runStats.itemsCollected.ToString());
-        _references.loseBuys.SetText(AchievementManager.instance.runStats.purchasesMade.ToString());
-        _references.loseDamage.SetText(AchievementManager.instance.runStats.damageDealt.ToString());
-        _references.loseCrits.SetText(AchievementManager.instance.runStats.criticalHits.ToString());
-        _references.loseBosses.SetText(AchievementManager.instance.runStats.bossesKilled.ToString());
-        _references.loseHealth.SetText(AchievementManager.instance.runStats.damageTaken.ToString());
-        _references.loseHealed.SetText(AchievementManager.instance.runStats.damageHealed.ToString());
+        _references.loseTime.SetText($"{(int)AchievementManager.instance.runStats.timePlayed * 60} : {((AchievementManager.instance.runStats.timePlayed * 60) % 60).ToString("F1")}");
+        StartCoroutine(SetScoreTally(_references.loseScore, (int)AchievementManager.instance.runStats.totalPoints));
+        StartCoroutine(SetScoreTally(_references.loseDeaths, (int)(AchievementManager.instance.runStats.deaths)));
+        StartCoroutine(SetScoreTally(_references.loseDistance, (int)(AchievementManager.instance.runStats.distanceMoved)));
+        StartCoroutine(SetScoreTally(_references.loseJumps, (int)(AchievementManager.instance.runStats.jumps)));
+        StartCoroutine(SetScoreTally(_references.loseGold, (int)(AchievementManager.instance.runStats.goldCollected)));
+        StartCoroutine(SetScoreTally(_references.loseItems, (int)(AchievementManager.instance.runStats.itemsCollected)));
+        StartCoroutine(SetScoreTally(_references.loseBuys, (int)(AchievementManager.instance.runStats.purchasesMade)));
+        StartCoroutine(SetScoreTally(_references.loseDamage, (int)(AchievementManager.instance.runStats.damageDealt)));
+        StartCoroutine(SetScoreTally(_references.loseCrits, (int)(AchievementManager.instance.runStats.criticalHits)));
+        StartCoroutine(SetScoreTally(_references.loseBosses, (int)(AchievementManager.instance.runStats.bossesKilled)));
+        StartCoroutine(SetScoreTally(_references.loseHealth, (int)(AchievementManager.instance.runStats.damageTaken)));
+        StartCoroutine(SetScoreTally(_references.loseHealed, (int)(AchievementManager.instance.runStats.damageHealed)));
     }
 
-    public void WinScreenStats(int _score)
+    public void WinScreenStats()
     {
         if (_references == null) return;
 
-        _references.winScore.SetText(AchievementManager.instance.runStats.totalPoints.ToString());
-        _references.winTime.SetText($"{(int)AchievementManager.instance.runStats.timePlayed % 60} : {(AchievementManager.instance.runStats.timePlayed).ToString("F1")}");
-        _references.winDeaths.SetText(AchievementManager.instance.runStats.deaths.ToString());
-        _references.winDistance.SetText(AchievementManager.instance.runStats.distanceMoved.ToString());
-        _references.winJumps.SetText(AchievementManager.instance.runStats.jumps.ToString());
-        _references.winGold.SetText(AchievementManager.instance.runStats.goldCollected.ToString());
-        _references.winItems.SetText(AchievementManager.instance.runStats.itemsCollected.ToString());
-        _references.winBuys.SetText(AchievementManager.instance.runStats.purchasesMade.ToString());
-        _references.winDamage.SetText(AchievementManager.instance.runStats.damageDealt.ToString());
-        _references.winCrits.SetText(AchievementManager.instance.runStats.criticalHits.ToString());
-        _references.winBosses.SetText(AchievementManager.instance.runStats.bossesKilled.ToString());
-        _references.winHealth.SetText(AchievementManager.instance.runStats.damageTaken.ToString());
-        _references.winHealed.SetText(AchievementManager.instance.runStats.damageHealed.ToString());
+        _references.winTime.SetText($"{(int)AchievementManager.instance.runStats.timePlayed * 60} : {((AchievementManager.instance.runStats.timePlayed * 60) % 60).ToString("F1")}");
+        StartCoroutine(SetScoreTally(_references.winScore, (int)(AchievementManager.instance.runStats.totalPoints)));
+        StartCoroutine(SetScoreTally(_references.winDeaths, (int)(AchievementManager.instance.runStats.deaths)));
+        StartCoroutine(SetScoreTally(_references.winDistance, (int)(AchievementManager.instance.runStats.distanceMoved)));
+        StartCoroutine(SetScoreTally(_references.winJumps, (int)(AchievementManager.instance.runStats.jumps)));
+        StartCoroutine(SetScoreTally(_references.winGold, (int)(AchievementManager.instance.runStats.goldCollected)));
+        StartCoroutine(SetScoreTally(_references.winItems, (int)(AchievementManager.instance.runStats.itemsCollected)));
+        StartCoroutine(SetScoreTally(_references.winBuys, (int)(AchievementManager.instance.runStats.purchasesMade)));
+        StartCoroutine(SetScoreTally(_references.winDamage, (int)(AchievementManager.instance.runStats.damageDealt)));
+        StartCoroutine(SetScoreTally(_references.winCrits, (int)(AchievementManager.instance.runStats.criticalHits)));
+        StartCoroutine(SetScoreTally(_references.winBosses, (int)(AchievementManager.instance.runStats.bossesKilled)));
+        StartCoroutine(SetScoreTally(_references.winHealth, (int)(AchievementManager.instance.runStats.damageTaken)));
+        StartCoroutine(SetScoreTally(_references.winHealed, (int)(AchievementManager.instance.runStats.damageHealed)));
     }
 
     IEnumerator CooldownTimer(float cooldown, float startTime, TextMeshProUGUI target)
@@ -423,4 +424,20 @@ public class UIManager : MonoBehaviour
     }
     #endregion
 
+    IEnumerator TallyIncreaseDelay()
+    {
+        yield return new WaitForSeconds(0.05f);
+    }
+
+    IEnumerator SetScoreTally(TextMeshProUGUI toChange, int number)
+    {
+        float startTime = Time.realtimeSinceStartup;
+        WaitForSecondsRealtime wait = new(0.03f);
+        while(Time.realtimeSinceStartup < startTime + _tallyTime)
+        {
+            toChange.SetText((number * (Time.realtimeSinceStartup - startTime) / _tallyTime).ToString("F0"));
+            yield return wait;
+        }
+        toChange.SetText(number.ToString());
+    }
 }

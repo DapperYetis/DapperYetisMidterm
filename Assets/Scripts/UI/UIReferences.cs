@@ -60,10 +60,6 @@ public class UIReferences : MonoBehaviour
 
     public TextMeshProUGUI remainingHealth => _remainingHealth;
 
-    [SerializeField] TextMeshProUGUI _playerLevel;
-
-    public TextMeshProUGUI playerLevel => _playerLevel;
-
     [SerializeField] GameObject _damageIndicator;
 
     public GameObject damageIndicator => _damageIndicator;
