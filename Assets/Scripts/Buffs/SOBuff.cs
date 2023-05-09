@@ -35,4 +35,13 @@ public class SOBuff : ScriptableObject
     [SerializeField, FormerlySerializedAs("_removeEffectPrefab")]
     private GameObject _effectPrefab;
     public GameObject effectPrefab => _effectPrefab;
+
+    [Header("---Audio---")]
+    [Range(0, 1)]
+    [SerializeField]
+    private float _audioVolume;
+    public float audioVolume => _audioVolume;
+    [SerializeField]
+    private AudioClip[] _audioClips;
+    public AudioClip[] audioClips => _audioClips;
 }

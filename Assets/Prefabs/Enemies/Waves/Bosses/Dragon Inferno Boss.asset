@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a01e0102239aeaa4e9d291efd03705ea, type: 3}
   m_Name: Dragon Inferno Boss
   m_EditorClassIdentifier: 
-  _enemyType: {fileID: 1257636781288448039, guid: f2862c2c356bd0f4386209cec027549a,
+  _enemyType: {fileID: 4834479489895678823, guid: 810ee919e5e84d241885dadcfc7ab127,
     type: 3}
   _spawnInterval: 0.1
   _maxEnemyCount: 1

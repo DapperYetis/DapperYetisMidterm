@@ -82,7 +82,14 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
     public UnityEvent OnSupportPrimary;
     [HideInInspector]
     public UnityEvent OnSupportSecondary;
-    // add companion events here
+    [HideInInspector]
+    public UnityEvent<SOBuff> OnBuffAdd;
+    [HideInInspector]
+    public UnityEvent<SOBuff, int> OnBuffStackIncrease;
+    [HideInInspector]
+    public UnityEvent<SOBuff, int> OnBuffStackDecrease;
+    [HideInInspector]
+    public UnityEvent<SOBuff> OnBuffRemove;
 
     // Instance variables
     private float _healthCurrent;
@@ -270,9 +277,11 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
             _currentBuffs.Add(buff, (0, Time.time + buff.buffLength));
             _currentBuffEffects.Add(buff, Instantiate(buff.effectPrefab, _effectsParent).GetComponent<BuffEffect>());
             _currentBuffEffects[buff].SetUp(this, buff);
+            OnBuffAdd.Invoke(buff);
         }
         _currentBuffs[buff] = (_currentBuffs[buff].stacks + amount, _currentBuffs[buff].time);
         _currentBuffEffects[buff].AddStacks(amount);
+        OnBuffStackIncrease.Invoke(buff, amount);
     }
 
     public void AddBuffs(List<(SOBuff buff, int count)> buffCounts)
@@ -289,23 +298,26 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
     public bool RemoveBuff(SOBuff buff)
     {
         if (!_currentBuffs.ContainsKey(buff)) return false;
-
+        int stacks = _currentBuffEffects[buff].stacks;
         switch (buff.removeType)
         {
             case BuffRemoveType.Single:
                 _currentBuffs[buff] = (_currentBuffs[buff].stacks - 1, Time.time + buff.buffLength);
                 _currentBuffEffects[buff].RemoveStacks(1);
+                stacks = 1;
                 break;
             case BuffRemoveType.Stack:
                 _currentBuffs[buff] = (0, 0);
                 _currentBuffEffects[buff].RemoveStacks(_currentBuffEffects[buff].stacks);
                 break;
         }
+        OnBuffStackDecrease.Invoke(buff, stacks);
 
         if (_currentBuffs[buff].stacks <= 0)
         {
             _currentBuffs.Remove(buff);
             _currentBuffEffects.Remove(buff);
+            OnBuffRemove.Invoke(buff);
             return true;
         }
 
