@@ -103,7 +103,8 @@ public class LootManager : MonoBehaviour
 
     private void SetUpStage()
     {
-        GenerateLoot();
+        if(!EnemyManager.instance.inBossRoom)
+            GenerateLoot();
     }
 
     private void GenerateLoot()

@@ -6,6 +6,9 @@ using UnityEngine;
 public class SOWave : ScriptableObject
 {
     [SerializeField]
+    private bool _ignoreSpawnBudget;
+    public bool ignoreSpawnBudget => _ignoreSpawnBudget;
+    [SerializeField]
     private GameObject _enemyType;
     public GameObject enemyType => _enemyType;
     [SerializeField]
@@ -16,4 +19,6 @@ public class SOWave : ScriptableObject
     public int maxEnemyCount => _maxEnemyCount;
 
     public float WaveTime() => _maxEnemyCount * _spawnInterval;
+
+    public static int CalcSpawnCost(EnemyAI enemy, int count) => enemy.spawnCost * count;
 }
