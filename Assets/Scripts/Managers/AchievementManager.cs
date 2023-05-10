@@ -29,7 +29,7 @@ public class AchievementManager : MonoBehaviour
     private bool _canSave = true;
     private bool _isPlayerMoving;
 
-    private void Start()
+    private void Awake()
     {
         if (_instance != null)
         {
