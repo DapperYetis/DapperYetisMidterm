@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5783097432848519765}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0.19999999, z: 0.7600002}
+  m_LocalPosition: {x: -0.5, y: -0.5, z: 0.7600002}
   m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -116,7 +116,6 @@ MonoBehaviour:
   _damageTrigger: {fileID: 8383190878582300710}
   dashingSpeed: 50
   dashingCooldown: 0.2
-  _shieldDurability: 30
   oldMaterial: {fileID: 2100000, guid: a028913dd49cbf349bf9e1625b9e2d22, type: 2}
   newMaterial: {fileID: 2100000, guid: 6970b83e2ea7406419e805cb19853df4, type: 2}
 --- !u!65 &5397059249951823276
