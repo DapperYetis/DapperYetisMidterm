@@ -1,8 +1,10 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Assertions;
+using static UnityEngine.Rendering.DebugUI;
 
 public class Shield : Support
 {
@@ -16,7 +18,9 @@ public class Shield : Support
     [SerializeField] private ProjectileMelee _damageTrigger;
     [SerializeField] float dashingSpeed = 25f;
     [SerializeField] float dashingCooldown = 0.2f;
-    //bool isDashing;
+    private float _shieldDurability;
+    public Material oldMaterial;
+    public Material newMaterial;
     private Rigidbody rb;
 
     private void Start()
@@ -42,6 +46,7 @@ public class Shield : Support
 
     protected override IEnumerator Primary()
     {
+        _canUsePrimary = false;
         if (!shieldEnabled)
         {
             shieldEnabled = true;
@@ -51,28 +56,51 @@ public class Shield : Support
         {
             shieldEnabled = false;
             shieldField.SetActive(false);
+            yield return new WaitForSeconds(stats.useRatePrimary);
         }
 
-        yield return null;
+        _canUsePrimary = true;
     }
 
     protected override IEnumerator Secondary()
     {
         _canUseSecondary = false;
-        //isDashing = true;
         rb.AddForce(transform.forward * dashingSpeed, ForceMode.Impulse);
         _damageTrigger.gameObject.SetActive(true);
         GameManager.instance.player.movement.enabled = false;
         yield return new WaitForSeconds(dashingCooldown);
-        //isDashing = false;
         _damageTrigger.gameObject.SetActive(false);
         GameManager.instance.player.movement.enabled = true;
         yield return new WaitForSeconds(stats.useRateSecondary);
         _canUseSecondary = true;
     }
 
-    protected void DamagedShield()
+    protected void OnTriggerEnter(Collider other)
     {
+        MeshRenderer meshRenderer = shieldField.GetComponent<MeshRenderer>();
+        if (shieldEnabled)
+        {
+            _shieldDurability--;
+        }
+        if(_shieldDurability < 0.3 * stats.useCountPrimary)
+        {
+            meshRenderer.material = newMaterial;
+        }
+        if(_shieldDurability <= 0)
+        {
+            shieldEnabled = false;
+            shieldField.SetActive(false);
+            StartCoroutine(Cooldown());
+            _shieldDurability = stats.useCountPrimary;
+            meshRenderer.material = oldMaterial;
+        }
+    }
+
+    IEnumerator Cooldown()
+    {
+        _canUsePrimary = false;
+        yield return new WaitForSeconds(stats.useRatePrimary);
+        _canUsePrimary = true;
 
     }
 }

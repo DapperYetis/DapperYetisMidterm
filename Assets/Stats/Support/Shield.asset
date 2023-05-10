@@ -15,8 +15,8 @@ MonoBehaviour:
   _supportName: Shield
   _prefab: {fileID: 5783097432848519765, guid: 6288b5adfc809ef48b2017f4351530fa, type: 3}
   _stats:
-    useRatePrimary: 1
-    useCountPrimary: 1
+    useRatePrimary: 2
+    useCountPrimary: 30
     distancePrimary: 100
     damagePrimary: 10
     useRateSecondary: 1
