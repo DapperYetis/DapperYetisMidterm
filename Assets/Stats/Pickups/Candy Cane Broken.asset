@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Candy Cane Broken
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: 46729a92ff0734b9f9af7f2c2d3a7263, type: 3}
-  _itemName: 
-  _description: 
+  _itemName: Broken Candy Cane
+  _description: walking speed boost
   _rarity: 0
   _prefab: {fileID: 0}
   _ignoreStats: 0

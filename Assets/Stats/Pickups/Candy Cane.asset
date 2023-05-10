@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Candy Cane
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: 4abdf30d55a864d5aad3285f2bf3b869, type: 3}
-  _itemName: 
-  _description: 
+  _itemName: Candy Cane
+  _description: Sprint speed boost
   _rarity: 1
   _prefab: {fileID: 0}
   _ignoreStats: 0

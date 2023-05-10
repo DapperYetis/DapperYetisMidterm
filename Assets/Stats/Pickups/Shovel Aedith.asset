@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Shovel Aedith
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: 8b603be824e7a4a9f8cad21c15ca93dc, type: 3}
-  _description: 
+  _itemName: Aedith Shovel
+  _description: AOE Damage
   _rarity: 1
   _prefab: {fileID: 408873413887565784, guid: 17c43b740759c9e46b420f9cb7fd72bf, type: 3}
   _ignoreStats: 1
@@ -33,8 +34,10 @@ MonoBehaviour:
     jumpCountMax: 0
     gravityAcceleration: 0
     healthMax: 0
+    changeType: 0
   _attackStats:
     primaryAbility:
+      changeType: 0
       prefab: {fileID: 0}
       critChance: 0
       directDamage: 10
@@ -47,6 +50,7 @@ MonoBehaviour:
       selfBuffs: []
       targetBuffs: []
     secondaryAbility:
+      changeType: 0
       prefab: {fileID: 0}
       critChance: 0
       directDamage: 0
