@@ -2,26 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.ProBuilder.MeshOperations;
 
 public class AudioManager : MonoBehaviour
 {
     private static AudioManager _instance;
     public static AudioManager instance => _instance;
 
+    // Sources
+    private bool _usingTrackA;
     [SerializeField]
-    private AudioSource _musicAudioSource;
+    private AudioSource _musicTrackA;
     [SerializeField]
-    private AudioClip _backgroundMusic;
+    private AudioSource _musicTrackB;
+
+    // Tracks
+    [SerializeField]
+    private SOMusicTrack _menuMusic;
+    [SerializeField]
+    private SOMusicTrack _levelMusic;
+    [SerializeField]
+    private SOMusicTrack _bossMusic;
+
+    // Mixers
     [SerializeField]
     private AudioMixer _musicVolume;
     [SerializeField]
     private AudioMixer _sfxVolume;
 
-    private bool _bgMusicPlaying;
-
     private void Start()
     {
-        if(_instance != null)
+        if (_instance != null)
         {
             gameObject.SetActive(false);
             return;
@@ -30,40 +41,78 @@ public class AudioManager : MonoBehaviour
         _instance = this;
 
         StartBackgroundMusic();
-        SettingsManager.instance._onMusicSliderChange.AddListener(SetMusicVolume);
-        SettingsManager.instance._onSFXSliderChange.AddListener(SetSFXVolume);
         SetMusicVolume();
         SetSFXVolume();
+        SettingsManager.instance._onMusicSliderChange.AddListener(SetMusicVolume);
+        SettingsManager.instance._onSFXSliderChange.AddListener(SetSFXVolume);
+    }
+
+    private SOMusicTrack GetCurrentMusicTrack()
+    {
+        if (EnemyManager.instance.inBossRoom)
+            return _bossMusic;
+        else if (GameManager.instance.buildIndex != 0)
+            return _levelMusic;
+        else
+            return _menuMusic;
     }
 
     public void StartBackgroundMusic()
     {
-        _bgMusicPlaying = false;
-        StartCoroutine(DoBackgroundMusic());
+        _usingTrackA = !_usingTrackA;
+        StartCoroutine(DoBackgroundMusic(_usingTrackA ? _musicTrackA : _musicTrackB, GetCurrentMusicTrack()));
     }
 
-    private IEnumerator DoBackgroundMusic()
+    private IEnumerator DoBackgroundMusic(AudioSource source, SOMusicTrack track)
     {
-        _bgMusicPlaying = true;
-        _musicAudioSource.loop = true;
-        _musicAudioSource.clip = GetBackgroundMusic();
+        Debug.Log("BG music starting");
         WaitForEndOfFrame wait = new();
-        _musicAudioSource.Play();
-        while (_bgMusicPlaying)
+        // Set Up
+        bool trackType = _usingTrackA;
+        source.clip = track.introClip != null ? track.introClip : track.mainClip;
+        source.loop = true;
+        source.volume = 0;
+        source.Play();
+        if(track.introClip != null)
+            source.PlayScheduled(AudioSettings.dspTime + source.clip.length);
+
+        // Fade In
+        double startTime = AudioSettings.dspTime;
+        float inverseTotalTime = 1 / track.fadeInTime;
+        while (AudioSettings.dspTime < startTime + track.fadeInTime)
+        {
+            source.volume = track.fadeInLevels.Evaluate((float)(AudioSettings.dspTime - startTime) * inverseTotalTime);
+            yield return wait;
+        }
+
+        // Main
+        while (trackType == _usingTrackA)
         {
             yield return wait;
         }
-        _musicAudioSource.Stop();
-        _musicAudioSource.loop = false;
+
+
+        if (track.outroClip != null)
+        {
+            source.clip = track.outroClip;
+            source.PlayScheduled(AudioSettings.dspTime + source.clip.length);
+        }
+
+        // Fade Out
+        startTime = AudioSettings.dspTime;
+        inverseTotalTime = 1 / track.fadeOutTime;
+        while (AudioSettings.dspTime < startTime + track.fadeOutTime)
+        {
+            source.volume = track.fadeOutLevels.Evaluate((float)(AudioSettings.dspTime - startTime) * inverseTotalTime);
+            yield return wait;
+        }
+        source.Stop();
+        source.volume = 0;
+        source.loop = false;
     }
 
 
-    // For later logic based off the current game state
-    private AudioClip GetBackgroundMusic()
-    {
-        return _backgroundMusic;
-    }
-
+    #region Volume
     private void SetMusicVolume()
     {
         _musicVolume.SetFloat("MusicVolume", Mathf.Log10(SettingsManager.instance.GetMusicVolume()) * 30);
@@ -73,6 +122,5 @@ public class AudioManager : MonoBehaviour
     {
         _sfxVolume.SetFloat("sfxVolume", Mathf.Log10(SettingsManager.instance.GetSFXVolume()) * 30);
     }
-
-
+    #endregion
 }
