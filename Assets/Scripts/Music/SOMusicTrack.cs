@@ -1,47 +1,40 @@
 ﻿using UnityEngine;
 using UnityEngine.Serialization;
 
-[CreateAssetMenu(fileName = "BuffName", menuName = "Stats/Buff")]
+[CreateAssetMenu(fileName = "MusicTrack", menuName = "Music/Track")]
 public class SOMusicTrack : ScriptableObject
 {
-    [Header("---General---")]
+    [SerializeField, Range(0, 1)]
+    private float _trackVolume = 0.5f;
+    public float trackVolume => _trackVolume;
+    
+    [Header("---Intro---")]
     [SerializeField]
-    private string _buffName;
-    public string buffName => _buffName;
+    private float _fadeInTime = 1f;
+    public float fadeInTime => _fadeInTime;
     [SerializeField]
-    private string _description;
-    public string description => _description;
+    private AnimationCurve _fadeInLevels;
+    public AnimationCurve fadeInLevels => _fadeInLevels;
+    [SerializeField]
+    private AudioClip _introClip;
+    public AudioClip introClip => _introClip;
 
-    [Header("---Timing---")]
+    [Header("---Body---")]
     [SerializeField]
-    private BuffTiming _timing;
-    public BuffTiming timing => _timing;
+    private AudioClip _mainClip;
+    public AudioClip mainClip => _mainClip;
     [SerializeField]
-    private float _buffLength;
-    public float buffLength => _buffLength;
-    [SerializeField]
-    private BuffRemoveType _removeType;
-    public BuffRemoveType removeType => _removeType;
+    private bool _isLoopable;
+    public bool isLoopable => _isLoopable;
 
-    [Header("---Modifications---")]
+    [Header("---Outro---")]
     [SerializeField]
-    private PlayerStats _generalMods;
-    public PlayerStats generalMods => _generalMods;
+    private float _fadeOutTime = 1f;
+    public float fadeOutTime => _fadeOutTime;
     [SerializeField]
-    private AbilityStats _abilityMods;
-    public AbilityStats abilityMods => _abilityMods;
-
-    [Header("---Prefabs---")]
-    [SerializeField, FormerlySerializedAs("_removeEffectPrefab")]
-    private GameObject _effectPrefab;
-    public GameObject effectPrefab => _effectPrefab;
-
-    [Header("---Audio---")]
-    [Range(0, 1)]
+    private AnimationCurve _fadeOutLevels;
+    public AnimationCurve fadeOutLevels => _fadeOutLevels;
     [SerializeField]
-    private float _audioVolume;
-    public float audioVolume => _audioVolume;
-    [SerializeField]
-    private AudioClip[] _audioClips;
-    public AudioClip[] audioClips => _audioClips;
+    private AudioClip _outroClip;
+    public AudioClip outroClip => _outroClip;
 }
