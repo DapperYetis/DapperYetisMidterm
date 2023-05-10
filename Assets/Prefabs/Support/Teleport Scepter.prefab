@@ -42,7 +42,6 @@ GameObject:
   - component: {fileID: 8786314494178199480}
   - component: {fileID: 1386463112555170355}
   - component: {fileID: 5554827106313149598}
-  - component: {fileID: 424965632437234071}
   - component: {fileID: 4649131744691340148}
   - component: {fileID: 4278007311320423585}
   m_Layer: 0
@@ -118,20 +117,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &424965632437234071
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7484248903627905010}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -339881825005760036, guid: cdf7d89f59d472f4aba1f05af7fbc1a8, type: 3}
 --- !u!136 &4649131744691340148
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -162,6 +147,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnSecondary:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHit:
     m_PersistentCalls:
       m_Calls: []
   _teleportBeaconPrefab: {fileID: 1115672036554455880, guid: 41dfd30e276ff6e41bd65f597dd67c89,

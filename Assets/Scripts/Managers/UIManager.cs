@@ -13,10 +13,13 @@ public class UIManager : MonoBehaviour
 
 
     [Header("----- Settings -----")]
-    [SerializeField]
     private UIReferences _references;
     private Inventory _playerInv;
     [SerializeField] Animator _transition;
+    [SerializeField]
+    private Gradient _healthGradient;
+    [SerializeField]
+    private int _tallyTime;
 
     public UIReferences references => _references;
 
@@ -114,10 +117,8 @@ public class UIManager : MonoBehaviour
             _playerInv = _playerController.inventory;
             _transition = _references.animator;
             _playerController.OnHealthChange.AddListener(UpdateHealth);
-            _playerInv.OnLevelChange.AddListener(LevelUp);
             _playerController.OnPlayerSetUp.AddListener(() =>
             {
-                _playerController.inventory.OnXPChange.AddListener(IncreaseXP);
                 _playerController.weapon.OnPrimary.AddListener(AttackCD1);
                 _playerController.weapon.OnSecondary.AddListener(AttackCD2);
                 _playerController.inventory.OnCurrencyChange.AddListener(TrackCurrency);
@@ -141,8 +142,6 @@ public class UIManager : MonoBehaviour
                 UpdateEnemyCount();
                 UpdateScore(0);
                 TrackCurrency(0);
-                LevelUp(0);
-                IncreaseXP(0);
                 _references.hud.GetComponent<HudItems>().ResetVisual();
             }
 
@@ -271,6 +270,7 @@ public class UIManager : MonoBehaviour
                 StartCoroutine(HealthRedFlash());
             SetHealth();
             float currHealth = (float)_playerController.GetHealthCurrent() / (float)_playerController.GetHealthMax();
+            _references.hpBar.color = _healthGradient.Evaluate(currHealth);
             _references.hpBar.fillAmount = currHealth;
         }
     }
@@ -284,26 +284,13 @@ public class UIManager : MonoBehaviour
     public void UpdateScore(int newScore)
     {
         if (_references == null) return;
-        _references.score.SetText(GameManager.instance.score.ToString());
+        _references.score.SetText(AchievementManager.instance.runStats.totalPoints.ToString());
     }
 
     public void TrackCurrency(int currency)
     {
         if (_references == null) return;
         _references.currency.SetText(_playerInv.currency.ToString());
-    }
-
-    public void LevelUp(int newLevel)
-    {
-        if (_references == null) return;
-        _references.playerLevel.SetText(newLevel.ToString());
-    }
-
-    public void IncreaseXP(int currXP)
-    {
-        if (_references == null) return;
-        if (_references.xpbar && _references.xpbar.isActiveAndEnabled)
-            _references.xpbar.fillAmount = (_playerInv.currentXP % 100f) / 100f;
     }
 
     IEnumerator Damaged()
@@ -363,30 +350,42 @@ public class UIManager : MonoBehaviour
         StartCoroutine(CooldownTimer(10f, Time.time, _references.suppCoolDwn2));
     }
 
-    public void CompanionCD()
+    public void LoseScreenStats()
     {
         if (_references == null) return;
 
+        _references.loseTime.SetText($"{(int)AchievementManager.instance.runStats.timePlayed * 60} : {((AchievementManager.instance.runStats.timePlayed * 60) % 60).ToString("F1")}");
+        StartCoroutine(SetScoreTally(_references.loseScore, (int)AchievementManager.instance.runStats.totalPoints));
+        StartCoroutine(SetScoreTally(_references.loseDeaths, (int)(AchievementManager.instance.runStats.deaths)));
+        StartCoroutine(SetScoreTally(_references.loseDistance, (int)(AchievementManager.instance.runStats.distanceMoved)));
+        StartCoroutine(SetScoreTally(_references.loseJumps, (int)(AchievementManager.instance.runStats.jumps)));
+        StartCoroutine(SetScoreTally(_references.loseGold, (int)(AchievementManager.instance.runStats.goldCollected)));
+        StartCoroutine(SetScoreTally(_references.loseItems, (int)(AchievementManager.instance.runStats.itemsCollected)));
+        StartCoroutine(SetScoreTally(_references.loseBuys, (int)(AchievementManager.instance.runStats.purchasesMade)));
+        StartCoroutine(SetScoreTally(_references.loseDamage, (int)(AchievementManager.instance.runStats.damageDealt)));
+        StartCoroutine(SetScoreTally(_references.loseCrits, (int)(AchievementManager.instance.runStats.criticalHits)));
+        StartCoroutine(SetScoreTally(_references.loseBosses, (int)(AchievementManager.instance.runStats.bossesKilled)));
+        StartCoroutine(SetScoreTally(_references.loseHealth, (int)(AchievementManager.instance.runStats.damageTaken)));
+        StartCoroutine(SetScoreTally(_references.loseHealed, (int)(AchievementManager.instance.runStats.damageHealed)));
     }
 
-    public void LoseScreenStats(int _score)
+    public void WinScreenStats()
     {
         if (_references == null) return;
 
-        _references.loseScore.SetText(_score.ToString());
-
-        _references.loseTime.SetText($"{(int)GameManager.instance.runTimeMinutes} : {(GameManager.instance.runTime % 60).ToString("F1")}");
-
-    }
-
-    public void WinScreenStats(int _score)
-    {
-        if (_references == null) return;
-
-        _references.winScore.SetText(_score.ToString());
-
-        _references.winTime.SetText($"{(int)GameManager.instance.runTimeMinutes} : {(GameManager.instance.runTime % 60).ToString("F1")}");
-
+        _references.winTime.SetText($"{(int)AchievementManager.instance.runStats.timePlayed * 60} : {((AchievementManager.instance.runStats.timePlayed * 60) % 60).ToString("F1")}");
+        StartCoroutine(SetScoreTally(_references.winScore, (int)(AchievementManager.instance.runStats.totalPoints)));
+        StartCoroutine(SetScoreTally(_references.winDeaths, (int)(AchievementManager.instance.runStats.deaths)));
+        StartCoroutine(SetScoreTally(_references.winDistance, (int)(AchievementManager.instance.runStats.distanceMoved)));
+        StartCoroutine(SetScoreTally(_references.winJumps, (int)(AchievementManager.instance.runStats.jumps)));
+        StartCoroutine(SetScoreTally(_references.winGold, (int)(AchievementManager.instance.runStats.goldCollected)));
+        StartCoroutine(SetScoreTally(_references.winItems, (int)(AchievementManager.instance.runStats.itemsCollected)));
+        StartCoroutine(SetScoreTally(_references.winBuys, (int)(AchievementManager.instance.runStats.purchasesMade)));
+        StartCoroutine(SetScoreTally(_references.winDamage, (int)(AchievementManager.instance.runStats.damageDealt)));
+        StartCoroutine(SetScoreTally(_references.winCrits, (int)(AchievementManager.instance.runStats.criticalHits)));
+        StartCoroutine(SetScoreTally(_references.winBosses, (int)(AchievementManager.instance.runStats.bossesKilled)));
+        StartCoroutine(SetScoreTally(_references.winHealth, (int)(AchievementManager.instance.runStats.damageTaken)));
+        StartCoroutine(SetScoreTally(_references.winHealed, (int)(AchievementManager.instance.runStats.damageHealed)));
     }
 
     IEnumerator CooldownTimer(float cooldown, float startTime, TextMeshProUGUI target)
@@ -421,8 +420,19 @@ public class UIManager : MonoBehaviour
     {
         _references.hpBar.color = Color.red;
         yield return new WaitForSeconds(0.2f);
-        _references.hpBar.color = Color.green;
+        _references.hpBar.color = _healthGradient.Evaluate(_references.hpBar.fillAmount);
     }
     #endregion
 
+    IEnumerator SetScoreTally(TextMeshProUGUI toChange, int number)
+    {
+        float startTime = Time.realtimeSinceStartup;
+        WaitForSecondsRealtime wait = new(0.02f);
+        while(Time.realtimeSinceStartup < startTime + _tallyTime)
+        {
+            toChange.SetText((number * (Time.realtimeSinceStartup - startTime) / _tallyTime).ToString("F0"));
+            yield return wait;
+        }
+        toChange.SetText(number.ToString());
+    }
 }

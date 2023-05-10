@@ -32,4 +32,13 @@ public struct SupportStats
 
         return s1;
     }
+
+    public static implicit operator AbilityStats(SupportStats stats)
+    {
+        return new AbilityStats
+        {
+            directDamage = stats.damagePrimary, 
+            secondaryDamage = stats.damageSecondary,
+        };
+    }
 }

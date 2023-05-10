@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "BuffName", menuName = "Stats/Buff")]
 public class SOBuff : ScriptableObject
@@ -11,6 +12,9 @@ public class SOBuff : ScriptableObject
     [SerializeField]
     private string _description;
     public string description => _description;
+    [SerializeField]
+    private Sprite _icon;
+    public Sprite icon => _icon;
 
     [Header("---Timing---")]
     [SerializeField]

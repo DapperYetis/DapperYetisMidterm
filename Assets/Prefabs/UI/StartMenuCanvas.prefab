@@ -144,7 +144,7 @@ MonoBehaviour:
   _keyBindsMenu: {fileID: 5908307781425006581}
   _weaponGroup: {fileID: 4231932483729385115}
   _supportGroup: {fileID: 7795744097863883788}
-  _companionGroup: {fileID: 1733225320437876396}
+  _companionGroup: {fileID: 0}
   _creditsScreen: {fileID: 2962555126280140361}
   _buttonClick: {fileID: 8700768966009892211}
   _buttonClip: {fileID: 8300000, guid: f9e3a60812519c3488a3d4615ddc5582, type: 3}
@@ -805,12 +805,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f09d045902bd7444882d36fa4ea4fd70, type: 3}
---- !u!1 &1733225320437876396 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3146558923884004174, guid: f09d045902bd7444882d36fa4ea4fd70,
-    type: 3}
-  m_PrefabInstance: {fileID: 3722072901979506146}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4231932483729385115 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 656872132503462777, guid: f09d045902bd7444882d36fa4ea4fd70,
