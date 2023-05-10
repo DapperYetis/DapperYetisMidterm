@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PortalBossRoom : MonoBehaviour
 {
+    private static int _bossIndex = 0;
+    public static int bossIndex => _bossIndex;
+
     [Header("--- Components ---")]
     [SerializeField]
     protected GameObject _portalEnterObject;
@@ -14,7 +17,7 @@ public class PortalBossRoom : MonoBehaviour
     [SerializeField]
     protected AudioSource _aud;
     [SerializeField]
-    protected SOWave _bossWave;
+    protected SOWave[] _bossWave;
     [SerializeField]
     protected Transform _bossSpawnPoint;
 
@@ -61,6 +64,7 @@ public class PortalBossRoom : MonoBehaviour
         Debug.Log($"{name} played a sound");
         _portalExitObject.SetActive(true);
         RenderSettings.fog = false;
+        ++_bossIndex;
     }
 
     private void OnTriggerExit(Collider other)
@@ -72,7 +76,7 @@ public class PortalBossRoom : MonoBehaviour
             Debug.Log($"{name} played a sound");
             _proclamationCollider.enabled = false;
 
-            EnemyManager.SpawnEnemy(_bossWave, _bossSpawnPoint.position);
+            EnemyManager.SpawnEnemy(_bossWave[_bossIndex], _bossSpawnPoint.position);
             _bossHasSpawned = true;
         }
     }

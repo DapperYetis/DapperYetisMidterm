@@ -103,7 +103,7 @@ public class LootManager : MonoBehaviour
 
     private void SetUpStage()
     {
-        if(!EnemyManager.instance.inBossRoom)
+        if(!EnemyManager.instance.inBossRoom && GameManager.instance.buildIndex != 3)
             GenerateLoot();
     }
 

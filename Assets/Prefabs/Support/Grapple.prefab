@@ -60,7 +60,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4378267455368745451}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.4500003, y: -0.28999996, z: 0.2300005}
+  m_LocalPosition: {x: 0.4500003, y: -1, z: 0.2300005}
   m_LocalScale: {x: 0.17574646, y: 0.17157204, z: 0.89765}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -262,5 +262,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnSecondary:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHit:
     m_PersistentCalls:
       m_Calls: []

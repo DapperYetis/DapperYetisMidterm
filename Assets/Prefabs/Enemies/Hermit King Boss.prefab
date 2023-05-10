@@ -429,6 +429,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _additivePriorityMod: 0
+  _spawnCost: 1
   _stats:
     HPMax: 350
     facePlayerSpeed: 600
@@ -442,9 +443,9 @@ MonoBehaviour:
   _moveChances: 10
   _runTypeTimer: 0
   _circlingRange: 10
-  _deathDelay: 0
-  _timeLength: 0
-  _scaleMultiplier: 0
+  _deathDelay: 3
+  _timeLength: 5
+  _scaleMultiplier: 10
   _primaryAttackStats:
     positions:
     - {fileID: 6230942851774826721}

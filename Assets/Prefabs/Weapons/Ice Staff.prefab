@@ -46,6 +46,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shootPos: {fileID: 6811324494695579201}
+  OnPrimary:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSecondary:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &1915498899927649122
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -71,7 +80,7 @@ PrefabInstance:
     - target: {fileID: 5863101221003252670, guid: 45088bc87247bf7469c4526d27535691,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 5863101221003252670, guid: 45088bc87247bf7469c4526d27535691,
         type: 3}

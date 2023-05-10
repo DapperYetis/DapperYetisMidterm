@@ -354,7 +354,7 @@ public class UIManager : MonoBehaviour
     {
         if (_references == null) return;
 
-        _references.loseTime.SetText($"{(int)AchievementManager.instance.runStats.timePlayed * 60} : {((AchievementManager.instance.runStats.timePlayed * 60) % 60).ToString("F1")}");
+        _references.loseTime.SetText($"{(int)AchievementManager.instance.runStats.timePlayed} : {((AchievementManager.instance.runStats.timePlayed * 60) % 60).ToString("F1")}");
         StartCoroutine(SetScoreTally(_references.loseScore, (int)AchievementManager.instance.runStats.totalPoints));
         StartCoroutine(SetScoreTally(_references.loseDeaths, (int)(AchievementManager.instance.runStats.deaths)));
         StartCoroutine(SetScoreTally(_references.loseDistance, (int)(AchievementManager.instance.runStats.distanceMoved)));
@@ -373,7 +373,7 @@ public class UIManager : MonoBehaviour
     {
         if (_references == null) return;
 
-        _references.winTime.SetText($"{(int)AchievementManager.instance.runStats.timePlayed * 60} : {((AchievementManager.instance.runStats.timePlayed * 60) % 60).ToString("F1")}");
+        _references.winTime.SetText($"{(int)AchievementManager.instance.runStats.timePlayed} : {((AchievementManager.instance.runStats.timePlayed * 60) % 60).ToString("F1")}");
         StartCoroutine(SetScoreTally(_references.winScore, (int)(AchievementManager.instance.runStats.totalPoints)));
         StartCoroutine(SetScoreTally(_references.winDeaths, (int)(AchievementManager.instance.runStats.deaths)));
         StartCoroutine(SetScoreTally(_references.winDistance, (int)(AchievementManager.instance.runStats.distanceMoved)));
