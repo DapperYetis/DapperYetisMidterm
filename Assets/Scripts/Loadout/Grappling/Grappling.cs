@@ -6,9 +6,8 @@ public class Grappling : MonoBehaviour
 {
 
     [Header("Reference")]
-    private PlayerMovementGrappling pm;
-    public Transform cam;
-    public Transform gunTip;
+    public PlayerMovementGrappling pm;
+    public Transform gunTip, cam;
     public LayerMask whatisGrappleable;
     public LineRenderer lr;
 
@@ -19,29 +18,30 @@ public class Grappling : MonoBehaviour
 
     private Vector3 grapplePoint;
 
-    [Header("Cooldown")]
-    public float grapplingCd = 2.5f;
-    private float grapplingCdTimer;
-
-    [Header("Input")]
-    public KeyCode grapplingKey = KeyCode.Mouse1;
+    //[Header("Cooldown")]
+    //public float grapplingCd = 2.5f;
+    //private float grapplingCdTimer;
 
     private bool grappling;
 
     private void Start()
     {
-        pm = GetComponent<PlayerMovementGrappling>();
+        //pm = GetComponent<PlayerMovementGrappling>();
+
+        cam = Camera.main.transform;
+        pm = GameManager.instance.player.grappling;
+        pm.enabled = true;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(grapplingKey))
+        if (Input.GetButtonDown("Secondary Support"))
         {
             StartGrapple();
         }
        
-        if (grapplingCdTimer > 0)
-            grapplingCdTimer -= Time.deltaTime;
+        //if (grapplingCdTimer > 0)
+        //    grapplingCdTimer -= Time.deltaTime;
     }
     private void LateUpdate()
     {
@@ -51,12 +51,12 @@ public class Grappling : MonoBehaviour
 
     private void StartGrapple()
     {
-        if (grapplingCdTimer > 0)
-            return;
+        //if (grapplingCdTimer > 0)
+        //    return;
 
         grappling = true;
 
-        pm.freeze = true;
+        //pm.freeze = true;
 
         RaycastHit hit;
 
@@ -79,7 +79,7 @@ public class Grappling : MonoBehaviour
 
     private void ExecuteGrapple()
     {
-        pm.freeze = false;
+        //pm.freeze = false;
 
         Vector3 lowestPoint = new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
 
@@ -96,11 +96,11 @@ public class Grappling : MonoBehaviour
 
     public void StopGrapple()
     {
-        pm.freeze = false;
+        //pm.freeze = false;
 
         grappling = false;
 
-        grapplingCdTimer = grapplingCd;
+        //grapplingCdTimer = grapplingCd;
 
         lr.enabled = false;
     }

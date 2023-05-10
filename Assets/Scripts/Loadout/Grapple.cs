@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,6 +10,9 @@ public class Grapple : Support
 {
     protected GrappleSwing _grappleSwing;
     public GrappleSwing grappleSwing => _grappleSwing;
+    [SerializeField]
+    protected ZipToGrapple _zipToGrapple;
+    public ZipToGrapple zipToGrapple => _zipToGrapple;
     protected bool _isStopping = false;
 
     private void Start()
@@ -26,20 +30,14 @@ public class Grapple : Support
         {
             StartCoroutine(Primary());
         }
-
-        //else if (Input.GetButton("Secondary Support") && _canUseSecondary && !GameManager.instance.isPaused)
-        //    StartCoroutine(Secondary());
+        else if (Input.GetButton("Secondary Support") && _canUseSecondary && !GameManager.instance.isPaused)
+            StartCoroutine(Secondary());
     }
 
     private void StartPrimary()
     {
         _canUsePrimary = false;
         _grappleSwing.StartSwing();
-    }
-
-    private void StartSecondary()
-    {
-        _canUseSecondary = false;
     }
 
     protected override IEnumerator Primary()
@@ -53,6 +51,8 @@ public class Grapple : Support
 
     protected override IEnumerator Secondary()
     {
+        _canUseSecondary = false;
+        _zipToGrapple.ShootHook();
         yield return new WaitForSeconds(_stats.useRateSecondary);
         _canUseSecondary = true;
     }
