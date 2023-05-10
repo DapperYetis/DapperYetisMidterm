@@ -12,8 +12,6 @@ GameObject:
   - component: {fileID: 1451364945402797247}
   - component: {fileID: 1478890392427560852}
   - component: {fileID: 3751438102034445494}
-  - component: {fileID: 4372136970421812297}
-  - component: {fileID: 5290856041243911977}
   m_Layer: 0
   m_Name: Visuals
   m_TagString: Untagged
@@ -186,57 +184,6 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!114 &4372136970421812297
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3234392136944960618}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4415006857395a245bb007a189ebf432, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lr: {fileID: 3751438102034445494}
-  gunTip: {fileID: 6992990803474958989}
-  cam: {fileID: 0}
-  player: {fileID: 0}
-  whatisGrappleable:
-    serializedVersion: 2
-    m_Bits: 8
-  pm: {fileID: 0}
-  maxSwingDistance: 70
-  _predictionPointPrefab: {fileID: 8773828727256481352, guid: c7ef6b1988d8d9948b154b9236f0e2e3,
-    type: 3}
-  predictionSphereCastRadius: 1
-  orientation: {fileID: 0}
-  rb: {fileID: 0}
-  horizontalThrustForce: 3000
-  forwardThrustForce: 5000
-  extendCableSpeed: 10
---- !u!114 &5290856041243911977
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3234392136944960618}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16f5a7270df20aa41a636ead01707a3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnPrimary:
-    m_PersistentCalls:
-      m_Calls: []
-  OnSecondary:
-    m_PersistentCalls:
-      m_Calls: []
-  OnHit:
-    m_PersistentCalls:
-      m_Calls: []
-  _zipToGrapple: {fileID: 0}
 --- !u!1 &4378267455368745451
 GameObject:
   m_ObjectHideFlags: 0
