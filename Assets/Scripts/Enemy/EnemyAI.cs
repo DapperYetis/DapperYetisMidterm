@@ -255,6 +255,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     {
         _agent.enabled = true;
         FacePlayer();
+        float animSpeedOrig = _anim.speed;
         _anim.speed = 0;
         _agent.enabled = false;
         _bodyCollider.enabled = false;
@@ -274,7 +275,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
 
         _model.material.color = mainColor;
         Destroy(spFX);
-        _anim.speed = 1;
+        _anim.speed = animSpeedOrig;
     }
 
     protected virtual void SpawnRoar()

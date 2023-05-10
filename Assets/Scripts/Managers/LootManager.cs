@@ -124,9 +124,9 @@ public class LootManager : MonoBehaviour
                 if (Physics.Raycast(location, Vector3.down, out RaycastHit hitInfo))
                 {
                     location.y = hitInfo.point.y;
+                    // Loot blocking layer
+                    validPlacement = hitInfo.transform.gameObject.layer != 11;
                 }
-                // Loot blocking layer
-                validPlacement = hitInfo.transform.gameObject.layer != 11;
             }
 
             _lootLocations.Add(Instantiate(_chestPrefab, location, Quaternion.identity).transform);
@@ -141,8 +141,8 @@ public class LootManager : MonoBehaviour
             if (Physics.Raycast(location, Vector3.down, out RaycastHit hitInfo2))
             {
                 location.y = hitInfo2.point.y;
+                validPlacement = hitInfo2.transform.gameObject.layer != 11;
             }
-            validPlacement = hitInfo2.transform.gameObject.layer != 11;
         }
         _altar = Instantiate(_altarPrefab, location, Quaternion.identity);
     }

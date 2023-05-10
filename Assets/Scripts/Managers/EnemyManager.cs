@@ -146,7 +146,14 @@ public class EnemyManager : MonoBehaviour
 
     public static void SpawnEnemy(SOWave wave, Vector3 spawnPosition)
     {
-        EnemyAI enemy = Instantiate(wave.enemyType, spawnPosition + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity).GetComponent<EnemyAI>();
+        Vector3 PossibleSpawnPoint = spawnPosition + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f));
+        //NavMeshPathStatus a;
+        //if (_enemy.agent.pathEndPosition == PossibleSpawnPoint)
+        //{
+        //    a = PossibleSpawnPoint;
+        //}
+
+        EnemyAI enemy = Instantiate(wave.enemyType, PossibleSpawnPoint, Quaternion.identity).GetComponent<EnemyAI>();
         enemy.SetUp(wave);
     }
 
