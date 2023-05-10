@@ -7,6 +7,12 @@ public class DragonInfernoBoss : HybridEnemy
     [Header("---Misc---")]
     [SerializeField]
     private float _attackDelay;
+    // Can be made into an enum later for better readability and safety
+    private int _phase = 1;
+    [SerializeField, Range(0, 1)]
+    private float _phaseTwoThreshold;
+    [SerializeField, Range(0, 1)]
+    private float _phaseThreeThreshold;
 
     [Header("---Flight & Falling---")]
     [SerializeField]
@@ -59,18 +65,16 @@ public class DragonInfernoBoss : HybridEnemy
                 Melee();
             else
             {
-                int attack = Random.Range(0, 1);
-
-                switch (attack)
+                switch (_phase)
                 {
-                    case 0:
+                    case 1:
                         Shoot(_secondaryAttackStats);
                         break;
-                    case 1:
-                        
-                        break;
                     case 2:
-                        
+                        _anim.SetTrigger("AttackScatter");
+                        break;
+                    case 3:
+                        Shoot(_secondaryAttackStats);
                         break;
                 }
             }
@@ -87,6 +91,21 @@ public class DragonInfernoBoss : HybridEnemy
         }
     }
 
+    public override void Damage(float amount, (SOBuff buff, int amount)[] buffs)
+    {
+        base.Damage(amount, buffs);
+        if (_HPCurrent < _phaseThreeThreshold * _baseStats.HPMax && _phase != 3)
+        {
+            _phase = 3;
+            Heal(_baseStats.HPMax * 0.05f);
+        }
+        else if (_HPCurrent < _phaseTwoThreshold * _baseStats.HPMax && _phase != 2)
+        {
+            _phase = 2;
+            Heal(_baseStats.HPMax * 0.1f);
+        }
+    }
+
     protected override void Die()
     {
         base.Die();
@@ -98,7 +117,7 @@ public class DragonInfernoBoss : HybridEnemy
         WaitForEndOfFrame wait = new();
         float startTime = Time.time;
         float inverseFallTime = 1 / _fallTime;
-        while(Time.time < startTime + _fallTime)
+        while (Time.time < startTime + _fallTime)
         {
             _agent.baseOffset = _fallCurve.Evaluate((Time.time - startTime) * inverseFallTime);
             yield return wait;
@@ -106,6 +125,7 @@ public class DragonInfernoBoss : HybridEnemy
     }
 
     // New Attacks
+    // Called via anim event
     private void ScatterAttack()
     {
         StartCoroutine(DoScatterAttack());
@@ -113,6 +133,10 @@ public class DragonInfernoBoss : HybridEnemy
 
     private IEnumerator DoScatterAttack()
     {
+        for (int i = 0; i < Mathf.CeilToInt(1 / _scatterRangedAttack.rate); ++i)
+        {
+            Shoot(_scatterRangedAttack);
+        }
         yield return new WaitForSeconds(_anim.GetCurrentAnimatorClipInfo(0).Length);
         yield return new WaitForSeconds(_attackDelay);
         _isAttacking = false;

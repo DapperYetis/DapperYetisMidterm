@@ -1351,8 +1351,9 @@ MonoBehaviour:
     targetBuffs: []
     speed: 30
     range: 30
-    _attackAudioVol: 0
-    _attackAudio: []
+    _attackAudioVol: 0.7
+    _attackAudio:
+    - {fileID: 8300000, guid: dff08afbd9ead4f409a2e498fe3babc5, type: 3}
   _secondaryAttackStatsScaling:
     positions: []
     damage: 5
@@ -1367,6 +1368,8 @@ MonoBehaviour:
     _attackAudioVol: 0
     _attackAudio: []
   _attackDelay: 1
+  _phaseTwoThreshold: 0.6
+  _phaseThreeThreshold: 0.3
   _flightHeight: 1.5
   _fallTime: 1.25
   _fallCurve:
@@ -1418,23 +1421,25 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _scatterRangedAttack:
-    positions: []
-    damage: 0
-    rate: 0
-    lifetime: 0
-    variance: 0
-    prefab: {fileID: 0}
+    positions:
+    - {fileID: 8592159916251029699}
+    damage: 15
+    rate: 0.2
+    lifetime: 5
+    variance: 8
+    prefab: {fileID: 424343093267893311, guid: 66df003442f10764c8d714556528274e, type: 3}
     selfBuffs: []
     targetBuffs: []
-    speed: 0
-    range: 0
-    _attackAudioVol: 0
-    _attackAudio: []
+    speed: 55
+    range: 50
+    _attackAudioVol: 0.5
+    _attackAudio:
+    - {fileID: 8300000, guid: dff08afbd9ead4f409a2e498fe3babc5, type: 3}
   _scatterRangedAttackScaling:
     positions: []
-    damage: 0
+    damage: 5
     rate: 0
-    lifetime: 0
+    lifetime: 1
     variance: 0
     prefab: {fileID: 0}
     selfBuffs: []

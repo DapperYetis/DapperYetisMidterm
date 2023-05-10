@@ -39150,7 +39150,7 @@ MonoBehaviour:
   _portalExitObject: {fileID: 7407556847642709557}
   _proclamationCollider: {fileID: 1184200462907896880}
   _aud: {fileID: 438502981585461010}
-  _bossWave:
+  _bossWaves:
   - {fileID: 11400000, guid: 728e4059dce5f1548abc05b5887376d7, type: 2}
   - {fileID: 11400000, guid: 5b0d74f5b53e6de4d897a655d0b1909b, type: 2}
   _bossSpawnPoint: {fileID: 0}
