@@ -152,6 +152,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
         StartCoroutine(SizeChange());
         _drops = GetComponent<EnemyDrops>();
         StartCoroutine(PickMoveType());
+        FacePlayer();
     }
 
     protected virtual void Update()
@@ -168,7 +169,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
 
         CheckBuffs();
     }
-
+    
     protected virtual float AttackPriority()
     {
         return (GameManager.instance.player.transform.position - transform.position).sqrMagnitude - _primaryAttackStats.range - _additivePriorityMod;
