@@ -271,6 +271,9 @@ MonoBehaviour:
   OnJump:
     m_PersistentCalls:
       m_Calls: []
+  OnLand:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &4764879117495048196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,15 +320,68 @@ MonoBehaviour:
     jumpCountMax: 2
     gravityAcceleration: 55
     healthMax: 100
+    changeType: 0
   _interactDistance: 10
+  _effectsParent: {fileID: 0}
   _camera: {fileID: 2104300715586407398}
   _movement: {fileID: 2104300716291786973}
   _inventory: {fileID: 622012240569451596}
   _grappling: {fileID: 178437936}
+  OnPlayerSetUp:
+    m_PersistentCalls:
+      m_Calls: []
   OnHealthChange:
     m_PersistentCalls:
       m_Calls: []
-  OnPlayerSetUp:
+  OnTakeDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHeal:
+    m_PersistentCalls:
+      m_Calls: []
+  OnMoveStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnMoveStop:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSprintStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSprintStop:
+    m_PersistentCalls:
+      m_Calls: []
+  OnJump:
+    m_PersistentCalls:
+      m_Calls: []
+  OnLand:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHit:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPrimary:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSecondary:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSupportPrimary:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSupportSecondary:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuffAdd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuffStackIncrease:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuffStackDecrease:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuffRemove:
     m_PersistentCalls:
       m_Calls: []
 --- !u!54 &1677119373033835320
@@ -580,6 +636,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9bf0b1057ce9ec4cbfa5dece55f07f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _itemEffectsParent: {fileID: 0}
   OnLevelChange:
     m_PersistentCalls:
       m_Calls: []
