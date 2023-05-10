@@ -58,7 +58,6 @@ public class HermitKingBoss : HybridEnemy
                 switch (attack)
                 {
                     case 0:
-                        Debug.Log("bruh");
                         Shoot();
                         break;
                     case 1:

@@ -50,7 +50,7 @@ MonoBehaviour:
     type: 3}
   _chestBaseCost: 20
   _chestCostRange: 15
-  _lootCount: 20
+  _lootCount: 40
   _spawningBounds:
     m_Center: {x: 0, y: 84, z: 0}
     m_Extent: {x: 125, y: 1, z: 125}
@@ -67,6 +67,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1e20484e14af5484b83c341e4d03b2b5, type: 2}
   - {fileID: 11400000, guid: af0aa0f075cc6ed47901e6dedc33e65a, type: 2}
   - {fileID: 11400000, guid: 567789f17956dfa4aae41a3c66a02f05, type: 2}
+  - {fileID: 11400000, guid: c5ee282be5611b747998e335cda737ed, type: 2}
+  - {fileID: 11400000, guid: c5ee282be5611b747998e335cda737ed, type: 2}
+  - {fileID: 11400000, guid: 7dd0a444f9aa00348bd20235f00ab3ba, type: 2}
+  - {fileID: 11400000, guid: 7dd0a444f9aa00348bd20235f00ab3ba, type: 2}
+  - {fileID: 11400000, guid: dc378e98572fad341931f7dc21e1b753, type: 2}
   _noEffectPrefab: {fileID: 2111052692326853008, guid: 299f9daebbc7a314c931f4eb1ffbb9ec,
     type: 3}
   _rarityChances:

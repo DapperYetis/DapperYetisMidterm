@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class LootManager : MonoBehaviour
@@ -24,7 +23,7 @@ public class LootManager : MonoBehaviour
     private int _lootCount;
     [SerializeField]
     private Bounds _spawningBounds;
-    private List<Transform> _lootLocations;
+    private List<Transform> _lootLocations = new();
 
     [Header("---Items---")]
     [SerializeField]
@@ -93,17 +92,20 @@ public class LootManager : MonoBehaviour
         if (!Application.isPlaying) return;
 
         Gizmos.color = Color.black;
-        foreach (Transform trans in _lootLocations)
+        if(_lootLocations.Count > 0)
         {
-            if (trans != null)
-                Gizmos.DrawSphere(trans.position, 1);
+            foreach (Transform trans in _lootLocations)
+            {
+                if (trans != null)
+                    Gizmos.DrawSphere(trans.position, 1);
+            }
         }
     }
 #endif
 
     private void SetUpStage()
     {
-        if(!EnemyManager.instance.inBossRoom)
+        if(!EnemyManager.instance.inBossRoom && GameManager.instance.buildIndex != 3)
             GenerateLoot();
     }
 

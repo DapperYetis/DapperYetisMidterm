@@ -38882,6 +38882,75 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _buildIndex: 2
   _isBossRoom: 1
+--- !u!1001 &2032739744
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7491455371462136602}
+    m_Modifications:
+    - target: {fileID: 2993814470121158068, guid: 5db0bd92c48336e40b3a858bf1a6a0eb,
+        type: 3}
+      propertyPath: m_Name
+      value: Player Spawn Point
+      objectReference: {fileID: 0}
+    - target: {fileID: 2993814470121158069, guid: 5db0bd92c48336e40b3a858bf1a6a0eb,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2993814470121158069, guid: 5db0bd92c48336e40b3a858bf1a6a0eb,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2993814470121158069, guid: 5db0bd92c48336e40b3a858bf1a6a0eb,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2993814470121158069, guid: 5db0bd92c48336e40b3a858bf1a6a0eb,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2993814470121158069, guid: 5db0bd92c48336e40b3a858bf1a6a0eb,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2993814470121158069, guid: 5db0bd92c48336e40b3a858bf1a6a0eb,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2993814470121158069, guid: 5db0bd92c48336e40b3a858bf1a6a0eb,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2993814470121158069, guid: 5db0bd92c48336e40b3a858bf1a6a0eb,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2993814470121158069, guid: 5db0bd92c48336e40b3a858bf1a6a0eb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2993814470121158069, guid: 5db0bd92c48336e40b3a858bf1a6a0eb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2993814470121158069, guid: 5db0bd92c48336e40b3a858bf1a6a0eb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5db0bd92c48336e40b3a858bf1a6a0eb, type: 3}
 --- !u!1001 &3249492719501390424
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38897,7 +38966,7 @@ PrefabInstance:
     - target: {fileID: 247420428438994268, guid: ce9eb809e08467f4982dc22ccf3b50d4,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 2097
+      value: 2109
       objectReference: {fileID: 0}
     - target: {fileID: 1976575331342794968, guid: ce9eb809e08467f4982dc22ccf3b50d4,
         type: 3}
@@ -38922,7 +38991,7 @@ PrefabInstance:
     - target: {fileID: 1976575331342794972, guid: ce9eb809e08467f4982dc22ccf3b50d4,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 1327
+      value: 1339
       objectReference: {fileID: 0}
     - target: {fileID: 1976575331573824898, guid: ce9eb809e08467f4982dc22ccf3b50d4,
         type: 3}
@@ -38952,7 +39021,7 @@ PrefabInstance:
     - target: {fileID: 1976575331573824906, guid: ce9eb809e08467f4982dc22ccf3b50d4,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 717
+      value: 729
       objectReference: {fileID: 0}
     - target: {fileID: 2203173031915467207, guid: ce9eb809e08467f4982dc22ccf3b50d4,
         type: 3}
@@ -39081,7 +39150,9 @@ MonoBehaviour:
   _portalExitObject: {fileID: 7407556847642709557}
   _proclamationCollider: {fileID: 1184200462907896880}
   _aud: {fileID: 438502981585461010}
-  _bossWave: {fileID: 11400000, guid: 98c6760a55c29244d8d233ee1356757e, type: 2}
+  _bossWaves:
+  - {fileID: 11400000, guid: 728e4059dce5f1548abc05b5887376d7, type: 2}
+  - {fileID: 11400000, guid: 5b0d74f5b53e6de4d897a655d0b1909b, type: 2}
   _bossSpawnPoint: {fileID: 0}
   _audPortalVol: 0.5
   _audPortal:
@@ -39089,3 +39160,9 @@ MonoBehaviour:
   _audBossExclamationVol: 0.5
   _audBossExclamation:
   - {fileID: 8300000, guid: d675c599f6ecded48b409c06cff448d1, type: 3}
+--- !u!4 &7491455371462136602 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5399387768141406530, guid: ce9eb809e08467f4982dc22ccf3b50d4,
+    type: 3}
+  m_PrefabInstance: {fileID: 3249492719501390424}
+  m_PrefabAsset: {fileID: 0}

@@ -39,7 +39,7 @@ public class HybridEnemy : MeleeEnemy
         base.ScaleEnemy();
         for (int i = 0; i < EnemyManager.instance.scaleFactorInt - 1; ++i)
         {
-            _secondaryAttackStats = _secondaryAttackStats + _secondaryAttackStatsScaling;
+            _secondaryAttackStats += _secondaryAttackStatsScaling;
         }
     }
 
@@ -53,7 +53,8 @@ public class HybridEnemy : MeleeEnemy
     protected virtual IEnumerator FireShot()
     {
         _anim.SetTrigger("Shoot");
-        _aud.PlayOneShot(_secondaryAttackStats._attackAudio[Random.Range(0, _secondaryAttackStats._attackAudio.Length)], _secondaryAttackStats._attackAudioVol);
+        if(_secondaryAttackStats._attackAudio.Length > 0)
+            _aud.PlayOneShot(_secondaryAttackStats._attackAudio[Random.Range(0, _secondaryAttackStats._attackAudio.Length)], _secondaryAttackStats._attackAudioVol);
         Debug.Log($"{name} played a sound");
         Quaternion rot = Quaternion.LookRotation(_playerDir * 0.5f);
         if (Mathf.Abs(Quaternion.Angle(rot, Quaternion.LookRotation(_playerDir))) >= 60)
