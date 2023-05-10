@@ -21,6 +21,7 @@ public class Portal : MonoBehaviour
             SceneManage.instance.LoadScene(_buildIndex);
         else if(_buildIndex > 3 || PortalBossRoom.totalBosses < _buildIndex)
         {
+            UIManager.instance.PauseState();
             UIManager.instance.NextMenu(UIManager.instance.references.winMenu);
             UIManager.instance.WinScreenStats();
         }

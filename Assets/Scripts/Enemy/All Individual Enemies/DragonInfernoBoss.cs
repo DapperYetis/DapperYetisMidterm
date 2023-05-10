@@ -36,7 +36,7 @@ public class DragonInfernoBoss : HybridEnemy
 
     private IEnumerator DelayAttack()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         _isAttacking = false;
     }
 
@@ -59,12 +59,12 @@ public class DragonInfernoBoss : HybridEnemy
                 Melee();
             else
             {
-                int attack = Random.Range(0, 3);
+                int attack = Random.Range(0, 1);
 
                 switch (attack)
                 {
                     case 0:
-                        Shoot();
+                        Shoot(_secondaryAttackStats);
                         break;
                     case 1:
                         
@@ -115,6 +115,34 @@ public class DragonInfernoBoss : HybridEnemy
     {
         yield return new WaitForSeconds(_anim.GetCurrentAnimatorClipInfo(0).Length);
         yield return new WaitForSeconds(_attackDelay);
+        _isAttacking = false;
+    }
+
+    private void Shoot(EnemyAttackStats stats)
+    {
+
+        if (this == null || !isActiveAndEnabled) return;
+
+        StartCoroutine(FireShot(stats));
+    }
+
+    protected IEnumerator FireShot(EnemyAttackStats stats)
+    {
+        _anim.SetTrigger("Shoot");
+        if (stats._attackAudio.Length > 0)
+            _aud.PlayOneShot(stats._attackAudio[Random.Range(0, stats._attackAudio.Length)], stats._attackAudioVol);
+        Debug.Log($"{name} played a sound");
+        Quaternion rot = Quaternion.LookRotation(GameManager.instance.player.transform.position - stats.positions[0].position * 0.5f);
+        if (Mathf.Abs(Quaternion.Angle(rot, Quaternion.LookRotation(GameManager.instance.player.transform.position - stats.positions[0].position))) >= 60)
+            rot = Quaternion.LookRotation(GameManager.instance.player.transform.position - stats.positions[0].position);
+        rot = Quaternion.RotateTowards(rot, Random.rotation, stats.variance * GameManager.instance.player.movement.speedRatio);
+        for (int i = 0; i < stats.positions.Length; i++)
+        {
+            Instantiate(stats.prefab, stats.positions[i].position, rot).GetComponent<Projectile>().SetStats(stats);
+        }
+
+        _hasCompletedAttack = true;
+        yield return new WaitForSeconds(stats.rate);
         _isAttacking = false;
     }
 }

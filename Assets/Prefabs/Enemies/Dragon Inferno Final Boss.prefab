@@ -1296,7 +1296,9 @@ MonoBehaviour:
     variance: 0
     prefab: {fileID: 0}
     selfBuffs: []
-    targetBuffs: []
+    targetBuffs:
+    - {fileID: 11400000, guid: 24ff1838f787af047b68ff00fd1d65b5, type: 2}
+    - {fileID: 11400000, guid: 24ff1838f787af047b68ff00fd1d65b5, type: 2}
     speed: 0
     range: 0
     _attackAudioVol: 0.5
@@ -1338,24 +1340,25 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 53a2d303265d69a4aa0aa3896d587b03, type: 3}
   _meleeCollider: {fileID: 7607947220840283630}
   _secondaryAttackStats:
-    positions: []
-    damage: 0
-    rate: 0
-    lifetime: 0
-    variance: 0
-    prefab: {fileID: 0}
+    positions:
+    - {fileID: 8592159916251029699}
+    damage: 20
+    rate: 1
+    lifetime: 5
+    variance: 5
+    prefab: {fileID: 424343093267893311, guid: 16a453dd73301b74aa4018f9e0544134, type: 3}
     selfBuffs: []
     targetBuffs: []
-    speed: 0
-    range: 0
+    speed: 30
+    range: 30
     _attackAudioVol: 0
     _attackAudio: []
   _secondaryAttackStatsScaling:
     positions: []
-    damage: 0
-    rate: 0
+    damage: 5
+    rate: 0.25
     lifetime: 0
-    variance: 0
+    variance: 0.5
     prefab: {fileID: 0}
     selfBuffs: []
     targetBuffs: []
@@ -1363,7 +1366,7 @@ MonoBehaviour:
     range: 0
     _attackAudioVol: 0
     _attackAudio: []
-  _attackDelay: 0
+  _attackDelay: 1
   _flightHeight: 1.5
   _fallTime: 1.25
   _fallCurve:
