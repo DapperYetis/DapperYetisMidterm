@@ -174,6 +174,9 @@ public class EnemyManager : MonoBehaviour
         StopAllCoroutines();
         OnEnemyCountChange.RemoveAllListeners();
 
+        if(GameManager.instance.buildIndex == 0)
+            _inBossRoom = false;
+        _spawningBudget = _spawningBudgetMax;
         _enemies.Clear();
         SetWaves();
     }

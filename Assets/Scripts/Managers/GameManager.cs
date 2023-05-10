@@ -77,6 +77,8 @@ public class GameManager : MonoBehaviour
         }
 
         _playerSpawnPos = GameObject.FindGameObjectWithTag("PlayerSpawnPoint").transform;
+        if (_playerSpawnPos != null)
+            _player.transform.position = _playerSpawnPos.position;
 
         Debug.Log("Player found!");
     }
