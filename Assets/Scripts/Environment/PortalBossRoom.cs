@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class PortalBossRoom : MonoBehaviour
 {
+    private static int _bossIndex = 0;
+    public static int bossIndex => _bossIndex;
+    private static int _totalBosses;
+    public static int totalBosses => _totalBosses;
+
     [Header("--- Components ---")]
     [SerializeField]
     protected GameObject _portalEnterObject;
@@ -14,7 +19,7 @@ public class PortalBossRoom : MonoBehaviour
     [SerializeField]
     protected AudioSource _aud;
     [SerializeField]
-    protected SOWave _bossWave;
+    protected SOWave[] _bossWaves;
     [SerializeField]
     protected Transform _bossSpawnPoint;
 
@@ -34,6 +39,7 @@ public class PortalBossRoom : MonoBehaviour
 
     private void Start()
     {
+        _totalBosses = _bossWaves.Length;
         StartCoroutine(PlayerEntry());
     }
 
@@ -48,7 +54,7 @@ public class PortalBossRoom : MonoBehaviour
     private IEnumerator PlayerEntry()
     {
         _aud.PlayOneShot(_audPortal[Random.Range(0, _audPortal.Length)], _audPortalVol);
-        Debug.Log($"{name} played a sound");
+        //Debug.Log($"{name} played a sound");
         if (!EnemyManager.instance.inBossRoom)
             EnemyManager.instance.EnterBossRoom(null);
         yield return new WaitForSeconds(3);
@@ -58,8 +64,9 @@ public class PortalBossRoom : MonoBehaviour
     private void PlayerWon()
     {
         _aud.PlayOneShot(_audPortal[Random.Range(0, _audPortal.Length)], _audPortalVol);
-        Debug.Log($"{name} played a sound");
+        //Debug.Log($"{name} played a sound");
         _portalExitObject.SetActive(true);
+        _portalExitObject.GetComponent<Portal>().SetBuildIndex(++_bossIndex + 1);
         RenderSettings.fog = false;
     }
 
@@ -72,7 +79,7 @@ public class PortalBossRoom : MonoBehaviour
             Debug.Log($"{name} played a sound");
             _proclamationCollider.enabled = false;
 
-            EnemyManager.SpawnEnemy(_bossWave, _bossSpawnPoint.position);
+            EnemyManager.SpawnEnemy(_bossWaves[_bossIndex], _bossSpawnPoint.position);
             _bossHasSpawned = true;
         }
     }

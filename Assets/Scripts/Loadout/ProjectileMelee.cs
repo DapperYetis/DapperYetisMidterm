@@ -41,4 +41,9 @@ public class ProjectileMelee : Projectile
         yield return new WaitForSeconds(_stats.cooldown);
         _previouslyHit.Remove(target);
     }
+
+    private void OnDisable()
+    {
+        _previouslyHit.Clear();
+    }
 }

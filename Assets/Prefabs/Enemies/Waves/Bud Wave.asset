@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a01e0102239aeaa4e9d291efd03705ea, type: 3}
   m_Name: Bud Wave
   m_EditorClassIdentifier: 
+  _ignoreSpawnBudget: 0
   _enemyType: {fileID: 5924819110659358697, guid: b703919b19833834c85b71814c5b8850,
     type: 3}
   _spawnInterval: 0.1
-  _maxEnemyCount: 10
+  _maxEnemyCount: 5

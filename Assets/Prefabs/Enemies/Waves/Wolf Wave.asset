@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a01e0102239aeaa4e9d291efd03705ea, type: 3}
   m_Name: Wolf Wave
   m_EditorClassIdentifier: 
+  _ignoreSpawnBudget: 0
   _enemyType: {fileID: 1394923249618666509, guid: db6002f5e92d5cc4dbc472dce46aee08,
     type: 3}
   _spawnInterval: 0.2
-  _maxEnemyCount: 1
+  _maxEnemyCount: 2

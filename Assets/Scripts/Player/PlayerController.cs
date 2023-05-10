@@ -163,11 +163,11 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
     private void GetLoadout()
     {
         _weaponAsset = SettingsManager.instance.loadoutScript.GetWeapon();
-        _weapon = Instantiate(_weaponAsset.prefab, transform).GetComponent<Weapon>();
+        _weapon = Instantiate(_weaponAsset.prefab, _camera.transform).GetComponent<Weapon>();
         _weapon.SetStats(_weaponAsset.stats);
 
         _supportAsset = SettingsManager.instance.loadoutScript.GetSupport();
-        _support = Instantiate(_supportAsset.prefab, transform).GetComponent<Support>();
+        _support = Instantiate(_supportAsset.prefab, _camera.transform).GetComponent<Support>();
         _support.SetStats(_supportAsset.stats);
 
         // TODO: Add companion setting once they are implemented
