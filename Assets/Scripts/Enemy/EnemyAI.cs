@@ -365,13 +365,13 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
         _OnHealthChange.Invoke();
     }
 
-    protected void Die()
+    protected virtual void Die()
     {
         _aud.enabled = false;
         _aud.enabled = true;
         _anim.SetBool("Dead", true);
         _bodyCollider.enabled = false;
-        _agent.enabled = false;
+        _agent.speed = 0;
         enabled = false;
         EnemyManager.instance.RemoveEnemyFromList(this);
         _drops.Drop();

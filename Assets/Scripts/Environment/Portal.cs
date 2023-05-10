@@ -17,6 +17,17 @@ public class Portal : MonoBehaviour
             EnemyManager.instance.EnterBossRoom(null);
         else
             EnemyManager.instance.LeaveBossRoom(_buildIndex);
-        SceneManage.instance.LoadScene(_buildIndex);
+        if(_buildIndex > 3 || PortalBossRoom.totalBosses < _buildIndex)
+        {
+            UIManager.instance.NextMenu(UIManager.instance.references.winMenu);
+            UIManager.instance.WinScreenStats();
+        }
+        else
+            SceneManage.instance.LoadScene(_buildIndex);
+    }
+
+    public void SetBuildIndex(int buildIndex)
+    {
+        _buildIndex = buildIndex;
     }
 }
