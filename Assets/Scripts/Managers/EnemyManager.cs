@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using System.Linq;
+using UnityEngine.AI;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -120,7 +121,7 @@ public class EnemyManager : MonoBehaviour
 
     private float RunWave(int index)
     {
-        if(_withinSpawningBudget)
+        if (_withinSpawningBudget)
             StartCoroutine(Spawner(_waves[index], GetSpawnPoint(), 0));
 
         return _waves[index].maxEnemyCount * _waves[index].spawnInterval + _timeBetweenWaves.Evaluate(GameManager.instance.runTimeMinutes);
@@ -146,7 +147,14 @@ public class EnemyManager : MonoBehaviour
 
     public static void SpawnEnemy(SOWave wave, Vector3 spawnPosition)
     {
-        EnemyAI enemy = Instantiate(wave.enemyType, spawnPosition + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)), Quaternion.identity).GetComponent<EnemyAI>();
+        Vector3 PossibleSpawnPoint = spawnPosition + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f));
+        //NavMeshPathStatus a;
+        //if (_enemy.agent.pathEndPosition == PossibleSpawnPoint)
+        //{
+        //    a = PossibleSpawnPoint;
+        //}
+
+        EnemyAI enemy = Instantiate(wave.enemyType, PossibleSpawnPoint, Quaternion.identity).GetComponent<EnemyAI>();
         enemy.SetUp(wave);
     }
 
@@ -204,7 +212,7 @@ public class EnemyManager : MonoBehaviour
         RemoveBadAttacks();
         if (_attacks.Count > 0 && _attackBudget > 0)
         {
-            int index = _attacks.Count >= 3 ? Random.Range(0,3) : 0;
+            int index = _attacks.Count >= 3 ? Random.Range(0, 3) : 0;
             --_attackBudget;
             _attacks[index].func.Invoke();
             _attacks.RemoveAt(index);

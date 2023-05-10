@@ -315,6 +315,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _additivePriorityMod: 0
+  _spawnCost: 1
   _stats:
     HPMax: 50
     facePlayerSpeed: 500
@@ -434,7 +435,7 @@ NavMeshAgent:
   m_Acceleration: 10
   avoidancePriority: 50
   m_AngularSpeed: 500
-  m_StoppingDistance: 3
+  m_StoppingDistance: 10
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1

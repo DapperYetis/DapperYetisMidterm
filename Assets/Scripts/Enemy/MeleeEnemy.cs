@@ -54,8 +54,11 @@ public class MeleeEnemy : EnemyAI
 
     protected void PreAttack()
     {
+        Debug.Log("PreAttack Happened");
+        _anim.speed = 0.1f;
         if (_primaryAttackStats._interruptible)
         {
+            Debug.Log("Interruptible Became True");
             _isInInterruptibleState = true;
         }
     }
@@ -68,5 +71,6 @@ public class MeleeEnemy : EnemyAI
     protected void AttackEnd()
     {
         _meleeCollider.enabled = false;
+        _anim.speed = 1;
     }
 }

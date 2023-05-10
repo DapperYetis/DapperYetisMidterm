@@ -22,11 +22,12 @@ MonoBehaviour:
       critChance: 0.1
       directDamage: 1.5
       secondaryDamage: 0
-      cooldown: 0.75
+      cooldown: 0.2
       lifetime: 2
       secondaryLifetime: 0
       speed: 25
       fxIntesity: 0
+      canInterrupt: 0
       selfBuffs: []
       targetBuffs:
       - {fileID: 11400000, guid: 796c293637f6d8c47989a1917bff6f72, type: 2}
@@ -42,6 +43,7 @@ MonoBehaviour:
       secondaryLifetime: 0
       speed: 12
       fxIntesity: 0
+      canInterrupt: 0
       selfBuffs: []
       targetBuffs:
       - {fileID: 11400000, guid: 7a39bf363e9f3fc4eb7e14749e06a944, type: 2}
