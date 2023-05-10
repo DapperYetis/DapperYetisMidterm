@@ -1273,7 +1273,7 @@ MonoBehaviour:
   _additivePriorityMod: 1000
   _spawnCost: 50
   _stats:
-    HPMax: 20
+    HPMax: 500
     facePlayerSpeed: 600
     speed: 12
     acceleration: 40

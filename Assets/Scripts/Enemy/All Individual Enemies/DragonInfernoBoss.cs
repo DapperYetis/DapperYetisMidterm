@@ -97,12 +97,12 @@ public class DragonInfernoBoss : HybridEnemy
         if (_HPCurrent < _phaseThreeThreshold * _baseStats.HPMax && _phase != 3)
         {
             _phase = 3;
-            Heal(_baseStats.HPMax * 0.05f);
+            //Heal(_baseStats.HPMax * 0.05f);
         }
         else if (_HPCurrent < _phaseTwoThreshold * _baseStats.HPMax && _phase != 2)
         {
             _phase = 2;
-            Heal(_baseStats.HPMax * 0.1f);
+            //Heal(_baseStats.HPMax * 0.1f);
         }
     }
 
