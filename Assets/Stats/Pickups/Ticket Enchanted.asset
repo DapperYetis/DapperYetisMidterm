@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Ticket Enchanted
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: 185b077b83b1e48429b417716b81c84a, type: 3}
-  _itemName: 
-  _description: 
+  _itemName: Enchanted Ticket
+  _description: Primary Attack increase
   _rarity: 0
   _prefab: {fileID: 0}
   _ignoreStats: 0

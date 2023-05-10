@@ -55,7 +55,6 @@ public class SettingsManager : MonoBehaviour
     }
 
 
-
     public void SetSensitivity(float sensitivity)
     {
 

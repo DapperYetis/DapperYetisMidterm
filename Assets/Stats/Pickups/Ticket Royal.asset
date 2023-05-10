@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Ticket Royal
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: 5640d4c36e6024aa2ba6e73112e55e0c, type: 3}
-  _itemName: 
-  _description: 
+  _itemName: Royal Ticket
+  _description: Secondary ability damage increase
   _rarity: 1
   _prefab: {fileID: 0}
   _ignoreStats: 0

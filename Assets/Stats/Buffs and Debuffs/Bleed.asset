@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _buffName: Bleed
   _description: You're losing blood... a lot of it...
+  _icon: {fileID: 21300000, guid: 7f9a202674837754a8e77fbbf5df3f03, type: 3}
   _timing: 0
   _buffLength: 1.5
   _removeType: 0
-  _changeType: 0
   _generalMods:
     walkSpeed: 0
     sprintMultiplier: 0
@@ -50,3 +50,5 @@ MonoBehaviour:
     targetBuffs: []
   _effectPrefab: {fileID: 4334024921141274484, guid: 40c1d4324e6687f4ea4043e82e4ed307,
     type: 3}
+  _audioVolume: 0
+  _audioClips: []

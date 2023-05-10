@@ -30,8 +30,9 @@ public class GameManager : MonoBehaviour
 
     public bool isPaused => UIManager.instance.isPaused;
 
-    private int buildIndex = 0;
-    private bool _inGame => buildIndex > 0;
+    private int _buildIndex = 0;
+    public int buildIndex => _buildIndex;
+    private bool _inGame => _buildIndex > 0;
     public bool inGame => _inGame;
     private float _startTime;
     public float runTime => Time.time - _startTime;
@@ -52,7 +53,7 @@ public class GameManager : MonoBehaviour
         }
 
         _instance = this;
-        buildIndex = SceneManager.GetActiveScene().buildIndex;
+        _buildIndex = SceneManager.GetActiveScene().buildIndex;
 
         FindPlayer();
     }
@@ -96,7 +97,7 @@ public class GameManager : MonoBehaviour
         if (_player.GetHealthCurrent() <= 0)
         {
             if (EnemyManager.instance.GetEnemyListSize() <= 0) return;
-            UIManager.instance.LoseScreenStats(_score);
+            UIManager.instance.LoseScreenStats();
             UIManager.instance.NextMenu(UIManager.instance.references.loseMenu);
             UIManager.instance.PauseState();
         }
@@ -104,7 +105,7 @@ public class GameManager : MonoBehaviour
 
     private void DoResetMap(Scene scene, LoadSceneMode mode)
     {
-        buildIndex = scene.buildIndex;
+        _buildIndex = scene.buildIndex;
         //if (mode == LoadSceneMode.Additive) return;
 
         FindPlayer();
@@ -117,10 +118,12 @@ public class GameManager : MonoBehaviour
             LootManager.instance.ResetMap();
         if (SettingsManager.instance != null)
             SettingsManager.instance.ResetMap();
+        if (AudioManager.instance != null)
+            AudioManager.instance.StartBackgroundMusic();
 
-        if (buildIndex == 0)
+        if (_buildIndex == 0)
             player.ResetLoadout();
-        if (buildIndex != 0 && !_player.isSetUp)
+        if (_buildIndex != 0 && !_player.isSetUp)
             _player.SetUp();
     }
     #endregion
