@@ -382,13 +382,13 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     protected void DeathCry()
     {
         _aud.PlayOneShot(_audDeath[Random.Range(0, _audDeath.Length)], _audDeathVol);
-        Debug.Log($"{name} played a sound");
+        //Debug.Log($"{name} played a sound");
     }
 
     protected void FellDownDead()
     {
         _aud.PlayOneShot(_audFallDown[Random.Range(0, _audFallDown.Length)], _audFallDownVol);
-        Debug.Log($"{name} played a sound");
+        //Debug.Log($"{name} played a sound");
     }
 
     protected virtual IEnumerator EnemyRemoved()

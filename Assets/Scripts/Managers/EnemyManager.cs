@@ -190,6 +190,7 @@ public class EnemyManager : MonoBehaviour
 
     public void QueueAttack(System.Action attack, System.Func<float> getPriority, EnemyAI enemyAttacking)
     {
+        RemoveBadAttacks();
         _attacks.Add((attack, getPriority, enemyAttacking));
         _attacks = (from queuedAttack in _attacks orderby queuedAttack.priority.Invoke() ascending select queuedAttack).ToList();
         if (!_isRunning)
