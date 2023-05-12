@@ -162,14 +162,14 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
         _anim.SetFloat("Speed", _speed);
         _speed = Mathf.Lerp(_speed, _agent.velocity.normalized.magnitude, Time.deltaTime * _animTransSpeed);
 
-        if (_agent.isActiveAndEnabled)
+        if (_agent.isActiveAndEnabled && _HPCurrent > 0)
         {
             Movement();
         }
 
         CheckBuffs();
     }
-    
+
     protected virtual float AttackPriority()
     {
         return (GameManager.instance.player.transform.position - transform.position).sqrMagnitude - _primaryAttackStats.range - _additivePriorityMod;
@@ -374,6 +374,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
         _bodyCollider.enabled = false;
         _agent.speed = 0;
         enabled = false;
+        _agent.SetDestination(transform.position);
         EnemyManager.instance.RemoveEnemyFromList(this);
         _drops.Drop();
         StartCoroutine(EnemyRemoved());
@@ -446,7 +447,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
                 _currentBuffs.Add(buff, (0, Time.time + buff.buffLength));
                 BuffStats(buff);
 
-                if(buff.audioClips.Length > 0)
+                if (buff.audioClips.Length > 0)
                     _aud.PlayOneShot(buff.audioClips[Random.Range(0, buff.audioClips.Length)], buff.audioVolume);
             }
         }

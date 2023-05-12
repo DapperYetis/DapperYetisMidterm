@@ -201,7 +201,7 @@ public class EnemyManager : MonoBehaviour
     {
         for (int i = 0; i < _attacks.Count; i++)
         {
-            if (_attacks[i].enemy == null)
+            if (_attacks[i].enemy == null || _attacks[i].enemy.GetHealthCurrent() <= 0)
             {
                 _attacks.RemoveAt(i);
                 --i;
