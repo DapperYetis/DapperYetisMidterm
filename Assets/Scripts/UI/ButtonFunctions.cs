@@ -42,7 +42,6 @@ public class ButtonFunctions : MonoBehaviour
     public void ToMainMenu()
     {
         UIManager.instance.PlayClick();
-        UIManager.instance.PlayClick();
         UIManager.instance.PauseState();
         SceneManage.instance.LoadScene(0);
     }
@@ -55,8 +54,11 @@ public class ButtonFunctions : MonoBehaviour
 
     public void MainBackButton()
     {
-        nav.ButtonClick();
-        nav.BackButton();
+        if (!nav.transitionPlaying)
+        {
+            nav.ButtonClick();
+            nav.BackButton();
+        }
     }
 
     public void ResumeButton()

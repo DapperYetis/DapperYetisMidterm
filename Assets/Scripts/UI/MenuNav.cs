@@ -1,12 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MenuNav : MonoBehaviour
 {
     [SerializeField] MainMenuRefs _menuRef;
     private Stack<GameObject> _menuStack = new();
+    private bool _transitionPlaying = false;
+    public bool transitionPlaying => _transitionPlaying;
     private GameObject _activeMenu
     {
         get
@@ -62,27 +65,34 @@ public class MenuNav : MonoBehaviour
 
     public void ToLoadoutMenu()
     {
-        NextMenu(_menuRef.loadoutMenu);
+        if (!_transitionPlaying)
+        {
+            NextMenu(_menuRef.loadoutMenu);
+        }
     }
 
     public void ToSettings()
     {
-        NextMenu(_menuRef.settingsMenu);
+        if(!_transitionPlaying)
+            NextMenu(_menuRef.settingsMenu);
     }
 
     public void ToKeyBinds()
     {
-        NextMenu(_menuRef.keyBindsMenu);
+        if (!_transitionPlaying)
+            NextMenu(_menuRef.keyBindsMenu);
     }
 
     public void BackButton()
     {
-        PrevMenu();
+        if(!_transitionPlaying)
+            PrevMenu();
     }
 
     internal void ToCredits()
     {
-        NextMenu(_menuRef.creditsScreen);
+        if (!_transitionPlaying)
+            NextMenu(_menuRef.creditsScreen);
     }
 
     public void ButtonClick()
@@ -90,6 +100,25 @@ public class MenuNav : MonoBehaviour
         _menuRef.buttonClick.PlayOneShot(_menuRef.buttonClip);
     }
 
+    public void StartedPlaying()
+    {
+        _transitionPlaying = true;
+    }
+
+    public void StoppedPlaying()
+    {
+        _transitionPlaying = false;
+    }
+
+    public void LoadoutTransition()
+    {
+        _menuRef.loadoutTransitions.SetTrigger("ButtonNext");
+    }
+
+    public void LoadoutBackAnim()
+    {
+        _menuRef.loadoutTransitions.SetTrigger("ButtonBack");
+    }
     #endregion
 
 }
