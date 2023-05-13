@@ -48,6 +48,13 @@ public class AchievementManager : MonoBehaviour
         InvokeRepeating(nameof(Save), _saveInterval, _saveInterval);
     }
 
+    public void ResetMap()
+    {
+        if (GameManager.instance.buildIndex == 0)
+            _runStats = new();
+        // Add stage reset functionality as necessart here
+    }
+
     private void Load()
     {
         LoadStats();

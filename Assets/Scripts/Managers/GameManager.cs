@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
         if (_playerSpawnPos != null)
             _player.transform.position = _playerSpawnPos.position;
 
-        Debug.Log("Player found!");
+        //Debug.Log("Player found!");
     }
 
 
@@ -122,6 +122,8 @@ public class GameManager : MonoBehaviour
             SettingsManager.instance.ResetMap();
         if (AudioManager.instance != null)
             AudioManager.instance.StartBackgroundMusic();
+        if (AchievementManager.instance != null)
+            AchievementManager.instance.ResetMap();
 
         if (_buildIndex == 0)
             player.ResetLoadout();

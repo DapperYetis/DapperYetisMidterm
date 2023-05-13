@@ -1345,7 +1345,7 @@ MonoBehaviour:
     damage: 20
     rate: 1
     lifetime: 5
-    variance: 5
+    variance: 0
     prefab: {fileID: 424343093267893311, guid: 16a453dd73301b74aa4018f9e0544134, type: 3}
     selfBuffs: []
     targetBuffs: []
@@ -1503,7 +1503,7 @@ NavMeshAgent:
   m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 3.2
-  m_BaseOffset: 2
+  m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!136 &1835628989377087098
