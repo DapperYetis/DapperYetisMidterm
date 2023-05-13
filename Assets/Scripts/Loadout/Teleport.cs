@@ -9,20 +9,19 @@ public class Teleport : Support
     [SerializeField]
     private GameObject _teleportBeaconPrefab;
     private GameObject _currentBeacon;
-    [SerializeField]
-    private Transform _shotPoint;
+    [SerializeField] private Transform _shotPoint;
     private Transform _player;
-    [SerializeField]
-    private float _throwForce;
+    [SerializeField] private float _throwForce;
     private bool _beaconPlaced = false;
     private RaycastHit _hit;
-    [SerializeField]
-    private AudioClip _audioClip;
+    [SerializeField] private GameObject _particleEffects;
+    [SerializeField] private AudioClip _audioClip;
 
     // Start is called before the first frame update
     protected void Start()
     {
         _player = GameManager.instance.player.transform;
+        _particleEffects.gameObject.SetActive(false);
     }
     protected override void Update()
     {
@@ -42,8 +41,12 @@ public class Teleport : Support
     {
         _canUsePrimary = false;
         if (ObjectToTeleport() != null)
+        {
+            _particleEffects.gameObject.SetActive(true);
             TeleportToView();
+        }
         yield return new WaitForSeconds(_stats.useRatePrimary);
+        _particleEffects.gameObject.SetActive(false);
         _canUsePrimary = true;
     }
 
@@ -59,7 +62,8 @@ public class Teleport : Support
         }
         else
         {
-            float teleportOffset = GetComponent<CapsuleCollider>().height / 2;
+            _particleEffects.gameObject.SetActive(true);
+            float teleportOffset = GameManager.instance.player.GetComponent<CapsuleCollider>().height / 2;
             Vector3 beaconPosition = _currentBeacon.transform.position;
             Vector3 teleportLocation = new Vector3(beaconPosition.x, beaconPosition.y + teleportOffset, beaconPosition.z);
             _player.transform.position = teleportLocation;
@@ -67,6 +71,7 @@ public class Teleport : Support
             _currentBeacon = null;
             _beaconPlaced = false;
             yield return new WaitForSeconds(_stats.useRateSecondary);
+            _particleEffects.gameObject.SetActive(false);
         }
         _canUseSecondary = true;
     }

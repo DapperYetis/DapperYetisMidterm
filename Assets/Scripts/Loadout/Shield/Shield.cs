@@ -16,7 +16,8 @@ public class Shield : Support
     public bool shieldEnabled;
 
     [SerializeField] private ProjectileMelee _damageTrigger;
-    [SerializeField] float dashingSpeed = 25f;
+    [SerializeField] private GameObject _particleEffect;
+    [SerializeField] float dashingSpeed = 50f;
     [SerializeField] float dashingCooldown = 0.2f;
     private float _shieldDurability;
     public Material oldMaterial;
@@ -28,6 +29,7 @@ public class Shield : Support
         rb = GameManager.instance.player.movement.rb;
         _damageTrigger.gameObject.SetActive(false);
         _damageTrigger.SetStats(_stats);
+        _particleEffect.gameObject.SetActive(false);
     }
 
     protected override void Update()
@@ -67,8 +69,10 @@ public class Shield : Support
         _canUseSecondary = false;
         rb.AddForce(transform.forward * dashingSpeed, ForceMode.Impulse);
         _damageTrigger.gameObject.SetActive(true);
+        _particleEffect.gameObject.SetActive(true);
         GameManager.instance.player.movement.enabled = false;
         yield return new WaitForSeconds(dashingCooldown);
+        _particleEffect.gameObject.SetActive(false);
         _damageTrigger.gameObject.SetActive(false);
         GameManager.instance.player.movement.enabled = true;
         yield return new WaitForSeconds(stats.useRateSecondary);
