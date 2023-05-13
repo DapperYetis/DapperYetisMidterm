@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 1257636781288448039, guid: 69c1f778c472927479538867300e948b,
         type: 3}
       propertyPath: m_Name
-      value: Dragon Inferno
+      value: Dragon Inferno Boss
       objectReference: {fileID: 0}
     - target: {fileID: 1257636781288750087, guid: 69c1f778c472927479538867300e948b,
         type: 3}
