@@ -1,12 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.ConstrainedExecution;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
-using static UnityEngine.Rendering.DebugUI.Table;
 
 [RequireComponent(typeof(EnemyDrops))]
 public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
@@ -66,6 +63,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     protected bool _indicatingHit;
     protected float _speed;
     public Dictionary<SOBuff, (int stacks, float time)> _currentBuffs = new();
+    public Dictionary<SOBuff, BuffEffect> _currentBuffEffects = new();
     protected int _moveType;
     [SerializeField]
     protected int _moveChances = 10;
@@ -449,14 +447,13 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     {
         if (!_currentBuffs.ContainsKey(buff))
         {
-            if (buff)
-            {
-                _currentBuffs.Add(buff, (0, Time.time + buff.buffLength));
-                BuffStats(buff);
+            _currentBuffs.Add(buff, (0, Time.time + buff.buffLength));
+            _currentBuffEffects.Add(buff, Instantiate(buff.effectPrefab, transform).GetComponent<BuffEffect>());
+            _currentBuffEffects[buff].SetUp(this, buff);
+            BuffStats(buff);
 
-                if (buff.audioClips.Length > 0)
-                    _aud.PlayOneShot(buff.audioClips[Random.Range(0, buff.audioClips.Length)], buff.audioVolume);
-            }
+            if (buff.audioClips.Length > 0)
+                _aud.PlayOneShot(buff.audioClips[Random.Range(0, buff.audioClips.Length)], buff.audioVolume);
         }
         _currentBuffs[buff] = (_currentBuffs[buff].stacks + amount, _currentBuffs[buff].time);
     }
@@ -502,9 +499,11 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
         {
             case BuffRemoveType.Single:
                 _currentBuffs[buff] = (_currentBuffs[buff].stacks - 1, Time.time + buff.buffLength);
+                _currentBuffEffects[buff].RemoveStacks(1);
                 break;
             case BuffRemoveType.Stack:
                 _currentBuffs[buff] = (0, 0);
+                _currentBuffEffects[buff].RemoveStacks(_currentBuffEffects[buff].stacks);
                 break;
         }
 
@@ -513,6 +512,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
         if (_currentBuffs[buff].stacks <= 0)
         {
             _currentBuffs.Remove(buff);
+            _currentBuffEffects.Remove(buff);
             return true;
         }
 

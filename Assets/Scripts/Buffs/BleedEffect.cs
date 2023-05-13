@@ -13,7 +13,7 @@ public class BleedEffect : BuffEffect
 
     protected override void EffectRemoveAction()
     {
-        _target.Damage(_buff.abilityMods.directDamage);
+        _target?.Damage(_buff.abilityMods.directDamage);
         base.EffectRemoveAction();
     }
 }
