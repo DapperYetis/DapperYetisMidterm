@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
     public UnityEvent OnLand;
     // Combat
     [HideInInspector]
-    public UnityEvent<Projectile, IDamageable> OnHit;
+    public UnityEvent<Projectile, IBuffable> OnHit;
     [HideInInspector]
     public UnityEvent OnPrimary;
     [HideInInspector]

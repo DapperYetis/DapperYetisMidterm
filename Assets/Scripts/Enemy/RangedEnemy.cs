@@ -30,7 +30,7 @@ public class RangedEnemy : EnemyAI
         {
             _aud.PlayOneShot(_primaryAttackStats._attackAudio[Random.Range(0, _primaryAttackStats._attackAudio.Length)], _primaryAttackStats._attackAudioVol);
 
-            Debug.Log($"{name} played a sound");
+            //Debug.Log($"{name} played a sound");
         }
         
         Quaternion rot = Quaternion.LookRotation(_playerDirProjected * 0.5f);
