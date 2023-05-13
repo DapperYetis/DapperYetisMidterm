@@ -10,7 +10,9 @@ public abstract class Projectile : MonoBehaviour
     protected AbilityStats _stats;
     public AbilityStats stats => _stats;
     [HideInInspector]
-    public UnityEvent<Projectile, IDamageable> OnHit;
+    public UnityEvent<Projectile, IBuffable> OnHit;
+    [HideInInspector]
+    public UnityEvent<Projectile, IDamageable> OnHitNonBuffable;
     protected bool _hasCrit;
     public bool hasCrit => _hasCrit;
 
@@ -35,12 +37,17 @@ public abstract class Projectile : MonoBehaviour
     {
         if (other.isTrigger) return;
 
-        if (other.gameObject.TryGetComponent<IDamageable>(out var damageable))
+        if (other.gameObject.TryGetComponent<IBuffable>(out var buffable))
         {
             var buffs = (from buff in _stats.targetBuffs select (buff, 1)).ToArray();
-            damageable.Damage(_stats.directDamage, buffs);
+            buffable.Damage(_stats.directDamage, buffs);
 
-            OnHit?.Invoke(this, damageable);
+            OnHit?.Invoke(this, buffable);
+        }
+        else if(other.gameObject.TryGetComponent<IDamageable>(out var damageable))
+        {
+            damageable.Damage(_stats.directDamage);
+            OnHitNonBuffable?.Invoke(this, damageable);
         }
 
         Destroy(gameObject);

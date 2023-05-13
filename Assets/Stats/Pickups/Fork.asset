@@ -16,8 +16,8 @@ MonoBehaviour:
   _itemName: Fork
   _description: Cause Bleed
   _rarity: 1
-  _prefab: {fileID: 0}
-  _ignoreStats: 0
+  _prefab: {fileID: 408873413887565784, guid: 4f71068cf6976ba4d9c97cbf706a3734, type: 3}
+  _ignoreStats: 1
   _movementStats:
     walkSpeed: 0
     sprintMultiplier: 0
@@ -48,7 +48,8 @@ MonoBehaviour:
       speed: 0
       fxIntesity: 0
       selfBuffs: []
-      targetBuffs: []
+      targetBuffs:
+      - {fileID: 11400000, guid: 24ff1838f787af047b68ff00fd1d65b5, type: 2}
     secondaryAbility:
       changeType: 0
       prefab: {fileID: 0}
