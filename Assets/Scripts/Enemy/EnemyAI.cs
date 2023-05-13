@@ -62,7 +62,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     protected bool _isSetUp;
     protected bool _isAttacking;
     protected bool _hasCompletedAttack;
-    protected Vector3 _playerDir => GameManager.instance.player.transform.position - transform.position + 2 * Vector3.down;
+    protected Vector3 _playerDir => VectorToPlayer(_primaryAttackStats);
     protected bool _indicatingHit;
     protected float _speed;
     public Dictionary<SOBuff, (int stacks, float time)> _currentBuffs = new();
@@ -130,21 +130,28 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
 
     protected Vector3 _playerDirProjected
     {
-        get
-        {
-            float a = Vector3.Dot(GameManager.instance.player.movement.playerVelocity, GameManager.instance.player.movement.playerVelocity) - (_primaryAttackStats.speed * _primaryAttackStats.speed);
-            float b = 2 * Vector3.Dot(GameManager.instance.player.movement.playerVelocity, _playerDir);
-            float c = Vector3.Dot(_playerDir, _playerDir);
+        get => ProjectedVectorToPlayer(_primaryAttackStats);
+    }
 
-            float p = -b / (2 * a);
-            float q = Mathf.Sqrt((b * b) - 4 * a * c) / (2 * a);
+    protected Vector3 VectorToPlayer(EnemyAttackStats stats) => GameManager.instance.player.transform.position - (stats.positions.Length > 0 ? stats.positions[0].position : transform.position);
 
-            float time1 = p - q;
-            float time2 = p + q;
-            float timeActual = time1 > time2 && time2 > 0 ? time2 : time1;
+    protected Vector3 ProjectedVectorToPlayer(EnemyAttackStats stats)
+    {
+        if (GameManager.instance.player.movement.playerVelocity.sqrMagnitude < 0.5f)
+            return VectorToPlayer(stats);
 
-            return _playerDir + GameManager.instance.player.movement.playerVelocity * timeActual;
-        }
+        float a = Vector3.Dot(GameManager.instance.player.movement.playerVelocity, GameManager.instance.player.movement.playerVelocity) - (stats.speed * stats.speed);
+        float b = 2 * Vector3.Dot(GameManager.instance.player.movement.playerVelocity, VectorToPlayer(stats));
+        float c = Vector3.Dot(VectorToPlayer(stats), VectorToPlayer(stats));
+
+        float p = -b / (2 * a);
+        float q = Mathf.Sqrt((b * b) - 4 * a * c) / (2 * a);
+
+        float time1 = p - q;
+        float time2 = p + q;
+        float timeActual = time1 > time2 && time2 > 0 ? time2 : time1;
+
+        return VectorToPlayer(stats) + GameManager.instance.player.movement.playerVelocity * timeActual;
     }
 
     protected virtual void Start()
@@ -162,14 +169,14 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
         _anim.SetFloat("Speed", _speed);
         _speed = Mathf.Lerp(_speed, _agent.velocity.normalized.magnitude, Time.deltaTime * _animTransSpeed);
 
-        if (_agent.isActiveAndEnabled)
+        if (_agent.isActiveAndEnabled && _HPCurrent > 0)
         {
             Movement();
         }
 
         CheckBuffs();
     }
-    
+
     protected virtual float AttackPriority()
     {
         return (GameManager.instance.player.transform.position - transform.position).sqrMagnitude - _primaryAttackStats.range - _additivePriorityMod;
@@ -352,7 +359,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
         {
             _anim.SetTrigger("Damage");
             _aud.PlayOneShot(_audTakeDamage[Random.Range(0, _audTakeDamage.Length)], _audTakeDamageVol);
-            Debug.Log($"{name} played a sound");
+            //Debug.Log($"{name} played a sound");
             StartCoroutine(FlashColor(Color.red));
             if (buffs != null)
             {
@@ -374,6 +381,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
         _bodyCollider.enabled = false;
         _agent.speed = 0;
         enabled = false;
+        _agent.SetDestination(transform.position);
         EnemyManager.instance.RemoveEnemyFromList(this);
         _drops.Drop();
         StartCoroutine(EnemyRemoved());
@@ -382,13 +390,13 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     protected void DeathCry()
     {
         _aud.PlayOneShot(_audDeath[Random.Range(0, _audDeath.Length)], _audDeathVol);
-        Debug.Log($"{name} played a sound");
+        //Debug.Log($"{name} played a sound");
     }
 
     protected void FellDownDead()
     {
         _aud.PlayOneShot(_audFallDown[Random.Range(0, _audFallDown.Length)], _audFallDownVol);
-        Debug.Log($"{name} played a sound");
+        //Debug.Log($"{name} played a sound");
     }
 
     protected virtual IEnumerator EnemyRemoved()
@@ -446,7 +454,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
                 _currentBuffs.Add(buff, (0, Time.time + buff.buffLength));
                 BuffStats(buff);
 
-                if(buff.audioClips.Length > 0)
+                if (buff.audioClips.Length > 0)
                     _aud.PlayOneShot(buff.audioClips[Random.Range(0, buff.audioClips.Length)], buff.audioVolume);
             }
         }
