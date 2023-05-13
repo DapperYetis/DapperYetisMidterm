@@ -1153,7 +1153,6 @@ GameObject:
   - component: {fileID: 6922840296462596733}
   - component: {fileID: 6922840296462596731}
   - component: {fileID: 6922840296462596730}
-  - component: {fileID: 1276636467335298537}
   - component: {fileID: 5188372058627389698}
   m_Layer: 5
   m_Name: CharacterSelect
@@ -1224,27 +1223,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!95 &1276636467335298537
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6922840296462596732}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e4cedf37ead1a9c4bb04c89688d826d1, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!225 &5188372058627389698
 CanvasGroup:
   m_ObjectHideFlags: 0

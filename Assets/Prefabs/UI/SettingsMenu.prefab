@@ -1084,7 +1084,7 @@ GameObject:
   - component: {fileID: 1211810649098540210}
   - component: {fileID: 1211810649098540208}
   - component: {fileID: 6878637538518977142}
-  - component: {fileID: 4076347729578117296}
+  - component: {fileID: 7427564509490173922}
   m_Layer: 5
   m_Name: SettingsMenu
   m_TagString: Settings
@@ -1148,27 +1148,18 @@ MonoBehaviour:
   _musicVolume: {fileID: 2049047460}
   _sfxVolume: {fileID: 1414363719036982738}
   _sensitivity: {fileID: 422935526738154230}
---- !u!95 &4076347729578117296
-Animator:
-  serializedVersion: 5
+--- !u!225 &7427564509490173922
+CanvasGroup:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1211810649098540211}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e4cedf37ead1a9c4bb04c89688d826d1, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1407368895252407942
 GameObject:
   m_ObjectHideFlags: 0

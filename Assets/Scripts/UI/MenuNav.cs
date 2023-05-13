@@ -8,6 +8,8 @@ public class MenuNav : MonoBehaviour
 {
     [SerializeField] MainMenuRefs _menuRef;
     private Stack<GameObject> _menuStack = new();
+    [SerializeField]
+    private float _animationTime;
     private bool _transitionPlaying = false;
     public bool transitionPlaying => _transitionPlaying;
     private GameObject _activeMenu
@@ -22,7 +24,7 @@ public class MenuNav : MonoBehaviour
         }
     }
     public GameObject activeMenu => _activeMenu;
-   
+
     void Start()
     {
         UIManager.instance.PauseState();
@@ -65,34 +67,32 @@ public class MenuNav : MonoBehaviour
 
     public void ToLoadoutMenu()
     {
-        if (!_transitionPlaying)
-        {
-            NextMenu(_menuRef.loadoutMenu);
-        }
+        NextMenu(_menuRef.loadoutMenu);
+        StartCoroutine(TransitionToMenu(_menuRef.loadoutValues));
     }
 
     public void ToSettings()
     {
-        if(!_transitionPlaying)
-            NextMenu(_menuRef.settingsMenu);
+        NextMenu(_menuRef.settingsMenu);
+        StartCoroutine(TransitionToMenu((_menuRef.settingsValues)));
     }
 
     public void ToKeyBinds()
     {
-        if (!_transitionPlaying)
-            NextMenu(_menuRef.keyBindsMenu);
+        NextMenu(_menuRef.keyBindsMenu);
+        StartCoroutine(TransitionToMenu(_menuRef.controlsValues));
     }
 
     public void BackButton()
     {
-        if(!_transitionPlaying)
-            PrevMenu();
+        //StartCoroutine(TransitionToPrevious(_activeMenu.GetComponent<CanvasGroup>()));
+        PrevMenu();
     }
 
     internal void ToCredits()
     {
-        if (!_transitionPlaying)
-            NextMenu(_menuRef.creditsScreen);
+        NextMenu(_menuRef.creditsScreen);
+        StartCoroutine(TransitionToMenu(_menuRef.creditsValues));
     }
 
     public void ButtonClick()
@@ -100,24 +100,30 @@ public class MenuNav : MonoBehaviour
         _menuRef.buttonClick.PlayOneShot(_menuRef.buttonClip);
     }
 
-    public void StartedPlaying()
+    public IEnumerator TransitionToMenu(CanvasGroup values)
     {
-        _transitionPlaying = true;
+        float startTime = Time.realtimeSinceStartup;
+        values.alpha = 0f;
+        while (Time.realtimeSinceStartup < startTime + _animationTime)
+        {
+            values.alpha = Mathf.Lerp(0, 1f, (Time.realtimeSinceStartup - startTime) / _animationTime);
+            yield return new WaitForSecondsRealtime(.0001f);
+        }
+        values.alpha = 1f;
+
     }
 
-    public void StoppedPlaying()
+    public IEnumerator TransitionToPrevious(CanvasGroup values)
     {
-        _transitionPlaying = false;
-    }
+        float startTime = Time.realtimeSinceStartup;
+        values.alpha = 1f;
+        while (Time.realtimeSinceStartup < startTime + _animationTime)
+        {
+            values.alpha = Mathf.Lerp(1f, 0f, (Time.realtimeSinceStartup - startTime) / _animationTime);
+            yield return new WaitForSecondsRealtime(.0001f);
+        }
+        values.alpha = 0f;
 
-    public void LoadoutTransition()
-    {
-        _menuRef.loadoutTransitions.SetTrigger("ButtonNext");
-    }
-
-    public void LoadoutBackAnim()
-    {
-        _menuRef.loadoutTransitions.SetTrigger("ButtonBack");
     }
     #endregion
 

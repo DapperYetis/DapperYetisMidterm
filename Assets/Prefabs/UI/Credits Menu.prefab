@@ -1909,7 +1909,7 @@ GameObject:
   - component: {fileID: 4608418970788772161}
   - component: {fileID: 992049880104594797}
   - component: {fileID: 487720762380861536}
-  - component: {fileID: 587219167465185447}
+  - component: {fileID: 6292255793937713824}
   m_Layer: 5
   m_Name: Credits Menu
   m_TagString: Untagged
@@ -1985,27 +1985,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!95 &587219167465185447
-Animator:
-  serializedVersion: 5
+--- !u!225 &6292255793937713824
+CanvasGroup:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4755646613448490110}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e4cedf37ead1a9c4bb04c89688d826d1, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &5790496885075090104
 GameObject:
   m_ObjectHideFlags: 0

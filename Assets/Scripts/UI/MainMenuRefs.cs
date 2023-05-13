@@ -25,21 +25,21 @@ public class MainMenuRefs : MonoBehaviour
 
     public Animator fadeToGame => _fadeToGame;
 
-    [SerializeField] Animator _loadoutTransitions;
+    [SerializeField] CanvasGroup _loadoutValues;
 
-    public Animator loadoutTransitions => _loadoutTransitions;
+    public CanvasGroup loadoutValues => _loadoutValues;
 
-    [SerializeField] Animator _settingsTransitions;
+    [SerializeField] CanvasGroup _settingsValues;
 
-    public Animator settingsTransitions => _settingsTransitions;
+    public CanvasGroup settingsValues => _settingsValues;
 
-    [SerializeField] Animator _creditsTransitions;
+    [SerializeField] CanvasGroup _creditsValues;
 
-    public Animator creditsTransitions => _creditsTransitions;
+    public CanvasGroup creditsValues => _settingsValues;
 
-    [SerializeField] Animator _controlsTransitions;
+    [SerializeField] CanvasGroup _controlsValues;
 
-    public Animator controlsTransitions => _controlsTransitions;
+    public CanvasGroup controlsValues => _settingsValues;
 
     [SerializeField] GameObject _keyBindsMenu;
 
