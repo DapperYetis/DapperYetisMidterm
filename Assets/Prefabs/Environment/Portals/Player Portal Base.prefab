@@ -50556,7 +50556,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dc8a6629334c804ea6e9661e62c8f33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sceneNextName: 
+  _buildIndex: 0
+  _isBossRoom: 0
 --- !u!1 &7311611922411677425
 GameObject:
   m_ObjectHideFlags: 0
