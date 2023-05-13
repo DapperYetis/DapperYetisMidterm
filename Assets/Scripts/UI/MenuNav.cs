@@ -74,7 +74,7 @@ public class MenuNav : MonoBehaviour
     public void ToSettings()
     {
         NextMenu(_menuRef.settingsMenu);
-        StartCoroutine(TransitionToMenu((_menuRef.settingsValues)));
+        StartCoroutine(TransitionToMenu(_menuRef.settingsValues));
     }
 
     public void ToKeyBinds()
@@ -83,16 +83,16 @@ public class MenuNav : MonoBehaviour
         StartCoroutine(TransitionToMenu(_menuRef.controlsValues));
     }
 
-    public void BackButton()
-    {
-        //StartCoroutine(TransitionToPrevious(_activeMenu.GetComponent<CanvasGroup>()));
-        PrevMenu();
-    }
-
-    internal void ToCredits()
+    public void ToCredits()
     {
         NextMenu(_menuRef.creditsScreen);
         StartCoroutine(TransitionToMenu(_menuRef.creditsValues));
+    }
+
+    public void BackButton()
+    {
+        StartCoroutine(TransitionToPrevious(_activeMenu.GetComponent<CanvasGroup>()));
+       
     }
 
     public void ButtonClick()
@@ -102,6 +102,7 @@ public class MenuNav : MonoBehaviour
 
     public IEnumerator TransitionToMenu(CanvasGroup values)
     {
+        values.interactable = false;
         float startTime = Time.realtimeSinceStartup;
         values.alpha = 0f;
         while (Time.realtimeSinceStartup < startTime + _animationTime)
@@ -110,7 +111,7 @@ public class MenuNav : MonoBehaviour
             yield return new WaitForSecondsRealtime(.0001f);
         }
         values.alpha = 1f;
-
+        values.interactable = true;
     }
 
     public IEnumerator TransitionToPrevious(CanvasGroup values)
@@ -123,7 +124,7 @@ public class MenuNav : MonoBehaviour
             yield return new WaitForSecondsRealtime(.0001f);
         }
         values.alpha = 0f;
-
+        PrevMenu();
     }
     #endregion
 

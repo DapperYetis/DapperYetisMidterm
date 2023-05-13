@@ -35,11 +35,11 @@ public class MainMenuRefs : MonoBehaviour
 
     [SerializeField] CanvasGroup _creditsValues;
 
-    public CanvasGroup creditsValues => _settingsValues;
+    public CanvasGroup creditsValues => _creditsValues;
 
     [SerializeField] CanvasGroup _controlsValues;
 
-    public CanvasGroup controlsValues => _settingsValues;
+    public CanvasGroup controlsValues => _controlsValues;
 
     [SerializeField] GameObject _keyBindsMenu;
 
