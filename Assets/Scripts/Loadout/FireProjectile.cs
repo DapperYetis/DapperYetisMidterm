@@ -19,20 +19,29 @@ public class FireProjectile : Projectile
     {
         if (other.isTrigger) return;
 
-        if(_isAOE && !_exploding)
+        if (_isAOE && !_exploding)
         {
-            if (other.gameObject.TryGetComponent<IDamageable>(out var damageable))
+            if (other.gameObject.TryGetComponent<IBuffable>(out var buffable))
+            {
+                buffable.Damage(_stats.directDamage);
+                OnHit?.Invoke(this, buffable);
+            }
+            else if (other.gameObject.TryGetComponent<IDamageable>(out var damageable))
             {
                 damageable.Damage(_stats.directDamage);
-                OnHit?.Invoke(this, damageable);
+                OnHitNonBuffable?.Invoke(this, damageable);
             }
             StartCoroutine(DoExplode());
         }
-        else if(other.gameObject.TryGetComponent<IDamageable>(out var damageable) && !_previouslyHit.Contains(damageable))
+        else if (other.gameObject.TryGetComponent<IDamageable>(out var damageable) && !_previouslyHit.Contains(damageable))
         {
             _previouslyHit.Add(damageable);
             damageable.Damage(_stats.directDamage);
-            OnHit?.Invoke(this, damageable);
+            OnHitNonBuffable?.Invoke(this, damageable);
+            if (other.gameObject.TryGetComponent<IBuffable>(out var buffable))
+            {
+                OnHit?.Invoke(this, buffable);
+            }
         }
 
         if (!_isAOE)

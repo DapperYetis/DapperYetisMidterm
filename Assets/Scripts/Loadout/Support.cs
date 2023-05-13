@@ -19,7 +19,7 @@ public abstract class Support : MonoBehaviour
     [HideInInspector]
     public UnityEvent OnSecondary;
     [HideInInspector]
-    public UnityEvent<Projectile, IDamageable> OnHit;
+    public UnityEvent<Projectile, IBuffable> OnHit;
 
     public void SetCamera(Camera camera)
     {

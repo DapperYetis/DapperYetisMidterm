@@ -155,11 +155,9 @@ public class DragonInfernoBoss : HybridEnemy
         _anim.SetTrigger("Shoot");
         if (stats._attackAudio.Length > 0)
             _aud.PlayOneShot(stats._attackAudio[Random.Range(0, stats._attackAudio.Length)], stats._attackAudioVol);
-        Debug.Log($"{name} played a sound");
-        Quaternion rot = Quaternion.LookRotation(GameManager.instance.player.transform.position - stats.positions[0].position * 0.5f);
-        if (Mathf.Abs(Quaternion.Angle(rot, Quaternion.LookRotation(GameManager.instance.player.transform.position - stats.positions[0].position))) >= 60)
-            rot = Quaternion.LookRotation(GameManager.instance.player.transform.position - stats.positions[0].position);
-        rot = Quaternion.RotateTowards(rot, Random.rotation, stats.variance * GameManager.instance.player.movement.speedRatio);
+        //Debug.Log($"{name} played a sound");
+        Quaternion rot = Quaternion.LookRotation(ProjectedVectorToPlayer(stats));
+        //rot = Quaternion.RotateTowards(rot, Random.rotation, stats.variance * GameManager.instance.player.movement.speedRatio);
         for (int i = 0; i < stats.positions.Length; i++)
         {
             Instantiate(stats.prefab, stats.positions[i].position, rot).GetComponent<Projectile>().SetStats(stats);
