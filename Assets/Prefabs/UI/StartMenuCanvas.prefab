@@ -217,7 +217,7 @@ MonoBehaviour:
   _loadoutMenu: {fileID: 6031915324061859742}
   _settingsMenu: {fileID: 2221001917829241552}
   _transitionScreen: {fileID: 1671233469921854868}
-  _fadeToGame: {fileID: 0}
+  _fadeToGame: {fileID: 1671233469921854857}
   _loadoutValues: {fileID: 8910294280939289824}
   _settingsValues: {fileID: 7572698006174325121}
   _creditsValues: {fileID: 4589443016831221911}
@@ -1028,6 +1028,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BG
       objectReference: {fileID: 0}
+    - target: {fileID: 5305103713753407728, guid: 3d441ebb00690a6488a1578c8c403cda,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5305103713753407731, guid: 3d441ebb00690a6488a1578c8c403cda,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1135,6 +1140,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d441ebb00690a6488a1578c8c403cda, type: 3}
+--- !u!225 &1671233469921854857 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 5305103713753407725, guid: 3d441ebb00690a6488a1578c8c403cda,
+    type: 3}
+  m_PrefabInstance: {fileID: 6822648064055911780}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1671233469921854868 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5305103713753407728, guid: 3d441ebb00690a6488a1578c8c403cda,

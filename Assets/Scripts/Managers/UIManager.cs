@@ -34,7 +34,7 @@ public class UIManager : MonoBehaviour
     private Stack<GameObject> _menuStack;
     private bool _isPlaying = false;
     private float _endtime;
-    private float _lastCurrency;
+    private float _lastCurrency = 0;
     private bool _isHealthUpdating;
     [SerializeField]
     private float _healthWaitTime = 1f;
@@ -66,7 +66,9 @@ public class UIManager : MonoBehaviour
 
         _origTimeScale = Time.timeScale;
         SetUp();
-        _lastCurrency = _playerInv.currency;
+        
+        if(_playerInv != null)
+            _lastCurrency = _playerInv.currency;
     }
 
     void Update()
