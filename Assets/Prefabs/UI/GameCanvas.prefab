@@ -157,6 +157,7 @@ MonoBehaviour:
   _tabMenu: {fileID: 145211973630669578}
   _interactPrompt: {fileID: 3958291507914865415}
   _transitionScreen: {fileID: 8553318795605864008}
+  _loadingScreenValues: {fileID: 8553318795605864021}
   _itemAnimator: {fileID: 2633952445641013622}
   _timer: {fileID: 3987511858877703607}
   _attCoolDwn1: {fileID: 1319811600633052149}
@@ -1416,6 +1417,12 @@ MonoBehaviour:
 --- !u!224 &8553318795605864011 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5305103713753407731, guid: 3d441ebb00690a6488a1578c8c403cda,
+    type: 3}
+  m_PrefabInstance: {fileID: 4552292156334853816}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &8553318795605864021 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 5305103713753407725, guid: 3d441ebb00690a6488a1578c8c403cda,
     type: 3}
   m_PrefabInstance: {fileID: 4552292156334853816}
   m_PrefabAsset: {fileID: 0}

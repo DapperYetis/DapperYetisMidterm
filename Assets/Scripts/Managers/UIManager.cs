@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.Rendering.DebugUI;
 
@@ -23,6 +24,8 @@ public class UIManager : MonoBehaviour
     private AnimationCurve _lerpSpeed;
     [SerializeField]
     private float _animationLength;
+    [SerializeField]
+    private float _loadingLength;
 
     public UIReferences references => _references;
 
@@ -465,6 +468,42 @@ public class UIManager : MonoBehaviour
     public void PickupAnimation()
     {
         _transition.SetTrigger("Pickup");
+    }
+
+    public void StartLoading()
+    {
+        StartCoroutine(StartLoadingScreen());
+    }
+
+    IEnumerator StartLoadingScreen()
+    {
+        float startTime = Time.realtimeSinceStartup;
+        _references.transitionScreen.SetActive(true);
+        _references.loadingScreenValues.alpha = 0f;
+        while(Time.realtimeSinceStartup < startTime + _loadingLength)
+        {
+            _references.loadingScreenValues.alpha = Mathf.Lerp(0, 1f, (Time.realtimeSinceStartup - startTime) / _loadingLength);
+            yield return new WaitForEndOfFrame();
+        }
+        _references.loadingScreenValues.alpha = 1f;
+    }
+
+    public void StopLoading()
+    {
+        StartCoroutine(EndLoadingScreen());
+    }
+
+    IEnumerator EndLoadingScreen()
+    {
+        float startTime = Time.realtimeSinceStartup;
+        _references.transitionScreen.SetActive(true);
+        _references.loadingScreenValues.alpha = 1f;
+        while (Time.realtimeSinceStartup < startTime + _loadingLength)
+        {
+            _references.loadingScreenValues.alpha = Mathf.Lerp(1f, 0, (Time.realtimeSinceStartup - startTime) / _loadingLength);
+            yield return new WaitForEndOfFrame();
+        }
+        _references.transitionScreen.SetActive(false);
     }
 
     #endregion

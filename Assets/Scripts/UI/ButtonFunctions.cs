@@ -46,7 +46,8 @@ public class ButtonFunctions : MonoBehaviour
     IEnumerator TransitionToMainMenu()
     {
         UIManager.instance.PlayClick();
-        yield return new WaitForSecondsRealtime(0.3f);
+        UIManager.instance.StartLoading();
+        yield return new WaitForSecondsRealtime(0.5f);
         UIManager.instance.PauseState();
         SceneManage.instance.LoadScene(0);
     }
@@ -87,7 +88,6 @@ public class ButtonFunctions : MonoBehaviour
 
     IEnumerator GameTransition()
     {
-        nav.ButtonClick();
         nav.BeginLoadScreen();
         yield return new WaitForSecondsRealtime(.5f);
         UIManager.instance.TransitionToGame();

@@ -76,6 +76,10 @@ public class UIReferences : MonoBehaviour
 
     public GameObject transitionScreen => _transitionScreen;
 
+    [SerializeField] CanvasGroup _loadingScreenValues;
+
+    public CanvasGroup loadingScreenValues => _loadingScreenValues;
+
     [SerializeField] Animator _itemAnimator;
 
     public Animator itemAnimator => _itemAnimator;

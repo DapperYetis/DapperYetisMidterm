@@ -134,6 +134,7 @@ public class MenuNav : MonoBehaviour
 
     IEnumerator LoadingStart()
     {
+        ButtonClick();
         float startTime = Time.realtimeSinceStartup;
         _menuRef.transitionScreen.SetActive(true);
         _menuRef.fadeToGame.alpha = 0;
