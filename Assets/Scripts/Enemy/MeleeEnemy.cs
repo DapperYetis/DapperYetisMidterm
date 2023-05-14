@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Rendering;
 using UnityEngine.Serialization;
 
 public class MeleeEnemy : EnemyAI
@@ -46,7 +47,7 @@ public class MeleeEnemy : EnemyAI
     {
         _anim.SetTrigger("Attack");
         _aud.PlayOneShot(_primaryAttackStats._attackAudio[Random.Range(0, _primaryAttackStats._attackAudio.Length)], _primaryAttackStats._attackAudioVol);
-        Debug.Log($"{name} played a sound");
+        //Debug.Log($"{name} played a sound");
         _hasCompletedAttack = true;
         yield return new WaitForSeconds(_primaryAttackStats.rate);
         _isAttacking = false;

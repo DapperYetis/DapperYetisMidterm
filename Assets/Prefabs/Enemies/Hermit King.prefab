@@ -334,8 +334,10 @@ MonoBehaviour:
   _anim: {fileID: 6230942851767379793}
   _aud: {fileID: 719534481914598069}
   _drops: {fileID: 0}
-  _spawnEffect: {fileID: 2737276754389857535, guid: cbb64ba14b98d4f40a04946727b661e4,
+  _spawnEffectOpening: {fileID: 130970, guid: bc98048ecb8166d46bff081f5e0b0560, type: 3}
+  _spawnEffectIdle: {fileID: 8747382882277111426, guid: 3724739400859df4eb7de3dbb0c1365f,
     type: 3}
+  _spawnEffectClosing: {fileID: 118508, guid: f837736aa24637a46b9ffb8660b317bb, type: 3}
   _bodyCollider: {fileID: 7485134682016057368}
   _changeTime: 2
   _changeCurve:
@@ -560,7 +562,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0

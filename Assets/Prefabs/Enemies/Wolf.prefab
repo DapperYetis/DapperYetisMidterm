@@ -280,8 +280,10 @@ MonoBehaviour:
   _anim: {fileID: 1394923249626068941}
   _aud: {fileID: 4174977756690072695}
   _drops: {fileID: 0}
-  _spawnEffect: {fileID: 2737276754389857535, guid: cbb64ba14b98d4f40a04946727b661e4,
+  _spawnEffectOpening: {fileID: 130970, guid: bc98048ecb8166d46bff081f5e0b0560, type: 3}
+  _spawnEffectIdle: {fileID: 8747382882277111426, guid: 3724739400859df4eb7de3dbb0c1365f,
     type: 3}
+  _spawnEffectClosing: {fileID: 118508, guid: f837736aa24637a46b9ffb8660b317bb, type: 3}
   _bodyCollider: {fileID: -3642325205335614051}
   _changeTime: 2
   _changeCurve:
@@ -347,7 +349,9 @@ MonoBehaviour:
     range: 1
     _attackAudioVol: 0.5
     _attackAudio:
-    - {fileID: 8300000, guid: 45f51811c4f0f7040a63e44aea81b8d3, type: 3}
+    - {fileID: 8300000, guid: 17db8d9fc4457f6478efd3671bd69edc, type: 3}
+    - {fileID: 8300000, guid: e1294bbff26c2024291e4e36875f2ec3, type: 3}
+    - {fileID: 8300000, guid: 32152b69a0122224da16d2eb887f96ba, type: 3}
   _primaryAttackStatsScaling:
     positions: []
     damage: 1
@@ -361,25 +365,34 @@ MonoBehaviour:
     range: 0
     _attackAudioVol: 0
     _attackAudio: []
-  _audSpawnVol: 0.8
+  _audSpawnVol: 0.3
   _audSpawn:
-  - {fileID: 8300000, guid: 1644d0cba2875e849a67b99e86f3ef62, type: 3}
+  - {fileID: 8300000, guid: 6cb770d2c653d5b4b9503b6a6a88ede7, type: 3}
+  - {fileID: 8300000, guid: bd27aec87cfa17c4dada39ba17d9161e, type: 3}
+  - {fileID: 8300000, guid: ee954120d7692524ebb3869360370f61, type: 3}
   _audSpawnRoarVol: 0.3
   _audSpawnRoar:
   - {fileID: 8300000, guid: f44792acb3fee5c4493ddf847a822112, type: 3}
+  - {fileID: 8300000, guid: 049049ad11df7e84abc809052da2d038, type: 3}
+  - {fileID: 8300000, guid: 0e1465e59160d2041aaefe66ee8ded2c, type: 3}
   _audGettingCloseVol: 0.5
   _audGettingClose:
-  - {fileID: 8300000, guid: 2643c9a764451f64e98d8de92321cbce, type: 3}
-  _audTakeDamageVol: 0.5
+  - {fileID: 8300000, guid: e90e7f5ed776dad49a2269c0dc36576a, type: 3}
+  - {fileID: 8300000, guid: 9546984d970603145b369f545cedbd9e, type: 3}
+  _audTakeDamageVol: 0.3
   _audTakeDamage:
-  - {fileID: 8300000, guid: 37d6d749c25d65847ae651d7d2aea4c1, type: 3}
+  - {fileID: 8300000, guid: 6c9d1ffca24a7c8459c7460cbcca0899, type: 3}
+  - {fileID: 8300000, guid: 090f2fee6d904bf4f918d0dde4d257ae, type: 3}
   _audHealVol: 0.5
   _audHeal:
   - {fileID: 8300000, guid: 76ef01426104ef141a558bdac28e13a8, type: 3}
   _audDeathVol: 0.5
   _audDeath:
-  - {fileID: 8300000, guid: 1c6f02bc26fb6c642b7a9eada4dd632e, type: 3}
-  _audFallDownVol: 0.5
+  - {fileID: 8300000, guid: 870515531dbc0a648bd282a8401229e2, type: 3}
+  - {fileID: 8300000, guid: baa3bf3cc2db7a243a3234b182abb840, type: 3}
+  - {fileID: 8300000, guid: 76401d25d5f650d4d98ddcc1f8affd8b, type: 3}
+  - {fileID: 8300000, guid: 3a2f16a96acabfe459d718d2ba8c68be, type: 3}
+  _audFallDownVol: 0.2
   _audFallDown:
   - {fileID: 8300000, guid: 53a2d303265d69a4aa0aa3896d587b03, type: 3}
   _meleeCollider: {fileID: 3368618465045421124}
@@ -479,7 +492,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0

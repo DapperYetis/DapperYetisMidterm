@@ -20,7 +20,11 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     [SerializeField]
     protected EnemyDrops _drops;
     [SerializeField]
-    protected GameObject _spawnEffect;
+    protected GameObject _spawnEffectOpening;
+    [SerializeField]
+    protected GameObject _spawnEffectIdle;
+    [SerializeField]
+    protected GameObject _spawnEffectClosing;
     [SerializeField]
     protected CapsuleCollider _bodyCollider;
 
@@ -73,6 +77,9 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     protected float _circlingRange = 10f;
     protected bool _hasEnteredRange;
     protected bool _movementOverride;
+    float _PortalOpenDur;
+    float _PortalIdleDur;
+    float _PortalCloseDur;
 
     [Header("--- Death Controls ---")]
     [SerializeField]
@@ -154,6 +161,9 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
 
     protected virtual void Start()
     {
+        _PortalOpenDur = _spawnEffectOpening.GetComponent<ParticleSystem>().main.duration;
+        _PortalIdleDur = _spawnEffectIdle.GetComponent<ParticleSystem>().main.duration;
+        _PortalCloseDur = _spawnEffectClosing.GetComponent<ParticleSystem>().main.duration;
         StartCoroutine(SizeChange());
         _drops = GetComponent<EnemyDrops>();
         StartCoroutine(PickMoveType());
@@ -268,19 +278,25 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
         enabled = false;
 
         Color mainColor = _model.material.color;
-        _model.material.color = new Color(0, 0, 0, 0f); // shoud but doesnt make enemies transparent.  You have to make the material transparent and that causes visual problems so that was scrapped, but this is still good to have for other reasons.
-        GameObject spFX = Instantiate(_spawnEffect, transform, worldPositionStays: false);
-        spFX.SetActive(true);
+        _model.material.color = new Color(0, 0, 0, 0f); // should but doesnt make enemies transparent.  You have to make the material transparent and that causes visual problems so that was scrapped, but this is still good to have for other reasons.
         _aud.PlayOneShot(_audSpawn[Random.Range(0, _audSpawn.Length)], _audSpawnVol);
-        Debug.Log($"{name} played a sound");
-        float timer = 5;
-        float max = 6;
-        spFX.transform.localScale = new Vector3(Mathf.Lerp(0.1f, max, timer), Mathf.Lerp(0.1f, max, timer), Mathf.Lerp(0.1f, max, timer));
 
-        yield return new WaitForSeconds(0.5f);
+        GameObject spFX1 = Instantiate(_spawnEffectOpening, transform, worldPositionStays: false);
+        yield return new WaitForSeconds(_PortalOpenDur);
+        Destroy(spFX1);
 
+        GameObject spFX2 = Instantiate(_spawnEffectIdle, transform, worldPositionStays: false);
+        yield return new WaitForSeconds(_PortalIdleDur + 1);
+        Destroy(spFX2);
+        //float timer = 5;
+        //float max = 6;
+        //spFX2.transform.localScale = new Vector3(Mathf.Lerp(0.1f, max, timer), Mathf.Lerp(0.1f, max, timer), Mathf.Lerp(0.1f, max, timer));
         _model.material.color = mainColor;
-        Destroy(spFX);
+
+        GameObject spFX3 = Instantiate(_spawnEffectClosing, transform, worldPositionStays: false);
+        yield return new WaitForSeconds(_PortalCloseDur);
+        Destroy(spFX3);
+
         _anim.speed = animSpeedOrig;
     }
 
