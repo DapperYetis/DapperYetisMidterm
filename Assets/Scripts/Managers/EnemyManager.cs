@@ -43,6 +43,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField]
     private List<SOWave> _waves;
     private List<EnemySpawnPoint> _wavePoints = new();
+    public List<EnemySpawnPoint> wavePoints => _wavePoints;
 
     // Combat management
     [Header("---Combat Management---")]
