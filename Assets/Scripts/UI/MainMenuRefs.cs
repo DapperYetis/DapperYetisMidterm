@@ -21,9 +21,25 @@ public class MainMenuRefs : MonoBehaviour
     [SerializeField] GameObject _transitionScreen;
     public GameObject transitionScreen => _transitionScreen;
 
-    [SerializeField] Animator _animator;
+    [SerializeField] Animator _fadeToGame;
 
-    public Animator animator => _animator;
+    public Animator fadeToGame => _fadeToGame;
+
+    [SerializeField] CanvasGroup _loadoutValues;
+
+    public CanvasGroup loadoutValues => _loadoutValues;
+
+    [SerializeField] CanvasGroup _settingsValues;
+
+    public CanvasGroup settingsValues => _settingsValues;
+
+    [SerializeField] CanvasGroup _creditsValues;
+
+    public CanvasGroup creditsValues => _creditsValues;
+
+    [SerializeField] CanvasGroup _controlsValues;
+
+    public CanvasGroup controlsValues => _controlsValues;
 
     [SerializeField] GameObject _keyBindsMenu;
 
@@ -36,10 +52,6 @@ public class MainMenuRefs : MonoBehaviour
     [SerializeField] GameObject _supportGroup;
 
     public GameObject supportGroup => _supportGroup;
-
-    [SerializeField] GameObject _companionGroup;
-
-    public GameObject companionGroup => _companionGroup;
 
     [SerializeField] GameObject _creditsScreen;
 
