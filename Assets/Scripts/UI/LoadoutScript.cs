@@ -13,6 +13,14 @@ public class LoadoutScript : MonoBehaviour
 {
     [Header("----- Components -----")]
     [SerializeField] GameObject _buttonPrefab;
+    [SerializeField]
+    private TextMeshPro _weaponPrimaryDesc;
+    [SerializeField] 
+    private TextMeshPro _weaponSecondaryDesc;
+    [SerializeField]
+    private TextMeshPro _supportPrimaryDesc;
+    [SerializeField]
+    private TextMeshPro _supportSecondaryDesc;
     private GameObject _weaponGroup;
     private GameObject _supportGroup;
     private GameObject _companionGroup;
