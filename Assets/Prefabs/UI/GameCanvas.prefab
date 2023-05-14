@@ -157,7 +157,7 @@ MonoBehaviour:
   _tabMenu: {fileID: 145211973630669578}
   _interactPrompt: {fileID: 3958291507914865415}
   _transitionScreen: {fileID: 8553318795605864008}
-  _animator: {fileID: 0}
+  _itemAnimator: {fileID: 2633952445641013622}
   _timer: {fileID: 3987511858877703607}
   _attCoolDwn1: {fileID: 1319811600633052149}
   _attCoolDwn2: {fileID: 2869885709733539850}
@@ -406,7 +406,7 @@ PrefabInstance:
     - target: {fileID: 5324819436813258195, guid: 6a5d5ab5a624082498647f22ccec3b54,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 132
+      value: 130
       objectReference: {fileID: 0}
     - target: {fileID: 5324819436813258195, guid: 6a5d5ab5a624082498647f22ccec3b54,
         type: 3}
@@ -435,6 +435,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a5d5ab5a624082498647f22ccec3b54, type: 3}
+--- !u!95 &2633952445641013622 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4324253093741766324, guid: 6a5d5ab5a624082498647f22ccec3b54,
+    type: 3}
+  m_PrefabInstance: {fileID: 1769765722997170114}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &4396594969565639500 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2705730271869807758, guid: 6a5d5ab5a624082498647f22ccec3b54,

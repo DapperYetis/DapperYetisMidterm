@@ -55,6 +55,7 @@ public class HudItems : MonoBehaviour
         _itemSprite.sprite = itemToAdd.icon;
         _itemName.SetText(itemToAdd.itemName);
         _itemDescription.SetText(itemToAdd.description);
+        UIManager.instance.PickupAnimation();
         yield return new WaitForSeconds(3f);
         UIManager.instance.references.itemNotif.SetActive(false);
     }

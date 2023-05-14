@@ -120,7 +120,7 @@ public class UIManager : MonoBehaviour
         {
             _playerController = GameManager.instance.player;
             _playerInv = _playerController.inventory;
-            _transition = _references.animator;
+            _transition = _references.itemAnimator;
             _playerController.OnHealthChange.AddListener(UpdateHealth);
             _playerController.OnPlayerSetUp.AddListener(() =>
             {
@@ -237,13 +237,6 @@ public class UIManager : MonoBehaviour
             _activeMenu.SetActive(true);
     }
 
-    public void TriggerTransition()
-    {
-        _references.transitionScreen.SetActive(true);
-        _transition.SetTrigger("Button");
-
-    }
-
     public void StartsPlaying()
     {
         _isPlaying = true;
@@ -296,7 +289,6 @@ public class UIManager : MonoBehaviour
     {
         if (_references == null) return;
         StartCoroutine(LerpCurrency());
-        //_references.currency.SetText(_playerInv.currency.ToString());
     }
 
     IEnumerator Damaged()
@@ -466,6 +458,11 @@ public class UIManager : MonoBehaviour
             yield return wait;
         }
         toChange.SetText(number.ToString());
+    }
+
+    public void PickupAnimation()
+    {
+        _transition.SetTrigger("Pickup");
     }
 
     #endregion

@@ -76,9 +76,9 @@ public class UIReferences : MonoBehaviour
 
     public GameObject transitionScreen => _transitionScreen;
 
-    [SerializeField] Animator _animator;
+    [SerializeField] Animator _itemAnimator;
 
-    public Animator animator => _animator;
+    public Animator itemAnimator => _itemAnimator;
 
     [SerializeField] TextMeshProUGUI _timer;
 
@@ -151,9 +151,6 @@ public class UIReferences : MonoBehaviour
     [SerializeField] TextMeshProUGUI _winHealed;
 
     public TextMeshProUGUI winHealed => _winHealed;
-
-
-
 
     [SerializeField] TextMeshProUGUI _loseScore;
 
