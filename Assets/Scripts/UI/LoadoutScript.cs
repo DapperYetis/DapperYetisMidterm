@@ -23,7 +23,6 @@ public class LoadoutScript : MonoBehaviour
     private TextMeshPro _supportSecondaryDesc;
     private GameObject _weaponGroup;
     private GameObject _supportGroup;
-    private GameObject _companionGroup;
     [SerializeField] List<SOWeapon> _weapons;
     private static List<SOWeapon> _cachedWeapons;
     [SerializeField] List<SOSupport> _supports;
