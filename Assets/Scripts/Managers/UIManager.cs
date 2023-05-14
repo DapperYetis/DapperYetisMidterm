@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class UIManager : MonoBehaviour
 {
@@ -12,11 +13,16 @@ public class UIManager : MonoBehaviour
     [Header("----- Settings -----")]
     private UIReferences _references;
     private Inventory _playerInv;
-    [SerializeField] Animator _transition;
+    [SerializeField] 
+    private Animator _transition;
     [SerializeField]
     private Gradient _healthGradient;
     [SerializeField]
     private int _tallyTime;
+    [SerializeField]
+    private AnimationCurve _lerpSpeed;
+    [SerializeField]
+    private float _animationLength;
 
     public UIReferences references => _references;
 
@@ -27,7 +33,8 @@ public class UIManager : MonoBehaviour
     private PlayerController _playerController;
     private Stack<GameObject> _menuStack;
     private bool _isPlaying = false;
-    private float endtime;
+    private float _endtime;
+    private float _lastCurrency;
     private bool _isHealthUpdating;
     [SerializeField]
     private float _healthWaitTime = 1f;
@@ -59,6 +66,7 @@ public class UIManager : MonoBehaviour
 
         _origTimeScale = Time.timeScale;
         SetUp();
+        _lastCurrency = _playerInv.currency;
     }
 
     void Update()
@@ -112,7 +120,7 @@ public class UIManager : MonoBehaviour
         {
             _playerController = GameManager.instance.player;
             _playerInv = _playerController.inventory;
-            _transition = _references.animator;
+            _transition = _references.itemAnimator;
             _playerController.OnHealthChange.AddListener(UpdateHealth);
             _playerController.OnPlayerSetUp.AddListener(() =>
             {
@@ -186,7 +194,7 @@ public class UIManager : MonoBehaviour
 
     public void PlayClick()
     {
-        _references.buttonClick.PlayOneShot(_references.buttonClip);
+        _references.audioControl.PlayOneShot(_references.buttonClip);
     }
     #endregion
 
@@ -229,13 +237,6 @@ public class UIManager : MonoBehaviour
             _activeMenu.SetActive(true);
     }
 
-    public void TriggerTransition()
-    {
-        _references.transitionScreen.SetActive(true);
-        _transition.SetTrigger("Button");
-
-    }
-
     public void StartsPlaying()
     {
         _isPlaying = true;
@@ -258,7 +259,7 @@ public class UIManager : MonoBehaviour
         if (_playerController.GetHealthCurrent() > 0)
         {
             if (_isHealthUpdating)
-                endtime = Time.time + _healthWaitTime;
+                _endtime = Time.time + _healthWaitTime;
             else
                 StartCoroutine(DynamicHealthDecrease());
             if (healthChange < 0)
@@ -287,7 +288,7 @@ public class UIManager : MonoBehaviour
     public void TrackCurrency(int currency)
     {
         if (_references == null) return;
-        _references.currency.SetText(_playerInv.currency.ToString());
+        StartCoroutine(LerpCurrency());
     }
 
     IEnumerator Damaged()
@@ -403,14 +404,13 @@ public class UIManager : MonoBehaviour
     IEnumerator DynamicHealthDecrease()
     {
         _isHealthUpdating = true;
-        endtime = Time.time + _healthWaitTime;
-        while (Time.time < endtime)
+        _endtime = Time.time + _healthWaitTime;
+        while (Time.time < _endtime)
         {
             yield return new WaitForEndOfFrame();
         }
-
-        _references.dynamicHealth.fillAmount = (float)_playerController.GetHealthCurrent() / (float)_playerController.GetHealthMax();
         _isHealthUpdating = false;
+        StartCoroutine(LerpHealth());
     }
 
     IEnumerator HealthRedFlash()
@@ -419,7 +419,34 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         _references.hpBar.color = _healthGradient.Evaluate(_references.hpBar.fillAmount);
     }
-    #endregion
+
+    public void PlayPickUp()
+    {
+        _references.audioControl.PlayOneShot(_references.pickUpClip);
+    }
+    
+    IEnumerator LerpCurrency()
+    {
+        float startTime = Time.time;
+        while (Time.time < startTime + _animationLength)
+        {
+            _references.currency.SetText((Mathf.Lerp(_lastCurrency, _playerInv.currency, _lerpSpeed.Evaluate((Time.time - startTime) / _animationLength))).ToString("F0"));
+            yield return new WaitForEndOfFrame();
+        }
+        _references.currency.SetText(_playerInv.currency.ToString());
+        _lastCurrency = _playerInv.currency;
+    }
+
+    IEnumerator LerpHealth()
+    {
+        float startTime = Time.time;
+        float healthStartAmount = _references.dynamicHealth.fillAmount;
+        while (Time.time < startTime + _animationLength)
+        {
+            _references.dynamicHealth.fillAmount = Mathf.Lerp(healthStartAmount, _references.hpBar.fillAmount, _lerpSpeed.Evaluate((Time.time - startTime) / _animationLength));
+            yield return new WaitForEndOfFrame();
+        }
+    }
 
     IEnumerator SetScoreTally(TextMeshProUGUI toChange, int number)
     {
@@ -432,4 +459,11 @@ public class UIManager : MonoBehaviour
         }
         toChange.SetText(number.ToString());
     }
+
+    public void PickupAnimation()
+    {
+        _transition.SetTrigger("Pickup");
+    }
+
+    #endregion
 }

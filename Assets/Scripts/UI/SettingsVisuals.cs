@@ -23,6 +23,7 @@ public class SettingsVisuals : MonoBehaviour
     }
     public void SetMusicFromSlider()
     {
+        
         SettingsManager.instance.SetMusicVolume(_musicVolume.value);
     }
 
