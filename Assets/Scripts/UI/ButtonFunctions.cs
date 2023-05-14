@@ -88,7 +88,8 @@ public class ButtonFunctions : MonoBehaviour
     IEnumerator GameTransition()
     {
         nav.ButtonClick();
-        yield return new WaitForSecondsRealtime(.3f);
+        nav.BeginLoadScreen();
+        yield return new WaitForSecondsRealtime(.5f);
         UIManager.instance.TransitionToGame();
     }
 }
