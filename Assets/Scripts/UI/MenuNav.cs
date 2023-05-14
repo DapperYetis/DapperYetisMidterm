@@ -126,6 +126,25 @@ public class MenuNav : MonoBehaviour
         values.alpha = 0f;
         PrevMenu();
     }
+
+    public void BeginLoadScreen()
+    {
+        StartCoroutine(LoadingStart());
+    }
+
+    IEnumerator LoadingStart()
+    {
+        float startTime = Time.realtimeSinceStartup;
+        _menuRef.transitionScreen.SetActive(true);
+        _menuRef.fadeToGame.alpha = 0;
+        while (Time.realtimeSinceStartup < startTime + _animationTime)
+        {
+            _menuRef.fadeToGame.alpha = Mathf.Lerp(0f, 1f, (Time.realtimeSinceStartup - startTime) / _animationTime);
+            yield return new WaitForSecondsRealtime(0.0001f);
+        }
+        _menuRef.fadeToGame.alpha = 1f;
+
+    }
     #endregion
 
 }

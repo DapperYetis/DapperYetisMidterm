@@ -21,9 +21,9 @@ public class MainMenuRefs : MonoBehaviour
     [SerializeField] GameObject _transitionScreen;
     public GameObject transitionScreen => _transitionScreen;
 
-    [SerializeField] Animator _fadeToGame;
+    [SerializeField] CanvasGroup _fadeToGame;
 
-    public Animator fadeToGame => _fadeToGame;
+    public CanvasGroup fadeToGame => _fadeToGame;
 
     [SerializeField] CanvasGroup _loadoutValues;
 
