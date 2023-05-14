@@ -368,6 +368,8 @@ MonoBehaviour:
   _OnHealthChange:
     m_PersistentCalls:
       m_Calls: []
+  _additivePriorityMod: 0
+  _spawnCost: 1
   _stats:
     HPMax: 50
     facePlayerSpeed: 600
@@ -427,12 +429,6 @@ MonoBehaviour:
   _audHealVol: 0.5
   _audHeal:
   - {fileID: 8300000, guid: 76ef01426104ef141a558bdac28e13a8, type: 3}
-  _audBuffVol: 0.5
-  _audBuff:
-  - {fileID: 8300000, guid: b034ba2bd4bf92d4a894eab037f9ac90, type: 3}
-  _audDebuffVol: 0.5
-  _audDebuff:
-  - {fileID: 8300000, guid: b80a9937b28e3b541be104f51b8534fa, type: 3}
   _audDeathVol: 0.5
   _audDeath:
   - {fileID: 8300000, guid: 1c6f02bc26fb6c642b7a9eada4dd632e, type: 3}
@@ -564,7 +560,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0

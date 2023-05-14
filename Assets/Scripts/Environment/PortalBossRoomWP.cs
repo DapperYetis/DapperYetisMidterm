@@ -32,9 +32,9 @@ public class PortalBossRoomWP : MonoBehaviour
     [Header("--- Audio Controls ---")]
     [Range(0, 1)]
     [SerializeField]
-    protected float _audPortalVol;
+    protected float _audPortalOpenVol;
     [SerializeField]
-    protected AudioClip[] _audPortal;
+    protected AudioClip[] _audPortalOpen;
     [Range(0, 1)]
     [SerializeField]
     protected float _audBossExclamationVol;
@@ -43,7 +43,6 @@ public class PortalBossRoomWP : MonoBehaviour
 
     float _entryIdleDur;
     float _entryCloseDur;
-    float _exitIdleDur;
     float _exitOpenDur;
     Portal _whereThePortalGoing;
 
@@ -53,7 +52,6 @@ public class PortalBossRoomWP : MonoBehaviour
         _entryIdleDur = _portalEnterIdle.GetComponent<ParticleSystem>().main.duration;
         _entryCloseDur = _portalEnterClose.GetComponent<ParticleSystem>().main.duration;
         _exitOpenDur = _portalExitOpen.GetComponent<ParticleSystem>().main.duration;
-        _exitIdleDur = _portalExitIdle.GetComponent<ParticleSystem>().main.duration;
         _totalBosses = _bossWaves.Length;
         StartCoroutine(PlayerEntry());
     }
@@ -68,11 +66,11 @@ public class PortalBossRoomWP : MonoBehaviour
 
     private IEnumerator PlayerEntry()
     {
-        _aud.PlayOneShot(_audPortal[Random.Range(0, _audPortal.Length)], _audPortalVol);
+        _aud.PlayOneShot(_audPortalOpen[Random.Range(0, _audPortalOpen.Length)], _audPortalOpenVol);
         //Debug.Log($"{name} played a sound");
         if (!EnemyManager.instance.inBossRoom)
             EnemyManager.instance.EnterBossRoom(null);
-        yield return new WaitForSeconds(_entryIdleDur);
+        yield return new WaitForSeconds(_entryIdleDur + 1);
         _portalEnterIdle.SetActive(false);
         _portalEnterClose.SetActive(true);
         yield return new WaitForSeconds(_entryCloseDur);
@@ -81,7 +79,7 @@ public class PortalBossRoomWP : MonoBehaviour
 
     private void PlayerWon()
     {
-        _aud.PlayOneShot(_audPortal[Random.Range(0, _audPortal.Length)], _audPortalVol);
+        _aud.PlayOneShot(_audPortalOpen[Random.Range(0, _audPortalOpen.Length)], _audPortalOpenVol);
         //Debug.Log($"{name} played a sound");
         StartCoroutine(PortalOpening());
         RenderSettings.fog = false;
