@@ -272,7 +272,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
         GameObject spFX = Instantiate(_spawnEffect, transform, worldPositionStays: false);
         spFX.SetActive(true);
         _aud.PlayOneShot(_audSpawn[Random.Range(0, _audSpawn.Length)], _audSpawnVol);
-        Debug.Log($"{name} played a sound");
+        //Debug.Log($"{name} played a sound");
         float timer = 5;
         float max = 6;
         spFX.transform.localScale = new Vector3(Mathf.Lerp(0.1f, max, timer), Mathf.Lerp(0.1f, max, timer), Mathf.Lerp(0.1f, max, timer));
@@ -287,7 +287,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     protected virtual void SpawnRoar()
     {
         _aud.PlayOneShot(_audSpawnRoar[Random.Range(0, _audSpawnRoar.Length)], _audSpawnRoarVol);
-        Debug.Log($"{name} played a sound");
+        //Debug.Log($"{name} played a sound");
     }
 
     protected virtual void ReadyToFight()

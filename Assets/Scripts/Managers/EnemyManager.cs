@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using System.Linq;
+using UnityEngine.Serialization;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -12,10 +13,13 @@ public class EnemyManager : MonoBehaviour
     // Waves management
     private bool _inBossRoom;
     public bool inBossRoom => _inBossRoom;
-    private bool _withinSpawningBudget => _spawningBudget >= 0;
+    private bool _withinSpawningBudget => _spawningBudget <= _spawningBudgetMax;
     [Header("---Waves---")]
+    [SerializeField, FormerlySerializedAs("_spawningBudgetMax")]
+    private int _spawningBudgetInitialMax;
     [SerializeField]
-    private int _spawningBudgetMax;
+    private float _spawningBudgetGrowthRate = 1.5f;
+    private int _spawningBudgetMax => _spawningBudgetInitialMax + (int)(_spawningBudgetGrowthRate * scaleFactor);
     private int _spawningBudget;
     public int spawningBudget => _spawningBudget;
     [SerializeField]
@@ -49,8 +53,11 @@ public class EnemyManager : MonoBehaviour
     [Header("---Combat Management---")]
     [SerializeField]
     private float _attackTime;
+    [SerializeField, FormerlySerializedAs("_attackBudgetMax")]
+    private int _attackBudgetInitialMax;
     [SerializeField]
-    private int _attackBudgetMax;
+    private float _attackBudgetGrowthRate = 1.5f;
+    private int _attackBudgetMax => _attackBudgetInitialMax + (int)(_attackBudgetGrowthRate * scaleFactor);
     private int _attackBudget;
     private bool _isRunning;
     private List<(System.Action func, System.Func<float> priority, EnemyAI enemy)> _attacks;
@@ -74,8 +81,8 @@ public class EnemyManager : MonoBehaviour
         OnEnemyCountChange.AddListener(GameManager.instance.EndConditions);
 
         _scaleRateInverse = 1 / _scaleRate;
-        _attackBudget = _attackBudgetMax;
-        _spawningBudget = _spawningBudgetMax;
+        _attackBudget = 0;
+        _spawningBudget = 0;
         _attacks = new();
 
         SetWaves();
@@ -161,14 +168,14 @@ public class EnemyManager : MonoBehaviour
     public void AddEnemyToList(EnemyAI enemy)
     {
         _enemies.Add(enemy);
-        _spawningBudget -= enemy.spawnCost;
+        _spawningBudget += enemy.spawnCost;
         OnEnemyCountChange?.Invoke();
     }
 
     public void RemoveEnemyFromList(EnemyAI enemy)
     {
         _enemies.Remove(enemy);
-        _spawningBudget += enemy.spawnCost;
+        _spawningBudget -= enemy.spawnCost;
         OnEnemyCountChange?.Invoke();
     }
 
@@ -184,7 +191,7 @@ public class EnemyManager : MonoBehaviour
 
         if(GameManager.instance.buildIndex == 0)
             _inBossRoom = false;
-        _spawningBudget = _spawningBudgetMax;
+        _spawningBudget = 0;
         _enemies.Clear();
         SetWaves();
     }
@@ -214,16 +221,16 @@ public class EnemyManager : MonoBehaviour
     {
         _isRunning = true;
         RemoveBadAttacks();
-        if (_attacks.Count > 0 && _attackBudget > 0)
+        if (_attacks.Count > 0 && _attackBudget < _attackBudgetMax)
         {
             int index = _attacks.Count >= 3 ? Random.Range(0,3) : 0;
-            --_attackBudget;
+            ++_attackBudget;
             _attacks[index].func.Invoke();
             _attacks.RemoveAt(index);
 
             StartCoroutine(RunDequeue());
             yield return new WaitForSeconds(_attackTime);
-            ++_attackBudget;
+            --_attackBudget;
         }
         else
         {
