@@ -50,6 +50,7 @@ public class HudItems : MonoBehaviour
 
     IEnumerator UpdateNotification(SOItem itemToAdd)
     {
+        UIManager.instance.PlayPickUp();
         UIManager.instance.references.itemNotif.SetActive(true);
         _itemSprite.sprite = itemToAdd.icon;
         _itemName.SetText(itemToAdd.itemName);
