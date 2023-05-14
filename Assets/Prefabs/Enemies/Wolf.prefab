@@ -369,10 +369,7 @@ MonoBehaviour:
   _audSpawn:
   - {fileID: 8300000, guid: 6cb770d2c653d5b4b9503b6a6a88ede7, type: 3}
   - {fileID: 8300000, guid: bd27aec87cfa17c4dada39ba17d9161e, type: 3}
-  - {fileID: 8300000, guid: 0d7563e974f79c8438bab654f4e6da88, type: 3}
   - {fileID: 8300000, guid: ee954120d7692524ebb3869360370f61, type: 3}
-  - {fileID: 8300000, guid: 43c80fc03182c1e4389f661a8c342f38, type: 3}
-  - {fileID: 8300000, guid: 1644d0cba2875e849a67b99e86f3ef62, type: 3}
   _audSpawnRoarVol: 0.3
   _audSpawnRoar:
   - {fileID: 8300000, guid: f44792acb3fee5c4493ddf847a822112, type: 3}
