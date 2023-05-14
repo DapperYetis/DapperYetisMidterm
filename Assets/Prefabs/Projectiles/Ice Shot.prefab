@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 424343093267893249}
   - component: {fileID: 424343093267893250}
   - component: {fileID: 424343093267893309}
-  - component: {fileID: 424343093267893308}
+  - component: {fileID: 2170807474723320988}
   - component: {fileID: 424343093267893248}
   - component: {fileID: 5968124790364654295}
   m_Layer: 8
@@ -49,6 +49,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e10161401e628024d973d435d1aa071a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnHit:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHitNonBuffable:
+    m_PersistentCalls:
+      m_Calls: []
   _piercing: 0
 --- !u!33 &424343093267893250
 MeshFilter:
@@ -100,8 +106,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &424343093267893308
-SphereCollider:
+--- !u!136 &2170807474723320988
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -110,8 +116,9 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
   m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &424343093267893248
 Rigidbody:
