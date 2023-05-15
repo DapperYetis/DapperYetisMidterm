@@ -1034,7 +1034,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _additivePriorityMod: 0
-  _spawnCost: 1
+  _spawnCost: 2
   _stats:
     HPMax: 6
     facePlayerSpeed: 600

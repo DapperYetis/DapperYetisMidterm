@@ -20,5 +20,5 @@ public class SOWave : ScriptableObject
 
     public float WaveTime() => _maxEnemyCount * _spawnInterval;
 
-    public static int CalcSpawnCost(EnemyAI enemy, int count) => enemy.spawnCost * count;
+    public static int CalcSpawnCost(EnemyAI enemy, int count) => (int)enemy.spawnCost * count;
 }

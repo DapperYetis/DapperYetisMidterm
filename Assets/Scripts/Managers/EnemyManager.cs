@@ -15,12 +15,17 @@ public class EnemyManager : MonoBehaviour
     public bool inBossRoom => _inBossRoom;
     private bool _withinSpawningBudget => _spawningBudget <= _spawningBudgetMax;
     [Header("---Waves---")]
-    [SerializeField, FormerlySerializedAs("_spawningBudgetMax")]
+    [SerializeField]
     private int _spawningBudgetInitialMax;
     [SerializeField]
     private float _spawningBudgetGrowthRate = 1.5f;
     private int _spawningBudgetMax => _spawningBudgetInitialMax + (int)(_spawningBudgetGrowthRate * scaleFactor);
-    private int _spawningBudget;
+    protected int _spawningBudget;
+    [SerializeField]
+    private float _waveCostMaxInitial = 3f;
+    [SerializeField]
+    private float _waveCostGrowthRate = 2f;
+    public float _waveCostMax => _waveCostMaxInitial + _waveCostGrowthRate * scaleFactor;
     public int spawningBudget => _spawningBudget;
     [SerializeField]
     private int _initialAdditionalWaves = 0;
@@ -46,6 +51,7 @@ public class EnemyManager : MonoBehaviour
     public List<EnemyAI> enemies => _enemies;
     [SerializeField]
     private List<SOWave> _waves;
+    private Dictionary<SOWave, float> _waveCosts;
     private List<EnemySpawnPoint> _wavePoints = new();
     public List<EnemySpawnPoint> wavePoints => _wavePoints;
 
@@ -101,7 +107,12 @@ public class EnemyManager : MonoBehaviour
     {
         _enemies = new();
 
-        _waves = (from wave in _waves orderby SOWave.CalcSpawnCost(wave.enemyType.GetComponent<EnemyAI>(), wave.maxEnemyCount) ascending select wave).ToList();
+        _waveCosts = new();
+        foreach(var wave in _waves)
+        {
+            _waveCosts[wave] = SOWave.CalcSpawnCost(wave.enemyType.GetComponent<EnemyAI>(), wave.maxEnemyCount);
+        }
+        _waves = (from wave in _waves orderby _waveCosts[wave] ascending select wave).ToList();
         _wavePoints = (from go in GameObject.FindGameObjectsWithTag("EnemySpawnPoint") select go.GetComponent<EnemySpawnPoint>()).ToList();
         StartCoroutine(RunWaves());
     }
@@ -138,7 +149,8 @@ public class EnemyManager : MonoBehaviour
     {
         if (GameManager.instance.player == null) return Vector3.zero;
 
-        List<EnemySpawnPoint> sortedPoints = (from point in _wavePoints where (GameManager.instance.player.transform.position - point.transform.position).magnitude > _minSpawnDistanceFromPlayer orderby (GameManager.instance.player.transform.position - point.transform.position).sqrMagnitude ascending select point).ToList();
+        List<EnemySpawnPoint> sortedPoints = (from point in _wavePoints where (GameManager.instance.player.transform.position - point.transform.position).magnitude > _minSpawnDistanceFromPlayer select point).ToList();
+        sortedPoints.OrderBy((point) => Vector3.Dot(GameManager.instance.player.transform.position, point.transform.position)).ThenBy((point) => (GameManager.instance.player.transform.position - point.transform.position).sqrMagnitude);
         return sortedPoints.Count > 0 ? sortedPoints[Mathf.FloorToInt(_waveDistance.Evaluate(Random.Range(0f, 1f)))].GetPointInRange() : Vector3.zero;
     }
 
@@ -168,14 +180,14 @@ public class EnemyManager : MonoBehaviour
     public void AddEnemyToList(EnemyAI enemy)
     {
         _enemies.Add(enemy);
-        _spawningBudget += enemy.spawnCost;
+        _spawningBudget += (int)enemy.spawnCost;
         OnEnemyCountChange?.Invoke();
     }
 
     public void RemoveEnemyFromList(EnemyAI enemy)
     {
         _enemies.Remove(enemy);
-        _spawningBudget -= enemy.spawnCost;
+        _spawningBudget -= (int)enemy.spawnCost;
         OnEnemyCountChange?.Invoke();
     }
 

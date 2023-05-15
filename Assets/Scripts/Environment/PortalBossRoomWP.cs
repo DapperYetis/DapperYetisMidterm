@@ -66,7 +66,8 @@ public class PortalBossRoomWP : MonoBehaviour
 
     private IEnumerator PlayerEntry()
     {
-        _aud.PlayOneShot(_audPortalOpen[Random.Range(0, _audPortalOpen.Length)], _audPortalOpenVol);
+        if(_audPortalOpen.Length > 0)
+            _aud.PlayOneShot(_audPortalOpen[Random.Range(0, _audPortalOpen.Length)], _audPortalOpenVol);
         //Debug.Log($"{name} played a sound");
         if (!EnemyManager.instance.inBossRoom)
             EnemyManager.instance.EnterBossRoom(null);
