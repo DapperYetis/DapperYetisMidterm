@@ -1081,7 +1081,7 @@ MonoBehaviour:
     range: 0
     _attackAudioVol: 0
     _attackAudio: []
-  _audSpawnVol: 0.5
+  _audSpawnVol: 0.2
   _audSpawn:
   - {fileID: 8300000, guid: 6cb770d2c653d5b4b9503b6a6a88ede7, type: 3}
   - {fileID: 8300000, guid: bd27aec87cfa17c4dada39ba17d9161e, type: 3}
