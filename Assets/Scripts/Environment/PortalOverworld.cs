@@ -27,7 +27,8 @@ public class PortalOverworld : MonoBehaviour, IInteractable
     public bool Interact()
     {
         _portalObject.SetActive(true);
-        _aud.PlayOneShot(_audPortal[Random.Range(0, _audPortal.Length)], _audPortalVol);
+        if(_audPortal.Length > 0)
+            _aud.PlayOneShot(_audPortal[Random.Range(0, _audPortal.Length)], _audPortalVol);
         return true;
     }
 
