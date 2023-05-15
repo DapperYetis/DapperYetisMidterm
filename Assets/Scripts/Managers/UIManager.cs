@@ -359,7 +359,8 @@ public class UIManager : MonoBehaviour
     public void LoseScreenStats()
     {
         if (_references == null) return;
-        _references.hud.SetActive(false);
+        _references.itemAnimator.enabled = false;
+        _references.itemNotif.SetActive(false);
         _references.loseTime.SetText($"{(int)AchievementManager.instance.runStats.timePlayed} : {((AchievementManager.instance.runStats.timePlayed * 60) % 60).ToString("F1")}");
         StartCoroutine(SetScoreTally(_references.loseScore, (int)AchievementManager.instance.runStats.totalPoints));
         StartCoroutine(SetScoreTally(_references.loseDeaths, (int)(AchievementManager.instance.runStats.deaths)));
@@ -378,7 +379,8 @@ public class UIManager : MonoBehaviour
     public void WinScreenStats()
     {
         if (_references == null) return;
-        _references.hud.SetActive(false);
+        _references.itemAnimator.enabled = false;
+        _references.itemNotif.SetActive(false);
         _references.winTime.SetText($"{(int)AchievementManager.instance.runStats.timePlayed} : {((AchievementManager.instance.runStats.timePlayed * 60) % 60).ToString("F1")}");
         StartCoroutine(SetScoreTally(_references.winScore, (int)(AchievementManager.instance.runStats.totalPoints)));
         StartCoroutine(SetScoreTally(_references.winDeaths, (int)(AchievementManager.instance.runStats.deaths)));
