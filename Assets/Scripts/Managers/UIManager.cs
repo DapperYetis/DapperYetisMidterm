@@ -72,6 +72,9 @@ public class UIManager : MonoBehaviour
         
         if(_playerInv != null)
             _lastCurrency = _playerInv.currency;
+
+        if (Application.platform == RuntimePlatform.WebGLPlayer)
+            _references.quitButton.enabled = false;
     }
 
     void Update()
@@ -80,7 +83,7 @@ public class UIManager : MonoBehaviour
             _references.timer.SetText($"{(int)GameManager.instance.runTimeMinutes} : {(GameManager.instance.runTime % 60).ToString("F1")}");
         if (GameManager.instance.inGame && !_isPlaying)
         {
-            if (Input.GetButtonDown("Cancel"))
+            if (Input.GetButtonDown("Cancel") || Input.GetKeyDown(KeyCode.P))
             {
                 if (_activeMenu != null && ReferenceEquals(_activeMenu, _references.pauseMenu))
                 {

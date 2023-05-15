@@ -228,4 +228,8 @@ public class UIReferences : MonoBehaviour
 
     public AudioClip pickUpClip => _pickUpClip;
 
+    [SerializeField] Button _quitButton;
+
+    public Button quitButton => _quitButton;
+
 }

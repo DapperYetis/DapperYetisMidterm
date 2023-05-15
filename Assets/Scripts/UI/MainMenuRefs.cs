@@ -80,4 +80,8 @@ public class MainMenuRefs : MonoBehaviour
     [SerializeField] TextMeshProUGUI _supportSecondary;
 
     public TextMeshProUGUI supportSecondary => _supportSecondary;
+
+    [SerializeField] Button _quitButton;
+
+    public Button quitButton => _quitButton;
 }

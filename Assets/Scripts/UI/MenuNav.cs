@@ -29,6 +29,10 @@ public class MenuNav : MonoBehaviour
     {
         UIManager.instance.PauseState();
         ToFirstMenu(_menuRef.mainMenu);
+
+        if(Application.platform == RuntimePlatform.WebGLPlayer)
+            _menuRef.quitButton.enabled = false;
+
     }
 
     #region MenuNav
