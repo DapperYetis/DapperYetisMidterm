@@ -12678,6 +12678,12 @@ PrefabInstance:
       propertyPath: _waves.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7300342205331037249, guid: 61d081160cf84b748abb9316d5cf4d82,
+        type: 3}
+      propertyPath: _waves.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 527514d1fdeeedd429227698bd455ad1,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61d081160cf84b748abb9316d5cf4d82, type: 3}
 --- !u!43 &1464930326
@@ -20354,6 +20360,12 @@ PrefabInstance:
       propertyPath: _bossSpawnPoint
       value: 
       objectReference: {fileID: 404993933}
+    - target: {fileID: 4531884235533200515, guid: 15f127ade20fadf42bcf087dcb7b2c92,
+        type: 3}
+      propertyPath: _bossWaves.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 728e4059dce5f1548abc05b5887376d7,
+        type: 2}
     - target: {fileID: 6272120186317048630, guid: 15f127ade20fadf42bcf087dcb7b2c92,
         type: 3}
       propertyPath: m_Mesh
