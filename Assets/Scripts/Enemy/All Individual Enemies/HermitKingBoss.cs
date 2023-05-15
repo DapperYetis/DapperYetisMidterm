@@ -27,6 +27,9 @@ public class HermitKingBoss : HybridEnemy
         base.Start();
         _isAttacking = true;
         StartCoroutine(DelayAttack());
+        OnEnemyDamaged.AddListener(OnTakeDamage);
+        OnBossDied.AddListener(BossDied);
+        UIManager.instance.SetBossHealthbar(GetHealthMax(), GetHealthCurrent());
     }
 
     private IEnumerator DelayAttack()
@@ -133,5 +136,15 @@ public class HermitKingBoss : HybridEnemy
         yield return new WaitForSeconds(_dashAttackStats.rate);
 
         _isAttacking = false;
+    }
+
+    public void OnTakeDamage()
+    {
+        UIManager.instance.SetBossHealthbar(GetHealthMax(), GetHealthCurrent());
+    }
+
+    public void BossDied()
+    {
+        UIManager.instance.TurnOffBossHealthBar();
     }
 }
