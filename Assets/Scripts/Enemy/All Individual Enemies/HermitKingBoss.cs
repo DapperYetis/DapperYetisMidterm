@@ -23,6 +23,7 @@ public class HermitKingBoss : HybridEnemy
 
     protected override void Start()
     {
+        UIManager.instance.TurnOnBossHealthBar();
         base.Start();
         _isAttacking = true;
         StartCoroutine(DelayAttack());

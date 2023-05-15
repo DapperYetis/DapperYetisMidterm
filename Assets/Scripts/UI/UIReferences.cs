@@ -232,4 +232,12 @@ public class UIReferences : MonoBehaviour
 
     public Button quitButton => _quitButton;
 
+    [SerializeField] GameObject _bossHealthBar;
+
+    public GameObject bossHealthBar => _bossHealthBar;
+
+    [SerializeField] Image _bossHealth;
+
+    public Image bossHealth => _bossHealth;
+
 }

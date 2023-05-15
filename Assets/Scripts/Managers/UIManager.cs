@@ -283,6 +283,11 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void UpdateStageCount(int stageIncrease)
+    {
+        references.stageCount.SetText(stageIncrease.ToString());
+    }
+
     public void UpdateEnemyCount()
     {
         if (_activeMenu != null) return;
@@ -511,6 +516,21 @@ public class UIManager : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         _references.transitionScreen.SetActive(false);
+    }
+
+    public void SetBossHealthbar(float maxhealth, float remainingHealth)
+    {
+        _references.bossHealth.fillAmount = remainingHealth / maxhealth;
+    }
+
+    public void TurnOnBossHealthBar()
+    {
+        references.bossHealthBar.SetActive(true);
+    }
+
+    public void TurnOffBossHealthBar()
+    {
+        references.bossHealthBar.SetActive(false);
     }
 
     #endregion

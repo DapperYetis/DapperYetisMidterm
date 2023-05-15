@@ -72,7 +72,4 @@ public class EnemyHealth : MonoBehaviour
         _buffs.Remove(buff);
     }
     #endregion
-
-    #region DamageRecieved
-    #endregion
 }

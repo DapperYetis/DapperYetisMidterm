@@ -45,6 +45,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     public UnityEvent _OnHealthChange;
     public UnityEvent<SOBuff> _onBuffAdded;
     public UnityEvent<SOBuff> _onBuffRemoved;
+    public UnityEvent<float> OnEnemyDamaged;
 
     // Enemy Stats
     [SerializeField, Space(20)]
@@ -372,6 +373,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     public virtual void Damage(float amount, (SOBuff buff, int amount)[] buffs)
     {
         _HPCurrent -= amount;
+        OnEnemyDamaged.Invoke(amount);
 
         if (_HPCurrent <= 0)
         {
