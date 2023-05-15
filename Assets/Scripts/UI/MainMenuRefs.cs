@@ -65,4 +65,19 @@ public class MainMenuRefs : MonoBehaviour
 
     public AudioClip buttonClip => _buttonClip;
 
+    [SerializeField] TextMeshProUGUI _weaponPrimary;
+
+    public TextMeshProUGUI weaponPrimary => _weaponPrimary;
+
+    [SerializeField] TextMeshProUGUI _weaponSecondary;
+
+    public TextMeshProUGUI weaponSecondary => _weaponSecondary;
+
+    [SerializeField] TextMeshProUGUI _supportPrimary;
+
+    public TextMeshProUGUI supportPrimary => _supportPrimary;
+
+    [SerializeField] TextMeshProUGUI _supportSecondary;
+
+    public TextMeshProUGUI supportSecondary => _supportSecondary;
 }
