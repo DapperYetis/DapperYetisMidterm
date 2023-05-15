@@ -45,7 +45,7 @@ public class HybridEnemy : MeleeEnemy
 
     protected virtual void Shoot()
     {
-        if (this == null || !isActiveAndEnabled) return;
+        if (this == null || !isActiveAndEnabled || _HPCurrent <= 0) return;
 
         StartCoroutine(FireShot());
     }

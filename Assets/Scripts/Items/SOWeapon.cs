@@ -7,6 +7,12 @@ public class SOWeapon : ScriptableObject
 {
     [SerializeField]
     private string _weaponName;
+    [SerializeField]
+    private string _primaryDesc;
+    public string primaryDesc => _primaryDesc;
+    [SerializeField]
+    private string _secondaryDesc;
+    public string secondaryDesc => _secondaryDesc;
     public string weaponName => _weaponName;
     [SerializeField]
     private GameObject _prefab;

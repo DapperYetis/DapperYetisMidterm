@@ -90,6 +90,7 @@ public class GameManager : MonoBehaviour
     {
         SceneManage.instance.LoadScene(1);
         _startTime = Time.time;
+        //UIManager.instance.StopLoading();
     }
 
     public void EndConditions()

@@ -13,13 +13,16 @@ MonoBehaviour:
   m_Name: Ice Staff
   m_EditorClassIdentifier: 
   _weaponName: Ice Staff
+  _primaryDesc: Slow rate of fire with medium damage. Also Slows Enemies.
+  _secondaryDesc: Shoots a large projectile that pierces through enemies and does
+    medium damage. Medium cooldown.
   _prefab: {fileID: 2045518251835205895, guid: fa36685f5c02af04e9e6fb66da1cbeff, type: 3}
   _stats:
     primaryAbility:
       changeType: 0
       prefab: {fileID: 424343093267893311, guid: 1201d3b5c2d5553479a27bb7ae733e7c,
         type: 3}
-      critChance: 0.3333
+      critChance: 0.333
       directDamage: 1.5
       secondaryDamage: 0
       cooldown: 0.75

@@ -43,13 +43,15 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     // Events
     [HideInInspector]
     public UnityEvent _OnHealthChange;
+    public UnityEvent<SOBuff> _onBuffAdded;
+    public UnityEvent<SOBuff> _onBuffRemoved;
 
-    // Enemy Stats
+    [Header("--- Stats ---")]
     [SerializeField, Space(20)]
     protected float _additivePriorityMod;
     [SerializeField]
-    protected int _spawnCost = 1;
-    public int spawnCost => _spawnCost;
+    protected float _spawnCost = 1;
+    public float spawnCost => _spawnCost;
     [SerializeField]
     protected EnemyStats _stats;
     public EnemyStats stats => _stats;
@@ -477,11 +479,12 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     {
         if (!_currentBuffs.ContainsKey(buff))
         {
+            _onBuffAdded.Invoke(buff);
             _currentBuffs.Add(buff, (0, Time.time + buff.buffLength));
             _currentBuffEffects.Add(buff, Instantiate(buff.effectPrefab, transform).GetComponent<BuffEffect>());
             _currentBuffEffects[buff].SetUp(this, buff);
             BuffStats(buff);
-
+            
             if (buff.audioClips.Length > 0)
                 _aud.PlayOneShot(buff.audioClips[Random.Range(0, buff.audioClips.Length)], buff.audioVolume);
             else
@@ -543,6 +546,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
 
         if (_currentBuffs[buff].stacks <= 0)
         {
+            _onBuffRemoved.Invoke(buff);
             _currentBuffs.Remove(buff);
             _currentBuffEffects.Remove(buff);
             return true;
