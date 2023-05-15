@@ -9821,6 +9821,7 @@ GameObject:
   - component: {fileID: 1048716493452070999}
   - component: {fileID: 1048716493452070996}
   - component: {fileID: 1048716493452070997}
+  - component: {fileID: 7684962981173714856}
   m_Layer: 0
   m_Name: Player Portal Boss Arena Upgraded
   m_TagString: Untagged
@@ -9835,7 +9836,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1048716493452070995}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -110}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9902,11 +9903,38 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1048716493452070995}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 20
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7684962981173714856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048716493452070995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a87e144a1c36474eb4dc8ab47992842, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _portalEnterIdle: {fileID: 3037487835557348088}
+  _portalEnterClose: {fileID: 2609340069686392214}
+  _portalExitOpen: {fileID: 2649271654961164493}
+  _portalExitIdle: {fileID: 882266273212352051}
+  _proclamationCollider: {fileID: 1048716493452070997}
+  _aud: {fileID: 6078859247047205841}
+  _bossWaves:
+  - {fileID: 11400000, guid: 728e4059dce5f1548abc05b5887376d7, type: 2}
+  - {fileID: 11400000, guid: 5b0d74f5b53e6de4d897a655d0b1909b, type: 2}
+  _bossSpawnPoint: {fileID: 0}
+  _audPortalOpenVol: 0
+  _audPortalOpen: []
+  _audBossExclamationVol: 0.5
+  _audBossExclamation:
+  - {fileID: 8300000, guid: d675c599f6ecded48b409c06cff448d1, type: 3}
 --- !u!1 &1885044804891699306
 GameObject:
   m_ObjectHideFlags: 0
@@ -9922,8 +9950,6 @@ GameObject:
   - component: {fileID: 7044237014678552412}
   - component: {fileID: 6272120186317048630}
   - component: {fileID: 6078859247047205841}
-  - component: {fileID: 4766693448247625971}
-  - component: {fileID: 4531884235533200515}
   m_Layer: 3
   m_Name: Base Block
   m_TagString: Untagged
@@ -10478,7 +10504,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2127
+  m_VersionIndex: 2112
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -10674,48 +10700,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!135 &4766693448247625971
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1885044804891699306}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 20
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4531884235533200515
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1885044804891699306}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a87e144a1c36474eb4dc8ab47992842, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _portalEnterIdle: {fileID: 3037487835557348088}
-  _portalEnterClose: {fileID: 2609340069686392214}
-  _portalExitOpen: {fileID: 2649271654961164493}
-  _portalExitIdle: {fileID: 882266273212352051}
-  _proclamationCollider: {fileID: 4766693448247625971}
-  _aud: {fileID: 6078859247047205841}
-  _bossWaves:
-  - {fileID: 11400000, guid: 8960b3a3b5bf0ad4cbf00878d05d2e21, type: 2}
-  _bossSpawnPoint: {fileID: 0}
-  _audPortalOpenVol: 0.2
-  _audPortalOpen:
-  - {fileID: 8300000, guid: 6cb770d2c653d5b4b9503b6a6a88ede7, type: 3}
-  - {fileID: 8300000, guid: bd27aec87cfa17c4dada39ba17d9161e, type: 3}
-  - {fileID: 8300000, guid: ee954120d7692524ebb3869360370f61, type: 3}
-  _audBossExclamationVol: 0.5
-  _audBossExclamation:
-  - {fileID: 8300000, guid: d675c599f6ecded48b409c06cff448d1, type: 3}
 --- !u!1 &2609340069686375316
 GameObject:
   m_ObjectHideFlags: 0
@@ -61469,7 +61453,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1357
+  m_VersionIndex: 1342
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []

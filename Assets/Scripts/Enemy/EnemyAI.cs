@@ -48,12 +48,12 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     public UnityEvent OnEnemyDamaged;
     public UnityEvent OnBossDied;
 
-    // Enemy Stats
+    [Header("--- Stats ---")]
     [SerializeField, Space(20)]
     protected float _additivePriorityMod;
     [SerializeField]
-    protected int _spawnCost = 1;
-    public int spawnCost => _spawnCost;
+    protected float _spawnCost = 1;
+    public float spawnCost => _spawnCost;
     [SerializeField]
     protected EnemyStats _stats;
     public EnemyStats stats => _stats;

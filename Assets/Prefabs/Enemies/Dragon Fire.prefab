@@ -482,12 +482,12 @@ MonoBehaviour:
   _OnHealthChange:
     m_PersistentCalls:
       m_Calls: []
-  _additivePriorityMod: 0
-  _spawnCost: 1
+  _additivePriorityMod: 1
+  _spawnCost: 10
   _stats:
     HPMax: 15
     facePlayerSpeed: 600
-    speed: 10
+    speed: 8
     acceleration: 20
   _statsScaling:
     HPMax: 3

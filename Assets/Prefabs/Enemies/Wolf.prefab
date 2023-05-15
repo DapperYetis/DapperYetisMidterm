@@ -321,7 +321,7 @@ MonoBehaviour:
   _stats:
     HPMax: 3
     facePlayerSpeed: 500
-    speed: 18
+    speed: 10
     acceleration: 20
   _statsScaling:
     HPMax: 1.5
@@ -332,7 +332,7 @@ MonoBehaviour:
   _runTypeTimer: 1
   _circlingRange: 5
   _deathDelay: 3
-  _timeLength: 10
+  _timeLength: 9
   _scaleMultiplier: 20
   _primaryAttackStats:
     positions:

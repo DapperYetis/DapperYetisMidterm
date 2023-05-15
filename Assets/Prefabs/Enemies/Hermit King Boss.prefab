@@ -497,10 +497,9 @@ MonoBehaviour:
   _audSpawnRoarVol: 0.5
   _audSpawnRoar:
   - {fileID: 8300000, guid: 077e4541d5b140941a5b487b46c2d49a, type: 3}
-  - {fileID: 8300000, guid: 6e6b6dec1764938489511cdb60c6b57f, type: 3}
   _audGettingCloseVol: 0.5
   _audGettingClose:
-  - {fileID: 8300000, guid: 077e4541d5b140941a5b487b46c2d49a, type: 3}
+  - {fileID: 8300000, guid: 6e6b6dec1764938489511cdb60c6b57f, type: 3}
   _audTakeDamageVol: 0.5
   _audTakeDamage:
   - {fileID: 8300000, guid: 4e30f971c563e014b9a0d7330f063788, type: 3}
