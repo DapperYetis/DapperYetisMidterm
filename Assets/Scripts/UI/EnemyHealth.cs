@@ -12,8 +12,10 @@ public class EnemyHealth : MonoBehaviour
     EnemyAI _enemyAI;
     [SerializeField]
     GameObject _Debuffbar;
+    [SerializeField] 
+    GameObject _debuffPrefab;
 
-    GameObject _buffHudItem;
+   
     Vector3 _direction;
     float _remainingHealth;
     EnemyBuffItem debuff;
@@ -57,13 +59,18 @@ public class EnemyHealth : MonoBehaviour
     #region EnemyDebuffs
     void AddBuff(SOBuff buff)
     {
-        debuff = Instantiate(_buffHudItem, _Debuffbar.transform).GetComponent<EnemyBuffItem>;
-        _buffs.Add(buff, debuff);
+        if (!_buffs.ContainsKey(buff))
+        {
+            debuff = Instantiate(_debuffPrefab, _Debuffbar.transform).GetComponent<EnemyBuffItem>();
+            _buffs.Add(buff, debuff);
+            debuff.SetBuffUI(buff.icon);
+        }
     }
 
     void RemoveBuff(SOBuff buff)
     {
-
+        Destroy(debuff.gameObject);
+        _buffs.Remove(buff);
     }
     #endregion
 
