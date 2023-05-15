@@ -22,7 +22,7 @@ MonoBehaviour:
       changeType: 0
       prefab: {fileID: 424343093267893311, guid: 1201d3b5c2d5553479a27bb7ae733e7c,
         type: 3}
-      critChance: 1
+      critChance: 0.333
       directDamage: 1.5
       secondaryDamage: 0
       cooldown: 0.75

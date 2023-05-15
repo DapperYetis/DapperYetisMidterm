@@ -10,10 +10,8 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField]
     Image _enemyhealthBar;
     EnemyAI _enemyAI;
-    [SerializeField]
-    GameObject _Debuffbar;
-    [SerializeField] 
-    GameObject _debuffPrefab;
+    [SerializeField] GameObject _Debuffbar;
+    [SerializeField] GameObject _debuffPrefab;
 
    
     Vector3 _direction;
