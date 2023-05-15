@@ -79,7 +79,7 @@ public class LoadoutScript : MonoBehaviour
             _weaponButtons.Add(newWeapon, weapon);
     }
 
-    private void SetWeaponDescriptions()
+    public void SetWeaponDescriptions()
     {
         SOWeapon choice = GetWeapon();
         _weaponPrimaryDesc.SetText(choice.primaryDesc);
@@ -120,7 +120,7 @@ public class LoadoutScript : MonoBehaviour
         _supportButtons.Add(newSupport, support);
     }
 
-    private void SetSupportDescriptions()
+    public void SetSupportDescriptions()
     {
         SOSupport choice = GetSupport();
         _supportPrimaryDesc.SetText(choice.primaryDescription);

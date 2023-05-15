@@ -67,6 +67,7 @@ public class EnemyHealth : MonoBehaviour
 
     void RemoveBuff(SOBuff buff)
     {
+        if(debuff == null) return;
         Destroy(debuff.gameObject);
         _buffs.Remove(buff);
     }
