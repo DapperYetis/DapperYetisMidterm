@@ -147,14 +147,13 @@ GameObject:
   - component: {fileID: 5305103713753407727}
   - component: {fileID: 5305103713753407724}
   - component: {fileID: 5305103713753407725}
-  - component: {fileID: 6296275427959793321}
   m_Layer: 5
   m_Name: BG
   m_TagString: Transition
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5305103713753407731
 RectTransform:
   m_ObjectHideFlags: 0
@@ -224,17 +223,5 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 1
   m_Interactable: 0
-  m_BlocksRaycasts: 0
+  m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &6296275427959793321
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5305103713753407728}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9eed09ba90ecf17438233a5192240707, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

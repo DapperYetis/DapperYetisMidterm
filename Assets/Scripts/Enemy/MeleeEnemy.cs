@@ -46,8 +46,10 @@ public class MeleeEnemy : EnemyAI
     protected virtual IEnumerator TakeSwing()
     {
         _anim.SetTrigger("Attack");
-        _aud.PlayOneShot(_primaryAttackStats._attackAudio[Random.Range(0, _primaryAttackStats._attackAudio.Length)], _primaryAttackStats._attackAudioVol);
-        //Debug.Log($"{name} played a sound");
+        if (_primaryAttackStats._attackAudio.Length > 0)
+            _aud.PlayOneShot(_primaryAttackStats._attackAudio[Random.Range(0, _primaryAttackStats._attackAudio.Length)], _primaryAttackStats._attackAudioVol);
+        else
+            Debug.LogWarning("No Melee Attack Sounds to play!");
         _hasCompletedAttack = true;
         yield return new WaitForSeconds(_primaryAttackStats.rate);
         _isAttacking = false;

@@ -42,7 +42,7 @@ public class HudBuffs : MonoBehaviour
     }
     private void DecreaseStack(SOBuff buffToChange, int toSubtract)
     {
-        _buffList[buffToChange].SetBuffStack(toSubtract);
+        _buffList[buffToChange].SetBuffStack(-toSubtract);
     }
 
 }
