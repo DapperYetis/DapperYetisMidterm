@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.Rendering.DebugUI;
 
@@ -23,6 +24,8 @@ public class UIManager : MonoBehaviour
     private AnimationCurve _lerpSpeed;
     [SerializeField]
     private float _animationLength;
+    [SerializeField]
+    private float _loadingLength;
 
     public UIReferences references => _references;
 
@@ -34,7 +37,7 @@ public class UIManager : MonoBehaviour
     private Stack<GameObject> _menuStack;
     private bool _isPlaying = false;
     private float _endtime;
-    private float _lastCurrency;
+    private float _lastCurrency = 0;
     private bool _isHealthUpdating;
     [SerializeField]
     private float _healthWaitTime = 1f;
@@ -66,7 +69,12 @@ public class UIManager : MonoBehaviour
 
         _origTimeScale = Time.timeScale;
         SetUp();
-        _lastCurrency = _playerInv.currency;
+        
+        if(_playerInv != null)
+            _lastCurrency = _playerInv.currency;
+
+        if (Application.platform == RuntimePlatform.WebGLPlayer)
+            _references.quitButton.enabled = false;
     }
 
     void Update()
@@ -75,7 +83,7 @@ public class UIManager : MonoBehaviour
             _references.timer.SetText($"{(int)GameManager.instance.runTimeMinutes} : {(GameManager.instance.runTime % 60).ToString("F1")}");
         if (GameManager.instance.inGame && !_isPlaying)
         {
-            if (Input.GetButtonDown("Cancel"))
+            if (Input.GetButtonDown("Cancel") || Input.GetKeyDown(KeyCode.P))
             {
                 if (_activeMenu != null && ReferenceEquals(_activeMenu, _references.pauseMenu))
                 {
@@ -351,7 +359,7 @@ public class UIManager : MonoBehaviour
     public void LoseScreenStats()
     {
         if (_references == null) return;
-
+        _references.hud.SetActive(false);
         _references.loseTime.SetText($"{(int)AchievementManager.instance.runStats.timePlayed} : {((AchievementManager.instance.runStats.timePlayed * 60) % 60).ToString("F1")}");
         StartCoroutine(SetScoreTally(_references.loseScore, (int)AchievementManager.instance.runStats.totalPoints));
         StartCoroutine(SetScoreTally(_references.loseDeaths, (int)(AchievementManager.instance.runStats.deaths)));
@@ -370,7 +378,7 @@ public class UIManager : MonoBehaviour
     public void WinScreenStats()
     {
         if (_references == null) return;
-
+        _references.hud.SetActive(false);
         _references.winTime.SetText($"{(int)AchievementManager.instance.runStats.timePlayed} : {((AchievementManager.instance.runStats.timePlayed * 60) % 60).ToString("F1")}");
         StartCoroutine(SetScoreTally(_references.winScore, (int)(AchievementManager.instance.runStats.totalPoints)));
         StartCoroutine(SetScoreTally(_references.winDeaths, (int)(AchievementManager.instance.runStats.deaths)));
@@ -463,6 +471,42 @@ public class UIManager : MonoBehaviour
     public void PickupAnimation()
     {
         _transition.SetTrigger("Pickup");
+    }
+
+    public void StartLoading()
+    {
+        StartCoroutine(StartLoadingScreen());
+    }
+
+    IEnumerator StartLoadingScreen()
+    {
+        float startTime = Time.realtimeSinceStartup;
+        _references.transitionScreen.SetActive(true);
+        _references.loadingScreenValues.alpha = 0f;
+        while(Time.realtimeSinceStartup < startTime + _loadingLength)
+        {
+            _references.loadingScreenValues.alpha = Mathf.Lerp(0, 1f, (Time.realtimeSinceStartup - startTime) / _loadingLength);
+            yield return new WaitForEndOfFrame();
+        }
+        _references.loadingScreenValues.alpha = 1f;
+    }
+
+    public void StopLoading()
+    {
+        StartCoroutine(EndLoadingScreen());
+    }
+
+    IEnumerator EndLoadingScreen()
+    {
+        float startTime = Time.realtimeSinceStartup;
+        _references.transitionScreen.SetActive(true);
+        _references.loadingScreenValues.alpha = 1f;
+        while (Time.realtimeSinceStartup < startTime + _loadingLength)
+        {
+            _references.loadingScreenValues.alpha = Mathf.Lerp(1f, 0, (Time.realtimeSinceStartup - startTime) / _loadingLength);
+            yield return new WaitForEndOfFrame();
+        }
+        _references.transitionScreen.SetActive(false);
     }
 
     #endregion

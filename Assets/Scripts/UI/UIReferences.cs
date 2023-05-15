@@ -76,6 +76,10 @@ public class UIReferences : MonoBehaviour
 
     public GameObject transitionScreen => _transitionScreen;
 
+    [SerializeField] CanvasGroup _loadingScreenValues;
+
+    public CanvasGroup loadingScreenValues => _loadingScreenValues;
+
     [SerializeField] Animator _itemAnimator;
 
     public Animator itemAnimator => _itemAnimator;
@@ -223,5 +227,9 @@ public class UIReferences : MonoBehaviour
     [SerializeField] AudioClip _pickUpClip;
 
     public AudioClip pickUpClip => _pickUpClip;
+
+    [SerializeField] Button _quitButton;
+
+    public Button quitButton => _quitButton;
 
 }

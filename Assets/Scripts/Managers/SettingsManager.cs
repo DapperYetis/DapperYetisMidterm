@@ -30,6 +30,15 @@ public class SettingsManager : MonoBehaviour
         DefaultSetUp();
     }
 
+    private void Update()
+    {
+        if(!GameManager.instance.inGame)
+        {
+            _loadoutScript.SetWeaponDescriptions();
+            _loadoutScript.SetSupportDescriptions();
+        }
+    }
+
     public void SetMusicVolume(float volume)
     {
         PlayerPrefs.SetFloat("SavedMusicVolume", volume);

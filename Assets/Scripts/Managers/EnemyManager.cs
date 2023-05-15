@@ -61,6 +61,8 @@ public class EnemyManager : MonoBehaviour
     public UnityEvent<SOWave> OnBossRoomEnter;
     [HideInInspector]
     public UnityEvent<int> OnBossRoomLeave;
+    [HideInInspector]
+    public UnityEvent OnEnemyDeath;
 
     void Awake()
     {
@@ -170,6 +172,7 @@ public class EnemyManager : MonoBehaviour
         _enemies.Remove(enemy);
         _spawningBudget += enemy.spawnCost;
         OnEnemyCountChange?.Invoke();
+        OnEnemyDeath.Invoke();
     }
 
     public int GetEnemyListSize()
