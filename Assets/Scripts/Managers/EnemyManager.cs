@@ -121,16 +121,27 @@ public class EnemyManager : MonoBehaviour
     {
         yield return new WaitForSeconds(_initialWaveWait);
         Debug.Log($"Time: {GameManager.instance.runTimeMinutes} min.\tSpawning: {_initialAdditionalWaves} ADDITIONAL waves.");
+        int index;
         for (int i = 0; i < _initialAdditionalWaves; ++i)
         {
-            RunWave(Random.Range(0, _waves.Count));
+            index = Random.Range(0, _waves.Count);
+            while (_waveCosts[_waves[index]] >= _waveCostMax)
+            {
+                index = Random.Range(0, _waves.Count);
+            }
+            RunWave(index);
         }
         float waitTime = 0;
         while (GameManager.instance.inGame)
         {
             for (int i = 0; i < scaleFactorInt; ++i)
             {
-                waitTime = RunWave(Random.Range(0, _waves.Count));
+                index = Random.Range(0, _waves.Count);
+                while (_waveCosts[_waves[index]] >= _waveCostMax)
+                {
+                    index = Random.Range(0, _waves.Count);
+                }
+                waitTime = RunWave(index);
             }
             Debug.Log($"Time: {GameManager.instance.runTimeMinutes} min.\tSpawning: {scaleFactorInt} waves.");
             yield return new WaitForSeconds(waitTime);
@@ -139,7 +150,7 @@ public class EnemyManager : MonoBehaviour
 
     private float RunWave(int index)
     {
-        if(_withinSpawningBudget)
+        if(_withinSpawningBudget && _waveCosts[_waves[index]] < _waveCostMax)
             StartCoroutine(Spawner(_waves[index], GetSpawnPoint(), 0));
 
         return _waves[index].maxEnemyCount * _waves[index].spawnInterval + _timeBetweenWaves.Evaluate(GameManager.instance.runTimeMinutes);
@@ -151,7 +162,7 @@ public class EnemyManager : MonoBehaviour
 
         List<EnemySpawnPoint> sortedPoints = (from point in _wavePoints where (GameManager.instance.player.transform.position - point.transform.position).magnitude > _minSpawnDistanceFromPlayer select point).ToList();
         sortedPoints.OrderBy((point) => Vector3.Dot(GameManager.instance.player.transform.position, point.transform.position)).ThenBy((point) => (GameManager.instance.player.transform.position - point.transform.position).sqrMagnitude);
-        return sortedPoints.Count > 0 ? sortedPoints[Mathf.FloorToInt(_waveDistance.Evaluate(Random.Range(0f, 1f)))].GetPointInRange() : Vector3.zero;
+        return sortedPoints.Count > 0 ? sortedPoints[Mathf.FloorToInt(_waveDistance.Evaluate(Random.Range(0f, 1f)) * sortedPoints.Count)].GetPointInRange() : Vector3.zero;
     }
 
     private IEnumerator Spawner(SOWave wave, Vector3 spawnPoint, int spawnedCount)
@@ -166,14 +177,9 @@ public class EnemyManager : MonoBehaviour
 
     public static void SpawnEnemy(SOWave wave, Vector3 spawnPosition)
     {
-        Vector3 PossibleSpawnPoint = spawnPosition + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f));
-        //NavMeshPathStatus a;
-        //if (_enemy.agent.pathEndPosition == PossibleSpawnPoint)
-        //{
-        //    a = PossibleSpawnPoint;
-        //}
+        Vector3 possibleSpawnPoint = spawnPosition + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f));
 
-        EnemyAI enemy = Instantiate(wave.enemyType, PossibleSpawnPoint, Quaternion.identity).GetComponent<EnemyAI>();
+        EnemyAI enemy = Instantiate(wave.enemyType, possibleSpawnPoint, Quaternion.identity).GetComponent<EnemyAI>();
         enemy.SetUp(wave);
     }
 
