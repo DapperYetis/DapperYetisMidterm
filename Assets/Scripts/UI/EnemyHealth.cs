@@ -7,20 +7,27 @@ public class EnemyHealth : MonoBehaviour
 {
 
     Camera _playerCam;
-    [SerializeField] 
+    [SerializeField]
     Image _enemyhealthBar;
     EnemyAI _enemyAI;
+    [SerializeField]
+    GameObject _Debuffbar;
 
+    GameObject _buffHudItem;
     Vector3 _direction;
     float _remainingHealth;
+    EnemyBuffItem debuff;
+    Dictionary<SOBuff, EnemyBuffItem> _buffs = new();
 
-
+    #region EnemyHealth
     private void Start()
     {
         _playerCam = Camera.main;
         _enemyAI = transform.parent.GetComponent<EnemyAI>();
 
         _enemyAI._OnHealthChange.AddListener(UpdateEnemyHealth);
+        _enemyAI._onBuffAdded.AddListener(AddBuff);
+        _enemyAI._onBuffRemoved.AddListener(RemoveBuff);
     }
 
     void Update()
@@ -34,7 +41,7 @@ public class EnemyHealth : MonoBehaviour
         _direction.x = 0f;
         _direction.z = 0f;
 
-        transform.LookAt( _playerCam.transform.position - _direction);
+        transform.LookAt(_playerCam.transform.position - _direction);
         transform.Rotate(0, 180, 0);
     }
 
@@ -45,4 +52,21 @@ public class EnemyHealth : MonoBehaviour
         _enemyhealthBar.fillAmount = _remainingHealth;
 
     }
+    #endregion
+
+    #region EnemyDebuffs
+    void AddBuff(SOBuff buff)
+    {
+        debuff = Instantiate(_buffHudItem, _Debuffbar.transform).GetComponent<EnemyBuffItem>;
+        _buffs.Add(buff, debuff);
+    }
+
+    void RemoveBuff(SOBuff buff)
+    {
+
+    }
+    #endregion
+
+    #region DamageRecieved
+    #endregion
 }
