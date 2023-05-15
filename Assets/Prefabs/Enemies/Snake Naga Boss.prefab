@@ -295,7 +295,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7075855458551975990}
-  - component: {fileID: -5684284074935576437}
+  - component: {fileID: 4714778258663405791}
   - component: {fileID: 7353427685030719017}
   - component: {fileID: 7075855458542108636}
   - component: {fileID: -1956189428985556130}
@@ -363,7 +363,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-5684284074935576437
+--- !u!114 &4714778258663405791
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -372,48 +372,55 @@ MonoBehaviour:
   m_GameObject: {fileID: 7075855458551483414}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f1a7a1edb4229646bc2209eded8e2e3, type: 3}
+  m_Script: {fileID: 11500000, guid: 6aca4fa49d62b2f489255424f7b95249, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _model: {fileID: 7075855458537881884}
-  _agent: {fileID: -1956189428985556130}
-  _anim: {fileID: 7075855458542108636}
-  _changeTime: 2
+  _model: {fileID: 0}
+  _agent: {fileID: 0}
+  _anim: {fileID: 0}
+  _aud: {fileID: 0}
+  _drops: {fileID: 0}
+  _spawnEffectOpening: {fileID: 0}
+  _spawnEffectIdle: {fileID: 0}
+  _spawnEffectClosing: {fileID: 0}
+  _bodyCollider: {fileID: 0}
+  _changeTime: 0
   _changeCurve:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _radiusMod: 0.25
-  _speedMod: 1.5
-  OnHealthChange:
+  _radiusMod: 0
+  _speedMod: 0
+  _animTransSpeed: 0
+  _OnHealthChange:
     m_PersistentCalls:
       m_Calls: []
+  _onBuffAdded:
+    m_PersistentCalls:
+      m_Calls: []
+  _onBuffRemoved:
+    m_PersistentCalls:
+      m_Calls: []
+  _additivePriorityMod: 0
+  _spawnCost: 1
   _stats:
     HPMax: 0
     facePlayerSpeed: 0
+    speed: 0
+    acceleration: 0
   _statsScaling:
     HPMax: 0
     facePlayerSpeed: 0
+    speed: 0
+    acceleration: 0
+  _moveChances: 10
+  _runTypeTimer: 0
+  _circlingRange: 10
+  _deathDelay: 0
+  _timeLength: 0
+  _scaleMultiplier: 0
   _primaryAttackStats:
     positions: []
     damage: 0
@@ -421,7 +428,12 @@ MonoBehaviour:
     lifetime: 0
     variance: 0
     prefab: {fileID: 0}
+    selfBuffs: []
+    targetBuffs: []
     speed: 0
+    range: 0
+    _attackAudioVol: 0
+    _attackAudio: []
   _primaryAttackStatsScaling:
     positions: []
     damage: 0
@@ -429,7 +441,27 @@ MonoBehaviour:
     lifetime: 0
     variance: 0
     prefab: {fileID: 0}
+    selfBuffs: []
+    targetBuffs: []
     speed: 0
+    range: 0
+    _attackAudioVol: 0
+    _attackAudio: []
+  _audSpawnVol: 0
+  _audSpawn: []
+  _audSpawnRoarVol: 0
+  _audSpawnRoar: []
+  _audGettingCloseVol: 0
+  _audGettingClose: []
+  _audTakeDamageVol: 0
+  _audTakeDamage: []
+  _audHealVol: 0
+  _audHeal: []
+  _audDeathVol: 0
+  _audDeath: []
+  _audFallDownVol: 0
+  _audFallDown: []
+  _meleeCollider: {fileID: 0}
   _secondaryAttackStats:
     positions: []
     damage: 0
@@ -437,7 +469,25 @@ MonoBehaviour:
     lifetime: 0
     variance: 0
     prefab: {fileID: 0}
+    selfBuffs: []
+    targetBuffs: []
     speed: 0
+    range: 0
+    _attackAudioVol: 0
+    _attackAudio: []
+  _secondaryAttackStatsScaling:
+    positions: []
+    damage: 0
+    rate: 0
+    lifetime: 0
+    variance: 0
+    prefab: {fileID: 0}
+    selfBuffs: []
+    targetBuffs: []
+    speed: 0
+    range: 0
+    _attackAudioVol: 0
+    _attackAudio: []
 --- !u!114 &7353427685030719017
 MonoBehaviour:
   m_ObjectHideFlags: 0
