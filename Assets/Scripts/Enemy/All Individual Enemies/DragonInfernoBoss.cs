@@ -38,6 +38,10 @@ public class DragonInfernoBoss : HybridEnemy
         _agent.baseOffset = _currentHeight;
         _isAttacking = true;
         StartCoroutine(DelayAttack());
+        UIManager.instance.TurnOnBossHealthBar();
+        UIManager.instance.SetBossHealthbar(GetHealthMax(),GetHealthCurrent());
+        OnBossDied.AddListener(BossDied);
+        OnEnemyDamaged.AddListener(SetHealth);
     }
 
     private IEnumerator DelayAttack()
@@ -166,5 +170,15 @@ public class DragonInfernoBoss : HybridEnemy
         _hasCompletedAttack = true;
         yield return new WaitForSeconds(stats.rate);
         _isAttacking = false;
+    }
+
+    private void SetHealth()
+    {
+        UIManager.instance.SetBossHealthbar(GetHealthMax(), GetHealthCurrent());
+    }
+
+    private void BossDied()
+    {
+        UIManager.instance.TurnOffBossHealthBar();
     }
 }
