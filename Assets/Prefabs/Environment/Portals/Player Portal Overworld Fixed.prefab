@@ -12570,9 +12570,11 @@ MonoBehaviour:
   _aud: {fileID: 7384079107777978067}
   _portalExitOpen: {fileID: 6624188299748727879}
   _portalExitIdle: {fileID: 7398244673903325350}
-  _audPortalOpenVol: 0.5
+  _audPortalOpenVol: 0.2
   _audPortalOpen:
-  - {fileID: 8300000, guid: 9aed84c57be8c1f4ea2741c37ec3b00a, type: 3}
+  - {fileID: 8300000, guid: 6cb770d2c653d5b4b9503b6a6a88ede7, type: 3}
+  - {fileID: 8300000, guid: bd27aec87cfa17c4dada39ba17d9161e, type: 3}
+  - {fileID: 8300000, guid: ee954120d7692524ebb3869360370f61, type: 3}
 --- !u!1001 &6624188299748578779
 PrefabInstance:
   m_ObjectHideFlags: 0
