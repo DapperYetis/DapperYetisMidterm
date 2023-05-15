@@ -279,7 +279,10 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
 
         Color mainColor = _model.material.color;
         _model.material.color = new Color(0, 0, 0, 0f); // should but doesnt make enemies transparent.  You have to make the material transparent and that causes visual problems so that was scrapped, but this is still good to have for other reasons.
-        _aud.PlayOneShot(_audSpawn[Random.Range(0, _audSpawn.Length)], _audSpawnVol);
+        if (_audSpawn.Length > 0)
+            _aud.PlayOneShot(_audSpawn[Random.Range(0, _audSpawn.Length)], _audSpawnVol);
+        else
+            Debug.LogWarning("No Spawn Sounds to play!");
 
         GameObject spFX1 = Instantiate(_spawnEffectOpening, transform, worldPositionStays: false);
         yield return new WaitForSeconds(_PortalOpenDur);
@@ -302,7 +305,10 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
 
     protected virtual void SpawnRoar()
     {
-        _aud.PlayOneShot(_audSpawnRoar[Random.Range(0, _audSpawnRoar.Length)], _audSpawnRoarVol);
+        if (_audSpawnRoar.Length > 0)
+            _aud.PlayOneShot(_audSpawnRoar[Random.Range(0, _audSpawnRoar.Length)], _audSpawnRoarVol);
+        else
+            Debug.LogWarning("No Spawn Roar Sounds to play!");
         Debug.Log($"{name} played a sound");
     }
 
@@ -372,8 +378,10 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
         else
         {
             _anim.SetTrigger("Damage");
-            _aud.PlayOneShot(_audTakeDamage[Random.Range(0, _audTakeDamage.Length)], _audTakeDamageVol);
-            //Debug.Log($"{name} played a sound");
+            if (_audTakeDamage.Length > 0)
+                _aud.PlayOneShot(_audTakeDamage[Random.Range(0, _audTakeDamage.Length)], _audTakeDamageVol);
+            else
+                Debug.LogWarning("No Take Damage Sounds to play!");
             StartCoroutine(FlashColor(Color.red));
             if (buffs != null)
             {
@@ -403,14 +411,18 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
 
     protected void DeathCry()
     {
-        _aud.PlayOneShot(_audDeath[Random.Range(0, _audDeath.Length)], _audDeathVol);
-        //Debug.Log($"{name} played a sound");
+        if (_audDeath.Length > 0)
+            _aud.PlayOneShot(_audDeath[Random.Range(0, _audDeath.Length)], _audDeathVol);
+        else
+            Debug.LogWarning("No Death Sounds to play!");
     }
 
     protected void FellDownDead()
     {
-        _aud.PlayOneShot(_audFallDown[Random.Range(0, _audFallDown.Length)], _audFallDownVol);
-        //Debug.Log($"{name} played a sound");
+        if (_audFallDown.Length > 0)
+            _aud.PlayOneShot(_audFallDown[Random.Range(0, _audFallDown.Length)], _audFallDownVol);
+        else
+            Debug.LogWarning("No Fall Down Sounds to play!");
     }
 
     protected virtual IEnumerator EnemyRemoved()
@@ -440,8 +452,10 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
         else
         {
             StartCoroutine(FlashColor(Color.green));
-            _aud.PlayOneShot(_audHeal[Random.Range(0, _audHeal.Length)], _audHealVol);
-            Debug.Log($"{name} played a sound");
+            if (_audHeal.Length > 0)
+                _aud.PlayOneShot(_audHeal[Random.Range(0, _audHeal.Length)], _audHealVol);
+            else
+                Debug.LogWarning("No Heal Sounds to play!");
         }
 
         _OnHealthChange.Invoke();
@@ -470,6 +484,8 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
 
             if (buff.audioClips.Length > 0)
                 _aud.PlayOneShot(buff.audioClips[Random.Range(0, buff.audioClips.Length)], buff.audioVolume);
+            else
+                Debug.LogWarning("No Buff/Debuff Sounds to play!");
         }
         _currentBuffs[buff] = (_currentBuffs[buff].stacks + amount, _currentBuffs[buff].time);
     }
