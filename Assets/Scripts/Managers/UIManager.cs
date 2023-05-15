@@ -134,6 +134,8 @@ public class UIManager : MonoBehaviour
             {
                 _playerController.weapon.OnPrimary.AddListener(AttackCD1);
                 _playerController.weapon.OnSecondary.AddListener(AttackCD2);
+                _playerController.support.OnPrimary.AddListener(SupportCD1);
+                _playerController.support.OnSecondary.AddListener(SupportCD2);
                 _playerController.inventory.OnCurrencyChange.AddListener(TrackCurrency);
             });
             GameManager.instance.OnScoreChange.AddListener(UpdateScore);
@@ -347,13 +349,13 @@ public class UIManager : MonoBehaviour
     public void SupportCD1()
     {
         if (_references == null) return;
-        StartCoroutine(CooldownTimer(10f, Time.time, _references.suppCoolDwn1));
+        StartCoroutine(CooldownTimer(_playerController.support.stats.useRatePrimary, Time.time, _references.suppCoolDwn1));
     }
 
     public void SupportCD2()
     {
         if (_references == null) return;
-        StartCoroutine(CooldownTimer(10f, Time.time, _references.suppCoolDwn2));
+        StartCoroutine(CooldownTimer(_playerController.support.stats.useRateSecondary, Time.time, _references.suppCoolDwn2));
     }
 
     public void LoseScreenStats()
