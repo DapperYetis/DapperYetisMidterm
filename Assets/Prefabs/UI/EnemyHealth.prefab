@@ -195,9 +195,6 @@ MonoBehaviour:
   _Debuffbar: {fileID: 6565690166936994748}
   _debuffPrefab: {fileID: 6821389441607541330, guid: cfb92a8f922128d41b3c66dcc33a5d40,
     type: 3}
-  _damagePrefab: {fileID: 2794252266827973320, guid: 0ed9a83b3aac13a45a6cf78091066e89,
-    type: 3}
-  _animationStartLocation: {fileID: 0}
 --- !u!1 &6565690166936994748
 GameObject:
   m_ObjectHideFlags: 0
