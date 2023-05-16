@@ -161,7 +161,7 @@ MonoBehaviour:
     rate: 2
     lifetime: 5
     variance: 3
-    prefab: {fileID: 424343093267893311, guid: 1bcc9b7c1094fd547910ca2344bca383, type: 3}
+    prefab: {fileID: 424343093267893311, guid: 912a43b0040ffe643b0c56e5be18da99, type: 3}
     selfBuffs: []
     targetBuffs: []
     speed: 15

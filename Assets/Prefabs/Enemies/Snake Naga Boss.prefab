@@ -300,7 +300,6 @@ GameObject:
   - component: {fileID: 7075855458542108636}
   - component: {fileID: -1956189428985556130}
   - component: {fileID: 1413299189605927935}
-  - component: {fileID: 5112210415975740181}
   m_Layer: 7
   m_Name: Snake Naga Boss
   m_TagString: Untagged
@@ -556,23 +555,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.7
-  m_Height: 4.3
+  m_Radius: 1
+  m_Height: 3.5
   m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
---- !u!135 &5112210415975740181
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7075855458551483414}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 20
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!1 &7075855458551483456
 GameObject:
   m_ObjectHideFlags: 0

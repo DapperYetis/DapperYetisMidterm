@@ -55,12 +55,12 @@ public class MeleeEnemy : EnemyAI
         _isAttacking = false;
     }
 
-    protected void AttackStart()
+    protected virtual void AttackStart()
     {
         _meleeCollider.enabled = true;
     }
 
-    protected void AttackEnd()
+    protected virtual void AttackEnd()
     {
         _meleeCollider.enabled = false;
     }
