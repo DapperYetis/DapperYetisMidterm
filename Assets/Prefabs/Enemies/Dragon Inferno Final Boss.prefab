@@ -1254,9 +1254,10 @@ MonoBehaviour:
   _anim: {fileID: 8592159916258021161}
   _aud: {fileID: 3025831216519790028}
   _drops: {fileID: 9106959015676219242}
-  _spawnEffectOpening: {fileID: 0}
-  _spawnEffectIdle: {fileID: 0}
-  _spawnEffectClosing: {fileID: 0}
+  _spawnEffectOpening: {fileID: 130970, guid: 5abdc17ce2cedda4185e47de42cb705d, type: 3}
+  _spawnEffectIdle: {fileID: 3069790173506216932, guid: 7fc6ad3b14acb1845bce38a96eb63ea5,
+    type: 3}
+  _spawnEffectClosing: {fileID: 118508, guid: 86b55a5f9cb27ca48ba675eaa12bb4cc, type: 3}
   _bodyCollider: {fileID: 1835628989377087098}
   _changeTime: 1
   _changeCurve:
