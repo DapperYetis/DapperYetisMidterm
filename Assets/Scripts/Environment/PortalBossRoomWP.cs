@@ -80,7 +80,8 @@ public class PortalBossRoomWP : MonoBehaviour
 
     private void PlayerWon()
     {
-        _aud.PlayOneShot(_audPortalOpen[Random.Range(0, _audPortalOpen.Length)], _audPortalOpenVol);
+        if (_audPortalOpen.Length > 0)
+            _aud.PlayOneShot(_audPortalOpen[Random.Range(0, _audPortalOpen.Length)], _audPortalOpenVol);
         //Debug.Log($"{name} played a sound");
         StartCoroutine(PortalOpening());
         RenderSettings.fog = false;

@@ -1254,9 +1254,10 @@ MonoBehaviour:
   _anim: {fileID: 8592159916258021161}
   _aud: {fileID: 3025831216519790028}
   _drops: {fileID: 9106959015676219242}
-  _spawnEffectOpening: {fileID: 0}
-  _spawnEffectIdle: {fileID: 0}
-  _spawnEffectClosing: {fileID: 0}
+  _spawnEffectOpening: {fileID: 130970, guid: 5abdc17ce2cedda4185e47de42cb705d, type: 3}
+  _spawnEffectIdle: {fileID: 3069790173506216932, guid: 7fc6ad3b14acb1845bce38a96eb63ea5,
+    type: 3}
+  _spawnEffectClosing: {fileID: 118508, guid: 86b55a5f9cb27ca48ba675eaa12bb4cc, type: 3}
   _bodyCollider: {fileID: 1835628989377087098}
   _changeTime: 1
   _changeCurve:
@@ -3431,10 +3432,35 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8592159916251029705}
     m_Modifications:
+    - target: {fileID: 1042234023776305708, guid: 30858975e51901047a8449ac72a28abd,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1896127371734880492, guid: 30858975e51901047a8449ac72a28abd,
         type: 3}
       propertyPath: m_Name
       value: BossHealth
+      objectReference: {fileID: 0}
+    - target: {fileID: 3996253968352881922, guid: 30858975e51901047a8449ac72a28abd,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3996253968352881922, guid: 30858975e51901047a8449ac72a28abd,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3996253968352881922, guid: 30858975e51901047a8449ac72a28abd,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6030251726224099812, guid: 30858975e51901047a8449ac72a28abd,
+        type: 3}
+      propertyPath: m_ChildAlignment
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6588683116807845846, guid: 30858975e51901047a8449ac72a28abd,
         type: 3}
