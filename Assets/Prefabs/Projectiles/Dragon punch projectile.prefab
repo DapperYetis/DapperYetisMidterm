@@ -29252,7 +29252,8 @@ MonoBehaviour:
   OnHit:
     m_PersistentCalls:
       m_Calls: []
-  _isAOE: 1
+  _explosionPrefab: {fileID: 2276156735662923445, guid: 1faa2b373e8772246baebb457d40cfeb,
+    type: 3}
 --- !u!198 &6992757139457772765
 ParticleSystem:
   m_ObjectHideFlags: 0

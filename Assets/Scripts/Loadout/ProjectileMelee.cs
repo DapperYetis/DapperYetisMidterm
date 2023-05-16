@@ -9,7 +9,8 @@ public class ProjectileMelee : Projectile
 
     protected override void Start()
     {
-        
+
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
 
     protected override void OnTriggerStay(Collider other)
