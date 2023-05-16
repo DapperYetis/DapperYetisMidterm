@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9095577239194349232}
   - component: {fileID: 2051183490881412220}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Ice Staff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2045518251835205895}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.07133949, z: 0.027650774}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -66,6 +66,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Visual
+      objectReference: {fileID: 0}
+    - target: {fileID: 852699260228034259, guid: 45088bc87247bf7469c4526d27535691,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1876376816595903534, guid: 45088bc87247bf7469c4526d27535691,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2635107612024770651, guid: 45088bc87247bf7469c4526d27535691,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2656797877267999418, guid: 45088bc87247bf7469c4526d27535691,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3125811489897510257, guid: 45088bc87247bf7469c4526d27535691,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5863101221003252670, guid: 45088bc87247bf7469c4526d27535691,
         type: 3}

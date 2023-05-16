@@ -19,7 +19,7 @@ public class Shield : Support
     [SerializeField] private GameObject _particleEffect;
     [SerializeField] float dashingSpeed = 50f;
     [SerializeField] float dashingCooldown = 0.2f;
-    private float _shieldDurability;
+    [SerializeField] private float _shieldDurability;
     public Material oldMaterial;
     public Material newMaterial;
     private Rigidbody rb;
