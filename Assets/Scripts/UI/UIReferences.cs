@@ -44,10 +44,6 @@ public class UIReferences : MonoBehaviour
 
     public TextMeshProUGUI currency => _currency;
 
-    [SerializeField] TextMeshProUGUI _stageCount;
-
-    public TextMeshProUGUI stageCount => _stageCount;
-
     [SerializeField] TextMeshProUGUI _score;
 
     public TextMeshProUGUI score => _score;

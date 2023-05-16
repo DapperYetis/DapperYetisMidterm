@@ -283,11 +283,6 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void UpdateStageCount(int stageIncrease)
-    {
-        references.stageCount.SetText(stageIncrease.ToString());
-    }
-
     public void UpdateEnemyCount()
     {
         if (_activeMenu != null) return;

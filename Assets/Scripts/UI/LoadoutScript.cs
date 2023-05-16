@@ -47,8 +47,11 @@ public class LoadoutScript : MonoBehaviour
 
 
         AddOptions();
-        SetWeaponDescriptions();
-        SetSupportDescriptions();
+        if (!GameManager.instance.inGame)
+        {
+            SetWeaponDescriptions();
+            SetSupportDescriptions();
+        }
     }
 
     private void CacheOptions()
@@ -81,6 +84,7 @@ public class LoadoutScript : MonoBehaviour
 
     public void SetWeaponDescriptions()
     {
+        
         SOWeapon choice = GetWeapon();
         _weaponPrimaryDesc.SetText(choice.primaryDesc);
         _weaponSecondaryDesc.SetText(choice.secondaryDesc);

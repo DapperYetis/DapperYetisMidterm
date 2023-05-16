@@ -30,7 +30,6 @@ public class GameManager : MonoBehaviour
 
     public bool isPaused => UIManager.instance.isPaused;
 
-    private int _stage = 1;
     private int _buildIndex = 0;
     public int buildIndex => _buildIndex;
     private bool _inGame => _buildIndex > 0;
@@ -138,11 +137,5 @@ public class GameManager : MonoBehaviour
     {
         _score += addition;
         OnScoreChange.Invoke(addition);
-    }
-
-    public void NextStage()
-    {
-        _stage++;
-        UIManager.instance.UpdateStageCount(_stage);
     }
 }
