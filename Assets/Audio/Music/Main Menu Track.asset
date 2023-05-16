@@ -39,7 +39,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _introClip: {fileID: 0}
-  _mainClip: {fileID: 8300000, guid: 6039c3bfe3c4d8548a09e8c5dac0f645, type: 3}
+  _mainClip: {fileID: 8300000, guid: 1243d233de3a14c408e001a2cbed5970, type: 3}
   _isLoopable: 1
   _fadeOutTime: 1
   _fadeOutLevels:
