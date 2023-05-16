@@ -9,7 +9,9 @@ public class IceProjectile : Projectile
     private bool _piercing;
     private List<IBuffable> _previouslyHit = new();
 
-    protected override void OnTriggerStay(Collider other)
+    protected override void OnTriggerStay(Collider other) { }
+
+    protected void OnTriggerEnter(Collider other)
     {
         if (other.isTrigger) return;
 
