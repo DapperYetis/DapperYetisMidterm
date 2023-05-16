@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 157542235831530020}
   - component: {fileID: 8146517639091562396}
   - component: {fileID: 3227479966016221178}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TFF_Rock_Large_06A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,6 +140,10 @@ PrefabInstance:
       value: TFF_Rock_Large_06A_LOD_1
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 20c1d518f05501a47880ded08ac4891b, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 20c1d518f05501a47880ded08ac4891b, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -191,12 +195,14 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 20c1d518f05501a47880ded08ac4891b, type: 3}
 --- !u!23 &4311713948876023266 stripped
 MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 2300000, guid: 20c1d518f05501a47880ded08ac4891b, type: 3}
+  m_CorrespondingSourceObject: {fileID: 2300000, guid: 20c1d518f05501a47880ded08ac4891b,
+    type: 3}
   m_PrefabInstance: {fileID: 4311713948878060930}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &4311713948878448386 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 400000, guid: 20c1d518f05501a47880ded08ac4891b, type: 3}
+  m_CorrespondingSourceObject: {fileID: 400000, guid: 20c1d518f05501a47880ded08ac4891b,
+    type: 3}
   m_PrefabInstance: {fileID: 4311713948878060930}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8774069555849809619
@@ -209,6 +215,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: b88d7c55fbc0991418c42b60d2b8d1df, type: 3}
       propertyPath: m_Name
       value: TFF_Rock_Large_06A_LOD_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: b88d7c55fbc0991418c42b60d2b8d1df, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: b88d7c55fbc0991418c42b60d2b8d1df, type: 3}
       propertyPath: m_IsActive
@@ -262,11 +272,13 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: b88d7c55fbc0991418c42b60d2b8d1df, type: 3}
 --- !u!23 &8774069555847517875 stripped
 MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 2300000, guid: b88d7c55fbc0991418c42b60d2b8d1df, type: 3}
+  m_CorrespondingSourceObject: {fileID: 2300000, guid: b88d7c55fbc0991418c42b60d2b8d1df,
+    type: 3}
   m_PrefabInstance: {fileID: 8774069555849809619}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &8774069555849417811 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 400000, guid: b88d7c55fbc0991418c42b60d2b8d1df, type: 3}
+  m_CorrespondingSourceObject: {fileID: 400000, guid: b88d7c55fbc0991418c42b60d2b8d1df,
+    type: 3}
   m_PrefabInstance: {fileID: 8774069555849809619}
   m_PrefabAsset: {fileID: 0}
