@@ -302,7 +302,7 @@ PrefabInstance:
     - target: {fileID: 4740963815425591522, guid: 2105d66ec7d7fc44abfb07998b42878f,
         type: 3}
       propertyPath: ShapeModule.m_Scale.x
-      value: 550
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5059185799091825373, guid: 2105d66ec7d7fc44abfb07998b42878f,
         type: 3}
@@ -512,7 +512,7 @@ PrefabInstance:
     - target: {fileID: 4740963815425591522, guid: 2105d66ec7d7fc44abfb07998b42878f,
         type: 3}
       propertyPath: ShapeModule.m_Scale.x
-      value: 550
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4740963815425591522, guid: 2105d66ec7d7fc44abfb07998b42878f,
         type: 3}
@@ -1117,7 +1117,7 @@ PrefabInstance:
     - target: {fileID: 4740963815425591522, guid: 2105d66ec7d7fc44abfb07998b42878f,
         type: 3}
       propertyPath: ShapeModule.m_Scale.x
-      value: 550
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5059185799091825373, guid: 2105d66ec7d7fc44abfb07998b42878f,
         type: 3}
@@ -1242,7 +1242,7 @@ PrefabInstance:
     - target: {fileID: 4740963815425591522, guid: 2105d66ec7d7fc44abfb07998b42878f,
         type: 3}
       propertyPath: ShapeModule.m_Scale.x
-      value: 550
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5059185799091825373, guid: 2105d66ec7d7fc44abfb07998b42878f,
         type: 3}
