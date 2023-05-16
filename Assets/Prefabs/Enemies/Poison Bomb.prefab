@@ -381,7 +381,10 @@ MonoBehaviour:
   _model: {fileID: 2641481381699580645}
   _agent: {fileID: -7428167519933417919}
   _anim: {fileID: 2641481381703781413}
-  biteCol: {fileID: 6906787219548177374}
+  _aud: {fileID: 0}
+  _drops: {fileID: 0}
+  _spawnEffect: {fileID: 0}
+  _bodyCollider: {fileID: 0}
   _changeTime: 2
   _changeCurve:
     serializedVersion: 2
@@ -409,10 +412,12 @@ MonoBehaviour:
     m_RotationOrder: 4
   _radiusMod: 0.25
   _speedMod: 1.5
-  animTransSpeed: 1
-  OnHealthChange:
+  _animTransSpeed: 0
+  _OnHealthChange:
     m_PersistentCalls:
       m_Calls: []
+  _additivePriorityMod: 0
+  _spawnCost: 1
   _stats:
     HPMax: 2
     facePlayerSpeed: 600
@@ -423,6 +428,12 @@ MonoBehaviour:
     facePlayerSpeed: 0
     speed: 0
     acceleration: 0
+  _moveChances: 10
+  _runTypeTimer: 0
+  _circlingRange: 10
+  _deathDelay: 0
+  _timeLength: 0
+  _scaleMultiplier: 0
   _primaryAttackStats:
     positions: []
     damage: 50
@@ -430,7 +441,12 @@ MonoBehaviour:
     lifetime: 0
     variance: 0
     prefab: {fileID: 0}
+    selfBuffs: []
+    targetBuffs: []
     speed: 0
+    range: 0
+    _attackAudioVol: 0
+    _attackAudio: []
   _primaryAttackStatsScaling:
     positions: []
     damage: 0
@@ -438,7 +454,27 @@ MonoBehaviour:
     lifetime: 0
     variance: 0
     prefab: {fileID: 0}
+    selfBuffs: []
+    targetBuffs: []
     speed: 0
+    range: 0
+    _attackAudioVol: 0
+    _attackAudio: []
+  _audSpawnVol: 0
+  _audSpawn: []
+  _audSpawnRoarVol: 0
+  _audSpawnRoar: []
+  _audGettingCloseVol: 0
+  _audGettingClose: []
+  _audTakeDamageVol: 0
+  _audTakeDamage: []
+  _audHealVol: 0
+  _audHeal: []
+  _audDeathVol: 0
+  _audDeath: []
+  _audFallDownVol: 0
+  _audFallDown: []
+  _meleeCollider: {fileID: 0}
 --- !u!114 &2328973591943406122
 MonoBehaviour:
   m_ObjectHideFlags: 0

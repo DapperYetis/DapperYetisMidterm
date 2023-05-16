@@ -328,6 +328,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _additivePriorityMod: 0
+  _spawnCost: 1
   _stats:
     HPMax: 30
     facePlayerSpeed: 600
@@ -516,7 +517,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0

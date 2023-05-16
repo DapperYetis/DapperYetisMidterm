@@ -12,8 +12,7 @@ public class ButtonFunctions : MonoBehaviour
 
     public void PlayGame()
     {
-        nav.ButtonClick();
-        UIManager.instance.TransitionToGame();
+        StartCoroutine(GameTransition());
     }
 
     public void ToLoadout()
@@ -41,8 +40,14 @@ public class ButtonFunctions : MonoBehaviour
 
     public void ToMainMenu()
     {
+        StartCoroutine(TransitionToMainMenu());
+    }
+
+    IEnumerator TransitionToMainMenu()
+    {
         UIManager.instance.PlayClick();
-        UIManager.instance.PlayClick();
+        UIManager.instance.StartLoading();
+        yield return new WaitForSecondsRealtime(0.5f);
         UIManager.instance.PauseState();
         SceneManage.instance.LoadScene(0);
     }
@@ -55,8 +60,11 @@ public class ButtonFunctions : MonoBehaviour
 
     public void MainBackButton()
     {
-        nav.ButtonClick();
-        nav.BackButton();
+        if (!nav.transitionPlaying)
+        {
+            nav.ButtonClick();
+            nav.BackButton();
+        }
     }
 
     public void ResumeButton()
@@ -76,5 +84,12 @@ public class ButtonFunctions : MonoBehaviour
     {
         nav.ButtonClick();
         nav.ToCredits();
+    }
+
+    IEnumerator GameTransition()
+    {
+        nav.BeginLoadScreen();
+        yield return new WaitForSecondsRealtime(.5f);
+        UIManager.instance.TransitionToGame();
     }
 }

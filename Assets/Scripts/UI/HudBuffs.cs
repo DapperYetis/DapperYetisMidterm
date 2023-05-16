@@ -37,11 +37,12 @@ public class HudBuffs : MonoBehaviour
     }
     private void IncreaseStack(SOBuff toChange, int toAdd)
     {
-        _buffList[toChange].SetBuffStack(toAdd);
+        if (_buffList.ContainsKey(toChange))
+            _buffList[toChange].SetBuffStack(toAdd);
     }
     private void DecreaseStack(SOBuff buffToChange, int toSubtract)
     {
-        _buffList[buffToChange].SetBuffStack(toSubtract);
+        _buffList[buffToChange].SetBuffStack(-toSubtract);
     }
 
 }

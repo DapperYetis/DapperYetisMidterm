@@ -45,7 +45,7 @@ public class HybridEnemy : MeleeEnemy
 
     protected virtual void Shoot()
     {
-        if (this == null || !isActiveAndEnabled) return;
+        if (this == null || !isActiveAndEnabled || _HPCurrent <= 0) return;
 
         StartCoroutine(FireShot());
     }
@@ -55,7 +55,8 @@ public class HybridEnemy : MeleeEnemy
         _anim.SetTrigger("Shoot");
         if(_secondaryAttackStats._attackAudio.Length > 0)
             _aud.PlayOneShot(_secondaryAttackStats._attackAudio[Random.Range(0, _secondaryAttackStats._attackAudio.Length)], _secondaryAttackStats._attackAudioVol);
-        Debug.Log($"{name} played a sound");
+        else
+            Debug.LogWarning("No Ranged Attack Sounds to play!");
         Quaternion rot = Quaternion.LookRotation(_playerDir * 0.5f);
         if (Mathf.Abs(Quaternion.Angle(rot, Quaternion.LookRotation(_playerDir))) >= 60)
             rot = Quaternion.LookRotation(_playerDir);

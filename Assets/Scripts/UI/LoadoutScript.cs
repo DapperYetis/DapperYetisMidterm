@@ -13,9 +13,16 @@ public class LoadoutScript : MonoBehaviour
 {
     [Header("----- Components -----")]
     [SerializeField] GameObject _buttonPrefab;
+    [SerializeField]
+    private TextMeshProUGUI _weaponPrimaryDesc;
+    [SerializeField] 
+    private TextMeshProUGUI _weaponSecondaryDesc;
+    [SerializeField]
+    private TextMeshProUGUI _supportPrimaryDesc;
+    [SerializeField]
+    private TextMeshProUGUI _supportSecondaryDesc;
     private GameObject _weaponGroup;
     private GameObject _supportGroup;
-    private GameObject _companionGroup;
     [SerializeField] List<SOWeapon> _weapons;
     private static List<SOWeapon> _cachedWeapons;
     [SerializeField] List<SOSupport> _supports;
@@ -38,7 +45,10 @@ public class LoadoutScript : MonoBehaviour
         if (PlayerPrefs.GetInt("SupportChoice") >= _cachedSupports.Count)
             PlayerPrefs.SetInt("SupportChoice", 0);
 
+
         AddOptions();
+        SetWeaponDescriptions();
+        SetSupportDescriptions();
     }
 
     private void CacheOptions()
@@ -61,11 +71,19 @@ public class LoadoutScript : MonoBehaviour
         weapon.onClick.AddListener(() =>
         {
             SetWeapon(weapon);
+            SetWeaponDescriptions();
             WeaponOn();
             weapon.interactable = false;
         });
         if(!_weaponButtons.ContainsKey(newWeapon))
             _weaponButtons.Add(newWeapon, weapon);
+    }
+
+    public void SetWeaponDescriptions()
+    {
+        SOWeapon choice = GetWeapon();
+        _weaponPrimaryDesc.SetText(choice.primaryDesc);
+        _weaponSecondaryDesc.SetText(choice.secondaryDesc);
     }
 
     private void SetWeapon(Button button)
@@ -96,9 +114,17 @@ public class LoadoutScript : MonoBehaviour
         {
             SetSupport(support);
             SupportOn();
+            SetSupportDescriptions();
             support.interactable = false;
         });
         _supportButtons.Add(newSupport, support);
+    }
+
+    public void SetSupportDescriptions()
+    {
+        SOSupport choice = GetSupport();
+        _supportPrimaryDesc.SetText(choice.primaryDescription);
+        _supportSecondaryDesc.SetText(choice.secondaryDescription);
     }
 
     private void SetSupport(Button button)
@@ -181,6 +207,11 @@ public class LoadoutScript : MonoBehaviour
         GameObject obj = GameObject.FindGameObjectWithTag("MenuCanvas");
         if (!obj || !obj.TryGetComponent<MainMenuRefs>(out MainMenuRefs menu))
             return;
+
+        _weaponPrimaryDesc = menu.weaponPrimary;
+        _weaponSecondaryDesc = menu.weaponSecondary;
+        _supportPrimaryDesc = menu.supportPrimary;
+        _supportSecondaryDesc = menu.supportSecondary;
 
         _weaponGroup = menu.weaponGroup;
         _supportGroup = menu.supportGroup;

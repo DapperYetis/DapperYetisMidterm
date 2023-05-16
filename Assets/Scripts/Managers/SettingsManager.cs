@@ -6,9 +6,9 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 public class SettingsManager : MonoBehaviour
 {
-    
+
     public static SettingsManager instance;
-    [SerializeField] 
+    [SerializeField]
     private LoadoutScript _loadoutScript;
 
     public UnityEvent _onMusicSliderChange;
@@ -27,11 +27,20 @@ public class SettingsManager : MonoBehaviour
 
         instance = this;
         _loadoutScript.SetUp();
+        DefaultSetUp();
+    }
+
+    private void Update()
+    {
+        if(!GameManager.instance.inGame)
+        {
+            _loadoutScript.SetWeaponDescriptions();
+            _loadoutScript.SetSupportDescriptions();
+        }
     }
 
     public void SetMusicVolume(float volume)
     {
-
         PlayerPrefs.SetFloat("SavedMusicVolume", volume);
         _onMusicSliderChange.Invoke();
     }
@@ -97,5 +106,15 @@ public class SettingsManager : MonoBehaviour
     public void ResetMap()
     {
         _loadoutScript?.AddOptions();
+    }
+
+    public void DefaultSetUp()
+    {
+        if (!PlayerPrefs.HasKey("SavedMusicVolume"))
+            PlayerPrefs.SetFloat("SavedMusicVolume", 0.5f);
+        if (!PlayerPrefs.HasKey("Sensitivity"))
+            PlayerPrefs.SetFloat("Sensitivity", 0.75f);
+        if (!PlayerPrefs.HasKey("SavedSFXVolume"))
+            PlayerPrefs.SetFloat("SavedSFXVolume", 0.5f);
     }
 }

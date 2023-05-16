@@ -46,6 +46,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _loadoutScript: {fileID: 3480202966095305411}
+  _onMusicSliderChange:
+    m_PersistentCalls:
+      m_Calls: []
+  _onSFXSliderChange:
+    m_PersistentCalls:
+      m_Calls: []
+  _onSensitivityChange:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &3480202966095305411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,4 +75,4 @@ MonoBehaviour:
   _supports:
   - {fileID: 11400000, guid: e12b777ff4b28ab45aa29f244964cc0b, type: 2}
   - {fileID: 11400000, guid: 91896b14eb852d2408cd756d1ab6c0f2, type: 2}
-  _companions: []
+  - {fileID: 11400000, guid: 2a989774309fac34aa5cb2092810e55f, type: 2}

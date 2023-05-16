@@ -28,9 +28,10 @@ public class RangedEnemy : EnemyAI
         _anim.SetTrigger("Shoot");
         if(_primaryAttackStats._attackAudio.Length > 0)
         {
-            _aud.PlayOneShot(_primaryAttackStats._attackAudio[Random.Range(0, _primaryAttackStats._attackAudio.Length)], _primaryAttackStats._attackAudioVol);
-
-            Debug.Log($"{name} played a sound");
+            if (_primaryAttackStats._attackAudio.Length > 0)
+                _aud.PlayOneShot(_primaryAttackStats._attackAudio[Random.Range(0, _primaryAttackStats._attackAudio.Length)], _primaryAttackStats._attackAudioVol);
+            else
+                Debug.LogWarning("No Ranged Attack Sounds to play!");
         }
         
         Quaternion rot = Quaternion.LookRotation(_playerDirProjected * 0.5f);
