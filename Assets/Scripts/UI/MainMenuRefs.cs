@@ -21,9 +21,25 @@ public class MainMenuRefs : MonoBehaviour
     [SerializeField] GameObject _transitionScreen;
     public GameObject transitionScreen => _transitionScreen;
 
-    [SerializeField] Animator _animator;
+    [SerializeField] CanvasGroup _fadeToGame;
 
-    public Animator animator => _animator;
+    public CanvasGroup fadeToGame => _fadeToGame;
+
+    [SerializeField] CanvasGroup _loadoutValues;
+
+    public CanvasGroup loadoutValues => _loadoutValues;
+
+    [SerializeField] CanvasGroup _settingsValues;
+
+    public CanvasGroup settingsValues => _settingsValues;
+
+    [SerializeField] CanvasGroup _creditsValues;
+
+    public CanvasGroup creditsValues => _creditsValues;
+
+    [SerializeField] CanvasGroup _controlsValues;
+
+    public CanvasGroup controlsValues => _controlsValues;
 
     [SerializeField] GameObject _keyBindsMenu;
 
@@ -37,10 +53,6 @@ public class MainMenuRefs : MonoBehaviour
 
     public GameObject supportGroup => _supportGroup;
 
-    [SerializeField] GameObject _companionGroup;
-
-    public GameObject companionGroup => _companionGroup;
-
     [SerializeField] GameObject _creditsScreen;
 
     public GameObject creditsScreen => _creditsScreen;
@@ -53,4 +65,23 @@ public class MainMenuRefs : MonoBehaviour
 
     public AudioClip buttonClip => _buttonClip;
 
+    [SerializeField] TextMeshProUGUI _weaponPrimary;
+
+    public TextMeshProUGUI weaponPrimary => _weaponPrimary;
+
+    [SerializeField] TextMeshProUGUI _weaponSecondary;
+
+    public TextMeshProUGUI weaponSecondary => _weaponSecondary;
+
+    [SerializeField] TextMeshProUGUI _supportPrimary;
+
+    public TextMeshProUGUI supportPrimary => _supportPrimary;
+
+    [SerializeField] TextMeshProUGUI _supportSecondary;
+
+    public TextMeshProUGUI supportSecondary => _supportSecondary;
+
+    [SerializeField] Button _quitButton;
+
+    public Button quitButton => _quitButton;
 }

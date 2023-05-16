@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class SceneManage : MonoBehaviour
 {
     public static SceneManage instance;
-
+    public UnityEvent onTransitionToMain;
 
 #if UNITY_EDITOR
     private void Update()
@@ -33,6 +34,8 @@ public class SceneManage : MonoBehaviour
     public void LoadScene(int scene)
     {
         SceneManager.LoadScene(scene);
+        if(scene == 0)
+            onTransitionToMain.Invoke();
     }
 
 

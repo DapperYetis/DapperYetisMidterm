@@ -20,7 +20,8 @@ public abstract class BuffEffect : MonoBehaviour
 
     protected virtual void DestroyEffect()
     {
-        Destroy(gameObject);
+        if (this != null)
+            Destroy(gameObject);
     }
 
     protected virtual void EffectRemoveAction() { }
@@ -40,6 +41,6 @@ public abstract class BuffEffect : MonoBehaviour
 
         EffectRemoveAction();
         if (_stacks <= 0)
-            Invoke(nameof(DestroyEffect), _buffEndTime);
+            DestroyEffect();
     }
 }

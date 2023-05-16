@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Portal : MonoBehaviour
 {
     [SerializeField]
@@ -17,10 +18,9 @@ public class Portal : MonoBehaviour
             EnemyManager.instance.EnterBossRoom(null);
         else
             EnemyManager.instance.LeaveBossRoom(_buildIndex);
-
         if (!_isBossRoom && _buildIndex == 3)
             SceneManage.instance.LoadScene(_buildIndex);
-        else if(_buildIndex > 3 || PortalBossRoom.totalBosses < _buildIndex)
+        else if(_buildIndex > 3 || PortalBossRoomWP.totalBosses < _buildIndex)
         {
             UIManager.instance.PauseState();
             UIManager.instance.NextMenu(UIManager.instance.references.winMenu);
