@@ -61,25 +61,25 @@ public class LightingTracking : Projectile
         _rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, rotation, _rotateSpeed * Time.deltaTime));
     }
 
-    private void OnCollitionEnter(Collision collision)
-    {
-        if (_explostionPrefab)
-            Instantiate(_explostionPrefab, transform.position, Quaternion.identity);
+    //private void OnCollitionEnter(Collision collision)
+    //{
+    //    if (_explostionPrefab)
+    //        Instantiate(_explostionPrefab, transform.position, Quaternion.identity);
 
-        if (collision.gameObject.TryGetComponent<IDamageable>(out var damageable) && !_previouslyHit.Contains(damageable))
-        {
-            var buffs = (from buff in _stats.targetBuffs select (buff, 1)).ToArray();
-            if (_hasCrit)
-                damageable.Damage(_stats.directDamage, buffs);
-            else
-                damageable.Damage(_stats.directDamage);
-            _previouslyHit.Add(damageable);
+    //    if (collision.gameObject.TryGetComponent<IDamageable>(out var damageable) && !_previouslyHit.Contains(damageable))
+    //    {
+    //        var buffs = (from buff in _stats.targetBuffs select (buff, 1)).ToArray();
+    //        if (_hasCrit)
+    //            damageable.Damage(_stats.directDamage, buffs);
+    //        else
+    //            damageable.Damage(_stats.directDamage);
+    //        _previouslyHit.Add(damageable);
 
-            OnHit?.Invoke(this, damageable);
-        }
+    //        OnHit?.Invoke(this, damageable);
+    //    }
 
-        Destroy(gameObject);
-    }
+    //    Destroy(gameObject);
+    //}
 
     /*
         public GameObject _Prefab;

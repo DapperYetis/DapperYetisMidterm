@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Explosion : Projectile
 {
-    private List<IDamageable> _previouslyHit = new();
+    private List<IBuffable> _previouslyHit = new();
 
     protected override void Start()
     {
@@ -17,11 +17,11 @@ public class Explosion : Projectile
     {
         if (other.isTrigger) return;
 
-        if (other.gameObject.TryGetComponent<IDamageable>(out var damageable) && !_previouslyHit.Contains(damageable))
+        if (other.gameObject.TryGetComponent<IBuffable>(out var buffable) && !_previouslyHit.Contains(buffable))
         {
-            _previouslyHit.Add(damageable);
-            damageable.Damage(_stats.directDamage);
-            OnHit?.Invoke(this, damageable);
+            _previouslyHit.Add(buffable);
+            buffable.Damage(_stats.directDamage);
+            OnHit?.Invoke(this, buffable);
         }
     }
 

@@ -14522,8 +14522,8 @@ Transform:
   m_GameObject: {fileID: 6347247709936389256}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 7, y: 7, z: 7}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 4.24, y: 4.76, z: 8.1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6341331534600212764}
   - {fileID: 6341250380846856168}
@@ -14545,6 +14545,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnHit:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHitNonBuffable:
     m_PersistentCalls:
       m_Calls: []
   _piercing: 0
