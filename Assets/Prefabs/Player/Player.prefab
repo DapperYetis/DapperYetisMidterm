@@ -257,6 +257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _footPos: {fileID: 5860944585404597717}
+  _groundDist: 0.2
   OnMoveStart:
     m_PersistentCalls:
       m_Calls: []
