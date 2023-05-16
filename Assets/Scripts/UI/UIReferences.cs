@@ -44,10 +44,6 @@ public class UIReferences : MonoBehaviour
 
     public TextMeshProUGUI currency => _currency;
 
-    [SerializeField] TextMeshProUGUI _stageCount;
-
-    public TextMeshProUGUI stageCount => _stageCount;
-
     [SerializeField] TextMeshProUGUI _score;
 
     public TextMeshProUGUI score => _score;
@@ -231,5 +227,13 @@ public class UIReferences : MonoBehaviour
     [SerializeField] Button _quitButton;
 
     public Button quitButton => _quitButton;
+
+    [SerializeField] GameObject _bossHealthBar;
+
+    public GameObject bossHealthBar => _bossHealthBar;
+
+    [SerializeField] Image _bossHealth;
+
+    public Image bossHealth => _bossHealth;
 
 }

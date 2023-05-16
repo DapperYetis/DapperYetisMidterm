@@ -9903,10 +9903,10 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1048716493452070995}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 20
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7684962981173714856
 MonoBehaviour:
@@ -9924,7 +9924,7 @@ MonoBehaviour:
   _portalEnterClose: {fileID: 2609340069686392214}
   _portalExitOpen: {fileID: 2649271654961164493}
   _portalExitIdle: {fileID: 882266273212352051}
-  _proclamationCollider: {fileID: 4766693448247625971}
+  _proclamationCollider: {fileID: 1048716493452070997}
   _aud: {fileID: 6078859247047205841}
   _bossWaves:
   - {fileID: 11400000, guid: 728e4059dce5f1548abc05b5887376d7, type: 2}
@@ -9950,7 +9950,6 @@ GameObject:
   - component: {fileID: 7044237014678552412}
   - component: {fileID: 6272120186317048630}
   - component: {fileID: 6078859247047205841}
-  - component: {fileID: 4766693448247625971}
   m_Layer: 3
   m_Name: Base Block
   m_TagString: Untagged
@@ -10701,19 +10700,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!135 &4766693448247625971
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1885044804891699306}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 20
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2609340069686375316
 GameObject:
   m_ObjectHideFlags: 0

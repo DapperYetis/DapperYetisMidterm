@@ -112,7 +112,7 @@ public class GameManager : MonoBehaviour
         //if (mode == LoadSceneMode.Additive) return;
 
         FindPlayer();
-        
+
         if (EnemyManager.instance != null)
             EnemyManager.instance.ResetMap();
         if (UIManager.instance != null)

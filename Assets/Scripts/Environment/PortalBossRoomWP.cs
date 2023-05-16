@@ -80,7 +80,9 @@ public class PortalBossRoomWP : MonoBehaviour
 
     private void PlayerWon()
     {
-        _aud.PlayOneShot(_audPortalOpen[Random.Range(0, _audPortalOpen.Length)], _audPortalOpenVol);
+        UIManager.instance.TurnOffBossHealthBar();
+        if (_audPortalOpen.Length > 0)
+            _aud.PlayOneShot(_audPortalOpen[Random.Range(0, _audPortalOpen.Length)], _audPortalOpenVol);
         //Debug.Log($"{name} played a sound");
         StartCoroutine(PortalOpening());
         RenderSettings.fog = false;
@@ -97,11 +99,10 @@ public class PortalBossRoomWP : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log(other.gameObject);
-        if (other.gameObject.layer == 6)
+        if (other.CompareTag("Player"))
         {
             _aud.PlayOneShot(_audBossExclamation[Random.Range(0, _audBossExclamation.Length)], _audBossExclamationVol);
-            Debug.Log($"{name} played a sound");
+            //Debug.Log($"{name} played a sound");
             _proclamationCollider.enabled = false;
 
             EnemyManager.SpawnEnemy(_bossWaves[_bossIndex], _bossSpawnPoint.position);

@@ -134,6 +134,8 @@ public class UIManager : MonoBehaviour
             {
                 _playerController.weapon.OnPrimary.AddListener(AttackCD1);
                 _playerController.weapon.OnSecondary.AddListener(AttackCD2);
+                _playerController.support.OnPrimary.AddListener(SupportCD1);
+                _playerController.support.OnSecondary.AddListener(SupportCD2);
                 _playerController.inventory.OnCurrencyChange.AddListener(TrackCurrency);
             });
             GameManager.instance.OnScoreChange.AddListener(UpdateScore);
@@ -347,19 +349,20 @@ public class UIManager : MonoBehaviour
     public void SupportCD1()
     {
         if (_references == null) return;
-        StartCoroutine(CooldownTimer(10f, Time.time, _references.suppCoolDwn1));
+        StartCoroutine(CooldownTimer(_playerController.support.stats.useRatePrimary, Time.time, _references.suppCoolDwn1));
     }
 
     public void SupportCD2()
     {
         if (_references == null) return;
-        StartCoroutine(CooldownTimer(10f, Time.time, _references.suppCoolDwn2));
+        StartCoroutine(CooldownTimer(_playerController.support.stats.useRateSecondary, Time.time, _references.suppCoolDwn2));
     }
 
     public void LoseScreenStats()
     {
         if (_references == null) return;
-        _references.hud.SetActive(false);
+        _references.itemAnimator.enabled = false;
+        _references.itemNotif.SetActive(false);
         _references.loseTime.SetText($"{(int)AchievementManager.instance.runStats.timePlayed} : {((AchievementManager.instance.runStats.timePlayed * 60) % 60).ToString("F1")}");
         StartCoroutine(SetScoreTally(_references.loseScore, (int)AchievementManager.instance.runStats.totalPoints));
         StartCoroutine(SetScoreTally(_references.loseDeaths, (int)(AchievementManager.instance.runStats.deaths)));
@@ -378,7 +381,8 @@ public class UIManager : MonoBehaviour
     public void WinScreenStats()
     {
         if (_references == null) return;
-        _references.hud.SetActive(false);
+        _references.itemAnimator.enabled = false;
+        _references.itemNotif.SetActive(false);
         _references.winTime.SetText($"{(int)AchievementManager.instance.runStats.timePlayed} : {((AchievementManager.instance.runStats.timePlayed * 60) % 60).ToString("F1")}");
         StartCoroutine(SetScoreTally(_references.winScore, (int)(AchievementManager.instance.runStats.totalPoints)));
         StartCoroutine(SetScoreTally(_references.winDeaths, (int)(AchievementManager.instance.runStats.deaths)));
@@ -507,6 +511,21 @@ public class UIManager : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         _references.transitionScreen.SetActive(false);
+    }
+
+    public void SetBossHealthbar(float maxhealth, float remainingHealth)
+    {
+        _references.bossHealth.fillAmount = remainingHealth / maxhealth;
+    }
+
+    public void TurnOnBossHealthBar()
+    {
+        references.bossHealthBar.SetActive(true);
+    }
+
+    public void TurnOffBossHealthBar()
+    {
+        references.bossHealthBar.SetActive(false);
     }
 
     #endregion

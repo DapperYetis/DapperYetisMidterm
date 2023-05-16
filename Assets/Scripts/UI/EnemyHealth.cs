@@ -12,11 +12,14 @@ public class EnemyHealth : MonoBehaviour
     EnemyAI _enemyAI;
     [SerializeField] GameObject _Debuffbar;
     [SerializeField] GameObject _debuffPrefab;
+    [SerializeField] GameObject _damageNumberPrefab;
+    [SerializeField] GameObject _startLocation;
 
    
     Vector3 _direction;
     float _remainingHealth;
     EnemyBuffItem debuff;
+    EnemyDamage damageScript;
     Dictionary<SOBuff, EnemyBuffItem> _buffs = new();
 
     #region EnemyHealth
@@ -28,6 +31,7 @@ public class EnemyHealth : MonoBehaviour
         _enemyAI._OnHealthChange.AddListener(UpdateEnemyHealth);
         _enemyAI._onBuffAdded.AddListener(AddBuff);
         _enemyAI._onBuffRemoved.AddListener(RemoveBuff);
+        _enemyAI.OnEnemyDamagedNumber.AddListener(DamageAnimation);
     }
 
     void Update()
@@ -73,6 +77,14 @@ public class EnemyHealth : MonoBehaviour
     }
     #endregion
 
-    #region DamageRecieved
+    #region EnemyDamaged
+
+    void  DamageAnimation(float damage)
+    {
+        damageScript = Instantiate(_damageNumberPrefab, _startLocation.transform).GetComponent<EnemyDamage>();
+        damageScript.SetDamage(damage);
+        damageScript.PlayDamageAnimation();
+    }
+
     #endregion
 }
