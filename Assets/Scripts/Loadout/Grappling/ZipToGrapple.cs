@@ -46,7 +46,7 @@ public class ZipToGrapple : MonoBehaviour
             {
                 _controller.enabled = false;
                 _playerBody.position = Vector3.Lerp(_playerBody.position, _hookPoint - _offset, _hookSpeed * Time.deltaTime);
-                if (Vector3.Distance(_playerBody.position, _hookPoint - _offset) < 0.5f)
+                if (Vector3.Distance(_playerBody.position, _hookPoint - _offset) < 3f)
                 {
                     _controller.enabled = true;
                     isGrappling = false;
