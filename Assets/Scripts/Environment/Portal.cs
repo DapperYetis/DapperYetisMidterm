@@ -17,10 +17,7 @@ public class Portal : MonoBehaviour
         if (!_isBossRoom)
             EnemyManager.instance.EnterBossRoom(null);
         else
-        {
             EnemyManager.instance.LeaveBossRoom(_buildIndex);
-            GameManager.instance.NextStage();
-        }
         if (!_isBossRoom && _buildIndex == 3)
             SceneManage.instance.LoadScene(_buildIndex);
         else if(_buildIndex > 3 || PortalBossRoomWP.totalBosses < _buildIndex)

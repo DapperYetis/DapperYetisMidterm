@@ -14,7 +14,7 @@ public class EnemyDamage : MonoBehaviour
 
     public void SetDamage(float damage)
     {
-        _damageNumber.SetText(damage.ToString());
+        _damageNumber.SetText(damage.ToString("F0"));
     }
 
     public void PlayDamageAnimation()
@@ -26,6 +26,7 @@ public class EnemyDamage : MonoBehaviour
     {
         _damageAnimation.SetTrigger("Damage");
         yield return new WaitForSeconds(_animTime);
+        Destroy(gameObject);
     }
 
 }
