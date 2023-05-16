@@ -380,7 +380,6 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
 
         if (_HPCurrent <= 0)
         {
-            OnBossDied.Invoke();
             Die();
         }
         else
