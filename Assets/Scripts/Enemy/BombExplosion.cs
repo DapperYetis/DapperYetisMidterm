@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
-public class Explosion : Projectile
+public class BombExplosion : Projectile
 {
     private List<IBuffable> _previouslyHit = new();
     AudioSource _aud;
@@ -45,7 +45,7 @@ public class Explosion : Projectile
         if (_audExplode.Length > 0)
             _aud.PlayOneShot(_audExplode[Random.Range(0, _audExplode.Length)], _audExplodeVol);
         else
-            Debug.LogWarning("No Explosion Sounds to play!");
+            Debug.LogWarning("No Bomb Explosion Sounds to play!");
 
         Destroy(gameObject, _stats.secondaryLifetime);
         _stats.directDamage = _stats.secondaryDamage;
