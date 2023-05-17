@@ -90,6 +90,7 @@ public class GameManager : MonoBehaviour
     {
         SceneManage.instance.LoadScene(1);
         _startTime = Time.time;
+        //UIManager.instance.StopLoading();
     }
 
     public void EndConditions()
@@ -111,7 +112,7 @@ public class GameManager : MonoBehaviour
         //if (mode == LoadSceneMode.Additive) return;
 
         FindPlayer();
-        
+
         if (EnemyManager.instance != null)
             EnemyManager.instance.ResetMap();
         if (UIManager.instance != null)

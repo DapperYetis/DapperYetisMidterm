@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class EnemySpawnPoint : MonoBehaviour
@@ -14,4 +15,12 @@ public class EnemySpawnPoint : MonoBehaviour
         offset.y = 0;
         return transform.position + offset;
     }
+
+#if UNITY_EDITOR
+    private void OnDrawGizmosSelected()
+    {
+        Handles.color = Color.white;
+        Handles.DrawWireDisc(transform.position, transform.up, _radius);
+    }
+#endif
 }

@@ -44,10 +44,6 @@ public class UIReferences : MonoBehaviour
 
     public TextMeshProUGUI currency => _currency;
 
-    [SerializeField] TextMeshProUGUI _stageCount;
-
-    public TextMeshProUGUI stageCount => _stageCount;
-
     [SerializeField] TextMeshProUGUI _score;
 
     public TextMeshProUGUI score => _score;
@@ -76,9 +72,13 @@ public class UIReferences : MonoBehaviour
 
     public GameObject transitionScreen => _transitionScreen;
 
-    [SerializeField] Animator _animator;
+    [SerializeField] CanvasGroup _loadingScreenValues;
 
-    public Animator animator => _animator;
+    public CanvasGroup loadingScreenValues => _loadingScreenValues;
+
+    [SerializeField] Animator _itemAnimator;
+
+    public Animator itemAnimator => _itemAnimator;
 
     [SerializeField] TextMeshProUGUI _timer;
 
@@ -152,9 +152,6 @@ public class UIReferences : MonoBehaviour
 
     public TextMeshProUGUI winHealed => _winHealed;
 
-
-
-
     [SerializeField] TextMeshProUGUI _loseScore;
 
     public TextMeshProUGUI loseScore => _loseScore;
@@ -215,12 +212,28 @@ public class UIReferences : MonoBehaviour
 
     public GameObject itemNotif => _itemNotif;
 
-    [SerializeField] AudioSource _buttonClick;
+    [SerializeField] AudioSource _audioControl;
 
-    public AudioSource buttonClick => _buttonClick;
+    public AudioSource audioControl => _audioControl;
 
     [SerializeField] AudioClip _buttonClip;
 
     public AudioClip buttonClip => _buttonClip;
+
+    [SerializeField] AudioClip _pickUpClip;
+
+    public AudioClip pickUpClip => _pickUpClip;
+
+    [SerializeField] Button _quitButton;
+
+    public Button quitButton => _quitButton;
+
+    [SerializeField] GameObject _bossHealthBar;
+
+    public GameObject bossHealthBar => _bossHealthBar;
+
+    [SerializeField] Image _bossHealth;
+
+    public Image bossHealth => _bossHealth;
 
 }

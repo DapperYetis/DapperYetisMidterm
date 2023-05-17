@@ -773,29 +773,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7300342205331037249, guid: 61d081160cf84b748abb9316d5cf4d82,
-        type: 3}
-      propertyPath: _waves.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 527514d1fdeeedd429227698bd455ad1,
-        type: 2}
-    - target: {fileID: 7300342205331037249, guid: 61d081160cf84b748abb9316d5cf4d82,
-        type: 3}
-      propertyPath: _waves.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: 527514d1fdeeedd429227698bd455ad1,
-        type: 2}
-    - target: {fileID: 7300342205331037249, guid: 61d081160cf84b748abb9316d5cf4d82,
-        type: 3}
-      propertyPath: _waves.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: 527514d1fdeeedd429227698bd455ad1,
-        type: 2}
-    - target: {fileID: 8298848390786916463, guid: 61d081160cf84b748abb9316d5cf4d82,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61d081160cf84b748abb9316d5cf4d82, type: 3}
 --- !u!1 &1240647231

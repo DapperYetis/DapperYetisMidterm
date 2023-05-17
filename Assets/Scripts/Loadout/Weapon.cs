@@ -24,7 +24,7 @@ public abstract class Weapon : MonoBehaviour
     [HideInInspector]
     public UnityEvent OnSecondary;
     [HideInInspector]
-    public UnityEvent<Projectile, IDamageable> OnHit;
+    public UnityEvent<Projectile, IBuffable> OnHit;
 
     public void SetCamera(Camera camera)
     {
@@ -102,7 +102,7 @@ public abstract class Weapon : MonoBehaviour
     }
     protected virtual void CreateProjectile(AbilityStats ability, Quaternion rot = default)
     {
-        if (rot == default(Quaternion)) rot = Quaternion.identity;
+        if (rot == default) rot = Quaternion.identity;
 
         Projectile projectile = Instantiate(ability.prefab, _shootPos.position, rot).GetComponent<Projectile>();
         projectile.SetStats(ability);

@@ -5,35 +5,36 @@ using UnityEngine;
 
 public class ProjectileMelee : Projectile
 {
-    protected List<IDamageable> _previouslyHit = new();
+    protected List<IBuffable> _previouslyHit = new();
 
     protected override void Start()
     {
-        
+
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
 
     protected override void OnTriggerStay(Collider other)
     {
         if (other.isTrigger) return;
 
-        if (other.gameObject.TryGetComponent<IDamageable>(out var damageable) && !_previouslyHit.Contains(damageable))
+        if (other.gameObject.TryGetComponent<IBuffable>(out var buffable) && !_previouslyHit.Contains(buffable))
         {
             if(_stats.targetBuffs != null)
             {
                 var buffs = (from buff in _stats.targetBuffs select (buff, 1)).ToArray();
                 if (buffs.Length > 0)
-                    damageable.Damage(_stats.directDamage, buffs);
+                    buffable.Damage(_stats.directDamage, buffs);
                 else
-                    damageable.Damage(_stats.directDamage);
+                    buffable.Damage(_stats.directDamage);
             }
             else
-                damageable.Damage(_stats.directDamage);
+                buffable.Damage(_stats.directDamage);
 
-            StartCoroutine(TrackHit(damageable));
+            StartCoroutine(TrackHit(buffable));
         }
     }
 
-    private IEnumerator TrackHit(IDamageable target)
+    private IEnumerator TrackHit(IBuffable target)
     {
         _previouslyHit.Add(target);
         OnHit?.Invoke(this, target);

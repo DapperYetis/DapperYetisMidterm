@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b22c460506a7ac4b88bbd9ae5b2e3ec, type: 3}
+  m_Name: Fire Staff
+  m_EditorClassIdentifier: 
+  _weaponName: Fire Staff
+  _prefab: {fileID: 2045518251835205895, guid: 38416ae80a76cb0458dd8718d9c04a38, type: 3}
+  _stats:
+    primaryAbility:
+      prefab: {fileID: 424343093267893311, guid: 6829f420ff30b004da8146daccd5cacf,
+        type: 3}
+      damage: 0.5
+      directDamage: 0.5
+      cooldown: 0.15
+      lifetime: 1.5
+      secondaryLifetime: 0
+      speed: 30
+      fxIntesity: 0
+    secondaryAbility:
+      prefab: {fileID: 424343093267893311, guid: 8be84b71d6cae8943903b776e3ef8b8d,
+        type: 3}
+      damage: 8
+      directDamage: 6
+      cooldown: 5
+      lifetime: 3.5
+      secondaryLifetime: 0.75
+      speed: 25
+      fxIntesity: 0.5

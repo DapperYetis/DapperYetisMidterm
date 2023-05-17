@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using System.Linq;
+using UnityEngine.Serialization;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -12,11 +13,19 @@ public class EnemyManager : MonoBehaviour
     // Waves management
     private bool _inBossRoom;
     public bool inBossRoom => _inBossRoom;
-    private bool _withinSpawningBudget => _spawningBudget >= 0;
+    private bool _withinSpawningBudget => _spawningBudget <= _spawningBudgetMax;
     [Header("---Waves---")]
     [SerializeField]
-    private int _spawningBudgetMax;
-    private int _spawningBudget;
+    private int _spawningBudgetInitialMax;
+    [SerializeField]
+    private float _spawningBudgetGrowthRate = 1.5f;
+    private int _spawningBudgetMax => _spawningBudgetInitialMax + (int)(_spawningBudgetGrowthRate * scaleFactor);
+    protected int _spawningBudget;
+    [SerializeField]
+    private float _waveCostMaxInitial = 3f;
+    [SerializeField]
+    private float _waveCostGrowthRate = 2f;
+    public float _waveCostMax => _waveCostMaxInitial + _waveCostGrowthRate * scaleFactor;
     public int spawningBudget => _spawningBudget;
     [SerializeField]
     private int _initialAdditionalWaves = 0;
@@ -42,14 +51,19 @@ public class EnemyManager : MonoBehaviour
     public List<EnemyAI> enemies => _enemies;
     [SerializeField]
     private List<SOWave> _waves;
+    private Dictionary<SOWave, float> _waveCosts;
     private List<EnemySpawnPoint> _wavePoints = new();
+    public List<EnemySpawnPoint> wavePoints => _wavePoints;
 
     // Combat management
     [Header("---Combat Management---")]
     [SerializeField]
     private float _attackTime;
+    [SerializeField, FormerlySerializedAs("_attackBudgetMax")]
+    private int _attackBudgetInitialMax;
     [SerializeField]
-    private int _attackBudgetMax;
+    private float _attackBudgetGrowthRate = 1.5f;
+    private int _attackBudgetMax => _attackBudgetInitialMax + (int)(_attackBudgetGrowthRate * scaleFactor);
     private int _attackBudget;
     private bool _isRunning;
     private List<(System.Action func, System.Func<float> priority, EnemyAI enemy)> _attacks;
@@ -60,6 +74,8 @@ public class EnemyManager : MonoBehaviour
     public UnityEvent<SOWave> OnBossRoomEnter;
     [HideInInspector]
     public UnityEvent<int> OnBossRoomLeave;
+    [HideInInspector]
+    public UnityEvent OnEnemyDeath;
 
     void Awake()
     {
@@ -73,8 +89,8 @@ public class EnemyManager : MonoBehaviour
         OnEnemyCountChange.AddListener(GameManager.instance.EndConditions);
 
         _scaleRateInverse = 1 / _scaleRate;
-        _attackBudget = _attackBudgetMax;
-        _spawningBudget = _spawningBudgetMax;
+        _attackBudget = 0;
+        _spawningBudget = 0;
         _attacks = new();
 
         SetWaves();
@@ -93,7 +109,12 @@ public class EnemyManager : MonoBehaviour
     {
         _enemies = new();
 
-        _waves = (from wave in _waves orderby SOWave.CalcSpawnCost(wave.enemyType.GetComponent<EnemyAI>(), wave.maxEnemyCount) ascending select wave).ToList();
+        _waveCosts = new();
+        foreach(var wave in _waves)
+        {
+            _waveCosts[wave] = SOWave.CalcSpawnCost(wave.enemyType.GetComponent<EnemyAI>(), wave.maxEnemyCount);
+        }
+        _waves = (from wave in _waves orderby _waveCosts[wave] ascending select wave).ToList();
         _wavePoints = (from go in GameObject.FindGameObjectsWithTag("EnemySpawnPoint") select go.GetComponent<EnemySpawnPoint>()).ToList();
         StartCoroutine(RunWaves());
     }
@@ -102,16 +123,27 @@ public class EnemyManager : MonoBehaviour
     {
         yield return new WaitForSeconds(_initialWaveWait);
         Debug.Log($"Time: {GameManager.instance.runTimeMinutes} min.\tSpawning: {_initialAdditionalWaves} ADDITIONAL waves.");
+        int index;
         for (int i = 0; i < _initialAdditionalWaves; ++i)
         {
-            RunWave(Random.Range(0, _waves.Count));
+            index = Random.Range(0, _waves.Count);
+            while (_waveCosts[_waves[index]] >= _waveCostMax)
+            {
+                index = Random.Range(0, _waves.Count);
+            }
+            RunWave(index);
         }
         float waitTime = 0;
         while (GameManager.instance.inGame)
         {
             for (int i = 0; i < scaleFactorInt; ++i)
             {
-                waitTime = RunWave(Random.Range(0, _waves.Count));
+                index = Random.Range(0, _waves.Count);
+                while (_waveCosts[_waves[index]] >= _waveCostMax)
+                {
+                    index = Random.Range(0, _waves.Count);
+                }
+                waitTime = RunWave(index);
             }
             Debug.Log($"Time: {GameManager.instance.runTimeMinutes} min.\tSpawning: {scaleFactorInt} waves.");
             yield return new WaitForSeconds(waitTime);
@@ -120,7 +152,7 @@ public class EnemyManager : MonoBehaviour
 
     private float RunWave(int index)
     {
-        if(_withinSpawningBudget)
+        if(_withinSpawningBudget && _waveCosts[_waves[index]] < _waveCostMax)
             StartCoroutine(Spawner(_waves[index], GetSpawnPoint(), 0));
 
         return _waves[index].maxEnemyCount * _waves[index].spawnInterval + _timeBetweenWaves.Evaluate(GameManager.instance.runTimeMinutes);
@@ -130,8 +162,9 @@ public class EnemyManager : MonoBehaviour
     {
         if (GameManager.instance.player == null) return Vector3.zero;
 
-        List<EnemySpawnPoint> sortedPoints = (from point in _wavePoints where (GameManager.instance.player.transform.position - point.transform.position).magnitude > _minSpawnDistanceFromPlayer orderby (GameManager.instance.player.transform.position - point.transform.position).sqrMagnitude ascending select point).ToList();
-        return sortedPoints.Count > 0 ? sortedPoints[Mathf.FloorToInt(_waveDistance.Evaluate(Random.Range(0f, 1f)))].GetPointInRange() : Vector3.zero;
+        List<EnemySpawnPoint> sortedPoints = (from point in _wavePoints where (GameManager.instance.player.transform.position - point.transform.position).magnitude > _minSpawnDistanceFromPlayer select point).ToList();
+        sortedPoints.OrderBy((point) => Vector3.Dot(GameManager.instance.player.transform.position, point.transform.position)).ThenBy((point) => (GameManager.instance.player.transform.position - point.transform.position).sqrMagnitude);
+        return sortedPoints.Count > 0 ? sortedPoints[Mathf.FloorToInt(_waveDistance.Evaluate(Random.Range(0f, 1f)) * sortedPoints.Count)].GetPointInRange() : Vector3.zero;
     }
 
     private IEnumerator Spawner(SOWave wave, Vector3 spawnPoint, int spawnedCount)
@@ -146,29 +179,25 @@ public class EnemyManager : MonoBehaviour
 
     public static void SpawnEnemy(SOWave wave, Vector3 spawnPosition)
     {
-        Vector3 PossibleSpawnPoint = spawnPosition + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f));
-        //NavMeshPathStatus a;
-        //if (_enemy.agent.pathEndPosition == PossibleSpawnPoint)
-        //{
-        //    a = PossibleSpawnPoint;
-        //}
+        Vector3 possibleSpawnPoint = spawnPosition + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f));
 
-        EnemyAI enemy = Instantiate(wave.enemyType, PossibleSpawnPoint, Quaternion.identity).GetComponent<EnemyAI>();
+        EnemyAI enemy = Instantiate(wave.enemyType, possibleSpawnPoint, Quaternion.identity).GetComponent<EnemyAI>();
         enemy.SetUp(wave);
     }
 
     public void AddEnemyToList(EnemyAI enemy)
     {
         _enemies.Add(enemy);
-        _spawningBudget -= enemy.spawnCost;
+        _spawningBudget += (int)enemy.spawnCost;
         OnEnemyCountChange?.Invoke();
     }
 
     public void RemoveEnemyFromList(EnemyAI enemy)
     {
         _enemies.Remove(enemy);
-        _spawningBudget += enemy.spawnCost;
+        _spawningBudget -= (int)enemy.spawnCost;
         OnEnemyCountChange?.Invoke();
+        OnEnemyDeath.Invoke();
     }
 
     public int GetEnemyListSize()
@@ -183,7 +212,7 @@ public class EnemyManager : MonoBehaviour
 
         if(GameManager.instance.buildIndex == 0)
             _inBossRoom = false;
-        _spawningBudget = _spawningBudgetMax;
+        _spawningBudget = 0;
         _enemies.Clear();
         SetWaves();
     }
@@ -213,16 +242,16 @@ public class EnemyManager : MonoBehaviour
     {
         _isRunning = true;
         RemoveBadAttacks();
-        if (_attacks.Count > 0 && _attackBudget > 0)
+        if (_attacks.Count > 0 && _attackBudget < _attackBudgetMax)
         {
             int index = _attacks.Count >= 3 ? Random.Range(0,3) : 0;
-            --_attackBudget;
+            ++_attackBudget;
             _attacks[index].func.Invoke();
             _attacks.RemoveAt(index);
 
             StartCoroutine(RunDequeue());
             yield return new WaitForSeconds(_attackTime);
-            ++_attackBudget;
+            --_attackBudget;
         }
         else
         {

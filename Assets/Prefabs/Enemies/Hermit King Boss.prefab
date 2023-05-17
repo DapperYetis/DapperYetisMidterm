@@ -394,38 +394,55 @@ MonoBehaviour:
   _anim: {fileID: 6230942851767379793}
   _aud: {fileID: 2097275176389270856}
   _drops: {fileID: 0}
-  _spawnEffect: {fileID: 2737276754389857535, guid: cbb64ba14b98d4f40a04946727b661e4,
+  _spawnEffectOpening: {fileID: 130970, guid: bc98048ecb8166d46bff081f5e0b0560, type: 3}
+  _spawnEffectIdle: {fileID: 8747382882277111426, guid: 3724739400859df4eb7de3dbb0c1365f,
     type: 3}
+  _spawnEffectClosing: {fileID: 118508, guid: f837736aa24637a46b9ffb8660b317bb, type: 3}
   _bodyCollider: {fileID: 7485134682016057368}
-  _changeTime: 0
+  _changeTime: 2
   _changeCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
-      tangentMode: 34
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _radiusMod: 0
-  _speedMod: 0
-  _animTransSpeed: 0
+  _radiusMod: 1
+  _speedMod: 2
+  _animTransSpeed: 1
   _OnHealthChange:
+    m_PersistentCalls:
+      m_Calls: []
+  _onBuffAdded:
+    m_PersistentCalls:
+      m_Calls: []
+  _onBuffRemoved:
+    m_PersistentCalls:
+      m_Calls: []
+  OnEnemyDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnEnemyDamagedNumber:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBossDied:
     m_PersistentCalls:
       m_Calls: []
   _additivePriorityMod: 0
@@ -458,9 +475,10 @@ MonoBehaviour:
     targetBuffs: []
     speed: 100
     range: 7
-    _attackAudioVol: 0
+    _attackAudioVol: 0.5
     _attackAudio:
-    - {fileID: 8300000, guid: 45f51811c4f0f7040a63e44aea81b8d3, type: 3}
+    - {fileID: 8300000, guid: 10e6f177fdf3c4f4cbb0fe9548ae7b0e, type: 3}
+    - {fileID: 8300000, guid: 49efaa53951228441af88dde1cdb9d39, type: 3}
   _primaryAttackStatsScaling:
     positions: []
     damage: 7
@@ -474,24 +492,29 @@ MonoBehaviour:
     range: 0
     _attackAudioVol: 0
     _attackAudio: []
-  _audSpawnVol: 0.5
+  _audSpawnVol: 0.2
   _audSpawn:
-  - {fileID: 8300000, guid: 1644d0cba2875e849a67b99e86f3ef62, type: 3}
+  - {fileID: 8300000, guid: 6cb770d2c653d5b4b9503b6a6a88ede7, type: 3}
+  - {fileID: 8300000, guid: bd27aec87cfa17c4dada39ba17d9161e, type: 3}
+  - {fileID: 8300000, guid: ee954120d7692524ebb3869360370f61, type: 3}
   _audSpawnRoarVol: 0.5
   _audSpawnRoar:
-  - {fileID: 8300000, guid: f44792acb3fee5c4493ddf847a822112, type: 3}
+  - {fileID: 8300000, guid: 077e4541d5b140941a5b487b46c2d49a, type: 3}
   _audGettingCloseVol: 0.5
   _audGettingClose:
-  - {fileID: 8300000, guid: 2643c9a764451f64e98d8de92321cbce, type: 3}
+  - {fileID: 8300000, guid: 6e6b6dec1764938489511cdb60c6b57f, type: 3}
   _audTakeDamageVol: 0.5
   _audTakeDamage:
-  - {fileID: 8300000, guid: 37d6d749c25d65847ae651d7d2aea4c1, type: 3}
+  - {fileID: 8300000, guid: 4e30f971c563e014b9a0d7330f063788, type: 3}
+  - {fileID: 8300000, guid: 8372e9637c975544b835bcd2b0360589, type: 3}
+  - {fileID: 8300000, guid: b105754b904ab364598a8333b9ab04cd, type: 3}
   _audHealVol: 0.5
   _audHeal:
   - {fileID: 8300000, guid: 76ef01426104ef141a558bdac28e13a8, type: 3}
   _audDeathVol: 0.5
   _audDeath:
-  - {fileID: 8300000, guid: 1c6f02bc26fb6c642b7a9eada4dd632e, type: 3}
+  - {fileID: 8300000, guid: e2d50f3abe0b48646b9b3f0b73a80247, type: 3}
+  - {fileID: 8300000, guid: 5f5acab2ab3644f428ef3826e0117111, type: 3}
   _audFallDownVol: 0.5
   _audFallDown:
   - {fileID: 8300000, guid: 53a2d303265d69a4aa0aa3896d587b03, type: 3}
@@ -510,7 +533,8 @@ MonoBehaviour:
     range: 0
     _attackAudioVol: 0.5
     _attackAudio:
-    - {fileID: 8300000, guid: dff08afbd9ead4f409a2e498fe3babc5, type: 3}
+    - {fileID: 8300000, guid: 36061338891ec9743a88a76d7dc6ef7d, type: 3}
+    - {fileID: 8300000, guid: e14e101683e1deb42b10ce52775c32b9, type: 3}
   _secondaryAttackStatsScaling:
     positions: []
     damage: 5
@@ -537,7 +561,7 @@ MonoBehaviour:
     range: 0
     _attackAudioVol: 0.5
     _attackAudio:
-    - {fileID: 8300000, guid: 45f51811c4f0f7040a63e44aea81b8d3, type: 3}
+    - {fileID: 8300000, guid: 6e6b6dec1764938489511cdb60c6b57f, type: 3}
   _dashAttackScaling:
     positions: []
     damage: 3
@@ -566,7 +590,8 @@ MonoBehaviour:
     range: 0
     _attackAudioVol: 0.5
     _attackAudio:
-    - {fileID: 8300000, guid: dff08afbd9ead4f409a2e498fe3babc5, type: 3}
+    - {fileID: 8300000, guid: 36061338891ec9743a88a76d7dc6ef7d, type: 3}
+    - {fileID: 8300000, guid: e14e101683e1deb42b10ce52775c32b9, type: 3}
   _sprayAttackScaling:
     positions: []
     damage: 2.5
@@ -676,7 +701,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -2684,10 +2709,35 @@ PrefabInstance:
       propertyPath: m_PresetInfoIsWorld
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1042234023776305708, guid: 30858975e51901047a8449ac72a28abd,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1896127371734880492, guid: 30858975e51901047a8449ac72a28abd,
         type: 3}
       propertyPath: m_Name
       value: BossHealth
+      objectReference: {fileID: 0}
+    - target: {fileID: 3996253968352881922, guid: 30858975e51901047a8449ac72a28abd,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3996253968352881922, guid: 30858975e51901047a8449ac72a28abd,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3996253968352881922, guid: 30858975e51901047a8449ac72a28abd,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6030251726224099812, guid: 30858975e51901047a8449ac72a28abd,
+        type: 3}
+      propertyPath: m_ChildAlignment
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6588683116807845846, guid: 30858975e51901047a8449ac72a28abd,
         type: 3}

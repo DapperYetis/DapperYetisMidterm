@@ -16,6 +16,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private Transform _footPos;
 
+    [SerializeField]
+    private float _groundDist = 0.125f;
+
     // Runtime variables
     private bool _wasMoving;
     private bool _isRunning;
@@ -119,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void VerticalMovement()
     {
-        if(Physics.Raycast(_footPos.position, Vector3.down, 0.125f, Physics.AllLayers ^ (1 << 6)))
+        if(Physics.Raycast(_footPos.position, Vector3.down, _groundDist, Physics.AllLayers ^ (1 << 6)))
         {
             if (!_isGrounded)
                 OnLand.Invoke();

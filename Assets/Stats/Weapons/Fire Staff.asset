@@ -13,15 +13,19 @@ MonoBehaviour:
   m_Name: Fire Staff
   m_EditorClassIdentifier: 
   _weaponName: Fire Staff
+  _primaryDesc: Fires quickly with lower damage. Has a high rate of fire but short
+    range.
+  _secondaryDesc: Fires an exploding fireball that does AOE damage. Long cooldown
+    and high damage.
   _prefab: {fileID: 2045518251835205895, guid: 38416ae80a76cb0458dd8718d9c04a38, type: 3}
   _stats:
     primaryAbility:
       changeType: 0
       prefab: {fileID: 0}
-      critChance: 0.1
-      directDamage: 1
+      critChance: 0.387
+      directDamage: 0.25
       secondaryDamage: 0
-      cooldown: 0.15
+      cooldown: 0.1
       lifetime: 1.5
       secondaryLifetime: 0
       speed: 30
@@ -30,7 +34,7 @@ MonoBehaviour:
       targetBuffs: []
     secondaryAbility:
       changeType: 0
-      prefab: {fileID: 424343093267893311, guid: 8be84b71d6cae8943903b776e3ef8b8d,
+      prefab: {fileID: 7192031178398297031, guid: 2e3104311ca487340b4837bbd9e52f1f,
         type: 3}
       critChance: 0.05
       directDamage: 6
@@ -39,6 +43,6 @@ MonoBehaviour:
       lifetime: 3.5
       secondaryLifetime: 0.75
       speed: 25
-      fxIntesity: 0.5
+      fxIntesity: 20
       selfBuffs: []
       targetBuffs: []

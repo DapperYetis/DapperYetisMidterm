@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _buffName: Root
   _description: 
-  _icon: {fileID: 21300000, guid: 7f9a202674837754a8e77fbbf5df3f03, type: 3}
+  _icon: {fileID: 21300000, guid: 25b7f2925c703b84d98641eb2f4a508b, type: 3}
   _timing: 0
   _buffLength: 2
   _removeType: 1

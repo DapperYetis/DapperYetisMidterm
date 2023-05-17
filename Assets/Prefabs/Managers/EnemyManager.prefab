@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f9a59a3374ad054bb7ccfe0d82dcb8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawningBudgetMax: 20
+  _spawningBudgetInitialMax: 20
+  _spawningBudgetGrowthRate: 1.5
   _initialAdditionalWaves: 5
   _initialWaveWait: 1.5
   _timeBetweenWaves:
@@ -130,7 +131,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 98c6760a55c29244d8d233ee1356757e, type: 2}
   - {fileID: 11400000, guid: 12ff0254f469117478876fc17102897a, type: 2}
   _attackTime: 0.5
-  _attackBudgetMax: 6
+  _attackBudgetInitialMax: 6
+  _attackBudgetGrowthRate: 3
   OnEnemyCountChange:
     m_PersistentCalls:
       m_Calls: []
