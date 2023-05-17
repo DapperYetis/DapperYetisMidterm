@@ -43,8 +43,8 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     // Events
     [HideInInspector]
     public UnityEvent _OnHealthChange;
-    public UnityEvent<SOBuff> _onBuffAdded;
-    public UnityEvent<SOBuff> _onBuffRemoved;
+    public UnityEvent<SOBuff> OnBuffAdded;
+    public UnityEvent<SOBuff> OnBuffRemoved;
     public UnityEvent OnEnemyDamaged;
     public UnityEvent<float> OnEnemyDamagedNumber;
     public UnityEvent OnBossDied;
@@ -484,7 +484,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     {
         if (!_currentBuffs.ContainsKey(buff))
         {
-            _onBuffAdded.Invoke(buff);
+            OnBuffAdded.Invoke(buff);
             _currentBuffs.Add(buff, (0, Time.time + buff.buffLength));
             _currentBuffEffects.Add(buff, Instantiate(buff.effectPrefab, transform).GetComponent<BuffEffect>());
             _currentBuffEffects[buff].SetUp(this, buff);
@@ -551,16 +551,16 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
 
         if (_currentBuffs[buff].stacks <= 0)
         {
-            _onBuffRemoved.Invoke(buff);
             _currentBuffs.Remove(buff);
             _currentBuffEffects.Remove(buff);
+            OnBuffRemoved.Invoke(buff);
             return true;
         }
 
         return false;
     }
 
-    private void CheckBuffs()
+    protected void CheckBuffs()
     {
         for (int i = 0; i < _currentBuffs.Count; ++i)
         {

@@ -73,6 +73,8 @@ public class HermitKingBoss : HybridEnemy
                 }
             }
         }
+
+        CheckBuffs();
     }
 
     public override void ScaleEnemy()
