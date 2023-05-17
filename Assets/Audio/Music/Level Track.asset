@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f7ad113999098b40a4eb35ee6c6c6ad, type: 3}
   m_Name: Level Track
   m_EditorClassIdentifier: 
-  _trackVolume: 0.5
+  _trackVolume: 0.3
   _fadeInTime: 1
   _fadeInLevels:
     serializedVersion: 2

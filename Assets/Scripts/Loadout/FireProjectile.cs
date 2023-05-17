@@ -5,71 +5,14 @@ using UnityEngine;
 public class FireProjectile : Projectile
 {
     [SerializeField]
-    private bool _isAOE;
-    private bool _exploding;
-    private List<IDamageable> _previouslyHit = new();
-
-    protected override void Start()
-    {
-        StartCoroutine(DoDestroy());
-        GetComponent<Rigidbody>().velocity = transform.forward * _stats.speed;
-    }
+    private GameObject _explosionPrefab;
 
     protected override void OnTriggerStay(Collider other)
     {
         if (other.isTrigger) return;
 
-        if (_isAOE && !_exploding)
-        {
-            if (other.gameObject.TryGetComponent<IBuffable>(out var buffable))
-            {
-                buffable.Damage(_stats.directDamage);
-                OnHit?.Invoke(this, buffable);
-            }
-            else if (other.gameObject.TryGetComponent<IDamageable>(out var damageable))
-            {
-                damageable.Damage(_stats.directDamage);
-                OnHitNonBuffable?.Invoke(this, damageable);
-            }
-            StartCoroutine(DoExplode());
-        }
-        else if (other.gameObject.TryGetComponent<IDamageable>(out var damageable) && !_previouslyHit.Contains(damageable))
-        {
-            _previouslyHit.Add(damageable);
-            damageable.Damage(_stats.directDamage);
-            OnHitNonBuffable?.Invoke(this, damageable);
-            if (other.gameObject.TryGetComponent<IBuffable>(out var buffable))
-            {
-                OnHit?.Invoke(this, buffable);
-            }
-        }
+        Instantiate(_explosionPrefab, transform.position, Quaternion.identity).GetComponent<Projectile>().SetStats(_stats);
 
-        if (!_isAOE)
-            Destroy(gameObject);
-    }
-
-    protected virtual IEnumerator DoDestroy()
-    {
-        yield return new WaitForSeconds(_stats.lifetime);
-        if (!_exploding)
-            Destroy(gameObject);
-    }
-
-    protected virtual IEnumerator DoExplode()
-    {
-        _exploding = true;
-        GetComponent<Rigidbody>().velocity = Vector3.zero;
-        Destroy(gameObject, _stats.secondaryLifetime);
-        _stats.directDamage = _stats.secondaryDamage;
-        while(true)
-        {
-            transform.localScale += Vector3.one * _stats.fxIntesity;
-            yield return new WaitForSeconds(Time.deltaTime);
-        }
-    }
-
-    protected virtual void OnDestroy()
-    {
-        StopAllCoroutines();
+        Destroy(gameObject);
     }
 }
