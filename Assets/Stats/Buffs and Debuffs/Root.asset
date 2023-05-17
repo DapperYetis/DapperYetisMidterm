@@ -50,5 +50,6 @@ MonoBehaviour:
     targetBuffs: []
   _effectPrefab: {fileID: 4334024921141274484, guid: 93ca2c12baabad04da52821c43276738,
     type: 3}
-  _audioVolume: 0
-  _audioClips: []
+  _audioVolume: 0.5
+  _audioClips:
+  - {fileID: 8300000, guid: b80a9937b28e3b541be104f51b8534fa, type: 3}

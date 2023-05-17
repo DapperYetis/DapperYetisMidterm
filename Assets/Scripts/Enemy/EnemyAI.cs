@@ -314,7 +314,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
             _aud.PlayOneShot(_audSpawnRoar[Random.Range(0, _audSpawnRoar.Length)], _audSpawnRoarVol);
         else
             Debug.LogWarning("No Spawn Roar Sounds to play!");
-        Debug.Log($"{name} played a sound");
+        //Debug.Log($"{name} played a sound");
     }
 
     protected virtual void ReadyToFight()

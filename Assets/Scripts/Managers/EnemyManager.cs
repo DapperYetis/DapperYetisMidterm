@@ -122,7 +122,7 @@ public class EnemyManager : MonoBehaviour
     private IEnumerator RunWaves()
     {
         yield return new WaitForSeconds(_initialWaveWait);
-        Debug.Log($"Time: {GameManager.instance.runTimeMinutes} min.\tSpawning: {_initialAdditionalWaves} ADDITIONAL waves.");
+        //Debug.Log($"Time: {GameManager.instance.runTimeMinutes} min.\tSpawning: {_initialAdditionalWaves} ADDITIONAL waves.");
         int index;
         for (int i = 0; i < _initialAdditionalWaves; ++i)
         {
@@ -145,7 +145,7 @@ public class EnemyManager : MonoBehaviour
                 }
                 waitTime = RunWave(index);
             }
-            Debug.Log($"Time: {GameManager.instance.runTimeMinutes} min.\tSpawning: {scaleFactorInt} waves.");
+            //Debug.Log($"Time: {GameManager.instance.runTimeMinutes} min.\tSpawning: {scaleFactorInt} waves.");
             yield return new WaitForSeconds(waitTime);
         }
     }

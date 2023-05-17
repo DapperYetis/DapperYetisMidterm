@@ -90,7 +90,7 @@ public class HermitKingBoss : HybridEnemy
 
     private void SprayShoot()
     {
-        Debug.Log("Spray");
+        //Debug.Log("Spray");
         StartCoroutine(DoSprayShoot());
     }
 
