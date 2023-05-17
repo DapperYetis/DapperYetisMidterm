@@ -70,8 +70,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c5ee282be5611b747998e335cda737ed, type: 2}
   - {fileID: 11400000, guid: c5ee282be5611b747998e335cda737ed, type: 2}
   - {fileID: 11400000, guid: 7dd0a444f9aa00348bd20235f00ab3ba, type: 2}
-  - {fileID: 11400000, guid: 7dd0a444f9aa00348bd20235f00ab3ba, type: 2}
   - {fileID: 11400000, guid: dc378e98572fad341931f7dc21e1b753, type: 2}
+  - {fileID: 11400000, guid: f270dbc2883c22645846809bf0d01cf4, type: 2}
+  - {fileID: 11400000, guid: 31a497d29874d224db7ed3e00ecea081, type: 2}
+  - {fileID: 11400000, guid: 31a497d29874d224db7ed3e00ecea081, type: 2}
   _noEffectPrefab: {fileID: 2111052692326853008, guid: 299f9daebbc7a314c931f4eb1ffbb9ec,
     type: 3}
   _rarityChances:

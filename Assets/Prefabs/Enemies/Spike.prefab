@@ -201,10 +201,10 @@ MonoBehaviour:
   _OnHealthChange:
     m_PersistentCalls:
       m_Calls: []
-  _onBuffAdded:
+  OnBuffAdded:
     m_PersistentCalls:
       m_Calls: []
-  _onBuffRemoved:
+  OnBuffRemoved:
     m_PersistentCalls:
       m_Calls: []
   OnEnemyDamaged:
@@ -217,7 +217,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _additivePriorityMod: 0
-  _spawnCost: 1
+  _spawnCost: 1.5
   _stats:
     HPMax: 8
     facePlayerSpeed: 600
