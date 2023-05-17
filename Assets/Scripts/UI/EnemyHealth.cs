@@ -29,8 +29,8 @@ public class EnemyHealth : MonoBehaviour
         _enemyAI = transform.parent.GetComponent<EnemyAI>();
 
         _enemyAI._OnHealthChange.AddListener(UpdateEnemyHealth);
-        _enemyAI._onBuffAdded.AddListener(AddBuff);
-        _enemyAI._onBuffRemoved.AddListener(RemoveBuff);
+        _enemyAI.OnBuffAdded.AddListener(AddBuff);
+        _enemyAI.OnBuffRemoved.AddListener(RemoveBuff);
         _enemyAI.OnEnemyDamagedNumber.AddListener(DamageAnimation);
     }
 

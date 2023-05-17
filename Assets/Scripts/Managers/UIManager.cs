@@ -175,7 +175,7 @@ public class UIManager : MonoBehaviour
         }
         if (GameManager.instance.inGame)
             _references.hud.SetActive(true);
-        Debug.Log("UI References found");
+        //Debug.Log("UI References found");
 
         callback();
     }

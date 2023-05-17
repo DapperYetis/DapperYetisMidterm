@@ -73,6 +73,8 @@ public class HermitKingBoss : HybridEnemy
                 }
             }
         }
+
+        CheckBuffs();
     }
 
     public override void ScaleEnemy()
@@ -88,7 +90,7 @@ public class HermitKingBoss : HybridEnemy
 
     private void SprayShoot()
     {
-        Debug.Log("Spray");
+        //Debug.Log("Spray");
         StartCoroutine(DoSprayShoot());
     }
 

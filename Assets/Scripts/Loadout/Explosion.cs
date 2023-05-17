@@ -18,6 +18,7 @@ public class Explosion : Projectile
 
     protected override void Start()
     {
+        _aud = GetComponent<AudioSource>();
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         StartCoroutine(DoExplode());
     }

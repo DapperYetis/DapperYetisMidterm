@@ -83,6 +83,8 @@ public class DragonInfernoBoss : HybridEnemy
                 }
             }
         }
+
+        CheckBuffs();
     }
 
     public override void ScaleEnemy()

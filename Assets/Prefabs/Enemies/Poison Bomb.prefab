@@ -132,7 +132,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2641481381713404883}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.43199366, y: 0.8833441, z: -16.40542}
 --- !u!1 &2641481381713182621
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,7 +226,7 @@ Transform:
   - {fileID: 2641481381713404879}
   m_Father: {fileID: 2641481381713404883}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 23.937767, y: 35.014324, z: 7.992757}
 --- !u!1 &2641481381713182693
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,16 +454,18 @@ MonoBehaviour:
   _timeLength: 10
   _scaleMultiplier: 20
   _primaryAttackStats:
-    positions: []
+    positions:
+    - {fileID: 2641481381713404913}
     damage: 50
-    rate: 1
-    lifetime: 1
-    variance: 1
-    prefab: {fileID: 0}
+    rate: 10
+    lifetime: 0.1
+    variance: 0
+    prefab: {fileID: 3740111479224556067, guid: 6b5048c96189c7245b6ddb02fac7355e,
+      type: 3}
     selfBuffs: []
     targetBuffs: []
     speed: 100
-    range: 1
+    range: 0.1
     _attackAudioVol: 0.5
     _attackAudio: []
   _primaryAttackStatsScaling:
@@ -745,7 +747,7 @@ Transform:
   - {fileID: 2641481381713404887}
   m_Father: {fileID: 2641481381713404879}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 64.39573, y: -33.984955, z: -75.11735}
 --- !u!1 &2641481381713182701
 GameObject:
   m_ObjectHideFlags: 0
@@ -808,7 +810,7 @@ Transform:
   - {fileID: 2641481381713404875}
   m_Father: {fileID: 2641481381713404867}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 6.200403, y: 24.633986, z: -14.498117}
 --- !u!1 &2641481381713182705
 GameObject:
   m_ObjectHideFlags: 0
@@ -935,7 +937,7 @@ Transform:
   - {fileID: 9065336915798530135}
   m_Father: {fileID: 2641481381713404875}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -3.879169, y: -15.886333, z: -19.645676}
 --- !u!1 &2641481381713182717
 GameObject:
   m_ObjectHideFlags: 0
