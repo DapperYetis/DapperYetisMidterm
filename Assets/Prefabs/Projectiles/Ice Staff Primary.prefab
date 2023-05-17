@@ -14505,7 +14505,7 @@ GameObject:
   - component: {fileID: 6453712776323396614}
   - component: {fileID: 2828452403793714814}
   - component: {fileID: 4712668571908247045}
-  - component: {fileID: 7936895208383038717}
+  - component: {fileID: 1455772885771233813}
   m_Layer: 8
   m_Name: Ice Staff Primary
   m_TagString: Untagged
@@ -14566,7 +14566,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 0
+  looping: 1
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -14624,7 +14624,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 1
+  moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
   randomSeed: 0
@@ -14634,7 +14634,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 6
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -14687,7 +14687,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 15
+      scalar: 0
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -15122,7 +15122,7 @@ ParticleSystem:
     maxNumParticles: 1000
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 1
-    rotation3D: 0
+    rotation3D: 1
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
@@ -18426,6 +18426,21 @@ ParticleSystem:
       type: 0
       properties: 0
       emitProbability: 1
+    - serializedVersion: 3
+      emitter: {fileID: 6544532701455945604}
+      type: 0
+      properties: 0
+      emitProbability: 1
+    - serializedVersion: 3
+      emitter: {fileID: 6544287355239698256}
+      type: 0
+      properties: 0
+      emitProbability: 1
+    - serializedVersion: 3
+      emitter: {fileID: 6534674695806360476}
+      type: 0
+      properties: 0
+      emitProbability: 1
   LightsModule:
     enabled: 1
     ratio: 1
@@ -19430,8 +19445,8 @@ ParticleSystemRenderer:
   m_SortingFudge: 0
   m_NormalDirection: 1
   m_ShadowBias: 0
-  m_RenderAlignment: 4
-  m_Pivot: {x: 0, y: 0, z: 0}
+  m_RenderAlignment: 2
+  m_Pivot: {x: 0, y: 0, z: -0.125}
   m_Flip: {x: 0, y: 0, z: 0}
   m_UseCustomVertexStreams: 0
   m_EnableGPUInstancing: 0
@@ -19542,13 +19557,13 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 3
---- !u!65 &7936895208383038717
-BoxCollider:
+--- !u!136 &1455772885771233813
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -19557,9 +19572,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.01, z: 0.53}
-  m_Center: {x: 0, y: 0.06, z: 0.1}
+  m_Radius: 0.125
+  m_Height: 0.5
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6347467570392469240
 GameObject:
   m_ObjectHideFlags: 0
@@ -23185,7 +23201,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 1
+    enabled: 0
     serializedVersion: 4
     type: 1
     collisionMode: 0

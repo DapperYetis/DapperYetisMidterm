@@ -9820,6 +9820,21 @@ MonoBehaviour:
   OnHit:
     m_PersistentCalls:
       m_Calls: []
+  OnHitNonBuffable:
+    m_PersistentCalls:
+      m_Calls: []
+  _audExplodeVol: 0.2
+  _audExplode:
+  - {fileID: 8300000, guid: 2cb386d8b599e8d48b2b974d764a84c7, type: 3}
+  - {fileID: 8300000, guid: b98eb0c600ac2cf45b9b751a4398a71f, type: 3}
+  - {fileID: 8300000, guid: f5391a36662d4fa4d88fe9da374aea3f, type: 3}
+  - {fileID: 8300000, guid: 534d4740a1c3e084487996fcf54e9088, type: 3}
+  - {fileID: 8300000, guid: c7947361e6725ed45a359473a623cd69, type: 3}
+  - {fileID: 8300000, guid: 86194c3de4a3ae34881b1a845b8675a2, type: 3}
+  - {fileID: 8300000, guid: b5b06ca2d1d4db44a999ab503583974f, type: 3}
+  - {fileID: 8300000, guid: 10881c5815a77794db2d7ca18e655cb0, type: 3}
+  - {fileID: 8300000, guid: 550da9e058a2f53439c282f72dec9f48, type: 3}
+  - {fileID: 8300000, guid: d0430fd36db8a154e8e673dc0b261d5d, type: 3}
 --- !u!135 &7956339051839533432
 SphereCollider:
   m_ObjectHideFlags: 0

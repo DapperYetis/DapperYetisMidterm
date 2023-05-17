@@ -4891,14 +4891,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3947341476034583429}
-  - component: {fileID: 3579954018092115140}
+  - component: {fileID: 8551263213574190221}
   - component: {fileID: 3753233774921116709}
   - component: {fileID: 3752497725605122323}
   - component: {fileID: 3987175307358582053}
   - component: {fileID: 3982273975503639133}
   - component: {fileID: 906327618416533452}
   - component: {fileID: -1465576627879482097}
-  - component: {fileID: 9162200400026935165}
+  - component: {fileID: 6633139024065105718}
   m_Layer: 8
   m_Name: Ice Staff Secondary
   m_TagString: Untagged
@@ -4915,7 +4915,7 @@ Transform:
   m_GameObject: {fileID: 3950282978848794159}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 18, y: 18, z: 18}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3946945766945352515}
@@ -4927,7 +4927,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3579954018092115140
+--- !u!114 &8551263213574190221
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4936,13 +4936,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 3950282978848794159}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6548fa7974a5f8b47b59ee21c3206b5a, type: 3}
+  m_Script: {fileID: 11500000, guid: e10161401e628024d973d435d1aa071a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   OnHit:
     m_PersistentCalls:
       m_Calls: []
-  _destroyAfterTime: 1
+  OnHitNonBuffable:
+    m_PersistentCalls:
+      m_Calls: []
+  _piercing: 1
 --- !u!198 &3753233774921116709
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -5016,7 +5019,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 1
+  moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
   randomSeed: 0
@@ -5079,7 +5082,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 0
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5354,7 +5357,7 @@ ParticleSystem:
     startRotationX:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.5707963
+      scalar: 4.712389
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -8580,7 +8583,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 1
+    enabled: 0
     serializedVersion: 4
     type: 1
     collisionMode: 0
@@ -8782,7 +8785,7 @@ ParticleSystem:
     - {fileID: 3947352471822906809}
     - {fileID: 3947012357339858899}
     - {fileID: 3952217783128735783}
-    - {fileID: 9162200400026935165}
+    - {fileID: 0}
   SubModule:
     serializedVersion: 2
     enabled: 1
@@ -9913,13 +9916,13 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 112
   m_CollisionDetection: 0
---- !u!65 &9162200400026935165
-BoxCollider:
+--- !u!136 &6633139024065105718
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -9928,9 +9931,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.2, y: 0.19, z: 1.92}
-  m_Center: {x: 0, y: 0.1, z: 0.93}
+  m_Radius: 0.125
+  m_Height: 0.5
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3950322530039685453
 GameObject:
   m_ObjectHideFlags: 0

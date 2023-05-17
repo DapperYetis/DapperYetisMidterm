@@ -16,9 +16,11 @@ public class EnemySpawnPoint : MonoBehaviour
         return transform.position + offset;
     }
 
+#if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
         Handles.color = Color.white;
         Handles.DrawWireDisc(transform.position, transform.up, _radius);
     }
+#endif
 }
