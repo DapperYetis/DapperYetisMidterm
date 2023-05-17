@@ -4906,7 +4906,7 @@ GameObject:
   - component: {fileID: 7415796016343200623}
   - component: {fileID: 7956339051839533432}
   - component: {fileID: 8198805692511821786}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bomb Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}

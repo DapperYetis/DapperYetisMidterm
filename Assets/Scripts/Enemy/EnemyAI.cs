@@ -560,7 +560,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
         return false;
     }
 
-    private void CheckBuffs()
+    protected void CheckBuffs()
     {
         for (int i = 0; i < _currentBuffs.Count; ++i)
         {
