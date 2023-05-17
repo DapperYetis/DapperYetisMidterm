@@ -439,6 +439,9 @@ MonoBehaviour:
   OnEnemyDamaged:
     m_PersistentCalls:
       m_Calls: []
+  OnEnemyDamagedNumber:
+    m_PersistentCalls:
+      m_Calls: []
   OnBossDied:
     m_PersistentCalls:
       m_Calls: []
@@ -698,7 +701,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0

@@ -6,9 +6,18 @@ using UnityEngine;
 public class Explosion : Projectile
 {
     private List<IBuffable> _previouslyHit = new();
+    AudioSource _aud;
+
+    [Header("--- Audio Controls ---")]
+    [Range(0, 1)]
+    [SerializeField]
+    protected float _audExplodeVol;
+    [SerializeField]
+    protected AudioClip[] _audExplode;
 
     protected override void Start()
     {
+        _aud = GetComponent<AudioSource>();
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         StartCoroutine(DoExplode());
     }
@@ -33,6 +42,11 @@ public class Explosion : Projectile
 
     protected virtual IEnumerator DoExplode()
     {
+        if (_audExplode.Length > 0)
+            _aud.PlayOneShot(_audExplode[Random.Range(0, _audExplode.Length)], _audExplodeVol);
+        else
+            Debug.LogWarning("No Explosion Sounds to play!");
+
         Destroy(gameObject, _stats.secondaryLifetime);
         _stats.directDamage = _stats.secondaryDamage;
         while(true)

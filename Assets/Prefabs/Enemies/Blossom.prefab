@@ -134,6 +134,15 @@ MonoBehaviour:
   _onBuffRemoved:
     m_PersistentCalls:
       m_Calls: []
+  OnEnemyDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnEnemyDamagedNumber:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBossDied:
+    m_PersistentCalls:
+      m_Calls: []
   _additivePriorityMod: 0
   _spawnCost: 1
   _stats:
@@ -291,7 +300,8 @@ AudioSource:
   m_GameObject: {fileID: 5544356110842270898}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: ee91a59677e14a24f8f1e16aeb721c3c,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
