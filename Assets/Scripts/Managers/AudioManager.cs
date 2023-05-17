@@ -65,7 +65,7 @@ public class AudioManager : MonoBehaviour
 
     private IEnumerator DoBackgroundMusic(AudioSource source, SOMusicTrack track)
     {
-        Debug.Log("BG music starting");
+        //Debug.Log("BG music starting");
         WaitForEndOfFrame wait = new();
         // Set Up
         bool trackType = _usingTrackA;

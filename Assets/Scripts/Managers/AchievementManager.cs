@@ -59,7 +59,7 @@ public class AchievementManager : MonoBehaviour
     {
         LoadStats();
         LoadAchievements();
-        Debug.Log(_gameStats);
+        //Debug.Log(_gameStats);
     }
 
     private void Update()

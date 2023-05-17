@@ -46,6 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawningBudgetInitialMax: 20
   _spawningBudgetGrowthRate: 1.5
+  _waveCostMaxInitial: 3
+  _waveCostGrowthRate: 2
   _initialAdditionalWaves: 5
   _initialWaveWait: 1.5
   _timeBetweenWaves:
@@ -130,6 +132,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8960b3a3b5bf0ad4cbf00878d05d2e21, type: 2}
   - {fileID: 11400000, guid: 98c6760a55c29244d8d233ee1356757e, type: 2}
   - {fileID: 11400000, guid: 12ff0254f469117478876fc17102897a, type: 2}
+  - {fileID: 11400000, guid: 4c698f3111418a243b4ac1e0155692bd, type: 2}
+  - {fileID: 11400000, guid: 1a0486a1280a0a643be8c2506e8493ef, type: 2}
+  - {fileID: 11400000, guid: 648e3ec840736e545a23f16a9d681f41, type: 2}
   _attackTime: 0.5
   _attackBudgetInitialMax: 6
   _attackBudgetGrowthRate: 3
@@ -140,5 +145,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnBossRoomLeave:
+    m_PersistentCalls:
+      m_Calls: []
+  OnEnemyDeath:
     m_PersistentCalls:
       m_Calls: []
