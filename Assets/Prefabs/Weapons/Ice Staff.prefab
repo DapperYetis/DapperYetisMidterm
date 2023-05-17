@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9095577239194349232}
   - component: {fileID: 2051183490881412220}
+  - component: {fileID: 3589320300904066724}
   m_Layer: 12
   m_Name: Ice Staff
   m_TagString: Untagged
@@ -55,6 +56,114 @@ MonoBehaviour:
   OnHit:
     m_PersistentCalls:
       m_Calls: []
+  _audio: {fileID: 3589320300904066724}
+  _primaryIceAud:
+  - {fileID: 8300000, guid: 2e1e0b72ab7ff8942becb59d5a5c56f0, type: 3}
+  - {fileID: 8300000, guid: 580aefa5e32c50447b05b8083dc07e68, type: 3}
+  - {fileID: 8300000, guid: d95006d7a7caeef42a109c69048759cb, type: 3}
+  - {fileID: 8300000, guid: b0d4d985bea6e9242a19de244ff933db, type: 3}
+  - {fileID: 8300000, guid: 7114d46787f85a64ea603583be19d460, type: 3}
+  _primIceWeaponAudVol: 1
+  _secIceWeaponAud:
+  - {fileID: 8300000, guid: dd4d21193e411db418677e8d6d624154, type: 3}
+  - {fileID: 8300000, guid: 83d62270b2cbda24e8a731706f16061b, type: 3}
+  _secIceWeaponAudVol: 1
+--- !u!82 &3589320300904066724
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2045518251835205895}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &1915498899927649122
 PrefabInstance:
   m_ObjectHideFlags: 0

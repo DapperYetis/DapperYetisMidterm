@@ -15,7 +15,11 @@ public class Teleport : Support
     private bool _beaconPlaced = false;
     private RaycastHit _hit;
     [SerializeField] private GameObject _particleEffects;
-    [SerializeField] private AudioClip _audioClip;
+    [SerializeField] AudioSource _audio;
+    [SerializeField] private AudioClip _audioClipQucikTele;
+    [SerializeField][Range(0f, 1f)] float _audQuickTeleVol;
+    [SerializeField] private AudioClip _audioClipBeacon;
+    [SerializeField][Range(0f, 1f)] float _audBeaconVol;
 
     // Start is called before the first frame update
     protected void Start()
@@ -32,6 +36,10 @@ public class Teleport : Support
         }
         else if (Input.GetButtonDown("Secondary Support") && _canUseSecondary && !GameManager.instance.isPaused)
         {
+            if (_audioClipBeacon != null)
+            {
+                _audio.PlayOneShot(_audioClipBeacon, _audBeaconVol);
+            }
             StartCoroutine(Secondary());
             OnSecondary.Invoke();
         }
@@ -93,10 +101,9 @@ public class Teleport : Support
     private void TeleportToView()
     {
         _player.transform.position = _hit.point + _hit.normal * 3f;
-        if (_audioClip != null)
+        if (_audioClipQucikTele != null)
         {
-            AudioSource.PlayClipAtPoint(_audioClip, transform.position);
-            Debug.Log($"{name} played a sound");
+            _audio.PlayOneShot(_audioClipQucikTele, _audQuickTeleVol);
         }
 
     }

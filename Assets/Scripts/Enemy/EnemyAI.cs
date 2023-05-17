@@ -43,8 +43,8 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     // Events
     [HideInInspector]
     public UnityEvent _OnHealthChange;
-    public UnityEvent<SOBuff> _onBuffAdded;
-    public UnityEvent<SOBuff> _onBuffRemoved;
+    public UnityEvent<SOBuff> OnBuffAdded;
+    public UnityEvent<SOBuff> OnBuffRemoved;
     public UnityEvent OnEnemyDamaged;
     public UnityEvent<float> OnEnemyDamagedNumber;
     public UnityEvent OnBossDied;
@@ -314,7 +314,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
             _aud.PlayOneShot(_audSpawnRoar[Random.Range(0, _audSpawnRoar.Length)], _audSpawnRoarVol);
         else
             Debug.LogWarning("No Spawn Roar Sounds to play!");
-        Debug.Log($"{name} played a sound");
+        //Debug.Log($"{name} played a sound");
     }
 
     protected virtual void ReadyToFight()
@@ -484,7 +484,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     {
         if (!_currentBuffs.ContainsKey(buff))
         {
-            _onBuffAdded.Invoke(buff);
+            OnBuffAdded.Invoke(buff);
             _currentBuffs.Add(buff, (0, Time.time + buff.buffLength));
             _currentBuffEffects.Add(buff, Instantiate(buff.effectPrefab, transform).GetComponent<BuffEffect>());
             _currentBuffEffects[buff].SetUp(this, buff);
@@ -551,9 +551,9 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
 
         if (_currentBuffs[buff].stacks <= 0)
         {
-            _onBuffRemoved.Invoke(buff);
             _currentBuffs.Remove(buff);
             _currentBuffEffects.Remove(buff);
+            OnBuffRemoved.Invoke(buff);
             return true;
         }
 
