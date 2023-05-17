@@ -6,22 +6,22 @@ public class Staff : Weapon
 {
     [Header("-----Audio-----")]
     [SerializeField] AudioSource _audio;
-    [SerializeField] AudioClip[] _primaryWeaponAudio;
-    [SerializeField][Range(0f, 1f)] float _primaryWeaponAudioVol;
-    [SerializeField] AudioClip[] _secondaryWeaponAudio;
-    [SerializeField][Range(0f, 1f)] float _secondaryWeaponAudioVol;
+    [SerializeField] AudioClip[] _primaryIceAud;
+    [SerializeField][Range(0f, 1f)] float _primIceWeaponAudVol;
+    [SerializeField] AudioClip[] _secIceWeaponAud;
+    [SerializeField][Range(0f, 1f)] float _secIceWeaponAudVol;
 
     protected override void Update()
     {
         if (Input.GetButton("Primary Fire") && _canUsePrimary && !GameManager.instance.isPaused)
         {
-            if (_primaryWeaponAudio.Length > 0)
-                _audio.PlayOneShot(_primaryWeaponAudio[Random.Range(0, _primaryWeaponAudio.Length)], _primaryWeaponAudioVol);
+            if (_primaryIceAud.Length > 0)
+                _audio.PlayOneShot(_primaryIceAud[Random.Range(0, _primaryIceAud.Length)], _primIceWeaponAudVol);
         }
         else if (Input.GetButton("Secondary Fire") && _canUseSecondary && !GameManager.instance.isPaused)
         {
-            if (_secondaryWeaponAudio.Length > 0)
-                _audio.PlayOneShot(_secondaryWeaponAudio[Random.Range(0, _secondaryWeaponAudio.Length)], _secondaryWeaponAudioVol);
+            if (_secIceWeaponAud.Length > 0)
+                _audio.PlayOneShot(_secIceWeaponAud[Random.Range(0, _secIceWeaponAud.Length)], _secIceWeaponAudVol);
         }
         base.Update();
     }

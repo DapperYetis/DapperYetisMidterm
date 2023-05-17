@@ -151,6 +151,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && !_isJumping && _jumpCountCurrent < _stats.jumpCountMax)
         {
+            if (_audJump.Length > 0)
+            {
+                _audio.PlayOneShot(_audJump[Random.Range(0, _audJump.Length)], _audJumpVol);
+            }
             StartCoroutine(DoJump());
         }
         else if (!_isJumping)
@@ -178,10 +182,6 @@ public class PlayerMovement : MonoBehaviour
         while (Time.time < startTime + _stats.jumpInputTime)
         {
             if (Input.GetButton("Jump"))
-                if (_audJump.Length > 0)
-                {
-                    _audio.PlayOneShot(_audJump[Random.Range(0, _audJump.Length)], _audJumpVol);
-                }
                 _playerVelocity.y = minInitialVelocity + totalVelocityIncrement * (Time.time - startTime) / _stats.jumpInputTime;
             yield return wait;
         }
