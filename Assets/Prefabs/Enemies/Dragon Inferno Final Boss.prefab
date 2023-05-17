@@ -1268,7 +1268,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _radiusMod: 0
   _speedMod: 0
-  _animTransSpeed: 0
+  _animTransSpeed: 1
   _OnHealthChange:
     m_PersistentCalls:
       m_Calls: []
@@ -1320,7 +1320,8 @@ MonoBehaviour:
     range: 0
     _attackAudioVol: 0.5
     _attackAudio:
-    - {fileID: 8300000, guid: 45f51811c4f0f7040a63e44aea81b8d3, type: 3}
+    - {fileID: 8300000, guid: 1f0ba44dd9e6bba46bb45c7b38664bb6, type: 3}
+    - {fileID: 8300000, guid: 830152776a81f2642944954ced824bba, type: 3}
   _primaryAttackStatsScaling:
     positions: []
     damage: 0
@@ -1339,21 +1340,26 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d675c599f6ecded48b409c06cff448d1, type: 3}
   _audSpawnRoarVol: 0.5
   _audSpawnRoar:
-  - {fileID: 8300000, guid: f44792acb3fee5c4493ddf847a822112, type: 3}
+  - {fileID: 8300000, guid: 399d2a0bbf545e74d9244016d3c57d12, type: 3}
+  - {fileID: 8300000, guid: 7898788a804fabb4da3d9d11535c59b9, type: 3}
   _audGettingCloseVol: 0.5
   _audGettingClose:
-  - {fileID: 8300000, guid: 2643c9a764451f64e98d8de92321cbce, type: 3}
+  - {fileID: 8300000, guid: 0a1d77ba885886345a377335b1353fc6, type: 3}
+  - {fileID: 8300000, guid: 62350101bb9498b4588383c9677bc90b, type: 3}
   _audTakeDamageVol: 0.5
   _audTakeDamage:
-  - {fileID: 8300000, guid: 37d6d749c25d65847ae651d7d2aea4c1, type: 3}
+  - {fileID: 8300000, guid: 0186818fa3cca82438a151f5072d6ea6, type: 3}
+  - {fileID: 8300000, guid: 5bdfd9834ba7d8540ae5e2fa94303184, type: 3}
   _audHealVol: 0.5
   _audHeal:
   - {fileID: 8300000, guid: 76ef01426104ef141a558bdac28e13a8, type: 3}
   _audDeathVol: 0.5
   _audDeath:
-  - {fileID: 8300000, guid: 1c6f02bc26fb6c642b7a9eada4dd632e, type: 3}
+  - {fileID: 8300000, guid: ba330288ebc39b549a9de7ef6cef207b, type: 3}
+  - {fileID: 8300000, guid: 9b42d45e9a426b44eab537b9d6a766a1, type: 3}
   _audFallDownVol: 0.5
   _audFallDown:
+  - {fileID: 8300000, guid: 0b22c2d31a5bf174daa84ed9230e617a, type: 3}
   - {fileID: 8300000, guid: 53a2d303265d69a4aa0aa3896d587b03, type: 3}
   _meleeCollider: {fileID: 7607947220840283630}
   _secondaryAttackStats:
@@ -1370,7 +1376,8 @@ MonoBehaviour:
     range: 30
     _attackAudioVol: 0.7
     _attackAudio:
-    - {fileID: 8300000, guid: dff08afbd9ead4f409a2e498fe3babc5, type: 3}
+    - {fileID: 8300000, guid: 1f0ba44dd9e6bba46bb45c7b38664bb6, type: 3}
+    - {fileID: 8300000, guid: 830152776a81f2642944954ced824bba, type: 3}
   _secondaryAttackStatsScaling:
     positions: []
     damage: 5
@@ -1451,7 +1458,8 @@ MonoBehaviour:
     range: 50
     _attackAudioVol: 0.5
     _attackAudio:
-    - {fileID: 8300000, guid: dff08afbd9ead4f409a2e498fe3babc5, type: 3}
+    - {fileID: 8300000, guid: 8fb3ca65752e3ee4fbcaf48054bac137, type: 3}
+    - {fileID: 8300000, guid: ea870c94f2e89f64ebadf97a92d1b2d1, type: 3}
   _scatterRangedAttackScaling:
     positions: []
     damage: 5
