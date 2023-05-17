@@ -6,6 +6,7 @@ using UnityEngine;
 public class Explosion : Projectile
 {
     private List<IBuffable> _previouslyHit = new();
+    [SerializeField]
     AudioSource _aud;
 
     [Header("--- Audio Controls ---")]
