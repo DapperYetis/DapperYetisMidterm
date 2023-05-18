@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Shield
   m_EditorClassIdentifier: 
   _supportName: Shield
-  _primaryDescription: Activate a temporary barrier protecting you from damage. You
-    can't fire while the barrier is up.
+  _primaryDescription: Activate a temporary barrier protecting you from damage.
   _secondaryDescription: Dash forward and deal damage to anything you dash through.
   _prefab: {fileID: 5783097432848519765, guid: 6288b5adfc809ef48b2017f4351530fa, type: 3}
   _stats:

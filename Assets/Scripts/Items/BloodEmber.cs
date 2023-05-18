@@ -7,6 +7,6 @@ public class BloodEmber : ItemEffect
 
     protected void DeadlyHeal()
     {
-        GameManager.instance.player.Heal((10 + (stacks * 10)));
+        GameManager.instance.player.Heal((3 + (stacks * 2)));
     }
 }
