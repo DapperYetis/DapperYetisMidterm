@@ -316,6 +316,21 @@ MonoBehaviour:
   _OnHealthChange:
     m_PersistentCalls:
       m_Calls: []
+  OnBuffAdded:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuffRemoved:
+    m_PersistentCalls:
+      m_Calls: []
+  OnEnemyDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnEnemyDamagedNumber:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBossDied:
+    m_PersistentCalls:
+      m_Calls: []
   _additivePriorityMod: 0
   _spawnCost: 1
   _stats:
@@ -343,8 +358,7 @@ MonoBehaviour:
     variance: 1
     prefab: {fileID: 424343093267893311, guid: f7b16309293f2e949b61f60c035662d9, type: 3}
     selfBuffs: []
-    targetBuffs:
-    - {fileID: 11400000, guid: 24ff1838f787af047b68ff00fd1d65b5, type: 2}
+    targetBuffs: []
     speed: 100
     range: 1
     _attackAudioVol: 0.5

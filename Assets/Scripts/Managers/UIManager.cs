@@ -2,9 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
 
 public class UIManager : MonoBehaviour
 {
@@ -81,9 +79,9 @@ public class UIManager : MonoBehaviour
     {
         if (GameManager.instance.inGame)
             _references.timer.SetText($"{(int)GameManager.instance.runTimeMinutes} : {(GameManager.instance.runTime % 60).ToString("F1")}");
-        if (GameManager.instance.inGame && !_isPlaying)
+        if (GameManager.instance.inGame)
         {
-            if (Input.GetButtonDown("Cancel") || Input.GetKeyDown(KeyCode.P))
+            if (Input.GetButtonDown("Cancel"))
             {
                 if (_activeMenu != null && ReferenceEquals(_activeMenu, _references.pauseMenu))
                 {
