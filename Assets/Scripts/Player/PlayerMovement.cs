@@ -200,7 +200,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _wasMoving = true;
 
-        if (_audSteps.Length > 0)
+        if (_audSteps.Length > 0 && isGrounded)
         {
             _audio.PlayOneShot(_audSteps[Random.Range(0, _audSteps.Length)], _audStepsVol);
         }

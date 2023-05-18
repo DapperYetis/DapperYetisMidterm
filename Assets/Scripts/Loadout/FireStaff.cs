@@ -33,7 +33,7 @@ public class FireStaff : Weapon
             _collider.enabled = true;
             _particleSystem.Play();
             _audio.loop = false;
-            if (_primFireWeaponAud.Length > 0)
+            if (_primFireWeaponAud.Length > 0 && !GameManager.instance.isPaused)
             {
                 _audio.clip = _primFireWeaponAud[Random.Range(0, _primFireWeaponAud.Length)];
                 _audio.loop = true;
@@ -58,5 +58,10 @@ public class FireStaff : Weapon
             _canUsePrimary = true;
         }
         base.Update();
+
+        if (GameManager.instance.isPaused && _audio.isPlaying)
+        {
+            _audio.Pause();
+        }
     }
 }
