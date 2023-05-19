@@ -12,11 +12,11 @@ public class SceneManage : MonoBehaviour
 #if UNITY_EDITOR
     private void Update()
     {
-        if (Input.GetKeyDown("0"))
+        if (Input.GetKeyDown(KeyCode.Alpha0))
             LoadScene(0);
-        else if (Input.GetKeyDown("1"))
+        else if (Input.GetKeyDown(KeyCode.Alpha1))
             LoadScene(1);
-        else if (Input.GetKeyDown("2"))
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
             LoadScene(2);
     }
 #endif
