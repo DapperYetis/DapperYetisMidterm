@@ -313,7 +313,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stats:
-    walkSpeed: 13
+    walkSpeed: 50
     sprintMultiplier: 1.2
     accelerationRate:
       serializedVersion: 2
