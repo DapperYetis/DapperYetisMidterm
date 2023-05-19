@@ -912,7 +912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9bf0b1057ce9ec4cbfa5dece55f07f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemEffectsParent: {fileID: 0}
+  _itemEffectsParent: {fileID: 2715582135753669317}
   OnLevelChange:
     m_PersistentCalls:
       m_Calls: []
