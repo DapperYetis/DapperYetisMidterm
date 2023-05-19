@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 493248025162365972}
   - component: {fileID: 8006229580946211299}
   - component: {fileID: 3507735043925207317}
-  m_Layer: 6
+  m_Layer: 13
   m_Name: Shield Force Field Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
