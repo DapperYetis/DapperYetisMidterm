@@ -27,11 +27,16 @@ public class HudItems : MonoBehaviour
 
         foreach(var item in GameManager.instance.player.inventory.items.Keys)
         {
-            AddItem(item);
+            AddItem(item, true);
         }
     }
 
     public void AddItem(SOItem toAdd)
+    {
+        AddItem(toAdd, false);
+    }
+
+    public void AddItem(SOItem toAdd, bool isSilent)
     {
         if (!_itemHud.ContainsKey(toAdd))
         {
@@ -46,9 +51,12 @@ public class HudItems : MonoBehaviour
             _itemHud[toAdd].SetCount(GameManager.instance.player.inventory.items[toAdd]);
         }
         
-        _queue.Enqueue(toAdd);
-        if(!_coroutineRunning)
-            PlayNextInQueue();
+        if(!isSilent)
+        {
+            _queue.Enqueue(toAdd);
+            if (!_coroutineRunning)
+                PlayNextInQueue();
+        }
     }
 
     private void PlayNextInQueue()
