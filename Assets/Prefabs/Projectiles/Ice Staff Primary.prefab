@@ -14550,6 +14550,7 @@ MonoBehaviour:
   OnHitNonBuffable:
     m_PersistentCalls:
       m_Calls: []
+  _col: {fileID: 1455772885771233813}
   _piercing: 0
 --- !u!198 &6543868762455980036
 ParticleSystem:
@@ -15579,14 +15580,14 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0
           value: 0
-          inSlope: 19.250257
-          outSlope: 19.250257
+          inSlope: 20
+          outSlope: 20
           tangentMode: 34
           weightedMode: 0
           inWeight: 0
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.05194736
+          time: 0.05
           value: 1
           inSlope: 0
           outSlope: 0
@@ -18391,10 +18392,10 @@ ParticleSystem:
         m_RotationOrder: 4
     minKillSpeed: 0
     maxKillSpeed: 10000
-    radiusScale: 20
+    radiusScale: 0.3
     collidesWith:
       serializedVersion: 2
-      m_Bits: 3750
+      m_Bits: 136
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
@@ -19573,7 +19574,7 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.125
-  m_Height: 0.5
+  m_Height: 0.31
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6347467570392469240

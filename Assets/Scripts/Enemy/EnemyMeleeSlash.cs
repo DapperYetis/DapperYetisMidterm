@@ -17,6 +17,11 @@ public class EnemyMeleeSlash : MonoBehaviour
         slash = GetComponent<Collider>();
     }
 
+    private void Update()
+    {
+        WhenDead();
+    }
+
     protected virtual void OnTriggerStay(Collider other)
     {
         if (other.isTrigger) return;
@@ -30,4 +35,13 @@ public class EnemyMeleeSlash : MonoBehaviour
 
         slash.enabled = false;
     }
+
+    private void WhenDead()
+    {
+        if (_enemy.GetHealthCurrent() <= 0)
+        {
+            slash.enabled = false;
+        }
+    }
 }
+ 
