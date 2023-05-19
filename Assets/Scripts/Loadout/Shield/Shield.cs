@@ -15,6 +15,17 @@ public class Shield : Support
 
     public bool shieldEnabled;
 
+    [Header("---- Audio ----")]
+    [SerializeField] AudioSource _audio;
+    [SerializeField] private AudioClip _shieldActiveAud;
+    [SerializeField][Range(0f, 1f)] float _shieldActiveVol;
+    [SerializeField] private AudioClip _shieldDeactiveAud;
+    [SerializeField][Range(0f, 1f)] float _shieldDeactiveVol;
+    [SerializeField] private AudioClip _shieldDamagedAud;
+    [SerializeField][Range(0f, 1f)] float _shieldDamagedVol;
+    [SerializeField] private AudioClip _shieldDashAud;
+    [SerializeField][Range(0f, 1f)] float _shieldDashVol;
+
     [SerializeField] private ProjectileMelee _damageTrigger;
     [SerializeField] private GameObject _particleEffect;
     [SerializeField] float dashingSpeed = 50f;
@@ -53,11 +64,19 @@ public class Shield : Support
         {
             shieldEnabled = true;
             shieldField.SetActive(true);
+            if (_shieldActiveAud != null)
+            {
+                _audio.PlayOneShot(_shieldActiveAud, _shieldActiveVol);
+            }
         }
         else if (shieldEnabled)
         {
             shieldEnabled = false;
             shieldField.SetActive(false);
+            if (_shieldDeactiveAud != null)
+            {
+                _audio.PlayOneShot(_shieldDeactiveAud, _shieldDeactiveVol);
+            }
             yield return new WaitForSeconds(stats.useRatePrimary);
         }
 
@@ -71,6 +90,10 @@ public class Shield : Support
         _damageTrigger.gameObject.SetActive(true);
         _particleEffect.gameObject.SetActive(true);
         GameManager.instance.player.movement.enabled = false;
+        if (_shieldDashAud != null)
+        {
+            _audio.PlayOneShot(_shieldDashAud, _shieldDashVol);
+        }
         yield return new WaitForSeconds(dashingCooldown);
         _particleEffect.gameObject.SetActive(false);
         _damageTrigger.gameObject.SetActive(false);
@@ -90,10 +113,21 @@ public class Shield : Support
         {
             meshRenderer.material = newMaterial;
         }
-        if(_shieldDurability <= 0)
+        if(_shieldDurability == 0.3 * stats.useCountPrimary)
+        {
+            if (_shieldDamagedAud != null)
+            {
+                _audio.PlayOneShot(_shieldDamagedAud, _shieldDamagedVol);
+            }
+        }
+        if (_shieldDurability <= 0)
         {
             shieldEnabled = false;
             shieldField.SetActive(false);
+            if (_shieldDeactiveAud != null)
+            {
+                _audio.PlayOneShot(_shieldDeactiveAud, _shieldDeactiveVol);
+            }
             StartCoroutine(Cooldown());
             _shieldDurability = stats.useCountPrimary;
             meshRenderer.material = oldMaterial;

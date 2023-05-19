@@ -56,7 +56,7 @@ public class Chest : MonoBehaviour, IInteractable
         {
             _playerPos = GameManager.instance.player.transform.position;
 
-            _lookDirection = _playerPos - _animal.transform.position;
+            _lookDirection = new Vector3(_playerPos.x - _animal.transform.position.x, 0, _playerPos.z - _animal.transform.position.z);
 
             StartCoroutine(Turning());
 

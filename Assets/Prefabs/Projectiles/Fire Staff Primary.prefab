@@ -4834,13 +4834,13 @@ GameObject:
   m_Component:
   - component: {fileID: 7493848210122277172}
   - component: {fileID: 6048099640020223127}
-  - component: {fileID: 6685271412196226086}
   - component: {fileID: 7291584282169754412}
   - component: {fileID: 7378799174708853972}
   - component: {fileID: 7292470915409210386}
   - component: {fileID: 7381889359200411780}
   - component: {fileID: 8518972832402660146}
   - component: {fileID: -792771391922489960}
+  - component: {fileID: 7889433795918292178}
   m_Layer: 8
   m_Name: Fire Staff Primary
   m_TagString: Untagged
@@ -4856,8 +4856,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7490752755021979330}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7493434847367409168}
@@ -4884,19 +4884,9 @@ MonoBehaviour:
   OnHit:
     m_PersistentCalls:
       m_Calls: []
---- !u!65 &6685271412196226086
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7490752755021979330}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.25, y: 0.375, z: 1.5}
-  m_Center: {x: 0, y: 0, z: 0.75}
+  OnHitNonBuffable:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!198 &7291584282169754412
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -4905,7 +4895,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7490752755021979330}
   serializedVersion: 8
-  lengthInSec: 1
+  lengthInSec: 0.05
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 3
@@ -4980,7 +4970,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.6
+      scalar: 0.7
       minScalar: 0.8
       maxCurve:
         serializedVersion: 2
@@ -5033,7 +5023,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.6
+      scalar: 4
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -9744,8 +9734,8 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
+  - {fileID: 2100000, guid: 702a250bb24700c4fb4a74b638bf5f2f, type: 2}
   - {fileID: 0}
-  - {fileID: 2100000, guid: 564274271c0dac34e96edb9a9aa5aff1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9787,7 +9777,7 @@ ParticleSystemRenderer:
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
   m_VertexStreams: 00010304
-  m_Mesh: {fileID: 4300000, guid: 71606ed32b89f0943b8b2add5783dcd5, type: 3}
+  m_Mesh: {fileID: 4300002, guid: 82dbd8e3418cba140afc86fa4b355d35, type: 3}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
@@ -9809,7 +9799,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 0.45882353, b: 0.09803922, a: 1}
   m_Intensity: 1
-  m_Range: 4
+  m_Range: 4.56083
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -9853,7 +9843,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 0, y: 1e-44, z: 2.9132e-41, w: 6e-44}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -9892,8 +9882,22 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!136 &7889433795918292178
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7490752755021979330}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.2
+  m_Height: 3.07
+  m_Direction: 2
+  m_Center: {x: -0.15, y: 0, z: 1.5}
 --- !u!1 &7490928667086785964
 GameObject:
   m_ObjectHideFlags: 0

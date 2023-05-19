@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 public class PlayerController : MonoBehaviour, IDamageable, IBuffable
 {
@@ -32,6 +33,11 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
     [SerializeField]
     private PlayerMovementGrappling _grappling;
     public PlayerMovementGrappling grappling => _grappling;
+
+    [Header("-----Audio-----")]
+    [SerializeField] AudioSource _audio;
+    [SerializeField] AudioClip[] _audDamage;
+    [SerializeField][Range(0f, 1f)] float _audDamageVol;
 
 
     // ------Loadout------
@@ -216,6 +222,10 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
 
     public void Damage(float damage, (SOBuff buff , int amount)[] buffs = null)
     {
+        if (_audDamage.Length > 0)
+        {
+            _audio.PlayOneShot(_audDamage[Random.Range(0, _audDamage.Length)], _audDamageVol);
+        }
         _healthCurrent -= damage;
 
         if (buffs != null)

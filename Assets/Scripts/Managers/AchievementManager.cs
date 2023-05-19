@@ -69,6 +69,7 @@ public class AchievementManager : MonoBehaviour
         if (_isPlayerMoving)
         {
             _gameStats.distanceMoved += GameManager.instance.player.movement.playerVelocity.magnitude * Time.deltaTime;
+            _runStats.distanceMoved += GameManager.instance.player.movement.playerVelocity.magnitude * Time.deltaTime;
         }
     }
 

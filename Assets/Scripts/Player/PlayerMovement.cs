@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
@@ -18,6 +19,13 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     private float _groundDist = 0.125f;
+
+    [Header("-----Audio-----")]
+    [SerializeField] AudioSource _audio;
+    [SerializeField] AudioClip[] _audSteps;
+    [SerializeField][Range(0f, 1f)] float _audStepsVol;
+    [SerializeField] AudioClip[] _audJump;
+    [SerializeField][Range(0f, 1f)] float _audJumpVol;
 
     // Runtime variables
     private bool _wasMoving;
@@ -111,6 +119,7 @@ public class PlayerMovement : MonoBehaviour
         if (!_wasMoving && (playerVelocity - Vector3.up * playerVelocity.y).sqrMagnitude > 0.005)
         {
             _wasMoving = true;
+            StartCoroutine(PlaySteps());
             OnMoveStart.Invoke();
         }
         else if (_wasMoving && (playerVelocity - Vector3.up * playerVelocity.y).sqrMagnitude <= 0.005)
@@ -142,6 +151,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && !_isJumping && _jumpCountCurrent < _stats.jumpCountMax)
         {
+            if (_audJump.Length > 0)
+            {
+                _audio.PlayOneShot(_audJump[Random.Range(0, _audJump.Length)], _audJumpVol);
+            }
             StartCoroutine(DoJump());
         }
         else if (!_isJumping)
@@ -181,5 +194,26 @@ public class PlayerMovement : MonoBehaviour
     {
         _stats = newStats;
         Physics.gravity = Vector3.down * _stats.gravityAcceleration;
+    }
+
+    private IEnumerator PlaySteps()
+    {
+        _wasMoving = true;
+
+        if (_audSteps.Length > 0 && isGrounded)
+        {
+            _audio.PlayOneShot(_audSteps[Random.Range(0, _audSteps.Length)], _audStepsVol);
+        }
+
+        if(!isRunning)
+        {
+            yield return new WaitForSeconds(0.5f);
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.3f);
+        }
+
+        _wasMoving = false;
     }
 }
