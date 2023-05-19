@@ -2888,11 +2888,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 4724916751031679152, guid: f384ea6a4ca51744082bbf126f4a381d,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4724916751031679164, guid: f384ea6a4ca51744082bbf126f4a381d,
         type: 3}
       propertyPath: m_Pivot.x
@@ -7327,61 +7322,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 946099148733977165, guid: 61d081160cf84b748abb9316d5cf4d82,
-        type: 3}
-      propertyPath: _spawningBounds.m_Center.y
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 3225785287832449017, guid: 61d081160cf84b748abb9316d5cf4d82,
-        type: 3}
-      propertyPath: _backgroundMusic
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7300342205331037249, guid: 61d081160cf84b748abb9316d5cf4d82,
-        type: 3}
-      propertyPath: _initialWaveWait
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7300342205331037249, guid: 61d081160cf84b748abb9316d5cf4d82,
-        type: 3}
-      propertyPath: _waves.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7300342205331037249, guid: 61d081160cf84b748abb9316d5cf4d82,
-        type: 3}
-      propertyPath: _waves.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 8960b3a3b5bf0ad4cbf00878d05d2e21,
-        type: 2}
-    - target: {fileID: 7300342205331037249, guid: 61d081160cf84b748abb9316d5cf4d82,
-        type: 3}
-      propertyPath: _waves.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: 98c6760a55c29244d8d233ee1356757e,
-        type: 2}
-    - target: {fileID: 7300342205331037249, guid: 61d081160cf84b748abb9316d5cf4d82,
-        type: 3}
-      propertyPath: _waves.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: 12ff0254f469117478876fc17102897a,
-        type: 2}
-    - target: {fileID: 7300342205331037249, guid: 61d081160cf84b748abb9316d5cf4d82,
-        type: 3}
-      propertyPath: _waves.Array.data[3]
-      value: 
-      objectReference: {fileID: 11400000, guid: c37c08b9bba797e4b8961d93c2c5d7fb,
-        type: 2}
-    - target: {fileID: 7300342205331037249, guid: 61d081160cf84b748abb9316d5cf4d82,
-        type: 3}
-      propertyPath: _waves.Array.data[4]
-      value: 
-      objectReference: {fileID: 11400000, guid: bffc73d9d9bd8c94588e3c1bde158951,
-        type: 2}
-    - target: {fileID: 7300342205331037249, guid: 61d081160cf84b748abb9316d5cf4d82,
-        type: 3}
-      propertyPath: _initialAdditionalWaves
-      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61d081160cf84b748abb9316d5cf4d82, type: 3}

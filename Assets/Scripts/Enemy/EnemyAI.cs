@@ -368,8 +368,10 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
 
     protected virtual void FacePlayer()
     {
-        Quaternion rot = Quaternion.LookRotation(new Vector3(_playerDir.x, 0, _playerDir.z));
-        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * _stats.facePlayerSpeed);
+        //Quaternion rot = Quaternion.LookRotation(new Vector3(_playerDir.x, 0, _playerDir.z));
+        //transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * _stats.facePlayerSpeed);
+
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(_playerDir), Time.deltaTime);
     }
 
     public virtual void Damage(float amount, (SOBuff buff, int amount)[] buffs)
