@@ -26,7 +26,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     [SerializeField]
     protected GameObject _spawnEffectClosing;
     [SerializeField]
-    protected CapsuleCollider _bodyCollider;
+    protected Collider _bodyCollider;
 
     [Header("--- NavMesh Mods ---")]
     [SerializeField]

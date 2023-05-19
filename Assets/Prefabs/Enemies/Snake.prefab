@@ -1343,8 +1343,9 @@ GameObject:
   - component: {fileID: -3947793967169715839}
   - component: {fileID: 7355849157069038389}
   - component: {fileID: 5988892425251434761}
-  - component: {fileID: 2741660182144818385}
   - component: {fileID: 3440464607429495584}
+  - component: {fileID: 7202754426233159732}
+  - component: {fileID: 5737337181011425773}
   m_Layer: 7
   m_Name: Snake
   m_TagString: Untagged
@@ -1361,7 +1362,7 @@ Transform:
   m_GameObject: {fileID: 7355849157076422901}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5266092543226845146}
@@ -1411,7 +1412,7 @@ MonoBehaviour:
   _spawnEffectIdle: {fileID: 8747382882277111426, guid: 3724739400859df4eb7de3dbb0c1365f,
     type: 3}
   _spawnEffectClosing: {fileID: 118508, guid: f837736aa24637a46b9ffb8660b317bb, type: 3}
-  _bodyCollider: {fileID: 2741660182144818385}
+  _bodyCollider: {fileID: 7202754426233159732}
   _changeTime: 2
   _changeCurve:
     serializedVersion: 2
@@ -1621,20 +1622,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!136 &2741660182144818385
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7355849157076422901}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 1
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.35, z: -0.5}
 --- !u!82 &3440464607429495584
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1732,6 +1719,32 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &7202754426233159732
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7355849157076422901}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 1.2, z: 0.7}
+  m_Center: {x: 0, y: 0.56, z: -0.04}
+--- !u!65 &5737337181011425773
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7355849157076422901}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.3, z: 1.7}
+  m_Center: {x: 0, y: 0.1, z: -0.55}
 --- !u!1 &7355849157076422903
 GameObject:
   m_ObjectHideFlags: 0
