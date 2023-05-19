@@ -962,7 +962,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-290204
+  m_Name: pb_Mesh-12112
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1316,7 +1316,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-290190
+  m_Name: pb_Mesh-12098
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1930,7 +1930,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-290176
+  m_Name: pb_Mesh-12084
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2205,7 +2205,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-290218
+  m_Name: pb_Mesh-12126
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2633,7 +2633,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh93830
+  m_Name: pb_Mesh46742
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3643,7 +3643,7 @@ TerrainCollider:
   m_Material: {fileID: 0}
   m_Enabled: 1
   m_TerrainData: {fileID: 15600000, guid: c5e9866a7708b41429c50689a3d85e7e, type: 2}
-  m_EnableTreeColliders: 0
+  m_EnableTreeColliders: 1
 --- !u!218 &1505440249
 Terrain:
   m_ObjectHideFlags: 0
@@ -4196,7 +4196,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-290162
+  m_Name: pb_Mesh-12070
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4682,7 +4682,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1905160391}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: f740a7ffb1aec334bb7db6ea8b8c12d1, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
