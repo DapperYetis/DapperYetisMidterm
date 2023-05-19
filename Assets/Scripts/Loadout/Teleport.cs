@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class Teleport : Support
 {
@@ -14,25 +15,25 @@ public class Teleport : Support
     [SerializeField] private float _throwForce;
     private bool _beaconPlaced = false;
     private RaycastHit _hit;
-    [SerializeField] private GameObject _particleEffects;
+    [SerializeField] private GameObject _particleEffectsPrimary;
+    [SerializeField] private GameObject _particleEffectsSecondary;
     [SerializeField] AudioSource _audio;
     [SerializeField] private AudioClip _audioClipQucikTele;
     [SerializeField][Range(0f, 1f)] float _audQuickTeleVol;
     [SerializeField] private AudioClip _audioClipBeacon;
     [SerializeField][Range(0f, 1f)] float _audBeaconVol;
 
-    // Start is called before the first frame update
     protected void Start()
     {
         _player = GameManager.instance.player.transform;
-        _particleEffects.gameObject.SetActive(false);
+        _particleEffectsPrimary.SetActive(false);
+        _particleEffectsSecondary.SetActive(false);
     }
     protected override void Update()
     {
         if (Input.GetButtonDown("Primary Support") && _canUsePrimary && !GameManager.instance.isPaused)
         {
             StartCoroutine(Primary());
-            OnPrimary.Invoke();
         }
         else if (Input.GetButtonDown("Secondary Support") && _canUseSecondary && !GameManager.instance.isPaused)
         {
@@ -41,21 +42,21 @@ public class Teleport : Support
                 _audio.PlayOneShot(_audioClipBeacon, _audBeaconVol);
             }
             StartCoroutine(Secondary());
-            OnSecondary.Invoke();
         }
     }
 
     protected override IEnumerator Primary()
     {
-        _canUsePrimary = false;
-        if (ObjectToTeleport() != null)
+        if (ObjectToTeleport())
         {
-            _particleEffects.gameObject.SetActive(true);
+            _canUsePrimary = false;
+            _particleEffectsPrimary.SetActive(true);
             TeleportToView();
+            OnPrimary.Invoke();
+            yield return new WaitForSeconds(_stats.useRatePrimary);
+            _particleEffectsPrimary.SetActive(false);
+            _canUsePrimary = true;
         }
-        yield return new WaitForSeconds(_stats.useRatePrimary);
-        _particleEffects.gameObject.SetActive(false);
-        _canUsePrimary = true;
     }
 
     protected override IEnumerator Secondary()
@@ -70,7 +71,7 @@ public class Teleport : Support
         }
         else
         {
-            _particleEffects.gameObject.SetActive(true);
+            _particleEffectsSecondary.SetActive(true);
             float teleportOffset = GameManager.instance.player.GetComponent<CapsuleCollider>().height / 2;
             Vector3 beaconPosition = _currentBeacon.transform.position;
             Vector3 teleportLocation = new Vector3(beaconPosition.x, beaconPosition.y + teleportOffset, beaconPosition.z);
@@ -78,24 +79,18 @@ public class Teleport : Support
             Destroy(_currentBeacon);
             _currentBeacon = null;
             _beaconPlaced = false;
+            OnSecondary.Invoke();
             yield return new WaitForSeconds(_stats.useRateSecondary);
-            _particleEffects.gameObject.SetActive(false);
+            _particleEffectsSecondary.SetActive(false);
         }
         _canUseSecondary = true;
     }
-    private GameObject ObjectToTeleport()
+    private bool ObjectToTeleport()
     {
         Vector3 origin = _player.transform.position;
         Vector3 direction = Camera.main.transform.forward;
 
-        if (Physics.Raycast(origin, direction, out _hit, _stats.distancePrimary))
-        {
-            return _hit.collider.gameObject;
-        }
-        else
-        {
-            return null;
-        }
+        return Physics.Raycast(origin, direction, out _hit, _stats.distancePrimary);
     }
 
     private void TeleportToView()
