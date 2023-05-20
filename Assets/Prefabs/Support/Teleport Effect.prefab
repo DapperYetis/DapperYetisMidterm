@@ -4912,7 +4912,7 @@ GameObject:
   - component: {fileID: 8598471899334879187}
   - component: {fileID: 8599312986557049101}
   m_Layer: 0
-  m_Name: Teleport Beacon Teleport Effect
+  m_Name: Teleport Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
