@@ -272,7 +272,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 257561dcda71c9747a6d2e97e3dfeb21, type: 3}
   - {fileID: 8300000, guid: 956492f209c75a143a45c67296a93496, type: 3}
   - {fileID: 8300000, guid: ca6f45e028d93d44f91b37834fc3c6a9, type: 3}
-  - {fileID: 8300000, guid: fe52aa66e4b88534586275ec630ec26b, type: 3}
   _audStepsVol: 1
   _audJump:
   - {fileID: 8300000, guid: 7049bd55acc6f6046a01b188702a4f9d, type: 3}

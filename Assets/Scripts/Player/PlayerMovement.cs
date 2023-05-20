@@ -203,15 +203,16 @@ public class PlayerMovement : MonoBehaviour
         if (_audSteps.Length > 0 && isGrounded)
         {
             _audio.PlayOneShot(_audSteps[Random.Range(0, _audSteps.Length)], _audStepsVol);
-        }
 
-        if(!isRunning)
-        {
-            yield return new WaitForSeconds(0.5f);
-        }
-        else
-        {
-            yield return new WaitForSeconds(0.3f);
+
+            if (!isRunning)
+            {
+                yield return new WaitForSeconds(0.4f);
+            }
+            else
+            {
+                yield return new WaitForSeconds(0.2f);
+            }
         }
 
         _wasMoving = false;
