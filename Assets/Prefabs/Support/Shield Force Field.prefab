@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7148778512704405780}
   - component: {fileID: 7148778512704405776}
-  m_Layer: 6
+  m_Layer: 13
   m_Name: Shield Force Field
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,8 +44,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 5, y: 3, z: 3.13}
+  m_Center: {x: 0, y: 0, z: -1.2}
 --- !u!1001 &3444597130601170490
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -60,13 +60,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6142389121791018343, guid: f899041f261aacc4ba8bd3da3694bc5a,
         type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6142389121791018343, guid: f899041f261aacc4ba8bd3da3694bc5a,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6142389121791018343, guid: f899041f261aacc4ba8bd3da3694bc5a,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6142389121791018343, guid: f899041f261aacc4ba8bd3da3694bc5a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6142389121791018343, guid: f899041f261aacc4ba8bd3da3694bc5a,
         type: 3}
@@ -113,7 +123,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shield Force Field Visual
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7298414516337844320, guid: f899041f261aacc4ba8bd3da3694bc5a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3507735043925207317, guid: f899041f261aacc4ba8bd3da3694bc5a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f899041f261aacc4ba8bd3da3694bc5a, type: 3}
 --- !u!4 &8859579423939347293 stripped
 Transform:

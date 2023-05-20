@@ -6,6 +6,8 @@ using UnityEngine;
 public class IceProjectile : Projectile
 {
     [SerializeField]
+    private Collider _col;
+    [SerializeField]
     private bool _piercing;
     private List<IBuffable> _previouslyHit = new();
 
@@ -28,6 +30,9 @@ public class IceProjectile : Projectile
         }
 
         if (!_piercing)
-            Destroy(gameObject);
+        {
+            _col.enabled = false;
+            Destroy(gameObject, 0.05f);
+        }
     }
 }

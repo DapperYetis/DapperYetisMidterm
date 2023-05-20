@@ -4906,7 +4906,7 @@ GameObject:
   - component: {fileID: 1877677484131502550}
   - component: {fileID: 7956339051839533432}
   - component: {fileID: -7953450603510997114}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fire Staff Secondary Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -9,11 +9,21 @@ using static UnityEngine.Rendering.DebugUI;
 public class Shield : Support
 {
     public GameObject shieldField;
+    public GameObject shieldFieldVisual;
     public Transform spawnPoint;
     public float spawnMaxDistance = 7;
     public Vector3 spawnOffset = new(0, 1, 0);
 
     public bool shieldEnabled;
+
+    [SerializeField] private ProjectileMelee _damageTrigger;
+    [SerializeField] private GameObject _particleEffect;
+    [SerializeField] float dashingSpeed = 50f;
+    [SerializeField] float dashingCooldown = 0.2f;
+    [SerializeField] private float _shieldDurability;
+    public Material oldMaterial;
+    public Material newMaterial;
+    private Rigidbody rb;
 
     [Header("---- Audio ----")]
     [SerializeField] AudioSource _audio;
@@ -25,15 +35,6 @@ public class Shield : Support
     [SerializeField][Range(0f, 1f)] float _shieldDamagedVol;
     [SerializeField] private AudioClip _shieldDashAud;
     [SerializeField][Range(0f, 1f)] float _shieldDashVol;
-
-    [SerializeField] private ProjectileMelee _damageTrigger;
-    [SerializeField] private GameObject _particleEffect;
-    [SerializeField] float dashingSpeed = 50f;
-    [SerializeField] float dashingCooldown = 0.2f;
-    [SerializeField] private float _shieldDurability;
-    public Material oldMaterial;
-    public Material newMaterial;
-    private Rigidbody rb;
 
     private void Start()
     {
@@ -104,7 +105,7 @@ public class Shield : Support
 
     protected void OnTriggerEnter(Collider other)
     {
-        MeshRenderer meshRenderer = shieldField.GetComponent<MeshRenderer>();
+        MeshRenderer meshRenderer = shieldFieldVisual.GetComponent<MeshRenderer>();
         if (shieldEnabled)
         {
             _shieldDurability--;
