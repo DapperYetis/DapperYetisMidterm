@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
@@ -33,7 +34,6 @@ public class UIManager : MonoBehaviour
     public float origTimeScale => _origTimeScale;
     private PlayerController _playerController;
     private Stack<GameObject> _menuStack;
-    private bool _isPlaying = false;
     private float _endtime;
     private float _lastCurrency = 0;
     private bool _isHealthUpdating;
@@ -70,9 +70,6 @@ public class UIManager : MonoBehaviour
         
         if(_playerInv != null)
             _lastCurrency = _playerInv.currency;
-
-        if (Application.platform == RuntimePlatform.WebGLPlayer)
-            _references.quitButton.enabled = false;
     }
 
     void Update()
@@ -157,7 +154,8 @@ public class UIManager : MonoBehaviour
                 TrackCurrency(0);
                 _references.hud.GetComponent<HudItems>().ResetVisual();
             }
-
+            if (Application.platform == RuntimePlatform.WebGLPlayer)
+                TurnOffQuitButtons();
             return true;
         }));
     }
@@ -245,18 +243,12 @@ public class UIManager : MonoBehaviour
             _activeMenu.SetActive(true);
     }
 
-    public void StartsPlaying()
+    public void TurnOffQuitButtons()
     {
-        _isPlaying = true;
+        _references.pauseQuitButton.interactable = false;
+        _references.winQuitButton.interactable = false;
+        _references.loseQuitButton.interactable = false;
     }
-
-    public void StopsPlaying()
-    {
-        _isPlaying = false;
-        _references.transitionScreen.SetActive(false);
-    }
-
-
     #endregion
 
     #region HUD Functionality
