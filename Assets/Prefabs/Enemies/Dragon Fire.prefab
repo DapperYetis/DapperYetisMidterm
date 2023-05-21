@@ -187,8 +187,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: -0.3, y: -0.15, z: 0}
+  m_Radius: 0.33
+  m_Center: {x: -0.3, y: -0.12, z: 0}
 --- !u!1 &8377023706072890923
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,6 +480,21 @@ MonoBehaviour:
   _speedMod: 3
   _animTransSpeed: 0.1
   _OnHealthChange:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuffAdded:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuffRemoved:
+    m_PersistentCalls:
+      m_Calls: []
+  OnEnemyDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnEnemyDamagedNumber:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBossDied:
     m_PersistentCalls:
       m_Calls: []
   _additivePriorityMod: 1
