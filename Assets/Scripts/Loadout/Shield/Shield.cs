@@ -49,12 +49,10 @@ public class Shield : Support
         if (Input.GetButtonDown("Primary Support") && _canUsePrimary && !GameManager.instance.isPaused)
         {
             StartCoroutine(Primary());
-            OnPrimary.Invoke();
         }
         else if (Input.GetButtonDown("Secondary Support") && _canUseSecondary && !GameManager.instance.isPaused)
         {
             StartCoroutine(Secondary());
-            OnSecondary.Invoke();
         }
     }
 
@@ -78,6 +76,7 @@ public class Shield : Support
             {
                 _audio.PlayOneShot(_shieldDeactiveAud, _shieldDeactiveVol);
             }
+            OnPrimary.Invoke();
             yield return new WaitForSeconds(stats.useRatePrimary);
         }
 
@@ -99,6 +98,7 @@ public class Shield : Support
         _particleEffect.gameObject.SetActive(false);
         _damageTrigger.gameObject.SetActive(false);
         GameManager.instance.player.movement.enabled = true;
+        OnSecondary.Invoke();
         yield return new WaitForSeconds(stats.useRateSecondary);
         _canUseSecondary = true;
     }
@@ -138,6 +138,7 @@ public class Shield : Support
     IEnumerator Cooldown()
     {
         _canUsePrimary = false;
+        OnSecondary.Invoke();
         yield return new WaitForSeconds(stats.useRatePrimary);
         _canUsePrimary = true;
 

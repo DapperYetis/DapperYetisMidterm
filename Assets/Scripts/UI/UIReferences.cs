@@ -224,9 +224,17 @@ public class UIReferences : MonoBehaviour
 
     public AudioClip pickUpClip => _pickUpClip;
 
-    [SerializeField] Button _quitButton;
+    [SerializeField] Button _pauseQuitButton;
 
-    public Button quitButton => _quitButton;
+    public Button pauseQuitButton => _pauseQuitButton;
+
+    [SerializeField] Button _winQuitButton;
+
+    public Button winQuitButton => _winQuitButton;
+
+    [SerializeField] Button _loseQuitButton;
+
+    public Button loseQuitButton => _loseQuitButton;
 
     [SerializeField] GameObject _bossHealthBar;
 

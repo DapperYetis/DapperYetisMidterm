@@ -31,7 +31,7 @@ public class MenuNav : MonoBehaviour
         ToFirstMenu(_menuRef.mainMenu);
 
         if(Application.platform == RuntimePlatform.WebGLPlayer)
-            _menuRef.quitButton.enabled = false;
+            _menuRef.quitButton.interactable = false;
 
     }
 
