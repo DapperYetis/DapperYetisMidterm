@@ -194,7 +194,9 @@ MonoBehaviour:
   _audioControl: {fileID: 2722203867269431594}
   _buttonClip: {fileID: 8300000, guid: f9e3a60812519c3488a3d4615ddc5582, type: 3}
   _pickUpClip: {fileID: 8300000, guid: 6f8ee8327aa06cd4db6a5f4da1918af8, type: 3}
-  _quitButton: {fileID: 4724916751569422710}
+  _pauseQuitButton: {fileID: 4724916751569422710}
+  _winQuitButton: {fileID: 4724916749740861936}
+  _loseQuitButton: {fileID: 4350242375734568340}
   _bossHealthBar: {fileID: 7019906964090283946}
   _bossHealth: {fileID: 3671157451286860665}
 --- !u!82 &2722203867269431594
@@ -1133,6 +1135,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4724916749740861936 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9065021077253078632, guid: 091ef941ab0d9e8408d674e25e82fd46,
+    type: 3}
+  m_PrefabInstance: {fileID: 4350242374761437080}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4724916750366701530 stripped
@@ -2123,6 +2137,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 6930095619817883738}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4350242375734568340 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6661825898477448654, guid: cc463ab10b5d673478422512d13173fb,
+    type: 3}
+  m_PrefabInstance: {fileID: 6930095619817883738}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5073129672199149182 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2759516562109029924, guid: cc463ab10b5d673478422512d13173fb,

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
@@ -69,9 +70,6 @@ public class UIManager : MonoBehaviour
         
         if(_playerInv != null)
             _lastCurrency = _playerInv.currency;
-
-        if (Application.platform == RuntimePlatform.WebGLPlayer)
-            _references.quitButton.enabled = false;
     }
 
     void Update()
@@ -156,7 +154,8 @@ public class UIManager : MonoBehaviour
                 TrackCurrency(0);
                 _references.hud.GetComponent<HudItems>().ResetVisual();
             }
-
+            if (Application.platform == RuntimePlatform.WebGLPlayer)
+                TurnOffQuitButtons();
             return true;
         }));
     }
@@ -242,6 +241,13 @@ public class UIManager : MonoBehaviour
         _menuStack.Push(newMenu);
         if (_activeMenu != null)
             _activeMenu.SetActive(true);
+    }
+
+    public void TurnOffQuitButtons()
+    {
+        _references.pauseQuitButton.interactable = false;
+        _references.winQuitButton.interactable = false;
+        _references.loseQuitButton.interactable = false;
     }
     #endregion
 
