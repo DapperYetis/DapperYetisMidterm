@@ -5473,7 +5473,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1920292943329688151}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: f740a7ffb1aec334bb7db6ea8b8c12d1, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -5498,7 +5498,7 @@ GameObject:
   m_Name: Pillar Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1900848439094976537
@@ -9053,6 +9053,7 @@ GameObject:
   - component: {fileID: 1679696914670371170}
   - component: {fileID: 2205258111964514321}
   - component: {fileID: 5605287899454936879}
+  - component: {fileID: 4178458287053198076}
   m_Layer: 3
   m_Name: Pillar
   m_TagString: Untagged
@@ -14521,3 +14522,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!208 &4178458287053198076
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5966779502119109226}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 5, y: 155, z: 5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
