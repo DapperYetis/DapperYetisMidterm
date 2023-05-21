@@ -77,7 +77,7 @@ public class Chest : MonoBehaviour, IInteractable
         }
     }
 
-    public bool CanInteract() => GameManager.instance.player.inventory.currency > _cost;
+    public bool CanInteract() => GameManager.instance.player.inventory.currency >= _cost;
 
     public int GetCost() => _cost;
 

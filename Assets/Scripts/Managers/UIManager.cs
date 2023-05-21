@@ -33,7 +33,6 @@ public class UIManager : MonoBehaviour
     public float origTimeScale => _origTimeScale;
     private PlayerController _playerController;
     private Stack<GameObject> _menuStack;
-    private bool _isPlaying = false;
     private float _endtime;
     private float _lastCurrency = 0;
     private bool _isHealthUpdating;
@@ -244,19 +243,6 @@ public class UIManager : MonoBehaviour
         if (_activeMenu != null)
             _activeMenu.SetActive(true);
     }
-
-    public void StartsPlaying()
-    {
-        _isPlaying = true;
-    }
-
-    public void StopsPlaying()
-    {
-        _isPlaying = false;
-        _references.transitionScreen.SetActive(false);
-    }
-
-
     #endregion
 
     #region HUD Functionality

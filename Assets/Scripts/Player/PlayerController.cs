@@ -120,6 +120,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
     {
         // Movement
         //_camera = Camera.main;
+        _stats = GameManager.instance.startingPlayer.stats;
         _movement.SetStats(_stats);
         _movement.SetPosition(GameManager.instance.playerSpawnPos.position);
 
