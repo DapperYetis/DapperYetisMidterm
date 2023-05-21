@@ -23,9 +23,9 @@ MonoBehaviour:
       changeType: 0
       prefab: {fileID: 0}
       critChance: 0.387
-      directDamage: 0.25
+      directDamage: 1
       secondaryDamage: 0
-      cooldown: 0.1
+      cooldown: 0.5
       lifetime: 1.5
       secondaryLifetime: 0
       speed: 30
