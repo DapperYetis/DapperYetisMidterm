@@ -104,9 +104,9 @@ public class HermitKingBoss : HybridEnemy
         {
             for (int j = 0; j < projectileCount; ++j)
             {
-                rot = Quaternion.LookRotation(_playerDir * 0.5f);
-                if (Mathf.Abs(Quaternion.Angle(rot, Quaternion.LookRotation(_playerDir))) >= 60)
-                    rot = Quaternion.LookRotation(_playerDir);
+                rot = Quaternion.LookRotation(VectorToPlayer(_sprayAttackStats) * 0.5f);
+                if (Mathf.Abs(Quaternion.Angle(rot, Quaternion.LookRotation(VectorToPlayer(_sprayAttackStats)))) >= 60)
+                    rot = Quaternion.LookRotation(VectorToPlayer(_sprayAttackStats));
                 rot = Quaternion.RotateTowards(rot, Random.rotation, _sprayAttackStats.variance);
                 Instantiate(_sprayAttackStats.prefab, _sprayAttackStats.positions[i].position, rot).GetComponent<Projectile>().SetStats(_sprayAttackStats);
             }

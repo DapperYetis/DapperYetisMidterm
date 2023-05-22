@@ -10,10 +10,16 @@ public class EnemySpawnPoint : MonoBehaviour
 
     public Vector3 GetPointInRange()
     {
-        Vector3 offset = Random.insideUnitCircle * _radius;
-        offset.z = offset.y;
-        offset.y = 0;
-        return transform.position + offset;
+        Vector3 offset;
+        RaycastHit hit;
+        while(true)
+        {
+            offset = Random.insideUnitCircle * _radius;
+            offset.z = offset.y;
+            offset.y = 0;
+            if(Physics.Raycast(transform.position + offset, Vector3.down, out hit, _radius))
+                return hit.point;
+        }
     }
 
 #if UNITY_EDITOR
