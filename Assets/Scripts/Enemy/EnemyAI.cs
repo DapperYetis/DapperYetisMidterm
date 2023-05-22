@@ -26,7 +26,9 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     [SerializeField]
     protected GameObject _spawnEffectClosing;
     [SerializeField]
-    protected CapsuleCollider _bodyCollider;
+    protected Collider _bodyCollider;
+    [SerializeField]
+    protected Collider _avoidanceCollider;
 
     [Header("--- NavMesh Mods ---")]
     [SerializeField]
@@ -280,6 +282,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
         _anim.speed = 0;
         _agent.enabled = false;
         _bodyCollider.enabled = false;
+        _avoidanceCollider.enabled = false;
         enabled = false;
 
         Color mainColor = _model.material.color;
@@ -322,6 +325,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
         _anim.speed = 1;
         _agent.enabled = true;
         _bodyCollider.enabled = true;
+        _avoidanceCollider.enabled = true;
         enabled = true;
     }
 
@@ -410,6 +414,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
         _aud.enabled = true;
         _anim.SetBool("Dead", true);
         _bodyCollider.enabled = false;
+        _avoidanceCollider.enabled = false;
         _agent.speed = 0;
         enabled = false;
         _agent.SetDestination(transform.position);

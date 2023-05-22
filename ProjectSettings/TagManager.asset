@@ -13,6 +13,7 @@ TagManager:
   - WeaponRow
   - SupRow
   - Transition
+  - TeleportBeacon
   layers:
   - Default
   - TransparentFX
@@ -28,7 +29,7 @@ TagManager:
   - Block Loot Spawning
   - Weapon
   - Shield
-  - 
+  - Avoidance
   - 
   - 
   - 
