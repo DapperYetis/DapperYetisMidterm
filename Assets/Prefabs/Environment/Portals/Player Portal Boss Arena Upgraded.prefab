@@ -9930,8 +9930,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 728e4059dce5f1548abc05b5887376d7, type: 2}
   - {fileID: 11400000, guid: 5b0d74f5b53e6de4d897a655d0b1909b, type: 2}
   _bossSpawnPoint: {fileID: 0}
-  _audPortalOpenVol: 0
-  _audPortalOpen: []
+  _audPortalOpenVol: 0.3
+  _audPortalOpen:
+  - {fileID: 8300000, guid: 6cb770d2c653d5b4b9503b6a6a88ede7, type: 3}
+  - {fileID: 8300000, guid: bd27aec87cfa17c4dada39ba17d9161e, type: 3}
+  - {fileID: 8300000, guid: ee954120d7692524ebb3869360370f61, type: 3}
   _audBossExclamationVol: 0.5
   _audBossExclamation:
   - {fileID: 8300000, guid: d675c599f6ecded48b409c06cff448d1, type: 3}
@@ -10613,7 +10616,8 @@ AudioSource:
   m_GameObject: {fileID: 1885044804891699306}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: ee91a59677e14a24f8f1e16aeb721c3c,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
