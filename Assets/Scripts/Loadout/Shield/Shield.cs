@@ -42,6 +42,7 @@ public class Shield : Support
         _damageTrigger.gameObject.SetActive(false);
         _damageTrigger.SetStats(_stats);
         _particleEffect.gameObject.SetActive(false);
+        shieldField.gameObject.SetActive(false);
     }
 
     protected override void Update()

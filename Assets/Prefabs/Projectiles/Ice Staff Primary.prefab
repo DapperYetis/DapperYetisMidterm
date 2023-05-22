@@ -15579,15 +15579,6 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0
-          inSlope: 20
-          outSlope: 20
-          tangentMode: 34
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 0.05
           value: 1
           inSlope: 0
           outSlope: 0
@@ -18392,7 +18383,7 @@ ParticleSystem:
         m_RotationOrder: 4
     minKillSpeed: 0
     maxKillSpeed: 10000
-    radiusScale: 0.3
+    radiusScale: 1.5
     collidesWith:
       serializedVersion: 2
       m_Bits: 136

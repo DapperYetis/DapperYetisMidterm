@@ -48,9 +48,12 @@ public class Grapple : Support
     {
         _canUsePrimary = false;
         _grappleSwing.StartSwing();
-        if (_primGrappleAud != null)
+        if (grappleSwing.pm.swinging == true)
         {
-            _audio.PlayOneShot(_primGrappleAud[Random.Range(0, _primGrappleAud.Length)], _primGrappleAudVol);
+            if (_primGrappleAud != null)
+            {
+                _audio.PlayOneShot(_primGrappleAud[Random.Range(0, _primGrappleAud.Length)], _primGrappleAudVol);
+            }
         }
     }
 
@@ -67,9 +70,12 @@ public class Grapple : Support
     {
         _canUseSecondary = false;
         _zipToGrapple.ShootHook();
-        if (_secGrappleAud != null)
+        if (_zipToGrapple.isGrappling == true)
         {
-            _audio.PlayOneShot(_secGrappleAud[Random.Range(0, _secGrappleAud.Length)], _secGrappleAudVol);
+            if (_secGrappleAud != null)
+            {
+                _audio.PlayOneShot(_secGrappleAud[Random.Range(0, _secGrappleAud.Length)], _secGrappleAudVol);
+            }
         }
         yield return new WaitForSeconds(_stats.useRateSecondary);
         _canUseSecondary = true;

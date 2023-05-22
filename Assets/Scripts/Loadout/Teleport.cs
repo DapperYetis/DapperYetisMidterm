@@ -62,26 +62,29 @@ public class Teleport : Support
     protected override IEnumerator Secondary()
     {
         _canUseSecondary = false;
-        if (!_beaconPlaced)
+        if (!_beaconPlaced || _currentBeacon == null)
         {
             _currentBeacon = Instantiate(_teleportBeaconPrefab, _shotPoint.position, Quaternion.identity) as GameObject;
             _currentBeacon.GetComponent<Rigidbody>().AddForce(_camera.transform.forward * _throwForce, ForceMode.Impulse);
             _beaconPlaced = true;
-            yield return new WaitForSeconds(1);
+           // yield return new WaitForSeconds(1);
         }
         else
         {
-            _particleEffectsSecondary.SetActive(true);
-            float teleportOffset = GameManager.instance.player.GetComponent<CapsuleCollider>().height / 2;
-            Vector3 beaconPosition = _currentBeacon.transform.position;
-            Vector3 teleportLocation = new Vector3(beaconPosition.x, beaconPosition.y + teleportOffset, beaconPosition.z);
-            _player.transform.position = teleportLocation;
-            Destroy(_currentBeacon);
-            _currentBeacon = null;
-            _beaconPlaced = false;
-            OnSecondary.Invoke();
-            yield return new WaitForSeconds(_stats.useRateSecondary);
-            _particleEffectsSecondary.SetActive(false);
+            if (_currentBeacon != null)
+            {
+                _particleEffectsSecondary.SetActive(true);
+                float teleportOffset = GameManager.instance.player.GetComponent<CapsuleCollider>().height / 2;
+                Vector3 beaconPosition = _currentBeacon.transform.position;
+                Vector3 teleportLocation = new Vector3(beaconPosition.x, beaconPosition.y + teleportOffset, beaconPosition.z);
+                _player.transform.position = teleportLocation;
+                Destroy(_currentBeacon);
+                _currentBeacon = null;
+                _beaconPlaced = false;
+                OnSecondary.Invoke();
+                yield return new WaitForSeconds(_stats.useRateSecondary);
+                _particleEffectsSecondary.SetActive(false);
+            }
         }
         _canUseSecondary = true;
     }
@@ -101,5 +104,18 @@ public class Teleport : Support
             _audio.PlayOneShot(_audioClipQucikTele, _audQuickTeleVol);
         }
 
+    }
+    private IEnumerator ReappearOnExit()
+    {
+        if (EnemyManager.instance.inBossRoom)
+        {
+            if (_currentBeacon == null && !_beaconPlaced)
+            {
+                _currentBeacon = Instantiate(_teleportBeaconPrefab, _shotPoint.position, Quaternion.identity) as GameObject;
+                _currentBeacon.GetComponent<Rigidbody>().AddForce(_camera.transform.forward * _throwForce, ForceMode.Impulse);
+                _beaconPlaced = true;
+            }
+            yield return new WaitForSeconds(_stats.useRateSecondary);
+        }
     }
 }
