@@ -17,7 +17,7 @@ public class EnemySpawnPoint : MonoBehaviour
             offset = Random.insideUnitCircle * _radius;
             offset.z = offset.y;
             offset.y = 0;
-            if(Physics.Raycast(transform.position + offset, Vector3.down, out hit, _radius))
+            if(Physics.Raycast(transform.position + offset, Vector3.down, out hit, 1000f))
                 return hit.point;
         }
     }
