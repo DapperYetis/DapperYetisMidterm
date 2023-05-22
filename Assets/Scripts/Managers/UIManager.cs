@@ -518,5 +518,10 @@ public class UIManager : MonoBehaviour
         references.bossHealthBar.SetActive(false);
     }
 
+    public void SetDescription(String newObjective)
+    {
+        references.objectiveDesc.SetText(newObjective);
+    }
+
     #endregion
 }
