@@ -381,7 +381,7 @@ MonoBehaviour:
     range: 0
     _attackAudioVol: 0
     _attackAudio: []
-  _audSpawnVol: 0.2
+  _audSpawnVol: 0.1
   _audSpawn:
   - {fileID: 8300000, guid: 6cb770d2c653d5b4b9503b6a6a88ede7, type: 3}
   - {fileID: 8300000, guid: bd27aec87cfa17c4dada39ba17d9161e, type: 3}
@@ -391,7 +391,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f44792acb3fee5c4493ddf847a822112, type: 3}
   - {fileID: 8300000, guid: 049049ad11df7e84abc809052da2d038, type: 3}
   - {fileID: 8300000, guid: 0e1465e59160d2041aaefe66ee8ded2c, type: 3}
-  _audGettingCloseVol: 0.5
+  _audGettingCloseVol: 0.3
   _audGettingClose:
   - {fileID: 8300000, guid: e90e7f5ed776dad49a2269c0dc36576a, type: 3}
   - {fileID: 8300000, guid: 9546984d970603145b369f545cedbd9e, type: 3}
@@ -402,7 +402,7 @@ MonoBehaviour:
   _audHealVol: 0.5
   _audHeal:
   - {fileID: 8300000, guid: 76ef01426104ef141a558bdac28e13a8, type: 3}
-  _audDeathVol: 0.5
+  _audDeathVol: 0.3
   _audDeath:
   - {fileID: 8300000, guid: 870515531dbc0a648bd282a8401229e2, type: 3}
   - {fileID: 8300000, guid: baa3bf3cc2db7a243a3234b182abb840, type: 3}
