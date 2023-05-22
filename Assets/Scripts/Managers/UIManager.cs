@@ -156,6 +156,7 @@ public class UIManager : MonoBehaviour
             }
             if (Application.platform == RuntimePlatform.WebGLPlayer)
                 TurnOffQuitButtons();
+            SetHealthUpdating(false);
             return true;
         }));
     }
@@ -516,6 +517,11 @@ public class UIManager : MonoBehaviour
     public void TurnOffBossHealthBar()
     {
         references.bossHealthBar.SetActive(false);
+    }
+
+    public void SetHealthUpdating(bool newStatement)
+    {
+        _isHealthUpdating = newStatement;
     }
 
     #endregion
