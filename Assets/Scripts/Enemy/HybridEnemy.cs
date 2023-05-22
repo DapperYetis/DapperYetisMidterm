@@ -57,9 +57,7 @@ public class HybridEnemy : MeleeEnemy
             _aud.PlayOneShot(_secondaryAttackStats._attackAudio[Random.Range(0, _secondaryAttackStats._attackAudio.Length)], _secondaryAttackStats._attackAudioVol);
         else
             Debug.LogWarning("No Ranged Attack Sounds to play!");
-        Quaternion rot = Quaternion.LookRotation(_playerDir * 0.5f);
-        if (Mathf.Abs(Quaternion.Angle(rot, Quaternion.LookRotation(_playerDir))) >= 60)
-            rot = Quaternion.LookRotation(_playerDir);
+        Quaternion rot = Quaternion.LookRotation(VectorToPlayer(_secondaryAttackStats));
         rot = Quaternion.RotateTowards(rot, Random.rotation, _secondaryAttackStats.variance * GameManager.instance.player.movement.speedRatio);
         for (int i = 0; i < _secondaryAttackStats.positions.Length; i++)
         {
