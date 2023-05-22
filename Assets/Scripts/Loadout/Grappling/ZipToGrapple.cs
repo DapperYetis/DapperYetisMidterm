@@ -16,7 +16,7 @@ public class ZipToGrapple : MonoBehaviour
     [SerializeField] private float _hookSpeed;
     [SerializeField] private Vector3 _offset;
 
-    private bool isShooting, isGrappling;
+    public bool isShooting, isGrappling;
     private Vector3 _hookPoint;
 
     // Start is called before the first frame update
