@@ -20,16 +20,16 @@ public class RangedEnemy : EnemyAI
     {
         FacePlayer();
 
-        //if ((GameManager.instance.player.transform.position - transform.position).magnitude <= _agent.stoppingDistance)
-        //{
-        //    Vector3 normDir = (GameManager.instance.player.transform.position - transform.position).normalized;
-        //
-        //    _agent.SetDestination(transform.position - (normDir * _speed));
-        //}
-        //else
-        //{
+        if ((GameManager.instance.player.transform.position - transform.position).magnitude <= _agent.stoppingDistance)
+        {
+            Vector3 normDir = (GameManager.instance.player.transform.position - transform.position).normalized;
+
+            _agent.SetDestination(transform.position - normDir);// * _speed));
+        }
+        else
+        {
             _agent.SetDestination(GameManager.instance.player.transform.position);
-        //}
+        }
     }
 
     protected override float AttackPriority()
