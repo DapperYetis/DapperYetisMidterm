@@ -199,6 +199,7 @@ MonoBehaviour:
   _loseQuitButton: {fileID: 4350242375734568340}
   _bossHealthBar: {fileID: 7019906964090283946}
   _bossHealth: {fileID: 3671157451286860665}
+  _objective: {fileID: 4182388631369707438}
 --- !u!82 &2722203867269431594
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2914,6 +2915,18 @@ GameObject:
 --- !u!114 &325166756575605477 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7049222781755601822, guid: fd626564c52975845b068c2b726fdaea,
+    type: 3}
+  m_PrefabInstance: {fileID: 7300589759256478075}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4182388631369707438 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6870861329238470357, guid: fd626564c52975845b068c2b726fdaea,
     type: 3}
   m_PrefabInstance: {fileID: 7300589759256478075}
   m_PrefabAsset: {fileID: 0}

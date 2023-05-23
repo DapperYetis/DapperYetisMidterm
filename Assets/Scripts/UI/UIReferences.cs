@@ -244,4 +244,8 @@ public class UIReferences : MonoBehaviour
 
     public Image bossHealth => _bossHealth;
 
+    [SerializeField] TextMeshProUGUI _objective;
+
+    public TextMeshProUGUI objective => _objective;
+
 }
