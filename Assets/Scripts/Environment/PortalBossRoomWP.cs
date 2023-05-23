@@ -66,6 +66,7 @@ public class PortalBossRoomWP : MonoBehaviour
 
     private IEnumerator PlayerEntry()
     {
+        UIManager.instance.SetObjectiveDescription("Defeat the boss.");
         if(_audPortalOpen.Length > 0)
             _aud.PlayOneShot(_audPortalOpen[Random.Range(0, _audPortalOpen.Length)], _audPortalOpenVol);
         //Debug.Log($"{name} played a sound");
@@ -81,6 +82,7 @@ public class PortalBossRoomWP : MonoBehaviour
     private void PlayerWon()
     {
         UIManager.instance.TurnOffBossHealthBar();
+        UIManager.instance.SetObjectiveDescription("Head Back through the portal to move to level two.");
         if (_audPortalOpen.Length > 0)
             _aud.PlayOneShot(_audPortalOpen[Random.Range(0, _audPortalOpen.Length)], _audPortalOpenVol);
         //Debug.Log($"{name} played a sound");
