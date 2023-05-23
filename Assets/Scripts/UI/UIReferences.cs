@@ -136,10 +136,6 @@ public class UIReferences : MonoBehaviour
 
     public TextMeshProUGUI winCrits => _winCrits;
 
-    [SerializeField] TextMeshProUGUI _winBosses;
-
-    public TextMeshProUGUI winBosses => _winBosses;
-
     [SerializeField] TextMeshProUGUI _winHealth;
 
     public TextMeshProUGUI winHealth => _winHealth;
@@ -183,10 +179,6 @@ public class UIReferences : MonoBehaviour
     [SerializeField] TextMeshProUGUI _loseCrits;
 
     public TextMeshProUGUI loseCrits => _loseCrits;
-
-    [SerializeField] TextMeshProUGUI _loseBosses;
-
-    public TextMeshProUGUI loseBosses => _loseBosses;
 
     [SerializeField] TextMeshProUGUI _loseHealth;
 
