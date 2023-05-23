@@ -157,6 +157,8 @@ public class UIManager : MonoBehaviour
             if (Application.platform == RuntimePlatform.WebGLPlayer)
                 TurnOffQuitButtons();
             SetHealthUpdating(false);
+            SetObjectiveDescription("Defeat Enemies and collect items. " +
+                "When you're ready, interact with the teleport platform to summon a portal and fight the first boss.");
             return true;
         }));
     }
@@ -518,6 +520,11 @@ public class UIManager : MonoBehaviour
     public void SetHealthUpdating(bool newStatement)
     {
         _isHealthUpdating = newStatement;
+    }
+
+    public void SetObjectiveDescription(string description)
+    {
+        references.objective.SetText(description);
     }
 
     #endregion
