@@ -363,7 +363,6 @@ public class UIManager : MonoBehaviour
         StartCoroutine(SetScoreTally(_references.loseBuys, (int)(AchievementManager.instance.runStats.purchasesMade)));
         StartCoroutine(SetScoreTally(_references.loseDamage, (int)(AchievementManager.instance.runStats.damageDealt)));
         StartCoroutine(SetScoreTally(_references.loseCrits, (int)(AchievementManager.instance.runStats.criticalHits)));
-        StartCoroutine(SetScoreTally(_references.loseBosses, (int)(AchievementManager.instance.runStats.bossesKilled)));
         StartCoroutine(SetScoreTally(_references.loseHealth, (int)(AchievementManager.instance.runStats.damageTaken)));
         StartCoroutine(SetScoreTally(_references.loseHealed, (int)(AchievementManager.instance.runStats.damageHealed)));
     }
@@ -382,7 +381,6 @@ public class UIManager : MonoBehaviour
         StartCoroutine(SetScoreTally(_references.winBuys, (int)(AchievementManager.instance.runStats.purchasesMade)));
         StartCoroutine(SetScoreTally(_references.winDamage, (int)(AchievementManager.instance.runStats.damageDealt)));
         StartCoroutine(SetScoreTally(_references.winCrits, (int)(AchievementManager.instance.runStats.criticalHits)));
-        StartCoroutine(SetScoreTally(_references.winBosses, (int)(AchievementManager.instance.runStats.bossesKilled)));
         StartCoroutine(SetScoreTally(_references.winHealth, (int)(AchievementManager.instance.runStats.damageTaken)));
         StartCoroutine(SetScoreTally(_references.winHealed, (int)(AchievementManager.instance.runStats.damageHealed)));
     }
