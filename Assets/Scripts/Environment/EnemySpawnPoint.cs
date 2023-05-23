@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class EnemySpawnPoint : MonoBehaviour
 {
+    private static int MAX_ITERATIONS = 10;
     [SerializeField]
     private float _radius = 10f;
 
@@ -12,14 +13,18 @@ public class EnemySpawnPoint : MonoBehaviour
     {
         Vector3 offset;
         RaycastHit hit;
-        while(true)
+        int iterations = 0;
+        while(iterations <= MAX_ITERATIONS)
         {
             offset = Random.insideUnitCircle * _radius;
             offset.z = offset.y;
             offset.y = 0;
             if(Physics.Raycast(transform.position + offset, Vector3.down, out hit, 1000f))
                 return hit.point;
+
+            ++iterations;
         }
+        return transform.position;
     }
 
 #if UNITY_EDITOR
