@@ -15,5 +15,5 @@ MonoBehaviour:
   _ignoreSpawnBudget: 0
   _enemyType: {fileID: 8926234298307441318, guid: fbeaf08b3ffbbe94ba45050ed3f853f1,
     type: 3}
-  _spawnInterval: 0.2
+  _spawnInterval: 1.5
   _maxEnemyCount: 2

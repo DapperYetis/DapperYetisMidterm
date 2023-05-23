@@ -95,7 +95,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 4215798800216182968}
   m_PrefabAsset: {fileID: 0}
---- !u!208 &8865431457545939024
+--- !u!208 &2286959997348877223
 NavMeshObstacle:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,7 +107,7 @@ NavMeshObstacle:
   m_Shape: 1
   m_Extents: {x: 2.058, y: 3.9480002, z: 2.091}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: -0.29900002, y: 3.1100001, z: -0.231}
   m_TimeToStationary: 0.5

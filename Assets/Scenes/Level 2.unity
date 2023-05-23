@@ -191,6 +191,76 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7300342205331037249, guid: 61d081160cf84b748abb9316d5cf4d82,
+        type: 3}
+      propertyPath: _spawningBudgetInitialMax
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7300342205331037249, guid: 61d081160cf84b748abb9316d5cf4d82,
+        type: 3}
+      propertyPath: _timeBetweenWaves.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7300342205331037249, guid: 61d081160cf84b748abb9316d5cf4d82,
+        type: 3}
+      propertyPath: _timeBetweenWaves.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7300342205331037249, guid: 61d081160cf84b748abb9316d5cf4d82,
+        type: 3}
+      propertyPath: _timeBetweenWaves.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7300342205331037249, guid: 61d081160cf84b748abb9316d5cf4d82,
+        type: 3}
+      propertyPath: _timeBetweenWaves.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7300342205331037249, guid: 61d081160cf84b748abb9316d5cf4d82,
+        type: 3}
+      propertyPath: _timeBetweenWaves.m_Curve.Array.data[0].inSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7300342205331037249, guid: 61d081160cf84b748abb9316d5cf4d82,
+        type: 3}
+      propertyPath: _timeBetweenWaves.m_Curve.Array.data[1].inSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7300342205331037249, guid: 61d081160cf84b748abb9316d5cf4d82,
+        type: 3}
+      propertyPath: _timeBetweenWaves.m_Curve.Array.data[0].outSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7300342205331037249, guid: 61d081160cf84b748abb9316d5cf4d82,
+        type: 3}
+      propertyPath: _timeBetweenWaves.m_Curve.Array.data[1].inWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7300342205331037249, guid: 61d081160cf84b748abb9316d5cf4d82,
+        type: 3}
+      propertyPath: _timeBetweenWaves.m_Curve.Array.data[1].outSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7300342205331037249, guid: 61d081160cf84b748abb9316d5cf4d82,
+        type: 3}
+      propertyPath: _timeBetweenWaves.m_Curve.Array.data[0].outWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7300342205331037249, guid: 61d081160cf84b748abb9316d5cf4d82,
+        type: 3}
+      propertyPath: _timeBetweenWaves.m_Curve.Array.data[1].outWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7300342205331037249, guid: 61d081160cf84b748abb9316d5cf4d82,
+        type: 3}
+      propertyPath: _timeBetweenWaves.m_Curve.Array.data[0].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 7300342205331037249, guid: 61d081160cf84b748abb9316d5cf4d82,
+        type: 3}
+      propertyPath: _timeBetweenWaves.m_Curve.Array.data[1].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61d081160cf84b748abb9316d5cf4d82, type: 3}
 --- !u!1001 &1135740680
@@ -259,21 +329,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2945843829625020300, guid: 7451d09a1fcd021429cac0abef2b770b,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.953717
-      objectReference: {fileID: 0}
-    - target: {fileID: 2945843829625020300, guid: 7451d09a1fcd021429cac0abef2b770b,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.30070576
-      objectReference: {fileID: 0}
-    - target: {fileID: 2945843829625020300, guid: 7451d09a1fcd021429cac0abef2b770b,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -35
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7451d09a1fcd021429cac0abef2b770b, type: 3}
