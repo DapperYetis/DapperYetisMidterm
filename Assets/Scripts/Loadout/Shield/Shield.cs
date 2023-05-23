@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Assertions;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 using static UnityEngine.Rendering.DebugUI;
 
 public class Shield : Support
@@ -69,7 +70,7 @@ public class Shield : Support
                 _audio.PlayOneShot(_shieldActiveAud, _shieldActiveVol);
             }
         }
-        else if (shieldEnabled)
+        else if (shieldEnabled && _canUsePrimary == false)
         {
             shieldEnabled = false;
             shieldField.SetActive(false);
@@ -77,8 +78,7 @@ public class Shield : Support
             {
                 _audio.PlayOneShot(_shieldDeactiveAud, _shieldDeactiveVol);
             }
-            OnPrimary.Invoke();
-            yield return new WaitForSeconds(stats.useRatePrimary);
+            yield return new WaitForSeconds(1);
         }
 
         _canUsePrimary = true;
@@ -139,7 +139,7 @@ public class Shield : Support
     IEnumerator Cooldown()
     {
         _canUsePrimary = false;
-        OnSecondary.Invoke();
+        OnPrimary.Invoke();
         yield return new WaitForSeconds(stats.useRatePrimary);
         _canUsePrimary = true;
 

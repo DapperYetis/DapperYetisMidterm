@@ -29,7 +29,6 @@ public class FireStaff : Weapon
     {
         if (Input.GetButtonDown("Primary Fire") && _canUsePrimary)
         {
-            //_flame.gameObject.SetActive(true);
             _collider.enabled = true;
             _particleSystem.Play();
             _audio.loop = false;
@@ -50,13 +49,22 @@ public class FireStaff : Weapon
         }
         if (Input.GetButtonUp("Primary Fire") && !_canUsePrimary)
         {
-            //_flame.gameObject.SetActive(false);
             _collider.enabled = false;
             _particleSystem.Stop();
             _audio.loop = false;
             _audio.Stop();
             _canUsePrimary = true;
         }
+
+        /*if (EnemyManager.instance.inBossRoom)
+        {
+            _collider.enabled = false;
+            _particleSystem.Stop();
+            _audio.loop = false;
+            _audio.Stop();
+            _canUsePrimary = true;
+        }*/
+
         base.Update();
 
         if (GameManager.instance.isPaused && _audio.isPlaying)

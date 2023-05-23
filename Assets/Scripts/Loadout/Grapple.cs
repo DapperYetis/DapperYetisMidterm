@@ -32,7 +32,7 @@ public class Grapple : Support
         if (Input.GetButtonDown("Primary Support") && _canUsePrimary && !GameManager.instance.isPaused)
         {
             StartPrimary();
-            OnPrimary.Invoke();
+
         }
         else if (Input.GetButtonUp("Primary Support") && !_canUsePrimary && !GameManager.instance.isPaused && !_isStopping)
         {
@@ -61,6 +61,7 @@ public class Grapple : Support
     {
         _isStopping = true;
         _grappleSwing.StopSwing();
+        OnPrimary.Invoke();
         yield return new WaitForSeconds(_stats.useRatePrimary);
         _canUsePrimary = true;
         _isStopping = false;
@@ -77,6 +78,7 @@ public class Grapple : Support
                 _audio.PlayOneShot(_secGrappleAud[Random.Range(0, _secGrappleAud.Length)], _secGrappleAudVol);
             }
         }
+        OnSecondary.Invoke();
         yield return new WaitForSeconds(_stats.useRateSecondary);
         _canUseSecondary = true;
     }
