@@ -16,6 +16,9 @@ public class FireStaff : Weapon
     [SerializeField][Range(0f, 1f)] float _primFireWeaponAudVol;
     [SerializeField] AudioClip[] _secFireWeaponAud;
     [SerializeField][Range(0f, 1f)] float _secFireWeaponAudVol;
+
+    private bool wasInvoked;
+
     private void Start()
     {
         _collider = _flame.GetComponent<Collider>();
@@ -56,14 +59,24 @@ public class FireStaff : Weapon
             _canUsePrimary = true;
         }
 
-        /*if (EnemyManager.instance.inBossRoom)
+        if (EnemyManager.instance.inBossRoom && wasInvoked == false)
         {
             _collider.enabled = false;
             _particleSystem.Stop();
             _audio.loop = false;
             _audio.Stop();
             _canUsePrimary = true;
-        }*/
+            wasInvoked = true;
+        }
+        if (!EnemyManager.instance.inBossRoom && wasInvoked == true)
+        {
+            _collider.enabled = false;
+            _particleSystem.Stop();
+            _audio.loop = false;
+            _audio.Stop();
+            _canUsePrimary = true;
+            wasInvoked = false;
+        }
 
         base.Update();
 
