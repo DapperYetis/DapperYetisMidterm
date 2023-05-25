@@ -90,6 +90,7 @@ public class ButtonFunctions : MonoBehaviour
     {
         nav.BeginLoadScreen();
         yield return new WaitForSecondsRealtime(.5f);
+        UIManager.instance.SetInFirstlevel();
         UIManager.instance.TransitionToGame();
     }
 }

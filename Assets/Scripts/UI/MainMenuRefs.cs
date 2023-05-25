@@ -84,4 +84,6 @@ public class MainMenuRefs : MonoBehaviour
     [SerializeField] Button _quitButton;
 
     public Button quitButton => _quitButton;
+
+
 }

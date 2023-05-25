@@ -215,6 +215,11 @@ public class PlayerMovement : MonoBehaviour
             {
                 yield return new WaitForSeconds(0.2f);
             }
+
+            if(_audio.isPlaying && !isGrounded)
+            {
+                _audio.Stop();
+            }
         }
 
         _wasMoving = false;

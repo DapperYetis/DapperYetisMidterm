@@ -75,7 +75,9 @@ public abstract class EnemyAI : MonoBehaviour, IDamageable, IBuffable
     protected float _speed;
     public Dictionary<SOBuff, (int stacks, float time)> _currentBuffs = new();
     public Dictionary<SOBuff, BuffEffect> _currentBuffEffects = new();
+
     protected int _moveType;
+    [Header("--- Movement Controls ---")]
     [SerializeField]
     protected int _moveChances = 10;
     [SerializeField]
