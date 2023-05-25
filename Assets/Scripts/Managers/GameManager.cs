@@ -127,9 +127,11 @@ public class GameManager : MonoBehaviour
             AchievementManager.instance.ResetMap();
 
         if (_buildIndex == 0)
-            player.ResetLoadout();
-        if (_buildIndex != 0 && !_player.isSetUp)
+            _player.ResetLoadout();
+        else if (_buildIndex != 0 && !_player.isSetUp)
             _player.SetUp();
+        _player.movement.enabled = true;
+        _player.movement.ResetMovement();
     }
     #endregion
 

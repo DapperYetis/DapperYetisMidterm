@@ -55,6 +55,8 @@ public class PlayerMovement : MonoBehaviour
     public UnityEvent OnJump;
     [HideInInspector]
     public UnityEvent OnLand;
+    [HideInInspector]
+    public UnityEvent OnResetMovement;
 
     private void Awake()
     {
@@ -216,5 +218,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
         _wasMoving = false;
+    }
+
+    public void ResetMovement()
+    {
+        _rb.velocity = Vector3.zero;
+        OnResetMovement.Invoke();
     }
 }
