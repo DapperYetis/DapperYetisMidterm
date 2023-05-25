@@ -20,8 +20,8 @@ MonoBehaviour:
     useRatePrimary: 2
     useCountPrimary: 30
     distancePrimary: 100
-    damagePrimary: 10
+    damagePrimary: 5
     useRateSecondary: 1
-    useCountSecondary: 188
-    distanceSecondary: 66.33
+    useCountSecondary: 10
+    distanceSecondary: 0.5
     damageSecondary: 0

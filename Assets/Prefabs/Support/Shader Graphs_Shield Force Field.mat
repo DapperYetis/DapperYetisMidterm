@@ -53,7 +53,7 @@ Material:
     - _QueueOffset: 0
     - _depth: 2
     - _fill: -0.02
-    - _fresnel_power: 2.09
+    - _fresnel_power: 2.4
     m_Colors:
     - _Color: {r: 0.172549, g: 3.968627, b: 2.541177, a: 0}
   m_BuildTextureStacks: []

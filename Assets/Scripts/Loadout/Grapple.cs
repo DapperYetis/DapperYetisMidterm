@@ -16,6 +16,8 @@ public class Grapple : Support
     public ZipToGrapple zipToGrapple => _zipToGrapple;
     protected bool _isStopping = false;
 
+    private bool wasInvoked;
+
     [Header("-----Audio-----")]
     [SerializeField] AudioSource _audio;
     [SerializeField] AudioClip[] _primGrappleAud;
@@ -32,7 +34,7 @@ public class Grapple : Support
         if (Input.GetButtonDown("Primary Support") && _canUsePrimary && !GameManager.instance.isPaused)
         {
             StartPrimary();
-            OnPrimary.Invoke();
+
         }
         else if (Input.GetButtonUp("Primary Support") && !_canUsePrimary && !GameManager.instance.isPaused && !_isStopping)
         {
@@ -41,6 +43,17 @@ public class Grapple : Support
         else if (Input.GetButton("Secondary Support") && _canUseSecondary && !GameManager.instance.isPaused)
         {
             StartCoroutine(Secondary());
+        }
+
+        if (EnemyManager.instance.inBossRoom && wasInvoked == false)
+        {
+            StartCoroutine(Primary());
+            wasInvoked = true;
+        }
+        else if (!EnemyManager.instance.inBossRoom && wasInvoked == true)
+        {
+            StartCoroutine(Primary());
+            wasInvoked = false;
         }
     }
 
@@ -61,6 +74,7 @@ public class Grapple : Support
     {
         _isStopping = true;
         _grappleSwing.StopSwing();
+        OnPrimary.Invoke();
         yield return new WaitForSeconds(_stats.useRatePrimary);
         _canUsePrimary = true;
         _isStopping = false;
@@ -77,6 +91,7 @@ public class Grapple : Support
                 _audio.PlayOneShot(_secGrappleAud[Random.Range(0, _secGrappleAud.Length)], _secGrappleAudVol);
             }
         }
+        OnSecondary.Invoke();
         yield return new WaitForSeconds(_stats.useRateSecondary);
         _canUseSecondary = true;
     }
