@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class PortalBossRoomWP : MonoBehaviour
 {
-    private static int _bossIndex = 0;
-    public static int bossIndex => _bossIndex;
-    private static int _totalBosses;
-    public static int totalBosses => _totalBosses;
-
     [Header("--- Components ---")]
     [SerializeField]
     protected GameObject _portalEnterIdle;
@@ -52,7 +47,7 @@ public class PortalBossRoomWP : MonoBehaviour
         _entryIdleDur = _portalEnterIdle.GetComponent<ParticleSystem>().main.duration;
         _entryCloseDur = _portalEnterClose.GetComponent<ParticleSystem>().main.duration;
         _exitOpenDur = _portalExitOpen.GetComponent<ParticleSystem>().main.duration;
-        _totalBosses = _bossWaves.Length;
+        EnemyManager.totalBosses = _bossWaves.Length;
         StartCoroutine(PlayerEntry());
     }
 
@@ -96,7 +91,7 @@ public class PortalBossRoomWP : MonoBehaviour
         yield return new WaitForSeconds(_exitOpenDur);
         _portalExitOpen.SetActive(false);
         _portalExitIdle.SetActive(true);
-        _whereThePortalGoing.SetBuildIndex(++_bossIndex + 1);
+        _whereThePortalGoing.SetBuildIndex(++EnemyManager.bossIndex + 1);
     }
 
     private void OnTriggerExit(Collider other)
@@ -107,7 +102,7 @@ public class PortalBossRoomWP : MonoBehaviour
             //Debug.Log($"{name} played a sound");
             _proclamationCollider.enabled = false;
 
-            EnemyManager.SpawnEnemy(_bossWaves[_bossIndex], _bossSpawnPoint.position);
+            EnemyManager.SpawnEnemy(_bossWaves[EnemyManager.bossIndex], _bossSpawnPoint.position);
             _bossHasSpawned = true;
         }
     }

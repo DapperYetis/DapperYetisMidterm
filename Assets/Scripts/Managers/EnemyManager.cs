@@ -13,6 +13,8 @@ public class EnemyManager : MonoBehaviour
     // Waves management
     private bool _inBossRoom;
     public bool inBossRoom => _inBossRoom;
+    public static int bossIndex;
+    public static int totalBosses;
     private bool _withinSpawningBudget => _spawningBudget <= _spawningBudgetMax;
     [Header("---Waves---")]
     [SerializeField]
@@ -94,6 +96,7 @@ public class EnemyManager : MonoBehaviour
         _attackBudget = 0;
         _spawningBudget = 0;
         _attacks = new();
+        bossIndex = 0;
 
         SetWaves();
     }
@@ -220,7 +223,10 @@ public class EnemyManager : MonoBehaviour
         OnEnemyCountChange.RemoveAllListeners();
 
         if(GameManager.instance.buildIndex == 0)
+        {
             _inBossRoom = false;
+            bossIndex = 0;
+        }
         _spawningBudget = 0;
         _enemies.Clear();
         SetWaves();
