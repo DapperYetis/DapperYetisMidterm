@@ -37,6 +37,7 @@ public class UIManager : MonoBehaviour
     private float _endtime;
     private float _lastCurrency = 0;
     private bool _isHealthUpdating;
+    private bool _isInFirstLevel;
     [SerializeField]
     private float _healthWaitTime = 1f;
 
@@ -156,9 +157,17 @@ public class UIManager : MonoBehaviour
             }
             if (Application.platform == RuntimePlatform.WebGLPlayer)
                 TurnOffQuitButtons();
-            SetHealthUpdating(false);
-            SetObjectiveDescription("Defeat Enemies and collect items. " +
+            if (_isInFirstLevel)
+            {
+                _isInFirstLevel = false;
+                SetObjectiveDescription("Defeat Enemies and collect items. " +
                 "When you're ready, interact with the teleport platform to summon a portal and fight the first boss.");
+            }
+            else if(!_isInFirstLevel && !EnemyManager.instance.inBossRoom)
+            {
+                SetObjectiveDescription("Grab more items and prepare to face the final boss");
+            }
+            SetHealthUpdating(false);
             return true;
         }));
     }
@@ -204,6 +213,11 @@ public class UIManager : MonoBehaviour
     public void PlayClick()
     {
         _references.audioControl.PlayOneShot(_references.buttonClip);
+    }
+
+    public void SetInFirstlevel()
+    {
+        _isInFirstLevel = true;
     }
     #endregion
 
