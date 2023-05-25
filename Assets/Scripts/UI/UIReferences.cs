@@ -108,10 +108,6 @@ public class UIReferences : MonoBehaviour
 
     public TextMeshProUGUI winScore => _winScore;
 
-    [SerializeField] TextMeshProUGUI _winDeaths;
-
-    public TextMeshProUGUI winDeaths => _winDeaths;
-
     [SerializeField] TextMeshProUGUI _winDistance;
 
     public TextMeshProUGUI winDistance => _winDistance;
@@ -140,10 +136,6 @@ public class UIReferences : MonoBehaviour
 
     public TextMeshProUGUI winCrits => _winCrits;
 
-    [SerializeField] TextMeshProUGUI _winBosses;
-
-    public TextMeshProUGUI winBosses => _winBosses;
-
     [SerializeField] TextMeshProUGUI _winHealth;
 
     public TextMeshProUGUI winHealth => _winHealth;
@@ -159,10 +151,6 @@ public class UIReferences : MonoBehaviour
     [SerializeField] TextMeshProUGUI _loseTime;
 
     public TextMeshProUGUI loseTime => _loseTime;
-
-    [SerializeField] TextMeshProUGUI _loseDeaths;
-
-    public TextMeshProUGUI loseDeaths => _loseDeaths;
 
     [SerializeField] TextMeshProUGUI _loseDistance;
 
@@ -191,10 +179,6 @@ public class UIReferences : MonoBehaviour
     [SerializeField] TextMeshProUGUI _loseCrits;
 
     public TextMeshProUGUI loseCrits => _loseCrits;
-
-    [SerializeField] TextMeshProUGUI _loseBosses;
-
-    public TextMeshProUGUI loseBosses => _loseBosses;
 
     [SerializeField] TextMeshProUGUI _loseHealth;
 
@@ -243,5 +227,9 @@ public class UIReferences : MonoBehaviour
     [SerializeField] Image _bossHealth;
 
     public Image bossHealth => _bossHealth;
+
+    [SerializeField] TextMeshProUGUI _objective;
+
+    public TextMeshProUGUI objective => _objective;
 
 }
