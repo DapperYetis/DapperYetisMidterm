@@ -49,6 +49,8 @@ public class GrappleSwing : MonoBehaviour
         pm.enabled = true;
         orientation = GameManager.instance.player.grappling.orintation;
         rb = GameManager.instance.player.movement.rb;
+
+        GameManager.instance.player.OnResetMovement.AddListener(() => StopSwing());
     }
 
     void Update()
