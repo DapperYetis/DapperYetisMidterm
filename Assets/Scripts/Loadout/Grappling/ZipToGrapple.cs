@@ -27,6 +27,11 @@ public class ZipToGrapple : MonoBehaviour
         _playerBody = GameManager.instance.player.transform;
         _controller = GameManager.instance.player.grappling;
         _lineRenderer.enabled = false;
+        GameManager.instance.player.OnResetMovement.AddListener(() =>
+        {
+            isGrappling = false;
+            _grappleHook.parent = _handPos;
+        });
     }
 
     // Update is called once per frame
