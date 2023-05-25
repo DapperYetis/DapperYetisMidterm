@@ -37,6 +37,7 @@ public class ProjectileMelee : Projectile
     private IEnumerator TrackHit(IBuffable target)
     {
         _previouslyHit.Add(target);
+        yield return new WaitForSeconds(10);
         OnHit?.Invoke(this, target);
 
         yield return new WaitForSeconds(_stats.cooldown);
