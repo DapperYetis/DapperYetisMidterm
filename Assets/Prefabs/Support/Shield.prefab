@@ -150,7 +150,7 @@ MonoBehaviour:
   _particleEffect: {fileID: 5346863724057227858}
   dashingSpeed: 50
   dashingCooldown: 0.5
-  _shieldDurability: 50
+  _shieldDurability: 30
   oldMaterial: {fileID: 2100000, guid: a028913dd49cbf349bf9e1625b9e2d22, type: 2}
   newMaterial: {fileID: 2100000, guid: 6970b83e2ea7406419e805cb19853df4, type: 2}
   _audio: {fileID: 4248230010263583712}

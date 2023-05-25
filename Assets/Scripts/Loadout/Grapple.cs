@@ -16,6 +16,8 @@ public class Grapple : Support
     public ZipToGrapple zipToGrapple => _zipToGrapple;
     protected bool _isStopping = false;
 
+    private bool wasInvoked;
+
     [Header("-----Audio-----")]
     [SerializeField] AudioSource _audio;
     [SerializeField] AudioClip[] _primGrappleAud;
@@ -41,6 +43,17 @@ public class Grapple : Support
         else if (Input.GetButton("Secondary Support") && _canUseSecondary && !GameManager.instance.isPaused)
         {
             StartCoroutine(Secondary());
+        }
+
+        if (EnemyManager.instance.inBossRoom && wasInvoked == false)
+        {
+            StartCoroutine(Primary());
+            wasInvoked = true;
+        }
+        else if (!EnemyManager.instance.inBossRoom && wasInvoked == true)
+        {
+            StartCoroutine(Primary());
+            wasInvoked = false;
         }
     }
 

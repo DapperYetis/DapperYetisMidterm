@@ -20,7 +20,6 @@ public class Shield : Support
     [SerializeField] private ProjectileMelee _damageTrigger;
     [SerializeField] private GameObject _particleEffect;
     [SerializeField] float dashingSpeed = 50f;
-    [SerializeField] float dashingCooldown = 0.2f;
     [SerializeField] private float _shieldDurability;
     public Material oldMaterial;
     public Material newMaterial;
@@ -95,7 +94,7 @@ public class Shield : Support
         {
             _audio.PlayOneShot(_shieldDashAud, _shieldDashVol);
         }
-        yield return new WaitForSeconds(dashingCooldown);
+        yield return new WaitForSeconds(_stats.distanceSecondary);
         _particleEffect.gameObject.SetActive(false);
         _damageTrigger.gameObject.SetActive(false);
         GameManager.instance.player.movement.enabled = true;

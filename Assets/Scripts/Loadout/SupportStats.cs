@@ -39,6 +39,7 @@ public struct SupportStats
         {
             directDamage = stats.damagePrimary, 
             secondaryDamage = stats.damageSecondary,
+            cooldown = stats.useCountSecondary,
         };
     }
 }
