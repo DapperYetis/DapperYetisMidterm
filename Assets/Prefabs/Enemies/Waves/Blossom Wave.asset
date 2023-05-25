@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a01e0102239aeaa4e9d291efd03705ea, type: 3}
   m_Name: Blossom Wave
   m_EditorClassIdentifier: 
+  _ignoreSpawnBudget: 0
   _enemyType: {fileID: 5544356110842270898, guid: 2b0d305e25ac6804981c34cee49d5fcf,
     type: 3}
-  _spawnInterval: 0.3
+  _spawnInterval: 1.5
   _maxEnemyCount: 2

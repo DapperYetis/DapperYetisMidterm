@@ -318,7 +318,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _additivePriorityMod: 0
-  _spawnCost: 1.5
+  _spawnCost: 4
   _stats:
     HPMax: 8
     facePlayerSpeed: 600
@@ -330,7 +330,7 @@ MonoBehaviour:
     speed: 0
     acceleration: 0
   _moveChances: 10
-  _runTypeTimer: 0
+  _runTypeTimer: 1
   _circlingRange: 10
   _deathDelay: 3
   _timeLength: 10
@@ -363,7 +363,7 @@ MonoBehaviour:
     range: 0
     _attackAudioVol: 0
     _attackAudio: []
-  _audSpawnVol: 0.2
+  _audSpawnVol: 0.1
   _audSpawn:
   - {fileID: 8300000, guid: 6cb770d2c653d5b4b9503b6a6a88ede7, type: 3}
   - {fileID: 8300000, guid: bd27aec87cfa17c4dada39ba17d9161e, type: 3}

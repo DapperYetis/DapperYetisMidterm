@@ -26,6 +26,8 @@ public class EnemyManager : MonoBehaviour
     [SerializeField]
     private float _waveCostGrowthRate = 2f;
     public float _waveCostMax => _waveCostMaxInitial + _waveCostGrowthRate * scaleFactor;
+    [SerializeField]
+    private int _maxWaveCostChecks = 10;
     public int spawningBudget => _spawningBudget;
     [SerializeField]
     private int _initialAdditionalWaves = 0;
@@ -124,12 +126,16 @@ public class EnemyManager : MonoBehaviour
         yield return new WaitForSeconds(_initialWaveWait);
         //Debug.Log($"Time: {GameManager.instance.runTimeMinutes} min.\tSpawning: {_initialAdditionalWaves} ADDITIONAL waves.");
         int index;
+        int iterations;
         for (int i = 0; i < _initialAdditionalWaves; ++i)
         {
             index = Random.Range(0, _waves.Count);
-            while (_waveCosts[_waves[index]] >= _waveCostMax)
+            iterations = 0;
+            while (iterations <= _maxWaveCostChecks && _waveCosts[_waves[index]] >= _waveCostMax)
             {
                 index = Random.Range(0, _waves.Count);
+
+                ++iterations;
             }
             RunWave(index);
         }
@@ -139,14 +145,17 @@ public class EnemyManager : MonoBehaviour
             for (int i = 0; i < scaleFactorInt; ++i)
             {
                 index = Random.Range(0, _waves.Count);
-                while (_waveCosts[_waves[index]] >= _waveCostMax)
+                iterations = 0;
+                while (iterations <= _maxWaveCostChecks && _waveCosts[_waves[index]] >= _waveCostMax)
                 {
                     index = Random.Range(0, _waves.Count);
+
+                    ++iterations;
                 }
                 waitTime = RunWave(index);
             }
             //Debug.Log($"Time: {GameManager.instance.runTimeMinutes} min.\tSpawning: {scaleFactorInt} waves.");
-            yield return new WaitForSeconds(waitTime);
+            yield return new WaitForSeconds(waitTime != 0 ? waitTime : 1);
         }
     }
 

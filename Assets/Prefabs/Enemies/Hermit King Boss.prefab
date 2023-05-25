@@ -573,8 +573,8 @@ MonoBehaviour:
     prefab: {fileID: 0}
     selfBuffs: []
     targetBuffs: []
-    speed: 100
-    range: 7
+    speed: 0
+    range: 0
     _attackAudioVol: 0.5
     _attackAudio:
     - {fileID: 8300000, guid: 10e6f177fdf3c4f4cbb0fe9548ae7b0e, type: 3}
@@ -582,7 +582,7 @@ MonoBehaviour:
   _primaryAttackStatsScaling:
     positions: []
     damage: 7
-    rate: -0.2
+    rate: 0
     lifetime: 0
     variance: 0
     prefab: {fileID: 0}
@@ -629,7 +629,7 @@ MonoBehaviour:
     prefab: {fileID: 424343093267893311, guid: f7b16309293f2e949b61f60c035662d9, type: 3}
     selfBuffs: []
     targetBuffs: []
-    speed: 35
+    speed: 45
     range: 0
     _attackAudioVol: 0.5
     _attackAudio:
@@ -638,7 +638,7 @@ MonoBehaviour:
   _secondaryAttackStatsScaling:
     positions: []
     damage: 5
-    rate: -0.05
+    rate: 0
     lifetime: 0
     variance: 0
     prefab: {fileID: 0}
@@ -665,13 +665,13 @@ MonoBehaviour:
   _dashAttackScaling:
     positions: []
     damage: 3
-    rate: -0.25
+    rate: 0
     lifetime: 0.25
     variance: 0
     prefab: {fileID: 0}
     selfBuffs: []
     targetBuffs: []
-    speed: 3
+    speed: 6
     range: 0
     _attackAudioVol: 0
     _attackAudio: []
@@ -683,10 +683,10 @@ MonoBehaviour:
     rate: 1.5
     lifetime: 5
     variance: 1
-    prefab: {fileID: 424343093267893311, guid: 912a43b0040ffe643b0c56e5be18da99, type: 3}
+    prefab: {fileID: 424343093267893311, guid: 2ac0b8fc99d50be42b0318ca8cd7915e, type: 3}
     selfBuffs: []
     targetBuffs: []
-    speed: 40
+    speed: 60
     range: 0
     _attackAudioVol: 0.5
     _attackAudio:
@@ -695,13 +695,13 @@ MonoBehaviour:
   _sprayAttackScaling:
     positions: []
     damage: 2.5
-    rate: -0.25
+    rate: 0
     lifetime: 1
     variance: 0
     prefab: {fileID: 0}
     selfBuffs: []
     targetBuffs: []
-    speed: 2.5
+    speed: 7
     range: 0
     _attackAudioVol: 0
     _attackAudio: []
@@ -755,7 +755,7 @@ NavMeshAgent:
   m_Acceleration: 50
   avoidancePriority: 50
   m_AngularSpeed: 600
-  m_StoppingDistance: 8
+  m_StoppingDistance: 4
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1

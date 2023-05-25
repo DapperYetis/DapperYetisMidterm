@@ -105,4 +105,17 @@ public class Teleport : Support
         }
 
     }
+    private IEnumerator ReappearOnExit()
+    {
+        if (EnemyManager.instance.inBossRoom)
+        {
+            if (_currentBeacon == null && !_beaconPlaced)
+            {
+                _currentBeacon = Instantiate(_teleportBeaconPrefab, _shotPoint.position, Quaternion.identity) as GameObject;
+                _currentBeacon.GetComponent<Rigidbody>().AddForce(_camera.transform.forward * _throwForce, ForceMode.Impulse);
+                _beaconPlaced = true;
+            }
+            yield return new WaitForSeconds(_stats.useRateSecondary);
+        }
+    }
 }

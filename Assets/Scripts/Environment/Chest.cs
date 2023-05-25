@@ -14,6 +14,13 @@ public class Chest : MonoBehaviour, IInteractable
     private ParticleSystem _dismissalAnimation;
     [SerializeField]
     private float _animationLength;
+    [SerializeField] AudioSource _aud;
+    [Range(0, 1)]
+    [SerializeField]
+    protected float _audResponseVol;
+    [SerializeField]
+    protected AudioClip[] _audResponse;
+
     private Vector3 _playerPos;
     private Vector3 _lookDirection;
     private Quaternion _oldRotation;
@@ -33,8 +40,9 @@ public class Chest : MonoBehaviour, IInteractable
     {
         if (!CanInteract()) return false;
 
+
+        _aud.PlayOneShot(_audResponse[Random.Range(0, _audResponse.Length)], _audResponseVol);
         StartCoroutine(SummonItem());
-       
 
         return true;
     }
