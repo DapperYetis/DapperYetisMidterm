@@ -1178,7 +1178,7 @@ MonoBehaviour:
     targetBuffs: []
     speed: 25
     range: 0
-    _attackAudioVol: 0.5
+    _attackAudioVol: 0.2
     _attackAudio:
     - {fileID: 8300000, guid: 07fc8de2ac58e6d489a4e273c54c5ed0, type: 3}
     - {fileID: 8300000, guid: 5788fe954a612cd48b099059e41889f8, type: 3}
