@@ -15,6 +15,7 @@ public class ZipToGrapple : MonoBehaviour
     [SerializeField] private float _maxGrappleDistance;
     [SerializeField] private float _hookSpeed;
     [SerializeField] private Vector3 _offset;
+    private Rigidbody rb;
 
     public bool isShooting, isGrappling;
     private Vector3 _hookPoint;
@@ -22,11 +23,17 @@ public class ZipToGrapple : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        rb = GameManager.instance.player.movement.rb;
         isShooting = false;
         isGrappling = false;
         _playerBody = GameManager.instance.player.transform;
         _controller = GameManager.instance.player.grappling;
         _lineRenderer.enabled = false;
+        GameManager.instance.player.OnResetMovement.AddListener(() =>
+        {
+            isGrappling = false;
+            _grappleHook.parent = _handPos;
+        });
     }
 
     // Update is called once per frame

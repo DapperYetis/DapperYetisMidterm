@@ -267,7 +267,7 @@ PrefabInstance:
     - target: {fileID: 7291584282169754412, guid: 45605459ff4953d4d88d18d8df5b7e2a,
         type: 3}
       propertyPath: InitialModule.startSpeed.scalar
-      value: 3.7
+      value: 6.55
       objectReference: {fileID: 0}
     - target: {fileID: 7291584282169754412, guid: 45605459ff4953d4d88d18d8df5b7e2a,
         type: 3}
@@ -337,12 +337,12 @@ PrefabInstance:
     - target: {fileID: 7889433795918292178, guid: 45605459ff4953d4d88d18d8df5b7e2a,
         type: 3}
       propertyPath: m_Height
-      value: 4
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7889433795918292178, guid: 45605459ff4953d4d88d18d8df5b7e2a,
         type: 3}
       propertyPath: m_Center.z
-      value: 2.08
+      value: 3.48
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45605459ff4953d4d88d18d8df5b7e2a, type: 3}

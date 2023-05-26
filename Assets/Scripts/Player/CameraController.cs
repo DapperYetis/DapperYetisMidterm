@@ -27,19 +27,23 @@ public class CameraController : MonoBehaviour
 
     // Runtime variables
     private Camera _cam;
-    private float _fieldOfView;
+    private float _lowerFieldOfView;
+    private float _higherFieldOfView;
     private PlayerMovement _playerMove;
     private float _currentXRotation;
 
     private void Start()
     {
         _cam = GetComponent<Camera>();
-        
+
         _playerMove = GameManager.instance.playerMovement;
         _playerMove.OnSprintStart.AddListener(HandleSprintStart);
         _playerMove.OnSprintStop.AddListener(HandleSprintStop);
         SettingsManager.instance._onSensitivityChange.AddListener(ChangeSensitivity);
         ChangeSensitivity();
+
+        _lowerFieldOfView = _cam.fieldOfView;
+        _higherFieldOfView = _lowerFieldOfView * Mathf.Sqrt(_playerMove.stats.sprintMultiplier);
     }
 
     private void ChangeSensitivity()
@@ -63,13 +67,16 @@ public class CameraController : MonoBehaviour
 
     private void HandleSprintStart()
     {
-        _fieldOfView = _cam.fieldOfView;
-        StartCoroutine(TransitionFOV(_fieldOfView, _fieldOfView * Mathf.Sqrt(_playerMove.stats.sprintMultiplier), _fieldOfViewtransitionTime));
+        StopAllCoroutines();
+        _cam.fieldOfView = _higherFieldOfView;
+        StartCoroutine(TransitionFOV(_lowerFieldOfView, _higherFieldOfView, _fieldOfViewtransitionTime));
     }
 
     private void HandleSprintStop()
     {
-        StartCoroutine(TransitionFOV(_cam.fieldOfView, _fieldOfView, _fieldOfViewtransitionTime));
+        StopAllCoroutines();
+        _cam.fieldOfView = _lowerFieldOfView;
+        StartCoroutine(TransitionFOV(_higherFieldOfView, _lowerFieldOfView, _fieldOfViewtransitionTime));
     }
 
     private IEnumerator TransitionFOV(float start, float end, float time)

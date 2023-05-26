@@ -77,6 +77,8 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
     public UnityEvent OnJump;
     [HideInInspector]
     public UnityEvent OnLand;
+    [HideInInspector]
+    public UnityEvent OnResetMovement;
     // Combat
     [HideInInspector]
     public UnityEvent<Projectile, IBuffable> OnHit;
@@ -189,6 +191,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
         _movement.OnSprintStop.AddListener(() => OnSprintStop?.Invoke());
         _movement.OnJump.AddListener(() => OnJump?.Invoke());
         _movement.OnLand.AddListener(() => OnLand?.Invoke());
+        _movement.OnResetMovement.AddListener(() => OnResetMovement?.Invoke());
 
         // Combat Events
         _weapon.OnPrimary.AddListener(() => OnPrimary?.Invoke());

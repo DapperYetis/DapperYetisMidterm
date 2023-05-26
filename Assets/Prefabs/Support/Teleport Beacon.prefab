@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1319976383321658413}
   - component: {fileID: 9195101298697521598}
   - component: {fileID: -1453860175250518051}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Teleport Beacon
   m_TagString: TeleportBeacon
   m_Icon: {fileID: 0}

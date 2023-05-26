@@ -37,6 +37,7 @@ public class UIManager : MonoBehaviour
     private float _endtime;
     private float _lastCurrency = 0;
     private bool _isHealthUpdating;
+    private bool _isInFirstLevel;
     [SerializeField]
     private float _healthWaitTime = 1f;
 
@@ -156,6 +157,17 @@ public class UIManager : MonoBehaviour
             }
             if (Application.platform == RuntimePlatform.WebGLPlayer)
                 TurnOffQuitButtons();
+            if (_isInFirstLevel)
+            {
+                _isInFirstLevel = false;
+                SetObjectiveDescription("Defeat Enemies and collect items. " +
+                "When you're ready, interact with the teleport platform to summon a portal and fight the first boss.");
+            }
+            else if(!_isInFirstLevel && !EnemyManager.instance.inBossRoom)
+            {
+                SetObjectiveDescription("Grab more items and prepare to face the final boss");
+            }
+            SetHealthUpdating(false);
             return true;
         }));
     }
@@ -201,6 +213,11 @@ public class UIManager : MonoBehaviour
     public void PlayClick()
     {
         _references.audioControl.PlayOneShot(_references.buttonClip);
+    }
+
+    public void SetInFirstlevel()
+    {
+        _isInFirstLevel = true;
     }
     #endregion
 
@@ -355,7 +372,6 @@ public class UIManager : MonoBehaviour
         _references.itemNotif.SetActive(false);
         _references.loseTime.SetText($"{(int)AchievementManager.instance.runStats.timePlayed} : {((AchievementManager.instance.runStats.timePlayed * 60) % 60).ToString("F1")}");
         StartCoroutine(SetScoreTally(_references.loseScore, (int)AchievementManager.instance.runStats.totalPoints));
-        StartCoroutine(SetScoreTally(_references.loseDeaths, (int)(AchievementManager.instance.runStats.deaths)));
         StartCoroutine(SetScoreTally(_references.loseDistance, (int)(AchievementManager.instance.runStats.distanceMoved)));
         StartCoroutine(SetScoreTally(_references.loseJumps, (int)(AchievementManager.instance.runStats.jumps)));
         StartCoroutine(SetScoreTally(_references.loseGold, (int)(AchievementManager.instance.runStats.goldCollected)));
@@ -363,7 +379,6 @@ public class UIManager : MonoBehaviour
         StartCoroutine(SetScoreTally(_references.loseBuys, (int)(AchievementManager.instance.runStats.purchasesMade)));
         StartCoroutine(SetScoreTally(_references.loseDamage, (int)(AchievementManager.instance.runStats.damageDealt)));
         StartCoroutine(SetScoreTally(_references.loseCrits, (int)(AchievementManager.instance.runStats.criticalHits)));
-        StartCoroutine(SetScoreTally(_references.loseBosses, (int)(AchievementManager.instance.runStats.bossesKilled)));
         StartCoroutine(SetScoreTally(_references.loseHealth, (int)(AchievementManager.instance.runStats.damageTaken)));
         StartCoroutine(SetScoreTally(_references.loseHealed, (int)(AchievementManager.instance.runStats.damageHealed)));
     }
@@ -375,7 +390,6 @@ public class UIManager : MonoBehaviour
         _references.itemNotif.SetActive(false);
         _references.winTime.SetText($"{(int)AchievementManager.instance.runStats.timePlayed} : {((AchievementManager.instance.runStats.timePlayed * 60) % 60).ToString("F1")}");
         StartCoroutine(SetScoreTally(_references.winScore, (int)(AchievementManager.instance.runStats.totalPoints)));
-        StartCoroutine(SetScoreTally(_references.winDeaths, (int)(AchievementManager.instance.runStats.deaths)));
         StartCoroutine(SetScoreTally(_references.winDistance, (int)(AchievementManager.instance.runStats.distanceMoved)));
         StartCoroutine(SetScoreTally(_references.winJumps, (int)(AchievementManager.instance.runStats.jumps)));
         StartCoroutine(SetScoreTally(_references.winGold, (int)(AchievementManager.instance.runStats.goldCollected)));
@@ -383,7 +397,6 @@ public class UIManager : MonoBehaviour
         StartCoroutine(SetScoreTally(_references.winBuys, (int)(AchievementManager.instance.runStats.purchasesMade)));
         StartCoroutine(SetScoreTally(_references.winDamage, (int)(AchievementManager.instance.runStats.damageDealt)));
         StartCoroutine(SetScoreTally(_references.winCrits, (int)(AchievementManager.instance.runStats.criticalHits)));
-        StartCoroutine(SetScoreTally(_references.winBosses, (int)(AchievementManager.instance.runStats.bossesKilled)));
         StartCoroutine(SetScoreTally(_references.winHealth, (int)(AchievementManager.instance.runStats.damageTaken)));
         StartCoroutine(SetScoreTally(_references.winHealed, (int)(AchievementManager.instance.runStats.damageHealed)));
     }
@@ -516,6 +529,16 @@ public class UIManager : MonoBehaviour
     public void TurnOffBossHealthBar()
     {
         references.bossHealthBar.SetActive(false);
+    }
+
+    public void SetHealthUpdating(bool newStatement)
+    {
+        _isHealthUpdating = newStatement;
+    }
+
+    public void SetObjectiveDescription(string description)
+    {
+        references.objective.SetText(description);
     }
 
     #endregion
