@@ -1494,7 +1494,7 @@ MonoBehaviour:
   _attackDelay: 1
   _phaseTwoThreshold: 0.6
   _phaseThreeThreshold: 0.3
-  _flightHeight: 1.5
+  _flightHeight: 0
   _fallTime: 1.25
   _fallCurve:
     serializedVersion: 2
@@ -1623,7 +1623,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 600
-  m_StoppingDistance: 10
+  m_StoppingDistance: 20
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
