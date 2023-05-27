@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: 7c844ea34185c4a9182720e8671d417e, type: 3}
   _itemName: Energy Core
-  _description: Increase Fire Rate
+  _description: Increase fire rate
   _rarity: 1
   _prefab: {fileID: 0}
   _ignoreStats: 0
@@ -55,7 +55,7 @@ MonoBehaviour:
       critChance: 0
       directDamage: 0
       secondaryDamage: 0
-      cooldown: -0.2
+      cooldown: -0.4
       lifetime: 0
       secondaryLifetime: 0
       speed: 0

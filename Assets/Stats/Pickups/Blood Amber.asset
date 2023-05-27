@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: ebffab9d8e3844f089df91f790184f81, type: 3}
   _itemName: Blood Ember
-  _description: gain health back when you kill an enemy.
+  _description: Gain health back when you kill an enemy
   _rarity: 1
   _prefab: {fileID: 408873413887565784, guid: 71f888eea8d5e1e4a936b8cad0cb7cfc, type: 3}
   _ignoreStats: 1

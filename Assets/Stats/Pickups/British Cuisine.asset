@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: 6027e28238ebb4744bfab49ddf89952f, type: 3}
   _itemName: British Cuisine
-  _description: it's just a bean
+  _description: It's just a bean.
   _rarity: 1
   _prefab: {fileID: 408873413887565784, guid: 6bad6504ab1395a4f905fac8a04c0bf3, type: 3}
   _ignoreStats: 1

@@ -54,7 +54,7 @@ MonoBehaviour:
       prefab: {fileID: 0}
       critChance: 0
       directDamage: 2.5
-      secondaryDamage: 0
+      secondaryDamage: 2.5
       cooldown: 0
       lifetime: 0
       secondaryLifetime: 0

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: 322976b9d65394927835453e0d9cd9dd, type: 3}
   _itemName: Iron Bucket
-  _description: More health
+  _description: Increase max health
   _rarity: 0
   _prefab: {fileID: 0}
   _ignoreStats: 0
@@ -33,7 +33,7 @@ MonoBehaviour:
     jumpInputTime: 0
     jumpCountMax: 0
     gravityAcceleration: 0
-    healthMax: 30
+    healthMax: 10
     changeType: 0
   _attackStats:
     primaryAbility:

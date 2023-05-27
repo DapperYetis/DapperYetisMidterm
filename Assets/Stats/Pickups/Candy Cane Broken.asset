@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: 46729a92ff0734b9f9af7f2c2d3a7263, type: 3}
   _itemName: Broken Candy Cane
-  _description: walking speed boost
+  _description: Increase walking speed
   _rarity: 0
   _prefab: {fileID: 0}
   _ignoreStats: 0
   _movementStats:
-    walkSpeed: 0.5
+    walkSpeed: 0.1
     sprintMultiplier: 0
     accelerationRate:
       serializedVersion: 2
@@ -34,7 +34,7 @@ MonoBehaviour:
     jumpCountMax: 0
     gravityAcceleration: 0
     healthMax: 0
-    changeType: 1
+    changeType: 0
   _attackStats:
     primaryAbility:
       changeType: 0
