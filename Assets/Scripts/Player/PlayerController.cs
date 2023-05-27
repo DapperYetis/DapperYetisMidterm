@@ -125,6 +125,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IBuffable
         _stats = GameManager.instance.startingPlayer.stats;
         _movement.SetStats(_stats);
         _movement.SetPosition(GameManager.instance.playerSpawnPos.position);
+        _camera.GetComponent<CameraController>().SetUp();
 
         // Combat
         GetLoadout();

@@ -32,18 +32,22 @@ public class CameraController : MonoBehaviour
     private PlayerMovement _playerMove;
     private float _currentXRotation;
 
-    private void Start()
+    public void SetUp()
     {
         _cam = GetComponent<Camera>();
 
         _playerMove = GameManager.instance.playerMovement;
         _playerMove.OnSprintStart.AddListener(HandleSprintStart);
         _playerMove.OnSprintStop.AddListener(HandleSprintStop);
+        GameManager.instance.player.inventory.OnItemsChange.AddListener((item) =>
+        {
+            _higherFieldOfView = _lowerFieldOfView * Mathf.Sqrt(_playerMove.stats.sprintMultiplier > 1 ? _playerMove.stats.sprintMultiplier : 1);
+        });
         SettingsManager.instance._onSensitivityChange.AddListener(ChangeSensitivity);
         ChangeSensitivity();
 
         _lowerFieldOfView = _cam.fieldOfView;
-        _higherFieldOfView = _lowerFieldOfView * Mathf.Sqrt(_playerMove.stats.sprintMultiplier);
+        _higherFieldOfView = _lowerFieldOfView * Mathf.Sqrt(_playerMove.stats.sprintMultiplier > 1 ? _playerMove.stats.sprintMultiplier : 1);
     }
 
     private void ChangeSensitivity()
