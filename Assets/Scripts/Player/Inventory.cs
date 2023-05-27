@@ -85,6 +85,11 @@ public class Inventory : MonoBehaviour
     public void ResetPlayer()
     {
         _currency = 0;
+        foreach(var item in _itemEffects)
+        {
+            Destroy(item.Value.gameObject);
+        }
+        _itemEffects.Clear();
         _items.Clear();
         _currentLevel = 0;
     }
