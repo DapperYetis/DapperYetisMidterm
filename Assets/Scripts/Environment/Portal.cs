@@ -20,7 +20,7 @@ public class Portal : MonoBehaviour
             EnemyManager.instance.LeaveBossRoom(_buildIndex);
         if (!_isBossRoom && _buildIndex == 3)
             SceneManage.instance.LoadScene(_buildIndex);
-        else if(_buildIndex > 3 || PortalBossRoomWP.totalBosses < _buildIndex)
+        else if(_buildIndex > 3 || EnemyManager.totalBosses < _buildIndex)
         {
             UIManager.instance.PauseState();
             UIManager.instance.NextMenu(UIManager.instance.references.winMenu);

@@ -15,7 +15,8 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody _rb;
     public Rigidbody rb => _rb;
     [SerializeField]
-    private Transform _footPos;
+    private Transform _feetPosParent;
+    private Transform[] _feetPos;
 
     [SerializeField]
     private float _groundDist = 0.125f;
@@ -61,6 +62,11 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
+        _feetPos = new Transform[_feetPosParent.childCount];
+        for(int i = 0; i < _feetPosParent.childCount; ++i)
+        {
+            _feetPos[i] = _feetPosParent.GetChild(i);
+        }
     }
 
     private void Start()
@@ -133,7 +139,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void VerticalMovement()
     {
-        if(Physics.Raycast(_footPos.position, Vector3.down, _groundDist, Physics.AllLayers ^ (1 << 6)))
+        if(GroundCheck())
         {
             if (!_isGrounded)
                 OnLand.Invoke();
@@ -163,6 +169,16 @@ public class PlayerMovement : MonoBehaviour
         {
             _playerVelocity.y = _rb.velocity.y;
         }
+    }
+
+    private bool GroundCheck()
+    {
+        foreach(var pos in _feetPos)
+        {
+            if (Physics.Raycast(pos.position, Vector3.down, _groundDist, Physics.AllLayers ^ (1 << 6)))
+                return true;
+        }
+        return false;
     }
 
     private IEnumerator DoJump()
